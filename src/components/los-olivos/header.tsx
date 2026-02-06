@@ -25,6 +25,8 @@ import {
     Users,
     X
 } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
 interface DropdownItem {
@@ -47,16 +49,12 @@ interface NavItem {
   columns?: DropdownColumn[]
 }
 
-/**
- * Header con mega menu estilo Nequi
- * Navegacion: Inicio, Servicios (dropdown), Sedes & Planes (dropdown), Beneficios (dropdown), Nosotros (dropdown)
- */
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
-  // Servicios dropdown - estilo Nequi con columnas
   const serviciosColumns: DropdownColumn[] = [
     {
       title: "Nuestros Servicios",
@@ -64,19 +62,19 @@ export function Header() {
         { 
           label: "Homenaje al amor", 
           description: "Ceremonias personalizadas para honrar la memoria",
-          href: "#servicios", 
+          href: "/homenaje", 
           icon: Heart 
         },
         { 
           label: "Parque cementerio", 
           description: "Espacios de descanso eterno con naturaleza",
-          href: "#servicios", 
+          href: "/parque-cementerio", 
           icon: TreePine 
         },
         { 
           label: "Unidad de Duelo", 
           description: "Acompanamiento profesional en momentos dificiles",
-          href: "#servicios", 
+          href: "/unidad-duelo", 
           icon: Flower2 
         },
       ]
@@ -87,27 +85,25 @@ export function Header() {
         { 
           label: "Pagos en Linea", 
           description: "Realiza tus pagos de forma segura y rapida",
-          href: "https://pagos.losolivoscartagena.com/", 
+          href: "/pagos", 
           icon: CreditCard,
-          isExternal: true
         },
         { 
           label: "Cotizar Homenaje", 
           description: "Solicita una cotizacion personalizada",
-          href: "#servicios", 
+          href: "/cotizar", 
           icon: FileText 
         },
         { 
           label: "Tramites fallecido", 
           description: "Gestion de documentos y tramites necesarios",
-          href: "#servicios", 
+          href: "/tramites", 
           icon: ClipboardList 
         },
       ]
     }
   ]
 
-  // Sedes & Planes dropdown
   const sedesColumns: DropdownColumn[] = [
     {
       title: "Planes Exequiales",
@@ -122,13 +118,13 @@ export function Header() {
         { 
           label: "Plan Huellitas", 
           description: "Proteccion especial para tus mascotas",
-          href: "#sedes-planes", 
+          href: "/#sedes-planes", 
           icon: Sparkles 
         },
         { 
           label: "Conoce nuestros planes", 
           description: "Descubre todas las opciones disponibles",
-          href: "#sedes-planes", 
+          href: "/#sedes-planes", 
           icon: Info 
         },
       ]
@@ -139,7 +135,7 @@ export function Header() {
         { 
           label: "Sedes en Cartagena", 
           description: "Encuentra la sede mas cercana a ti",
-          href: "#sedes-planes", 
+          href: "/#sedes-planes", 
           icon: MapPin 
         },
         { 
@@ -153,7 +149,6 @@ export function Header() {
     }
   ]
 
-  // Beneficios dropdown
   const beneficiosColumns: DropdownColumn[] = [
     {
       title: "Beneficios Olivos",
@@ -161,32 +156,31 @@ export function Header() {
         { 
           label: "Asistencia Exequial", 
           description: "Cobertura completa en servicios funerarios",
-          href: "#beneficios", 
+          href: "/#beneficios", 
           icon: Shield 
         },
         { 
           label: "Asistencia en Vida", 
           description: "Beneficios para disfrutar en vida",
-          href: "#beneficios", 
+          href: "/#beneficios", 
           icon: HeartHandshake 
         },
         { 
           label: "Asistencia Psicologica", 
           description: "Apoyo emocional profesional",
-          href: "#beneficios", 
+          href: "/#beneficios", 
           icon: Brain 
         },
         { 
           label: "Beneficios Adicionales", 
           description: "Descuentos y alianzas exclusivas",
-          href: "#beneficios", 
+          href: "/#beneficios", 
           icon: Gift 
         },
       ]
     }
   ]
 
-  // Conocenos dropdown (reemplaza Contacto) - items en fila sin titulos de seccion
   const conocenosItems: DropdownItem[] = [
     { 
       label: "Nosotros", 
@@ -211,7 +205,6 @@ export function Header() {
     },
   ]
 
-  // Nosotros dropdown
   const nosotrosColumns: DropdownColumn[] = [
     {
       title: "Nosotros",
@@ -220,47 +213,64 @@ export function Header() {
   ]
 
   const navItems: NavItem[] = [
-    { label: "Inicio", href: "#inicio", hasDropdown: false },
-    { label: "Servicios", href: "#servicios", hasDropdown: true, columns: serviciosColumns },
-    { label: "Sedes & Planes", href: "#sedes-planes", hasDropdown: true, columns: sedesColumns },
-    { label: "Beneficios", href: "#beneficios", hasDropdown: true, columns: beneficiosColumns },
-    { label: "Conocenos", href: "#nosotros", hasDropdown: true, columns: nosotrosColumns },
+    { label: "Inicio", href: "/", hasDropdown: false },
+    { label: "Servicios", href: "/#servicios", hasDropdown: true, columns: serviciosColumns },
+    { label: "Sedes & Planes", href: "/#sedes-planes", hasDropdown: true, columns: sedesColumns },
+    { label: "Beneficios", href: "/#beneficios", hasDropdown: true, columns: beneficiosColumns },
+    { label: "Conocenos", href: "#", hasDropdown: true, columns: nosotrosColumns },
   ]
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label)
   }
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpenDropdown(null)
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  // Close dropdown on escape key
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpenDropdown(null)
       }
     }
-
     document.addEventListener("keydown", handleEscape)
     return () => document.removeEventListener("keydown", handleEscape)
   }, [])
 
+  // Close menus on route change
+  useEffect(() => {
+    setIsMenuOpen(false)
+    setOpenDropdown(null)
+  }, [pathname])
+
+  const renderLink = (href: string, isExternal: boolean | undefined, children: React.ReactNode, className: string, onClick?: () => void) => {
+    if (isExternal) {
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={className} onClick={onClick}>
+          {children}
+        </a>
+      )
+    }
+    return (
+      <Link href={href} className={className} onClick={onClick}>
+        {children}
+      </Link>
+    )
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4" ref={dropdownRef}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={dropdownRef}>
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-display font-bold text-lg">LO</span>
             </div>
@@ -268,7 +278,7 @@ export function Header() {
               <h1 className="font-display font-bold text-lg text-foreground leading-tight">Los Olivos</h1>
               <p className="text-xs text-muted-foreground">Cartagena</p>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
@@ -292,12 +302,16 @@ export function Header() {
                     />
                   </button>
                 ) : (
-                  <a
+                  <Link
                     href={item.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+                    className={`text-sm font-medium transition-colors py-2 ${
+                      pathname === item.href
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
+                    }`}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
@@ -308,14 +322,16 @@ export function Header() {
             <Button 
               variant="outline" 
               size="sm" 
-              className="gap-2 bg-transparent hover:bg-[#C38B2C] hover:text-white hover:border-[#C38B2C] transition-colors"
+              className="gap-2 bg-transparent hover:bg-[#C38B2C] hover:text-card hover:border-[#C38B2C] transition-colors"
             >
               <CreditCard className="w-4 h-4" />
               <span>Golden Offers</span>
             </Button>
-            <Button size="sm" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-              <ExternalLink className="w-4 h-4" />
-              <span>Portal</span>
+            <Button size="sm" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+              <a href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4" />
+                <span>Portal</span>
+              </a>
             </Button>
           </div>
 
@@ -330,54 +346,17 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mega Menu Dropdown - Desktop (estilo Nequi) */}
+        {/* Mega Menu Dropdown - Desktop */}
         {openDropdown && (
           <div className="hidden lg:block absolute left-0 right-0 top-full bg-card border-b border-border shadow-lg">
-            <div className="container mx-auto px-4 py-8">
-              {/* Conocenos - items en fila sin titulos */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               {openDropdown === "Conocenos" && (
                 <div className="flex justify-center gap-6">
                   {conocenosItems.map((subItem, itemIndex) => (
-                    <a
-                      key={itemIndex}
-                      href={subItem.href}
-                      target={subItem.isExternal ? "_blank" : undefined}
-                      rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                      onClick={() => setOpenDropdown(null)}
-                      className="flex items-start gap-3 p-4 rounded-lg hover:bg-muted transition-colors group min-w-[200px]"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        <subItem.icon className="w-5 h-5" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1">
-                          <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
-                            {subItem.label}
-                          </span>
-                          {subItem.isExternal && (
-                            <ExternalLink className="w-3 h-3 text-muted-foreground" />
-                          )}
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                          {subItem.description}
-                        </p>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              {/* Beneficios - grid 2x2 sin titulo */}
-              {openDropdown === "Beneficios" && (
-                <div className="max-w-2xl mx-auto">
-                  <div className="grid grid-cols-2 gap-4">
-                    {beneficiosColumns[0].items.map((subItem, itemIndex) => (
-                      <a
-                        key={itemIndex}
-                        href={subItem.href}
-                        onClick={() => setOpenDropdown(null)}
-                        className="flex items-start gap-3 p-4 rounded-lg hover:bg-muted transition-colors group"
-                      >
+                    renderLink(
+                      subItem.href,
+                      subItem.isExternal,
+                      <>
                         <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                           <subItem.icon className="w-5 h-5" />
                         </div>
@@ -386,18 +365,46 @@ export function Header() {
                             <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
                               {subItem.label}
                             </span>
+                            {subItem.isExternal && <ExternalLink className="w-3 h-3 text-muted-foreground" />}
                           </div>
-                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                            {subItem.description}
-                          </p>
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{subItem.description}</p>
                         </div>
-                      </a>
+                      </>,
+                      "flex items-start gap-3 p-4 rounded-lg hover:bg-muted transition-colors group min-w-[200px]",
+                      () => setOpenDropdown(null)
+                    )
+                  ))}
+                </div>
+              )}
+
+              {openDropdown === "Beneficios" && (
+                <div className="max-w-2xl mx-auto">
+                  <div className="grid grid-cols-2 gap-4">
+                    {beneficiosColumns[0].items.map((subItem, itemIndex) => (
+                      renderLink(
+                        subItem.href,
+                        subItem.isExternal,
+                        <>
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            <subItem.icon className="w-5 h-5" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1">
+                              <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                                {subItem.label}
+                              </span>
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{subItem.description}</p>
+                          </div>
+                        </>,
+                        "flex items-start gap-3 p-4 rounded-lg hover:bg-muted transition-colors group",
+                        () => setOpenDropdown(null)
+                      )
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Otros menus - layout con columnas y titulos */}
               {openDropdown !== "Conocenos" && openDropdown !== "Beneficios" && navItems.find(item => item.label === openDropdown)?.columns && (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                   {navItems.find(item => item.label === openDropdown)?.columns?.map((column, colIndex) => (
@@ -407,31 +414,26 @@ export function Header() {
                       </h3>
                       <div className="space-y-1">
                         {column.items.map((subItem, itemIndex) => (
-                          <a
-                            key={itemIndex}
-                            href={subItem.href}
-                            target={subItem.isExternal ? "_blank" : undefined}
-                            rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                            onClick={() => setOpenDropdown(null)}
-                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
-                          >
-                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                              <subItem.icon className="w-5 h-5" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-1">
-                                <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
-                                  {subItem.label}
-                                </span>
-                                {subItem.isExternal && (
-                                  <ExternalLink className="w-3 h-3 text-muted-foreground" />
-                                )}
+                          renderLink(
+                            subItem.href,
+                            subItem.isExternal,
+                            <>
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                                <subItem.icon className="w-5 h-5" />
                               </div>
-                              <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                                {subItem.description}
-                              </p>
-                            </div>
-                          </a>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1">
+                                  <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                                    {subItem.label}
+                                  </span>
+                                  {subItem.isExternal && <ExternalLink className="w-3 h-3 text-muted-foreground" />}
+                                </div>
+                                <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{subItem.description}</p>
+                              </div>
+                            </>,
+                            "flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group",
+                            () => setOpenDropdown(null)
+                          )
                         ))}
                       </div>
                     </div>
@@ -468,35 +470,27 @@ export function Header() {
                       </button>
                       {openDropdown === item.label && (
                         <div className="ml-2 border-l-2 border-primary/20 pl-4 py-2">
-                          {/* Conocenos y Beneficios - sin titulos */}
                           {(item.label === "Conocenos" || item.label === "Beneficios") ? (
                             <div className="space-y-1">
                               {(item.label === "Conocenos" ? conocenosItems : beneficiosColumns[0].items).map((subItem, itemIndex) => (
-                                <a
-                                  key={itemIndex}
-                                  href={subItem.href}
-                                  target={subItem.isExternal ? "_blank" : undefined}
-                                  rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                                  onClick={() => {
-                                    setOpenDropdown(null)
-                                    setIsMenuOpen(false)
-                                  }}
-                                  className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
-                                >
-                                  <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                                    <subItem.icon className="w-4 h-4" />
-                                  </div>
-                                  <div className="flex items-center gap-1">
-                                    <span>{subItem.label}</span>
-                                    {subItem.isExternal && (
-                                      <ExternalLink className="w-3 h-3" />
-                                    )}
-                                  </div>
-                                </a>
+                                renderLink(
+                                  subItem.href,
+                                  subItem.isExternal,
+                                  <>
+                                    <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                      <subItem.icon className="w-4 h-4" />
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                      <span>{subItem.label}</span>
+                                      {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
+                                    </div>
+                                  </>,
+                                  "flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2",
+                                  () => { setOpenDropdown(null); setIsMenuOpen(false) }
+                                )
                               ))}
                             </div>
                           ) : (
-                            /* Otros menus - con titulos */
                             <div className="space-y-4">
                               {item.columns?.map((column, colIndex) => (
                                 <div key={colIndex}>
@@ -505,27 +499,21 @@ export function Header() {
                                   </h4>
                                   <div className="space-y-1">
                                     {column.items.map((subItem, itemIndex) => (
-                                      <a
-                                        key={itemIndex}
-                                        href={subItem.href}
-                                        target={subItem.isExternal ? "_blank" : undefined}
-                                        rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                                        onClick={() => {
-                                          setOpenDropdown(null)
-                                          setIsMenuOpen(false)
-                                        }}
-                                        className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
-                                      >
-                                        <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                                          <subItem.icon className="w-4 h-4" />
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                          <span>{subItem.label}</span>
-                                          {subItem.isExternal && (
-                                            <ExternalLink className="w-3 h-3" />
-                                          )}
-                                        </div>
-                                      </a>
+                                      renderLink(
+                                        subItem.href,
+                                        subItem.isExternal,
+                                        <>
+                                          <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                            <subItem.icon className="w-4 h-4" />
+                                          </div>
+                                          <div className="flex items-center gap-1">
+                                            <span>{subItem.label}</span>
+                                            {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
+                                          </div>
+                                        </>,
+                                        "flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2",
+                                        () => { setOpenDropdown(null); setIsMenuOpen(false) }
+                                      )
                                     ))}
                                   </div>
                                 </div>
@@ -536,25 +524,26 @@ export function Header() {
                       )}
                     </>
                   ) : (
-                    <a
+                    <Link
                       href={item.href}
                       className="block text-sm font-medium text-foreground hover:text-primary py-3 px-2"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   )}
                 </div>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border mt-2">
-                
-                <Button variant="outline" className="gap-2 w-full justify-center bg-transparent hover:bg-amber-500 hover:text-white hover:border-amber-500">
+                <Button variant="outline" className="gap-2 w-full justify-center bg-transparent hover:bg-amber-500 hover:text-card hover:border-amber-500">
                   <CreditCard className="w-4 h-4" />
                   <span>Golden Offers</span>
                 </Button>
-                <Button className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90">
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Portal</span>
+                <Button className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+                  <a href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Portal</span>
+                  </a>
                 </Button>
               </div>
             </nav>

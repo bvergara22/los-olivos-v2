@@ -32,7 +32,7 @@ export function Benefits() {
 
   return (
     <section id="beneficios" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">

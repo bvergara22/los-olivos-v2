@@ -32,7 +32,7 @@ export function Steps() {
 
   return (
     <section className="py-20 bg-primary/5">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header - Ley de Posicion Serial */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-sm font-medium text-primary">Proceso simple</span>
