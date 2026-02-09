@@ -250,16 +250,16 @@ export function Header() {
     setOpenDropdown(null)
   }, [pathname])
 
-  const renderLink = (href: string, isExternal: boolean | undefined, children: React.ReactNode, className: string, onClick?: () => void) => {
+  const renderLink = (key: string, href: string, isExternal: boolean | undefined, children: React.ReactNode, className: string, onClick?: () => void) => {
     if (isExternal) {
       return (
-        <a href={href} target="_blank" rel="noopener noreferrer" className={className} onClick={onClick}>
+        <a key={key} href={href} target="_blank" rel="noopener noreferrer" className={className} onClick={onClick}>
           {children}
         </a>
       )
     }
     return (
-      <Link href={href} className={className} onClick={onClick}>
+      <Link key={key} href={href} className={className} onClick={onClick}>
         {children}
       </Link>
     )
@@ -354,6 +354,7 @@ export function Header() {
                 <div className="flex justify-center gap-6">
                   {conocenosItems.map((subItem, itemIndex) => (
                     renderLink(
+                      `conocenos-${itemIndex}`,
                       subItem.href,
                       subItem.isExternal,
                       <>
@@ -382,6 +383,7 @@ export function Header() {
                   <div className="grid grid-cols-2 gap-4">
                     {beneficiosColumns[0].items.map((subItem, itemIndex) => (
                       renderLink(
+                        `beneficios-${itemIndex}`,
                         subItem.href,
                         subItem.isExternal,
                         <>
@@ -415,6 +417,7 @@ export function Header() {
                       <div className="space-y-1">
                         {column.items.map((subItem, itemIndex) => (
                           renderLink(
+                            `col-${colIndex}-item-${itemIndex}`,
                             subItem.href,
                             subItem.isExternal,
                             <>
@@ -474,6 +477,7 @@ export function Header() {
                             <div className="space-y-1">
                               {(item.label === "Conocenos" ? conocenosItems : beneficiosColumns[0].items).map((subItem, itemIndex) => (
                                 renderLink(
+                                  `mobile-${item.label}-${itemIndex}`,
                                   subItem.href,
                                   subItem.isExternal,
                                   <>
@@ -500,6 +504,7 @@ export function Header() {
                                   <div className="space-y-1">
                                     {column.items.map((subItem, itemIndex) => (
                                       renderLink(
+                                        `mobile-col-${colIndex}-item-${itemIndex}`,
                                         subItem.href,
                                         subItem.isExternal,
                                         <>
