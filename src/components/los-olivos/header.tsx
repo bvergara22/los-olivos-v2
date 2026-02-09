@@ -3,28 +3,29 @@
 import { Button } from "@/components/ui/button"
 import type { LucideIcon } from "lucide-react"
 import {
-    BookOpen,
-    Brain,
-    Building2,
-    ChevronDown,
-    ClipboardList,
-    CreditCard,
-    ExternalLink,
-    FileCheck,
-    FileText,
-    Flower2,
-    Gift,
-    Heart,
-    HeartHandshake,
-    Info,
-    MapPin,
-    Menu,
-    Shield,
-    Sparkles,
-    TreePine,
-    Users,
-    X
+  BookOpen,
+  Brain,
+  Building2,
+  ChevronDown,
+  ClipboardList,
+  CreditCard,
+  ExternalLink,
+  FileCheck,
+  FileText,
+  Flower2,
+  Gift,
+  Heart,
+  HeartHandshake,
+  Info,
+  MapPin,
+  Menu,
+  PawPrint,
+  Shield,
+  TreePine,
+  Users,
+  X
 } from "lucide-react"
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
 interface DropdownItem {
@@ -47,10 +48,7 @@ interface NavItem {
   columns?: DropdownColumn[]
 }
 
-/**
- * Header con mega menu estilo Nequi
- * Navegacion: Inicio, Servicios (dropdown), Sedes & Planes (dropdown), Beneficios (dropdown), Nosotros (dropdown)
- */
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
@@ -64,19 +62,19 @@ export function Header() {
         { 
           label: "Homenaje al amor", 
           description: "Ceremonias personalizadas para honrar la memoria",
-          href: "#servicios", 
+          href: "/homenaje", 
           icon: Heart 
         },
         { 
           label: "Parque cementerio", 
           description: "Espacios de descanso eterno con naturaleza",
-          href: "#servicios", 
+          href: "/parque-cementerio", 
           icon: TreePine 
         },
         { 
           label: "Unidad de Duelo", 
           description: "Acompanamiento profesional en momentos dificiles",
-          href: "#servicios", 
+          href: "/unidad-duelo", 
           icon: Flower2 
         },
       ]
@@ -87,20 +85,20 @@ export function Header() {
         { 
           label: "Pagos en Linea", 
           description: "Realiza tus pagos de forma segura y rapida",
-          href: "https://pagos.losolivoscartagena.com/", 
+          href: "/pagos", 
           icon: CreditCard,
-          isExternal: true
+          
         },
         { 
           label: "Cotizar Homenaje", 
           description: "Solicita una cotizacion personalizada",
-          href: "#servicios", 
+          href: "/cotizar", 
           icon: FileText 
         },
         { 
           label: "Tramites fallecido", 
           description: "Gestion de documentos y tramites necesarios",
-          href: "#servicios", 
+          href: "/tramites", 
           icon: ClipboardList 
         },
       ]
@@ -110,25 +108,25 @@ export function Header() {
   // Sedes & Planes dropdown
   const sedesColumns: DropdownColumn[] = [
     {
-      title: "Planes Exequiales",
+      title: "Prevision Exequial",
       items: [
         { 
-          label: "Prevision exequial", 
+          label: "Planes exequial", 
           description: "Planes de proteccion para ti y tu familia",
-          href: "https://planes.losolivoscartagena.com/", 
+          href: "#sedes-planes", 
           icon: Shield,
-          isExternal: true
+          
         },
         { 
           label: "Plan Huellitas", 
           description: "Proteccion especial para tus mascotas",
-          href: "#sedes-planes", 
-          icon: Sparkles 
+          href: "/huellitas", 
+          icon: PawPrint
         },
         { 
-          label: "Conoce nuestros planes", 
+          label: "Conoce más", 
           description: "Descubre todas las opciones disponibles",
-          href: "#sedes-planes", 
+          href: "https://planes.losolivoscartagena.com/", 
           icon: Info 
         },
       ]
@@ -143,9 +141,9 @@ export function Header() {
           icon: MapPin 
         },
         { 
-          label: "Tienda / Portal", 
+          label: "Tienda", 
           description: "Accede a nuestro portal de servicios",
-          href: "https://www.portal.losolivoscartagena.com/", 
+          href: "https://www.portal.losolivoscartagena.com/tienda", 
           icon: Building2,
           isExternal: true
         },
@@ -224,7 +222,7 @@ export function Header() {
     { label: "Servicios", href: "#servicios", hasDropdown: true, columns: serviciosColumns },
     { label: "Sedes & Planes", href: "#sedes-planes", hasDropdown: true, columns: sedesColumns },
     { label: "Beneficios", href: "#beneficios", hasDropdown: true, columns: beneficiosColumns },
-    { label: "Conocenos", href: "#nosotros", hasDropdown: true, columns: nosotrosColumns },
+    { label: "Conócenos", href: "#nosotros", hasDropdown: true, columns: nosotrosColumns },
   ]
 
   const toggleDropdown = (label: string) => {
@@ -305,19 +303,39 @@ export function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="gap-2 bg-transparent hover:bg-[#C38B2C] hover:text-white hover:border-[#C38B2C] transition-colors"
-            >
-              <CreditCard className="w-4 h-4" />
-              <span>Golden Offers</span>
+  
+            <Button
+              asChild
+                variant="outline"
+                  size="sm"
+                    className="gap-2 bg-transparent hover:bg-[#C38B2C] hover:text-white hover:border-[#C38B2C] transition-colors"
+                    >
+            <Link
+              href="https://goldenoffer.losolivoscartagena.com/"
+              target="_blank"
+                rel="noopener noreferrer"
+                >
+                <CreditCard className="w-4 h-4" />
+                <span>Golden Offers</span>
+            </Link>
             </Button>
-            <Button size="sm" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-              <ExternalLink className="w-4 h-4" />
-              <span>Portal</span>
-            </Button>
-          </div>
+
+  <Button
+    asChild
+    size="sm"
+    className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+  >
+    <Link
+      href="https://www.portal.losolivoscartagena.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <ExternalLink className="w-4 h-4" />
+      <span>Portal</span>
+    </Link>
+  </Button>
+
+</div>
 
           {/* Mobile Menu Button */}
           <button

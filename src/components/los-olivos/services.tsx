@@ -3,12 +3,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Calculator, CreditCard, FileText } from "lucide-react"
+import Link from "next/link"
 
-/**
- * LEY DE HICK: Solo 3 servicios principales (reduce tiempo de decision)
- * LEY DE SIMILITUD: Cards con el mismo estilo visual
- * LEY DE PROXIMIDAD: Informacion relacionada agrupada
- */
 export function Services() {
   const services = [
     {
@@ -16,6 +12,7 @@ export function Services() {
       title: "Pagos en linea",
       description: "Paga todo lo que necesites desde la comodidad de tu hogar de forma rapida y segura.",
       cta: "Pagar ahora",
+      href: "/pagos",
       highlight: false,
     },
     {
@@ -23,6 +20,7 @@ export function Services() {
       title: "Cotizar homenaje",
       description: "Consulta el valor de nuestro servicio segun tus requerimientos y condiciones.",
       cta: "Cotizar",
+      href: "/cotizar",
       highlight: false,
     },
     {
@@ -30,14 +28,14 @@ export function Services() {
       title: "Tramites fallecidos",
       description: "Consulta toda la documentacion e informacion del proceso de tu ser querido.",
       cta: "Ver tramites",
+      href: "/tramites",
       highlight: false,
     },
   ]
 
   return (
     <section id="servicios" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        {/* Section Header - Ley de Posicion Serial */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-sm font-medium text-primary">Servicios en linea</span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
@@ -48,7 +46,6 @@ export function Services() {
           </p>
         </div>
 
-        {/* Services Grid - Ley de Similitud: Mismo estilo visual */}
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {services.map((service) => (
             <Card 
@@ -59,7 +56,6 @@ export function Services() {
                   : "bg-card hover:border-primary/50"
               }`}
             >
-              {/* Ley de Von Restorff: Badge para el destacado */}
               {service.highlight && (
                 <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-bl-lg">
                   Popular
@@ -67,7 +63,6 @@ export function Services() {
               )}
               
               <CardHeader className="space-y-4">
-                {/* Ley de Pregnancia: Iconos simples y reconocibles */}
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-colors ${
                   service.highlight 
                     ? "bg-primary text-primary-foreground" 
@@ -79,12 +74,10 @@ export function Services() {
               </CardHeader>
               
               <CardContent className="space-y-4">
-                {/* Ley de Proximidad: Descripcion cerca del titulo */}
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {service.description}
                 </p>
                 
-                {/* Ley de Fitt: Boton grande y accesible */}
                 <Button 
                   className={`w-full gap-2 ${
                     service.highlight 
@@ -92,9 +85,12 @@ export function Services() {
                       : ""
                   }`}
                   variant={service.highlight ? "default" : "outline"}
+                  asChild
                 >
-                  {service.cta}
-                  <ArrowRight className="w-4 h-4" />
+                  <Link href={service.href}>
+                    {service.cta}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

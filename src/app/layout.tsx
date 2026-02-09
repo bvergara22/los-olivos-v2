@@ -1,3 +1,5 @@
+import { Footer } from "@/components/los-olivos/footer"
+import { Header } from "@/components/los-olivos/header"
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Comfortaa, Raleway } from 'next/font/google'
@@ -38,7 +40,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${_raleway.variable} ${_comfortaa.variable} font-sans antialiased`}>
-        {children}
+        <Header />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
         <Analytics />
       </body>
     </html>
