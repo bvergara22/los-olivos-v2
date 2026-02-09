@@ -2,7 +2,7 @@ import { PageBanner } from "@/components/los-olivos/page-banner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowRight, BookOpen, Brain, Building2, Heart, TreePine, Users } from "lucide-react"
+import { ArrowRight, BookOpen, Building2, Heart, TreePine, Users } from "lucide-react"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -52,7 +52,6 @@ export default function UnidadDueloPage() {
       <PageBanner
         title="Unidad de duelo"
         description="La unidad de duelo de Olivos Cartagena es el espacio que adaptamos para brindar orientacion y apoyo psicologico a usuarios que esten vivenciando la perdida de un ser querido, generando estrategias de afrontamiento que contribuyan a una mejor calidad de vida."
-        icon={Brain}
       />
 
       {/* Que se hace */}

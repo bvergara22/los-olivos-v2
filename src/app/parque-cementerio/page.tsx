@@ -1,6 +1,6 @@
 import { PageBanner } from "@/components/los-olivos/page-banner"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle, FileText, Flame, Package, TreePine } from "lucide-react"
+import { ArrowRight, CheckCircle, FileText, Flame, Package } from "lucide-react"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -44,7 +44,6 @@ export default function ParqueCementerioPage() {
       <PageBanner
         title="Parque cementerio Jardin Los Olivos Cartagena"
         description="Nuestro parque cementerio jardin Los Olivos es un lugar tranquilo, especial para darle a tu ser querido la mejor despedida. Su amplio espacio combina perfectamente con la naturaleza, creando un ambiente de paz, tranquilidad y amor para visitar a tu ser amado."
-        icon={TreePine}
       />
 
       {/* Tramites Section */}

@@ -1,12 +1,9 @@
-import type { LucideIcon } from "lucide-react"
-
 interface PageBannerProps {
   title: string
   description: string
-  icon?: LucideIcon
 }
 
-export function PageBanner({ title, description, icon: Icon }: PageBannerProps) {
+export function PageBanner({ title, description }: PageBannerProps) {
   return (
     <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
@@ -18,11 +15,6 @@ export function PageBanner({ title, description, icon: Icon }: PageBannerProps) 
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl">
-          {Icon && (
-            <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6">
-              <Icon className="w-7 h-7" />
-            </div>
-          )}
           <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight text-balance">
             {title}
           </h1>

@@ -155,7 +155,6 @@ export default function TramitesPage() {
       <PageBanner
         title="Tramites para seres queridos fallecidos"
         description="Para dar cumplimiento con nuestra promesa de valor, es importante que conozcas los pasos a tener en cuenta en la prestacion de nuestro homenaje."
-        icon={ClipboardList}
       />
 
       {/* Que hacer - Pasos iniciales */}

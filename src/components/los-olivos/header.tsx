@@ -106,26 +106,26 @@ export function Header() {
 
   const sedesColumns: DropdownColumn[] = [
     {
-      title: "Planes Exequiales",
+      title: "Prevision exequial",
       items: [
         { 
-          label: "Prevision exequial", 
+          label: "Planes exequiales", 
           description: "Planes de proteccion para ti y tu familia",
-          href: "https://planes.losolivoscartagena.com/", 
+          href: "/#sedes-planes", 
           icon: Shield,
-          isExternal: true
         },
         { 
           label: "Plan Huellitas", 
           description: "Proteccion especial para tus mascotas",
-          href: "/#sedes-planes", 
+          href: "/huellitas", 
           icon: Sparkles 
         },
         { 
-          label: "Conoce nuestros planes", 
+          label: "Conoce mas", 
           description: "Descubre todas las opciones disponibles",
-          href: "/#sedes-planes", 
-          icon: Info 
+          href: "https://planes.losolivoscartagena.com/", 
+          icon: Info,
+          isExternal: true
         },
       ]
     },

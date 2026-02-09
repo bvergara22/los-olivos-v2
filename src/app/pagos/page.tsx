@@ -52,7 +52,6 @@ export default function PagosPage() {
       <PageBanner
         title="Pasarela de pagos"
         description="Paga todo lo que necesites desde la comodidad de tu hogar. Rapido, seguro y sencillo."
-        icon={CreditCard}
       />
 
       {/* Metodos de pago */}

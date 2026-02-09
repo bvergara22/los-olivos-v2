@@ -86,7 +86,6 @@ export default function HomenajePage() {
       <PageBanner
         title="Nuestro homenaje al amor"
         description="En Olivos Cartagena, rendimos un protocolo de 4 etapas en la que prometemos brindarte un respaldo total en la transcendencia de tu ser querido."
-        icon={Heart}
       />
 
       {/* 4 Etapas */}

@@ -2,7 +2,7 @@
 
 import { PageBanner } from "@/components/los-olivos/page-banner"
 import { Button } from "@/components/ui/button"
-import { Calculator, CheckCircle, Flame, MapPin, Users } from "lucide-react"
+import { CheckCircle, Flame, MapPin, Users } from "lucide-react"
 import { useState } from "react"
 
 const tiposServicio = [
@@ -22,7 +22,6 @@ export default function CotizarPage() {
       <PageBanner
         title="Haz tu cotizacion en un minuto"
         description="Coordina el homenaje de tu ser querido o consulta el valor de nuestro servicio de necesidad inmediata segun tus requerimientos."
-        icon={Calculator}
       />
 
       <section className="py-16 md:py-20 bg-muted/30">
