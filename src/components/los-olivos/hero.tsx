@@ -6,10 +6,9 @@ import { useEffect, useState } from "react"
 
 // Placeholder images for carousel - estas se reemplazaran con imagenes reales
 const carouselImages = [
-  { src: "/placeholder.svg?height=400&width=400&text=Familia+1", alt: "Familia Olivos 1" },
-  { src: "/placeholder.svg?height=400&width=400&text=Familia+2", alt: "Familia Olivos 2" },
-  { src: "/placeholder.svg?height=400&width=400&text=Familia+3", alt: "Familia Olivos 3" },
-  { src: "/placeholder.svg?height=400&width=400&text=Servicios", alt: "Servicios Olivos" },
+  { src: "/promocional.png", alt: "familia1" },
+  { src: "/afiliate-ahora.png", alt: "familia2" },
+  { src: "/linea-de-atencion.png", alt: "atencion3" },
 ]
 
 /**
