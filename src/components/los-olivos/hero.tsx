@@ -50,7 +50,7 @@ export function Hero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                Mas de 30 anos protegiendo familias
+                Mas de 30 años protegiendo familias
               </span>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
                 Transcendimos de la proteccion exequial, a la{" "}

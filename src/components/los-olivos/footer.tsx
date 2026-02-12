@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export function Footer() {
   const quickLinks = [
-    { label: "Prevision exequial", href: "https://planes.losolivoscartagena.com/", external: true },
+    { label: "Prevision exequial", href: "/planes", external: false },
     { label: "Pagos en linea", href: "/pagos", external: false },
     { label: "Cotizar homenaje", href: "/cotizar", external: false },
     { label: "Tramites", href: "/tramites", external: false },
@@ -13,12 +13,12 @@ export function Footer() {
     { label: "Homenaje al amor", href: "/homenaje", external: false },
     { label: "Parque cementerio", href: "/parque-cementerio", external: false },
     { label: "Unidad de duelo", href: "/unidad-duelo", external: false },
-    { label: "Nosotros", href: "https://www.losolivoscartagena.com/nosotros", external: true },
-    { label: "Blog", href: "https://www.losolivoscartagena.com/blog", external: true },
+    { label: "Nosotros", href: "/nosotros", external: false },
+    { label: "Blog", href: "/blog", external: true },
   ]
 
   const legalLinks = [
-    { label: "Tratamiento de datos", href: "https://www.losolivoscartagena.com/tratamiento-de-datos", external: true },
+    { label: "Tratamiento de datos", href: "/tratamiento-de-datos", external: false },
     { label: "Protocolo COVID-19", href: "#", external: false },
     { label: "Directorio", href: "#", external: false },
   ]
@@ -39,7 +39,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm text-background/70 leading-relaxed">
-              Mas de 30 anos protegiendo familias con servicios exequiales integrales.
+              Mas de 30 años protegiendo familias con servicios exequiales integrales.
             </p>
           </div>
 
@@ -157,7 +157,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-background/10 text-center text-sm text-background/50">
-          <p>2025 Los Olivos Cartagena. Todos los derechos reservados.</p>
+          <p>2026 Los Olivos Cartagena. Todos los derechos reservados.</p>
           <p className="mt-1">CENTRAL COOPERATIVA DE SERVICIOS FUNERARIOS DE CARTAGENA - CARTAFUN</p>
         </div>
       </div>

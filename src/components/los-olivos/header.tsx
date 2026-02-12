@@ -25,6 +25,7 @@ import {
   Users,
   X
 } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
@@ -72,8 +73,8 @@ export function Header() {
           icon: TreePine 
         },
         { 
-          label: "Unidad de Duelo", 
-          description: "Acompanamiento profesional en momentos dificiles",
+          label: "Unidad de gestion de las emociones", 
+          description: "Acompañamiento profesional en momentos dificiles",
           href: "/unidad-duelo", 
           icon: Flower2 
         },
@@ -126,7 +127,7 @@ export function Header() {
         { 
           label: "Conoce más", 
           description: "Descubre todas las opciones disponibles",
-          href: "https://planes.losolivoscartagena.com/", 
+          href: "/planes", 
           icon: Info 
         },
       ]
@@ -145,7 +146,7 @@ export function Header() {
           description: "Accede a nuestro portal de servicios",
           href: "https://www.portal.losolivoscartagena.com/tienda", 
           icon: Building2,
-          isExternal: true
+          
         },
       ]
     }
@@ -189,23 +190,23 @@ export function Header() {
     { 
       label: "Nosotros", 
       description: "Conoce nuestra historia y mision",
-      href: "https://www.losolivoscartagena.com/nosotros", 
+      href: "/nosotros", 
       icon: Users,
-      isExternal: true
+      
     },
     { 
       label: "Blog", 
       description: "Articulos y noticias de interes",
-      href: "https://www.losolivoscartagena.com/blog", 
+      href: "/blog", 
       icon: BookOpen,
-      isExternal: true
+      
     },
     { 
       label: "Tratamiento de datos", 
       description: "Politica de privacidad y proteccion de datos",
-      href: "https://www.losolivoscartagena.com/tratamiento-de-datos", 
+      href: "/tratamiento-de-datos", 
       icon: FileCheck,
-      isExternal: true
+      
     },
   ]
 
@@ -218,7 +219,7 @@ export function Header() {
   ]
 
   const navItems: NavItem[] = [
-    { label: "Inicio", href: "#inicio", hasDropdown: false },
+    { label: "Inicio", href: "/", hasDropdown: false },
     { label: "Servicios", href: "#servicios", hasDropdown: true, columns: serviciosColumns },
     { label: "Sedes & Planes", href: "#sedes-planes", hasDropdown: true, columns: sedesColumns },
     { label: "Beneficios", href: "#beneficios", hasDropdown: true, columns: beneficiosColumns },
@@ -258,15 +259,18 @@ export function Header() {
       <div className="container mx-auto px-4" ref={dropdownRef}>
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-lg">LO</span>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="font-display font-bold text-lg text-foreground leading-tight">Los Olivos</h1>
-              <p className="text-xs text-muted-foreground">Cartagena</p>
-            </div>
+          <a href="/" className="flex items-center">
+            <Image
+            src="/logo-olivos.png"
+            alt="Logo Los Olivos"
+            width={120}
+            height={50}
+            className="object-contain"
+            priority
+            />
           </a>
+
+
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
@@ -353,7 +357,7 @@ export function Header() {
           <div className="hidden lg:block absolute left-0 right-0 top-full bg-card border-b border-border shadow-lg">
             <div className="container mx-auto px-4 py-8">
               {/* Conocenos - items en fila sin titulos */}
-              {openDropdown === "Conocenos" && (
+              {openDropdown === "Conócenos" && (
                 <div className="flex justify-center gap-6">
                   {conocenosItems.map((subItem, itemIndex) => (
                     <a
@@ -416,7 +420,7 @@ export function Header() {
               )}
 
               {/* Otros menus - layout con columnas y titulos */}
-              {openDropdown !== "Conocenos" && openDropdown !== "Beneficios" && navItems.find(item => item.label === openDropdown)?.columns && (
+              {openDropdown !== "Conócenos" && openDropdown !== "Beneficios" && navItems.find(item => item.label === openDropdown)?.columns && (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                   {navItems.find(item => item.label === openDropdown)?.columns?.map((column, colIndex) => (
                     <div key={colIndex}>

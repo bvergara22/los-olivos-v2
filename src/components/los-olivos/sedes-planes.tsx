@@ -14,10 +14,6 @@ const sedes = [
   { name: "Sede Soplaviento", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/soplaviento.jpg" },
 ]
 
-/**
- * Seccion de Sedes y Planes con carruseles automaticos
- * Similar al sitio web de Los Olivos Cartagena
- */
 export function SedesPlanes() {
   const [currentSedeIndex, setCurrentSedeIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
@@ -49,7 +45,7 @@ export function SedesPlanes() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-medium text-primary">Presencia regional</span>
+          <span className="text-sm font-medium text-primary">Presencia municipal</span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
             Nuestras sedes y planes!
           </h2>

@@ -16,7 +16,7 @@ export function WhyUs() {
     },
     {
       icon: Clock,
-      title: "+30 Anos de Experiencia",
+      title: "+30 Años de Experiencia",
       description: "Mas de tres decadas al servicio solidario exequial en Cartagena y la region.",
       color: "primary",
     },

@@ -4,28 +4,28 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* PANTONE 2268 C - Verde Los Olivos */
-  --primary: #6CD490;
+  
+  --primary: #cf4545;
   --primary-foreground: #ffffff;
-  /* PANTONE 1645 C - Naranja Los Olivos */
-  --secondary: #E97783;
-  --secondary-foreground: #ffffff;
-  /* Background and foreground */
+  
+  --secondary: #e97783;
+  --secondary-foreground: #010101;
+  
   --background: #fafafa;
-  --foreground: #1a1a1a;
+  --foreground: #010101;
   --card: #ffffff;
   --card-foreground: #1a1a1a;
   --popover: #ffffff;
   --popover-foreground: #1a1a1a;
   --muted: #f5f5f5;
-  --muted-foreground: #666666;
-  --accent: #B4E379;
-  --accent-foreground: #1a1a1a;
+  --muted-foreground: #605c5c;
+  --accent: #cf4545;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #e5e5e5;
   --input: #f0f0f0;
-  --ring: #6CD490;
+  --ring: #e97783;
   --chart-1: #6CD490;
   --chart-2: #E97783;
   --chart-3: #B4E379;
