@@ -5,6 +5,7 @@ import { ArrowRight, Heart, Shield, Users } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
+<<<<<<< HEAD
 const carouselImages = [
   {
     src: "/promocional.png",
@@ -21,6 +22,13 @@ const carouselImages = [
     alt: "Linea de Atencion",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(189,89,122,0.4)]",
   },
+=======
+// Imagenes reales del repositorio
+const carouselImages = [
+  { src: "/promocional.png", alt: "Promocional Los Olivos" },
+  { src: "/afíliate-ahora.png", alt: "Afiliate Ahora" },
+  { src: "/Linea-de-atención.png", alt: "Linea de Atencion" },
+>>>>>>> 4e3e1dd706bba76efce6d5f75053c9cc8910e32b
 ]
 
 export function Hero() {
@@ -150,6 +158,45 @@ export function Hero() {
             </div>
           </div>
 
+          {/* Visual Element - Carrusel de imagenes con forma natural */}
+          <div className="relative hidden lg:block">
+            <div className="relative w-full max-w-2xl mx-auto">
+              {/* Image Carousel - muestra las imagenes en su forma original */}
+              <div className="relative min-h-[400px] flex items-center justify-center">
+                {carouselImages.map((image, index) => (
+                  <div
+                    key={image.alt}
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
+                      index === currentImageIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    <img
+                      src={image.src || "/placeholder.svg"}
+                      alt={image.alt}
+                      className="w-full h-auto object-contain max-h-[500px] drop-shadow-2xl"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Carousel indicators */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+                {carouselImages.map((_, index) => (
+                  <button
+                    key={`indicator-${index}`}
+                    type="button"
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentImageIndex
+                        ? "bg-primary w-6"
+                        : "bg-primary/40 hover:bg-primary/60"
+                    }`}
+                    aria-label={`Ir a imagen ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
