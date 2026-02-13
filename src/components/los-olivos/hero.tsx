@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Heart, Shield, Users } from "lucide-react"
 import { useEffect, useState } from "react"
 
-// Placeholder images for carousel - estas se reemplazaran con imagenes reales
+// Imagenes reales del repositorio
 const carouselImages = [
-  { src: "/promocional.png", alt: "familia1" },
-  { src: "/afiliate-ahora.png", alt: "familia2" },
-  { src: "/linea-de-atencion.png", alt: "atencion3" },
+  { src: "/promocional.png", alt: "Promocional Los Olivos" },
+  { src: "/afíliate-ahora.png", alt: "Afiliate Ahora" },
+  { src: "/Linea-de-atención.png", alt: "Linea de Atencion" },
 ]
 
 /**
@@ -92,40 +92,37 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Visual Element - Circulo con carrusel de imagenes */}
+          {/* Visual Element - Carrusel de imagenes con forma natural */}
           <div className="relative hidden lg:block">
-            <div className="relative w-full aspect-square max-w-lg mx-auto">
-              {/* Decorative circles */}
-              <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse" />
-              <div className="absolute inset-8 rounded-full bg-primary/20" />
-              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 overflow-hidden">
-                {/* Image Carousel */}
-                <div className="w-full h-full relative">
-                  {carouselImages.map((image, index) => (
+            <div className="relative w-full max-w-2xl mx-auto">
+              {/* Image Carousel - muestra las imagenes en su forma original */}
+              <div className="relative min-h-[400px] flex items-center justify-center">
+                {carouselImages.map((image, index) => (
+                  <div
+                    key={image.alt}
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
+                      index === currentImageIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
                     <img
-                      key={image.alt}
                       src={image.src || "/placeholder.svg"}
                       alt={image.alt}
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                        index === currentImageIndex ? "opacity-100" : "opacity-0"
-                      }`}
+                      className="w-full h-auto object-contain max-h-[500px] drop-shadow-2xl"
                     />
-                  ))}
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-                </div>
+                  </div>
+                ))}
               </div>
 
               {/* Carousel indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
                 {carouselImages.map((_, index) => (
                   <button
                     key={`indicator-${index}`}
                     type="button"
                     onClick={() => setCurrentImageIndex(index)}
                     className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentImageIndex 
-                        ? "bg-primary w-6" 
+                      index === currentImageIndex
+                        ? "bg-primary w-6"
                         : "bg-primary/40 hover:bg-primary/60"
                     }`}
                     aria-label={`Ir a imagen ${index + 1}`}
