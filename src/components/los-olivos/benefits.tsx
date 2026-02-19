@@ -1,11 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Brain, Gift, Heart, Home } from "lucide-react"
+import Link from "next/link"
 
-/**
- * LEY DE MILLER: 4 beneficios principales (dentro del rango 5-9)
- * LEY DE SIMILITUD: Iconos y cards con el mismo estilo
- * LEY DE PROXIMIDAD: Beneficios relacionados agrupados visualmente
- */
 export function Benefits() {
   const benefits = [
     {
@@ -47,11 +43,14 @@ export function Benefits() {
             
             {/* CTA - Ley de Von Restorff */}
             <Button 
+            asChild
               size="lg" 
               className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 mt-4"
             >
-              Conoce todos los beneficios
-              <ArrowRight className="w-5 h-5" />
+              <Link href="/beneficios">
+                Conoce todos los beneficios
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </Button>
           </div>
 

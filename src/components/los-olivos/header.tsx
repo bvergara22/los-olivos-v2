@@ -106,47 +106,60 @@ export function Header() {
     }
   ]
 
+  // Sedes individuales para el submenu
+  const sedesItems = [
+    { label: "Cartagena", href: "/planes/cartagena" },
+    { label: "Turbaco", href: "/planes/turbaco" },
+    { label: "Arjona", href: "/planes/arjona" },
+    { label: "Magangue", href: "/planes/magangue" },
+    { label: "Maria la Baja", href: "/planes/maria-la-baja" },
+    { label: "San Andres", href: "/planes/san-andres" },
+    { label: "Mahates", href: "/planes/mahates" },
+    { label: "Soplaviento", href: "/planes/soplaviento" },
+  ]
+
+  // Estado para mostrar el panel de sedes dentro del mega menu
+  const [showSedesPanel, setShowSedesPanel] = useState(false)
+
   // Sedes & Planes dropdown
   const sedesColumns: DropdownColumn[] = [
     {
       title: "Prevision Exequial",
       items: [
-        { 
-          label: "Planes exequial", 
+        {
+          label: "Planes exequial",
           description: "Planes de proteccion para ti y tu familia",
-          href: "#sedes-planes", 
+          href: "#ver-sedes",
           icon: Shield,
-          
         },
-        { 
-          label: "Plan Huellitas", 
+        {
+          label: "Plan Huellitas",
           description: "Proteccion especial para tus mascotas",
-          href: "/huellitas", 
+          href: "/huellitas",
           icon: PawPrint
         },
-        { 
-          label: "Conoce más", 
+        {
+          label: "Conoce más",
           description: "Descubre todas las opciones disponibles",
-          href: "/planes", 
-          icon: Info 
+          href: "/planes",
+          icon: Info
         },
       ]
     },
     {
       title: "Nuestras Sedes",
       items: [
-        { 
-          label: "Sedes en Cartagena", 
+        {
+          label: "Sedes en Cartagena",
           description: "Encuentra la sede mas cercana a ti",
-          href: "#sedes-planes", 
-          icon: MapPin 
+          href: "/planes",
+          icon: MapPin
         },
-        { 
-          label: "Tienda", 
+        {
+          label: "Tienda",
           description: "Accede a nuestro portal de servicios",
-          href: "https://www.portal.losolivoscartagena.com/tienda", 
+          href: "https://www.portal.losolivoscartagena.com/tienda",
           icon: Building2,
-          
         },
       ]
     }
@@ -160,25 +173,25 @@ export function Header() {
         { 
           label: "Asistencia Exequial", 
           description: "Cobertura completa en servicios funerarios",
-          href: "#beneficios", 
+          href: "/beneficios", 
           icon: Shield 
         },
         { 
           label: "Asistencia en Vida", 
           description: "Beneficios para disfrutar en vida",
-          href: "#beneficios", 
+          href: "/beneficios", 
           icon: HeartHandshake 
         },
         { 
           label: "Asistencia Psicologica", 
           description: "Apoyo emocional profesional",
-          href: "#beneficios", 
+          href: "/beneficios", 
           icon: Brain 
         },
         { 
           label: "Beneficios Adicionales", 
           description: "Descuentos y alianzas exclusivas",
-          href: "#beneficios", 
+          href: "/beneficios", 
           icon: Gift 
         },
       ]
@@ -227,7 +240,13 @@ export function Header() {
   ]
 
   const toggleDropdown = (label: string) => {
-    setOpenDropdown(openDropdown === label ? null : label)
+    if (openDropdown === label) {
+      setOpenDropdown(null)
+      setShowSedesPanel(false)
+    } else {
+      setOpenDropdown(label)
+      setShowSedesPanel(false)
+    }
   }
 
   // Close dropdown when clicking outside
@@ -419,8 +438,111 @@ export function Header() {
                 </div>
               )}
 
+              {/* Sedes & Planes - con panel de sedes */}
+              {openDropdown === "Sedes & Planes" && !showSedesPanel && (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                  {sedesColumns.map((column, colIndex) => (
+                    <div key={colIndex}>
+                      <h3 className="text-primary font-semibold text-sm mb-4 uppercase tracking-wide">
+                        {column.title}
+                      </h3>
+                      <div className="space-y-1">
+                        {column.items.map((subItem, itemIndex) => (
+                          subItem.href === "#ver-sedes" ? (
+                            <button
+                              key={itemIndex}
+                              type="button"
+                              onClick={() => setShowSedesPanel(true)}
+                              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group w-full text-left"
+                            >
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                                <subItem.icon className="w-5 h-5" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1">
+                                  <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                                    {subItem.label}
+                                  </span>
+                                  <ChevronDown className="w-3 h-3 text-muted-foreground -rotate-90" />
+                                </div>
+                                <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                                  {subItem.description}
+                                </p>
+                              </div>
+                            </button>
+                          ) : (
+                            <a
+                              key={itemIndex}
+                              href={subItem.href}
+                              target={subItem.isExternal ? "_blank" : undefined}
+                              rel={subItem.isExternal ? "noopener noreferrer" : undefined}
+                              onClick={() => setOpenDropdown(null)}
+                              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
+                            >
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                                <subItem.icon className="w-5 h-5" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1">
+                                  <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                                    {subItem.label}
+                                  </span>
+                                  {subItem.isExternal && (
+                                    <ExternalLink className="w-3 h-3 text-muted-foreground" />
+                                  )}
+                                </div>
+                                <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                                  {subItem.description}
+                                </p>
+                              </div>
+                            </a>
+                          )
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Panel de sedes desplegado */}
+              {openDropdown === "Sedes & Planes" && showSedesPanel && (
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => setShowSedesPanel(false)}
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6 transition-colors"
+                  >
+                    <ChevronDown className="w-4 h-4 rotate-90" />
+                    Volver
+                  </button>
+                  <h3 className="text-primary font-semibold text-sm mb-4 uppercase tracking-wide">
+                    Selecciona una sede
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {sedesItems.map((sede) => (
+                      <Link
+                        key={sede.href}
+                        href={sede.href}
+                        onClick={() => {
+                          setOpenDropdown(null)
+                          setShowSedesPanel(false)
+                        }}
+                        className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all group"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          <MapPin className="w-4 h-4" />
+                        </div>
+                        <span className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
+                          {sede.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Otros menus - layout con columnas y titulos */}
-              {openDropdown !== "Conócenos" && openDropdown !== "Beneficios" && navItems.find(item => item.label === openDropdown)?.columns && (
+              {openDropdown !== "Conócenos" && openDropdown !== "Beneficios" && openDropdown !== "Sedes & Planes" && navItems.find(item => item.label === openDropdown)?.columns && (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                   {navItems.find(item => item.label === openDropdown)?.columns?.map((column, colIndex) => (
                     <div key={colIndex}>
@@ -517,6 +639,90 @@ export function Header() {
                                 </a>
                               ))}
                             </div>
+                          ) : item.label === "Sedes & Planes" ? (
+                            /* Sedes & Planes - con panel de sedes en movil */
+                            !showSedesPanel ? (
+                              <div className="space-y-4">
+                                {item.columns?.map((column, colIndex) => (
+                                  <div key={colIndex}>
+                                    <h4 className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">
+                                      {column.title}
+                                    </h4>
+                                    <div className="space-y-1">
+                                      {column.items.map((subItem, itemIndex) => (
+                                        subItem.href === "#ver-sedes" ? (
+                                          <button
+                                            key={itemIndex}
+                                            type="button"
+                                            onClick={() => setShowSedesPanel(true)}
+                                            className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2 w-full text-left"
+                                          >
+                                            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                              <subItem.icon className="w-4 h-4" />
+                                            </div>
+                                            <span>{subItem.label}</span>
+                                            <ChevronDown className="w-3 h-3 text-muted-foreground -rotate-90 ml-auto" />
+                                          </button>
+                                        ) : (
+                                          <a
+                                            key={itemIndex}
+                                            href={subItem.href}
+                                            target={subItem.isExternal ? "_blank" : undefined}
+                                            rel={subItem.isExternal ? "noopener noreferrer" : undefined}
+                                            onClick={() => {
+                                              setOpenDropdown(null)
+                                              setIsMenuOpen(false)
+                                            }}
+                                            className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
+                                          >
+                                            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                              <subItem.icon className="w-4 h-4" />
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                              <span>{subItem.label}</span>
+                                              {subItem.isExternal && (
+                                                <ExternalLink className="w-3 h-3" />
+                                              )}
+                                            </div>
+                                          </a>
+                                        )
+                                      ))}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div>
+                                <button
+                                  type="button"
+                                  onClick={() => setShowSedesPanel(false)}
+                                  className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary mb-3 transition-colors"
+                                >
+                                  <ChevronDown className="w-3 h-3 rotate-90" />
+                                  Volver
+                                </button>
+                                <h4 className="text-primary font-semibold text-xs mb-3 uppercase tracking-wide">
+                                  Selecciona una sede
+                                </h4>
+                                <div className="grid grid-cols-2 gap-2">
+                                  {sedesItems.map((sede) => (
+                                    <Link
+                                      key={sede.href}
+                                      href={sede.href}
+                                      onClick={() => {
+                                        setOpenDropdown(null)
+                                        setIsMenuOpen(false)
+                                        setShowSedesPanel(false)
+                                      }}
+                                      className="flex items-center gap-2 p-3 rounded-lg border border-border hover:border-primary/50 transition-all group text-sm"
+                                    >
+                                      <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                                      <span className="text-foreground group-hover:text-primary transition-colors">{sede.label}</span>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            )
                           ) : (
                             /* Otros menus - con titulos */
                             <div className="space-y-4">

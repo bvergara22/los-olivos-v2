@@ -1,17 +1,18 @@
 "use client"
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 const sedes = [
-  { name: "Sede Cartagena", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/cartagena.jpg" },
-  { name: "Sede Turbaco", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/turbaco.jpg" },
-  { name: "Sede Arjona", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/arjona.jpg" },
-  { name: "Sede Magangue", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/magangue.jpg" },
-  { name: "Sede Maria la Baja", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/maria.jpg" },
-  { name: "Sede San Andres", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/san-andres.jpg" },
-  { name: "Sede Mahates", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/mahates.jpg" },
-  { name: "Sede Soplaviento", src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/images/sedes/soplaviento.jpg" },
+  { name: "Sede Cartagena", slug: "cartagena", src: "/cartagena.jpg" },
+  { name: "Sede Turbaco", slug: "turbaco", src: "/turbaco.jpg" },
+  { name: "Sede Arjona", slug: "arjona", src: "/arjona.jpg" },
+  { name: "Sede Magangue", slug: "magangue", src: "/magangue.jpg" },
+  { name: "Sede Maria la Baja", slug: "maria-la-baja", src: "/maria.jpg" },
+  { name: "Sede San Andres", slug: "san-andres", src: "/san-andres.jpg" },
+  { name: "Sede Mahates", slug: "mahates", src: "/mahates.jpg" },
+  { name: "Sede Soplaviento", slug: "soplaviento", src: "/soplaviento.jpg" },
 ]
 
 export function SedesPlanes() {
@@ -79,21 +80,19 @@ export function SedesPlanes() {
             {/* Sedes grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-12">
               {visibleSedes.map((sede, index) => (
-                <div 
-                  key={`${sede.name}-${index}`}
-                  className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all hover:shadow-lg"
+                <Link
+                  key={`${sede.slug}-${index}`}
+                  href={`/planes/${sede.slug}`}
+                  className="group overflow-hidden rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg block"
                 >
-                  <div className="aspect-[4/3] overflow-hidden">
+                  <div className="aspect-video overflow-hidden">
                     <img
                       src={sede.src || "/placeholder.svg"}
                       alt={sede.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 to-transparent p-4">
-                    <p className="text-card text-sm font-medium">{sede.name}</p>
-                  </div>
-                </div>
+                </Link>
               ))}
             </div>
 
