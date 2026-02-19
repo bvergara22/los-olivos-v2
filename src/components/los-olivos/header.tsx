@@ -276,6 +276,7 @@ export function Header() {
   // Listen for "open-sedes-panel" custom event (from VerSedesButton)
   useEffect(() => {
     const handleOpenSedes = () => {
+      setIsMenuOpen(true)
       setOpenDropdown("Sedes & Planes")
       setShowSedesPanel(true)
     }
