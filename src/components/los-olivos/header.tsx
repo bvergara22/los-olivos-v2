@@ -273,6 +273,17 @@ export function Header() {
     return () => document.removeEventListener("keydown", handleEscape)
   }, [])
 
+  // Listen for "open-sedes-panel" custom event (from VerSedesButton)
+  useEffect(() => {
+    const handleOpenSedes = () => {
+      setOpenDropdown("Sedes & Planes")
+      setShowSedesPanel(true)
+    }
+
+    window.addEventListener("open-sedes-panel", handleOpenSedes)
+    return () => window.removeEventListener("open-sedes-panel", handleOpenSedes)
+  }, [])
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4" ref={dropdownRef}>

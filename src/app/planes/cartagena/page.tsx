@@ -1,4 +1,5 @@
 import { PageBanner } from "@/components/los-olivos/page-banner"
+import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
@@ -430,12 +431,7 @@ export default function CartagenaPage() {
               </Button>
             </div>
             <div className="mt-8">
-              <Button variant="link" className="text-primary gap-2" asChild>
-                <Link href="/planes">
-                  Ver todas las sedes
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
+              <VerSedesButton />
             </div>
           </div>
         </div>

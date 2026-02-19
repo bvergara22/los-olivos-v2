@@ -1,4 +1,5 @@
 import { PageBanner } from "@/components/los-olivos/page-banner"
+import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Check, Heart, Shield, Users, MapPin, MessageCircle, Phone, Home, Brain, Flower2 } from "lucide-react"
@@ -154,7 +155,7 @@ export default function MariaLaBajaPage() {
               <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild><Link href="/cotizar">Cotizar mi plan <ArrowRight className="w-5 h-5" /></Link></Button>
               <Button size="lg" variant="outline" className="gap-2 px-8" asChild><a href="https://wa.me/573008131803" target="_blank" rel="noopener noreferrer"><MessageCircle className="w-5 h-5" /> WhatsApp</a></Button>
             </div>
-            <div className="mt-8"><Button variant="link" className="text-primary gap-2" asChild><Link href="/planes">Ver todas las sedes <ArrowRight className="w-4 h-4" /></Link></Button></div>
+            <div className="mt-8"><VerSedesButton /></div>
           </div>
         </div>
       </section>
