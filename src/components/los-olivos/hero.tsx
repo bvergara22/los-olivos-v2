@@ -10,7 +10,7 @@ const carouselImages = [
     src: "/promocional.png",
     alt: "Promocional Los Olivos",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]",
-    maxH: "max-h-[420px] lg:max-h-[500px]",
+    maxH: "max-h-[280px] lg:max-h-[500px]",
   },
   {
     src: "/mesa-trabajo1-2.png",
@@ -22,7 +22,7 @@ const carouselImages = [
     src: "/Linea-de-atención.png",
     alt: "Linea de Atencion",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(189,89,122,0.4)]",
-    maxH: "max-h-[420px] lg:max-h-[500px]",
+    maxH: "max-h-[280px] lg:max-h-[500px]",
   },
 ]
 
