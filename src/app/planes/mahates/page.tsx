@@ -1,9 +1,9 @@
-import { PageBanner } from "@/components/los-olivos/page-banner"
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Check, Heart, Shield, Users, MessageCircle, Phone, Clock, HandHeart } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -36,45 +36,55 @@ const asistencias = [
 export default function MahatesPage() {
   return (
     <>
-      <PageBanner
-        title="Planes en Mahates"
-        description="Proteccion exequial cercana y accesible para las familias de Mahates. Atencion personalizada y acompanamiento integral."
-      />
-
-      {/* Video + Info */}
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-              <iframe src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0" className="w-full h-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Los Olivos Mahates" />
+      {/* Hero Sede Mahates */}
+      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="space-y-6 text-center md:text-left">
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+                Sede Mahates
+              </h1>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Contar con un seguro de prevision integral es cuidar a los que mas quieres y asi brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una proteccion integral te brindara tranquilidad en aquellos momentos dificiles.
+                </p>
+                <p>
+                  Afiliandote podras adquirir tu plan de prevision en cuotas mensuales muy comodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
+                </p>
+                <p className="font-display font-bold text-foreground text-lg">
+                  ¡Es momento de demostrarle a tu familia cuanto la amas!
+                </p>
+              </div>
             </div>
-            <div className="space-y-6">
-              <div>
-                <span className="text-sm font-medium text-primary">Sede Mahates</span>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Atencion cercana</h2>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <Phone className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Sede Mahates</p>
-                    <p className="text-sm text-muted-foreground">Mahates, Bolivar</p>
-                    <p className="text-xs text-muted-foreground mt-1">Cel: 313 8678771</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <MessageCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">WhatsApp / Linea Nacional</p>
-                    <p className="text-sm text-muted-foreground">+57 323 309 3435 | 018000-180-150</p>
-                  </div>
-                </div>
-              </div>
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                <a href="https://wa.me/573138678771?text=Hola, quiero información sobre planes en Mahates" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5" /> Contactar sede Mahates
-                </a>
-              </Button>
+            <div className="relative w-full max-w-lg mx-auto">
+              <Image
+                src="/familia-planes.png"
+                alt="Familia protegida con Los Olivos"
+                aria-hidden
+                width={600}
+                height={500}
+                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]"
+              />
+              <Image
+                src="/familia-planes.png"
+                alt="Familia protegida con Los Olivos"
+                width={600}
+                height={500}
+                priority
+                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+              />
+            </div>
+          </div>
+          <div className="max-w-4xl mx-auto mt-16">
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
+              <iframe
+                src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0"
+                className="w-full h-full"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Los Olivos Mahates"
+              />
             </div>
           </div>
         </div>

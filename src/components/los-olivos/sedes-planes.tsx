@@ -18,9 +18,16 @@ const sedes = [
 export function SedesPlanes() {
   const [currentSedeIndex, setCurrentSedeIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(4)
 
   useEffect(() => {
     setMounted(true)
+    const updateCount = () => {
+      setVisibleCount(window.innerWidth < 768 ? 2 : 4)
+    }
+    updateCount()
+    window.addEventListener("resize", updateCount)
+    return () => window.removeEventListener("resize", updateCount)
   }, [])
 
   // Auto-rotate sedes every 3 seconds
@@ -35,9 +42,8 @@ export function SedesPlanes() {
   const nextSede = () => setCurrentSedeIndex((prev) => (prev + 1) % sedes.length)
   const prevSede = () => setCurrentSedeIndex((prev) => (prev - 1 + sedes.length) % sedes.length)
 
-  // Mostrar 4 sedes a la vez en desktop
   const visibleSedes = []
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < visibleCount; i++) {
     visibleSedes.push(sedes[(currentSedeIndex + i) % sedes.length])
   }
 
@@ -78,7 +84,7 @@ export function SedesPlanes() {
             </button>
 
             {/* Sedes grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-12">
+            <div className={`grid gap-4 px-12 ${visibleCount === 2 ? "grid-cols-2" : "grid-cols-4"}`}>
               {visibleSedes.map((sede, index) => (
                 <Link
                   key={`${sede.slug}-${index}`}

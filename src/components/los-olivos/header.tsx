@@ -290,7 +290,7 @@ export function Header() {
       <div className="container mx-auto px-4" ref={dropdownRef}>
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center ml-6">
             <Image
             src="/logo-olivos.png"
             alt="Logo Los Olivos"
@@ -337,7 +337,7 @@ export function Header() {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3 mr-6">
   
             <Button
               asChild

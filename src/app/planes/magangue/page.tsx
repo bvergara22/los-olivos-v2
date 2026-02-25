@@ -1,9 +1,9 @@
-import { PageBanner } from "@/components/los-olivos/page-banner"
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight, Check, Heart, Shield, Users, MapPin, Phone, MessageCircle, ShoppingBasket, Stethoscope, Building2 } from "lucide-react"
+import { ArrowRight, Phone, MessageCircle } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -14,123 +14,94 @@ export const metadata: Metadata = {
 const planes = [
   {
     title: "Plan Basico Poblacional 6+1",
-    price: "Desde $14.000/mes",
-    description: "Cobertura exequial esencial para hasta 7 miembros de tu familia.",
-    features: [
-      "Hasta 7 afiliados (titular + 6 familiares)",
-      "Titular con ingreso hasta 65 anos",
-      "Cobertura exequial completa con nicho",
-      "Atencion 24 horas, 365 dias",
-      "Cobertura nacional",
-    ],
+    price: "Valor de $8.000 pesos",
+    description: "Titular hasta 65 anos. 4 personas menores de 50 anos y ademas 2 personas sin limite de edad. Homenaje de desprendimiento: traslado local, recoger el ser querido, presentacion del ser querido, cofre tipo plan referencia olivos. Homenaje de acogida: sala de velacion residencial, ofrenda floral, kit de cafeteria, implementos de velacion, serie de 6 carteles, libro de oracion y recordatorio, tramites notariales. Homenaje de despedida: acompanamiento a campo santo. NOTA: Este plan solo aplica en la ciudad de Magangue, no incluye traslado nacional ni fluvial.",
     popular: false,
+    sinergia: false,
   },
   {
     title: "Plan Integral Sin Sinergia 6+1",
-    price: "Desde $18.000/mes",
-    description: "Plan completo con asistencias en vida, boveda y apoyo psicologico.",
-    features: [
-      "Todo lo del Plan Basico",
-      "Boveda a perpetuidad incluida",
-      "Asistencia en vida con domicilios gratuitos",
-      "Tarjeta de beneficios Olivos",
-      "Asistencia psicologica Mens Sana",
-    ],
+    price: "",
+    description: "Titular hasta 65 anos. 4 personas menores de 50 anos y 2 hasta los 80 anos. Durante la afiliacion: atencion y consulta permanente 24 horas, carnet y cubrimiento nacional. Durante el deceso: protocolo de desprendimiento, ceremonia de luz y oracion, presentacion del ser querido, cofre referencia olivos. Durante la velacion: sala de homenaje 24 horas, traslado local y nacional hasta 300 km o 1 trayecto aereo, cafeteria, ofrenda floral, libro de oraciones, recordatorio, tramites notariales y serie de 10 carteles. Durante el cortejo: acompanamiento a campo santo, servicio de acompanantes, servicio religioso. Destino final: puesto de lote en Jardines de la Candelaria en Magangue, opcion de cremacion, o lote en arriendo en Jardin Los Olivos por 4 anos en Cartagena. Servicio post exequial: taller de duelo y apoyo psicologico.",
     popular: false,
+    sinergia: false,
   },
   {
-    title: "Plan Integral Con Sinergia 6+1",
-    price: "Desde $25.000/mes",
-    description: "Maxima proteccion con seguros adicionales Sinergia para toda la familia.",
-    features: [
-      "Todo lo del Plan Integral",
-      "Seguro de alimentacion por 1 ano",
-      "Renta diaria por hospitalizacion y UCI",
-      "Indemnizacion por muerte accidental",
-      "Cobertura por incapacidad permanente",
-      "Asistencia medica permanente",
-    ],
+    title: "Plan Integral 6+1 Con Sinergia Opcion 2",
+    price: "",
+    description: "Incluye todos los beneficios del Plan Integral Sin Sinergia 6+1 mas: SoliCanasta: proteccion por muerte de titular por valor de hasta 3 millones de pesos (cubrimiento hasta los 70 anos). SoliRenta: pago por hospitalizacion del titular posterior al 3er mes de afiliacion y al 3er dia de hospitalizacion, con el doble si el titular esta en UCI. SoliAccidente: indemnizacion de hasta 3 millones de pesos por accidente con perdida sustancial de capacidad laboral o perdida de extremidades segun politicas de la aseguradora.",
     popular: true,
+    sinergia: true,
   },
-]
-
-const asistencias = [
-  { icon: Shield, title: "Asistencia Exequial", description: "Protocolo completo de 4 etapas: desprendimiento, acogida, despedida y renacimiento. Nicho a perpetuidad." },
-  { icon: Heart, title: "Asistencia en Vida", description: "Servicio domiciliario gratuito, tarjeta de beneficios con descuentos y asistencia al hogar llamando al #789." },
-  { icon: Users, title: "Asistencia Psicologica", description: "Mens Sana: centro de ayuda psicologica personalizada para el manejo del duelo y bienestar emocional." },
-]
-
-const segurosAdicionales = [
-  { icon: ShoppingBasket, title: "Seguro de Alimentacion", desc: "Canasta familiar asegurada por 1 ano si fallece el titular." },
-  { icon: Stethoscope, title: "Renta por Hospitalizacion", desc: "Renta diaria por hospitalizacion e ingreso a unidad de cuidados intensivos." },
-  { icon: Shield, title: "Muerte Accidental", desc: "Indemnizacion que cubre a todo el grupo familiar ante accidentes." },
-  { icon: Heart, title: "Incapacidad Permanente", desc: "Proteccion economica ante incapacidad total y permanente del titular." },
+  {
+    title: "Plan 6+1",
+    price: "Valor de $24.650 pesos",
+    description: "Incluye titular con edad de ingreso hasta 65 anos, 2 beneficiarios hasta 75 anos y 4 hasta 50 anos. Beneficios Sinergia opcion 2.",
+    popular: false,
+    sinergia: true,
+  },
+  {
+    title: "Plan Basico (Sin boveda)",
+    price: "Valor de $13.000 pesos",
+    description: "Incluye titular con edad de ingreso hasta 65 anos y sin limite de edad de permanencia, puede incluir a su grupo familiar basico: Conyuge con edad de ingreso hasta 65 anos, hijos hasta los 35 anos para ingreso, padres y/o suegros con edad de ingreso hasta 75 anos; si el titular es soltero puede incluir a hermanos menores de 35 anos para ingreso y sus padres hasta 75 anos para ingreso, a falta de padres, puede incluir sus suegros.",
+    popular: false,
+    sinergia: false,
+  },
 ]
 
 export default function MaganguePage() {
   return (
     <>
-      <PageBanner
-        title="Planes en Magangue"
-        description="Atencion cercana y profesional para las familias de Magangue. 3 opciones de planes con cobertura integral."
-      />
-
-      {/* Video + Info */}
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+      {/* Hero Sede Magangue */}
+      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="space-y-6 text-center md:text-left">
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+                Sede Magangue
+              </h1>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Contar con un seguro de prevision integral es cuidar a los que mas quieres y asi brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una proteccion integral te brindara tranquilidad en aquellos momentos dificiles.
+                </p>
+                <p>
+                  Afiliandote podras adquirir tu plan de prevision en cuotas mensuales muy comodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
+                </p>
+                <p className="font-display font-bold text-foreground text-lg">
+                  ¡Es momento de demostrarle a tu familia cuanto la amas!
+                </p>
+              </div>
+            </div>
+            <div className="relative w-full max-w-lg mx-auto">
+              <Image
+                src="/familia-planes.png"
+                alt="Familia protegida con Los Olivos"
+                aria-hidden
+                width={600}
+                height={500}
+                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]"
+              />
+              <Image
+                src="/familia-planes.png"
+                alt="Familia protegida con Los Olivos"
+                width={600}
+                height={500}
+                priority
+                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+              />
+            </div>
+          </div>
+          <div className="max-w-4xl mx-auto mt-16">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-              <iframe src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0" className="w-full h-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Los Olivos Magangue" />
+              <iframe
+                src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0"
+                className="w-full h-full"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Los Olivos Magangue"
+              />
             </div>
-            <div className="space-y-6">
-              <div>
-                <span className="text-sm font-medium text-primary">Sede Magangue</span>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Proteccion en el sur de Bolivar</h2>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <Building2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Sede Funeraria Magangue</p>
-                    <p className="text-sm text-muted-foreground">Cll 16 # 10-170, Magangue</p>
-                    <p className="text-xs text-muted-foreground mt-1">Tel: 605 6876481 | Cel: 310 6607664</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <MessageCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">WhatsApp / Linea Nacional</p>
-                    <p className="text-sm text-muted-foreground">+57 323 309 3435 | 018000-180-150</p>
-                  </div>
-                </div>
-              </div>
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                <a href="https://wa.me/573106607664?text=Hola, quiero información sobre planes en Magangué" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5" /> Contactar sede Magangue
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3 Asistencias */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">3 asistencias incluidas</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">Proteccion integral para tu familia</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {asistencias.map((a) => (
-              <div key={a.title} className="group bg-card rounded-2xl border border-border p-8 hover:border-primary/50 hover:shadow-lg transition-all">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <a.icon className="w-8 h-8" />
-                </div>
-                <h3 className="font-display font-bold text-xl text-foreground mb-3">{a.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -139,48 +110,42 @@ export default function MaganguePage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Elige tu plan</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">3 planes disponibles en Magangue</h2>
+            <span className="text-sm font-medium text-primary">Planes Personas</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+              Planes disponibles en Magangue
+            </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             {planes.map((plan) => (
-              <Card key={plan.title} className={`relative ${plan.popular ? "border-primary shadow-lg ring-2 ring-primary/20" : ""}`}>
-                {plan.popular && (<div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-bold px-4 py-1 rounded-full whitespace-nowrap">Recomendado</div>)}
+              <Card key={plan.title} className={`relative flex flex-col ${plan.popular ? "border-primary shadow-lg ring-2 ring-primary/20" : ""}`}>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-bold px-4 py-1 rounded-full whitespace-nowrap">
+                    Recomendado
+                  </div>
+                )}
+                {plan.sinergia && (
+                  <div className="absolute -top-4 right-4 bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                    Sinergia
+                  </div>
+                )}
                 <CardHeader>
-                  <CardTitle className="font-display text-xl">{plan.title}</CardTitle>
-                  <p className="text-primary font-bold text-lg mt-1">{plan.price}</p>
-                  <p className="text-muted-foreground text-sm mt-2">{plan.description}</p>
+                  <CardTitle className="font-display text-xl text-primary">{plan.title}</CardTitle>
+                  <p className="text-muted-foreground text-sm mt-3 leading-relaxed">{plan.description}</p>
                 </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((f) => (<li key={f} className="flex items-start gap-3"><Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">{f}</span></li>))}
-                  </ul>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2" asChild>
-                    <a href={`https://wa.me/573106607664?text=Hola, me interesa el ${plan.title} en Magangué`} target="_blank" rel="noopener noreferrer">Afiliarme ahora <ArrowRight className="w-4 h-4" /></a>
-                  </Button>
+                <CardContent className="mt-auto">
+                  {plan.price && (
+                    <p className="text-foreground font-bold text-lg">{plan.price}</p>
+                  )}
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Seguros Sinergia */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Beneficios Sinergia</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">Seguros adicionales incluidos</h2>
-            <p className="text-muted-foreground mt-4">Disponibles en el Plan Integral Con Sinergia sin costo adicional.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {segurosAdicionales.map((s) => (
-              <div key={s.title} className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"><s.icon className="w-6 h-6" /></div>
-                <h3 className="font-display font-bold text-foreground mb-2">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
+          <div className="text-center mt-10">
+            <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
+              <a href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                Afiliarme ahora <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>

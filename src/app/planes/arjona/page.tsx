@@ -1,23 +1,13 @@
-import { PageBanner } from "@/components/los-olivos/page-banner"
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ArrowRight,
-  Check,
-  Heart,
-  Shield,
-  Users,
-  MapPin,
   Phone,
   MessageCircle,
-  UserCheck,
-  Baby,
-  Clock,
-  CreditCard,
-  Wallet,
 } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -28,91 +18,78 @@ export const metadata: Metadata = {
 
 const planes = [
   {
-    title: "Plan Basico",
-    price: "Desde $14.000/mes",
-    description: "Proteccion esencial con cobertura familiar amplia y flexible.",
-    features: [
-      "Titular con ingreso hasta 65 anos, sin limite de permanencia",
-      "Conyuge con ingreso hasta 65 anos",
-      "Hasta 2 adultos mayores hasta 80 anos (padres o suegros)",
-      "Hijos sin limite de edad",
-      "Solteros: incluye padres y hermanos hasta 30 anos",
-      "Cobertura nacional",
-    ],
+    title: "Plan 6+1",
+    price: "",
+    description: "Incluye 7 afiliados. Carencias: 3 meses por muerte natural. Accidental o violenta inmediatamente las 24 horas despues de haber tomado la afiliacion. 6 meses por enfermedades persistentes (cancer, sida, leucemia).",
     popular: false,
   },
   {
-    title: "Plan Integral Sin Sinergia 6+1",
-    price: "Desde $18.000/mes",
-    description: "Plan completo con asistencias en vida y boveda perpetua.",
-    features: [
-      "Hasta 7 afiliados (titular + 6 familiares)",
-      "Boveda a perpetuidad incluida",
-      "Asistencia en vida (domicilios gratuitos)",
-      "Tarjeta de beneficios con descuentos",
-      "Asistencia psicologica Mens Sana",
-      "Video conmemorativo incluido",
-    ],
+    title: "Plan Basico (Sin boveda)",
+    price: "Valor de $14.000 pesos",
+    description: "Incluye titular con edad de ingreso hasta 65 anos y sin limite de edad de permanencia, puede incluir a su grupo familiar basico: Conyuge con edad de ingreso hasta 65 anos, hijos hasta los 35 anos para ingreso, padres y/o suegros con edad de ingreso hasta 75 anos; si el titular es soltero puede incluir a hermanos menores de 35 anos para ingreso y sus padres hasta 75 anos para ingreso, a falta de padres, puede incluir sus suegros.",
     popular: false,
   },
   {
-    title: "Plan Integral Con Sinergia 6+1",
-    price: "Desde $25.000/mes",
-    description: "Maxima proteccion con seguros Sinergia para toda la familia.",
-    features: [
-      "Todo lo del Plan Integral",
-      "Seguro de alimentacion (canasta familiar por 1 ano)",
-      "Renta diaria por hospitalizacion",
-      "Cobertura por incapacidad total y permanente",
-      "Indemnizacion por muerte accidental",
-      "Asistencia medica permanente sin costo adicional",
-    ],
+    title: "Plan Integral Con Sinergia",
+    price: "Valor de $25.000 pesos",
+    description: "Incluye titular con edad de ingreso hasta 65 anos y sin limite de edad de permanencia, ademas puede incluir a su grupo familiar basico: Conyuge, hijos hasta los 35 anos, padres y/o suegros, si el titular es soltero puede incluir a hermanos menores de 30 anos y sus padres hasta 75 anos con edad de ingreso y sin limite de permanencia. Beneficios sinergia: SINERGIA opcion 2.",
     popular: true,
   },
-]
-
-const coberturaDiferencial = [
   {
-    icon: Baby,
-    title: "Hijos sin limite de edad",
-    description: "A diferencia de otras sedes, en Arjona tus hijos no tienen limite de edad para estar cubiertos.",
-  },
-  {
-    icon: UserCheck,
-    title: "Mayores hasta 80 anos",
-    description: "Incluye hasta 2 adultos mayores de hasta 80 anos, ya sean padres o suegros.",
-  },
-  {
-    icon: Users,
-    title: "Cobertura para solteros",
-    description: "Si eres soltero, puedes incluir a tus padres y hermanos menores de 30 anos en tu plan.",
-  },
-  {
-    icon: Wallet,
-    title: "Cuotas desde $14.000",
-    description: "Los planes mas accesibles de la region con pago mensual, trimestral, semestral o anual.",
+    title: "Plan Amor",
+    price: "Valor de $30.000 pesos",
+    description: "Este plan es ideal para tu nucleo familiar basico, si te conviertes en titular debes ser menor a 65 anos. Podras incluir a 2 adultos mayores hasta una edad de 80 anos (Padres, a falta de padres, suegros), Hijos sin limite de edad y conyuge. Si eres soltero, podras incluir a tu nucleo basico como padres y hermanos 30 anos de edad para ingreso y sin limite de permanencia.",
+    popular: false,
   },
 ]
 
-const formasPago = [
-  { icon: CreditCard, label: "Mensual", desc: "La opcion mas flexible" },
-  { icon: CreditCard, label: "Trimestral", desc: "Ahorra con pagos cada 3 meses" },
-  { icon: CreditCard, label: "Semestral", desc: "Mayor descuento" },
-  { icon: CreditCard, label: "Anual", desc: "Maximo ahorro" },
-]
 
 export default function ArjonaPage() {
   return (
     <>
-      <PageBanner
-        title="Planes en Arjona"
-        description="Proteccion integral con la cobertura familiar mas flexible: mayores hasta 80 anos e hijos sin limite de edad."
-      />
+      {/* Hero Sede Arjona */}
+      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="space-y-6 text-center md:text-left">
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+                Sede Arjona
+              </h1>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Contar con un seguro de prevision integral es cuidar a los que mas quieres y asi brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una proteccion integral te brindara tranquilidad en aquellos momentos dificiles.
+                </p>
+                <p>
+                  Afiliandote podras adquirir tu plan de prevision en cuotas mensuales muy comodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
+                </p>
+                <p className="font-display font-bold text-foreground text-lg">
+                  ¡Es momento de demostrarle a tu familia cuanto la amas!
+                </p>
+              </div>
+            </div>
+            <div className="relative w-full max-w-lg mx-auto">
+              <Image
+                src="/familia-planes.png"
+                alt="Familia protegida con Los Olivos"
+                aria-hidden
+                width={600}
+                height={500}
+                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]"
+              />
+              <Image
+                src="/familia-planes.png"
+                alt="Familia protegida con Los Olivos"
+                width={600}
+                height={500}
+                priority
+                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+              />
+            </div>
+          </div>
 
-      {/* Video + Info sede */}
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+          {/* Video */}
+          <div className="max-w-4xl mx-auto mt-16">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
               <iframe
                 src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0"
@@ -122,67 +99,6 @@ export default function ArjonaPage() {
                 title="Los Olivos Arjona"
               />
             </div>
-            <div className="space-y-6">
-              <div>
-                <span className="text-sm font-medium text-primary">Sede Arjona</span>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">
-                  Cerca de tu familia
-                </h2>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Sede Funeraria Arjona</p>
-                    <p className="text-sm text-muted-foreground">Cra 56A # 54 A-109, Arjona</p>
-                    <p className="text-xs text-muted-foreground mt-1">Tel: 605 6293667 | Cel: 310 6427557</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <MessageCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">WhatsApp / Linea Nacional</p>
-                    <p className="text-sm text-muted-foreground">+57 323 309 3435 | 018000-180-150</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
-                  <Clock className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Atencion 24/7</p>
-                    <p className="text-sm text-muted-foreground">Asesor virtual disponible 365 dias del ano</p>
-                  </div>
-                </div>
-              </div>
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                <a href="https://wa.me/573106427557?text=Hola, quiero información sobre planes en Arjona" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5" />
-                  Contactar sede Arjona
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Cobertura diferencial */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Cobertura flexible</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-              Ventajas de afiliarte en Arjona
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {coberturaDiferencial.map((item) => (
-              <div key={item.title} className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-display font-bold text-foreground mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -191,62 +107,39 @@ export default function ArjonaPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Elige tu plan</span>
+            <span className="text-sm font-medium text-primary">Planes Personas</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Planes disponibles en Arjona
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             {planes.map((plan) => (
-              <Card key={plan.title} className={`relative ${plan.popular ? "border-primary shadow-lg ring-2 ring-primary/20" : ""}`}>
+              <Card key={plan.title} className={`relative flex flex-col ${plan.popular ? "border-primary shadow-lg ring-2 ring-primary/20" : ""}`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-bold px-4 py-1 rounded-full whitespace-nowrap">
-                    Mas Popular
+                    Recomendado
                   </div>
                 )}
                 <CardHeader>
-                  <CardTitle className="font-display text-xl">{plan.title}</CardTitle>
-                  <p className="text-primary font-bold text-lg mt-1">{plan.price}</p>
-                  <p className="text-muted-foreground text-sm mt-2">{plan.description}</p>
+                  <CardTitle className="font-display text-xl text-primary">{plan.title}</CardTitle>
+                  <p className="text-muted-foreground text-sm mt-3 leading-relaxed">{plan.description}</p>
                 </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-muted-foreground">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2" asChild>
-                    <a href={`https://wa.me/573106427557?text=Hola, me interesa el ${plan.title} en Arjona`} target="_blank" rel="noopener noreferrer">
-                      Afiliarme ahora <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </Button>
+                <CardContent className="mt-auto">
+                  {plan.price && (
+                    <p className="text-foreground font-bold text-lg">
+                      Valor de <span className="text-primary">{plan.price.replace("Valor de ", "").replace(" pesos", "")} pesos.</span>
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Formas de pago */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Facilidades de pago</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-              Paga como prefieras
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {formasPago.map((fp) => (
-              <div key={fp.label} className="text-center p-6 bg-card rounded-2xl border border-border hover:border-primary/50 transition-colors">
-                <fp.icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-display font-bold text-foreground">{fp.label}</h3>
-                <p className="text-xs text-muted-foreground mt-1">{fp.desc}</p>
-              </div>
-            ))}
+          <div className="text-center mt-10">
+            <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
+              <a href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                Afiliarme ahora <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>
