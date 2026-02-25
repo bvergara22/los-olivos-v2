@@ -10,16 +10,19 @@ const carouselImages = [
     src: "/promocional.png",
     alt: "Promocional Los Olivos",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]",
+    maxH: "max-h-[420px] lg:max-h-[500px]",
   },
   {
-    src: "/afíliate-ahora.png",
-    alt: "Afiliate Ahora",
+    src: "/mesa-trabajo1-2.png",
+    alt: "Mesa de Trabajo",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(234,124,92,0.4)]",
+    maxH: "max-h-[820px] lg:max-h-[920px]",
   },
   {
     src: "/Linea-de-atención.png",
     alt: "Linea de Atencion",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(189,89,122,0.4)]",
+    maxH: "max-h-[420px] lg:max-h-[500px]",
   },
 ]
 
@@ -51,9 +54,9 @@ export function Hero() {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
 
           {/* 📸 CARRUSEL - AHORA SIEMPRE VISIBLE */}
-          <div className="relative w-full order-1 lg:order-2">
+          <div className="relative w-full order-1 lg:order-2 pb-8">
             <div className="relative w-full max-w-2xl mx-auto">
-              <div className="relative min-h-[320px] lg:min-h-[420px] flex items-center justify-center">
+              <div className="relative min-h-[480px] lg:min-h-[650px] flex items-center justify-center">
                 {carouselImages.map((image, index) => (
                   <div
                     key={image.alt}
@@ -63,14 +66,16 @@ export function Hero() {
                         : "opacity-0 translate-y-4 pointer-events-none"
                     }`}
                   >
-                    <Image
-                      src={image.src}
-                      alt=""
-                      aria-hidden
-                      width={1200}
-                      height={900}
-                      className={`absolute w-full h-auto object-contain max-h-[450px] lg:max-h-[520px] scale-[1.03] blur-2xl opacity-70 ${image.edgeShadow}`}
-                    />
+                    {mounted && (
+                      <Image
+                        src={image.src}
+                        alt=""
+                        aria-hidden
+                        width={1200}
+                        height={900}
+                        className={`absolute w-full h-auto object-contain ${image.maxH} scale-[1.03] blur-2xl opacity-60 ${image.edgeShadow}`}
+                      />
+                    )}
 
                     <Image
                       src={image.src}
@@ -78,7 +83,7 @@ export function Hero() {
                       width={1200}
                       height={900}
                       priority={index === 0}
-                      className="relative w-full h-auto object-contain max-h-[420px] lg:max-h-[500px] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                      className={`relative w-full h-auto object-contain ${image.maxH} drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]`}
                     />
                   </div>
                 ))}

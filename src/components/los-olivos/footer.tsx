@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Phone } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export function Footer() {
@@ -29,14 +30,14 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-display font-bold text-lg">LO</span>
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-lg leading-tight">Los Olivos</h3>
-                <p className="text-xs text-background/60">Cartagena</p>
-              </div>
+            <Link href="/" className="flex items-center mb-4">
+              <Image
+                src="/logo-olivos.png"
+                alt="Los Olivos Cartagena"
+                width={160}
+                height={70}
+                className="object-contain"
+              />
             </Link>
             <p className="text-sm text-background/70 leading-relaxed">
               Mas de 30 años protegiendo familias con servicios exequiales integrales.

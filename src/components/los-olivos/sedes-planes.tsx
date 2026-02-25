@@ -23,7 +23,7 @@ export function SedesPlanes() {
   useEffect(() => {
     setMounted(true)
     const updateCount = () => {
-      setVisibleCount(window.innerWidth < 768 ? 2 : 4)
+      setVisibleCount(window.innerWidth < 768 ? 1 : 4)
     }
     updateCount()
     window.addEventListener("resize", updateCount)
@@ -84,7 +84,7 @@ export function SedesPlanes() {
             </button>
 
             {/* Sedes grid */}
-            <div className={`grid gap-4 px-12 ${visibleCount === 2 ? "grid-cols-2" : "grid-cols-4"}`}>
+            <div className={`grid gap-4 px-12 ${visibleCount === 1 ? "grid-cols-1 max-w-sm mx-auto w-full" : "grid-cols-4"}`}>
               {visibleSedes.map((sede, index) => (
                 <Link
                   key={`${sede.slug}-${index}`}
