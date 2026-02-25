@@ -10,19 +10,19 @@ const carouselImages = [
     src: "/promocional.png",
     alt: "Promocional Los Olivos",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]",
-    maxH: "max-h-[280px] lg:max-h-[500px]",
+    sizeClass: "w-[65%] lg:w-full h-auto object-contain lg:max-h-[500px]",
   },
   {
     src: "/mesa-trabajo1-2.png",
     alt: "Mesa de Trabajo",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(234,124,92,0.4)]",
-    maxH: "max-h-[820px] lg:max-h-[920px]",
+    sizeClass: "w-full h-auto object-contain max-h-[820px] lg:max-h-[920px]",
   },
   {
     src: "/Linea-de-atención.png",
     alt: "Linea de Atencion",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(189,89,122,0.4)]",
-    maxH: "max-h-[280px] lg:max-h-[500px]",
+    sizeClass: "w-[65%] lg:w-full h-auto object-contain lg:max-h-[500px]",
   },
 ]
 
@@ -73,7 +73,7 @@ export function Hero() {
                         aria-hidden
                         width={1200}
                         height={900}
-                        className={`absolute w-full h-auto object-contain ${image.maxH} scale-[1.03] blur-2xl opacity-60 ${image.edgeShadow}`}
+                        className={`absolute scale-[1.03] blur-2xl opacity-60 ${image.sizeClass} ${image.edgeShadow}`}
                       />
                     )}
 
@@ -83,7 +83,7 @@ export function Hero() {
                       width={1200}
                       height={900}
                       priority={index === 0}
-                      className={`relative w-full h-auto object-contain ${image.maxH} drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]`}
+                      className={`relative drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] ${image.sizeClass}`}
                     />
                   </div>
                 ))}
