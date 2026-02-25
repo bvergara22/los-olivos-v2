@@ -6,7 +6,7 @@ import { useState } from "react"
 
 const tarjeta = {
   title: "Tarjeta Golden Offers",
-  image: "/tarjeta1.png",
+  image: "/tarjeta-golden-offers.png",
   description: "",
 }
 
