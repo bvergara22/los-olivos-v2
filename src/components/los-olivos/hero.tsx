@@ -114,9 +114,9 @@ export function Hero() {
               </span>
 
               <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Transcendimos de la proteccion exequial, a la{" "}
+                Transcendimos de la protección exequial, a la{" "}
                 <span className="text-primary">
-                  proteccion familiar integral
+                  protección familiar integral
                 </span>
               </h1>
 
