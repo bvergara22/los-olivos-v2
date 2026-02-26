@@ -26,8 +26,9 @@ export default function HuellitasPage() {
       <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="space-y-6 text-center md:text-left">
+          <div className="flex flex-col md:grid md:grid-cols-2 md:grid-rows-[auto_auto] gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+            {/* Texto */}
+            <div className="space-y-6 text-center md:text-left order-1 md:col-start-1 md:row-start-1">
               <div className="flex items-center gap-2 justify-center md:justify-start">
                 <PawPrint className="w-6 h-6 text-primary" />
                 <span className="text-sm font-medium text-primary">Proteccion para mascotas</span>
@@ -46,15 +47,9 @@ export default function HuellitasPage() {
                   ¡Porque cada huella que dejan merece ser recordada!
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
-                  <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                    Afiliarme ahora <ArrowRight className="w-5 h-5" />
-                  </a>
-                </Button>
-              </div>
             </div>
-            <div className="relative w-3/4 md:w-full max-w-lg mx-auto">
+            {/* Imagen */}
+            <div className="relative w-3/4 md:w-full max-w-lg mx-auto order-2 md:col-start-2 md:row-start-1 md:row-span-2">
               <Image
                 src="/huellitas-main.png"
                 alt="Plan Huellitas Los Olivos"
@@ -71,6 +66,14 @@ export default function HuellitasPage() {
                 priority
                 className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
               />
+            </div>
+            {/* Boton */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start order-3 md:col-start-1 md:row-start-2 md:self-start">
+              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
+                <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
+                  Afiliarme ahora <ArrowRight className="w-5 h-5" />
+                </a>
+              </Button>
             </div>
           </div>
         </div>

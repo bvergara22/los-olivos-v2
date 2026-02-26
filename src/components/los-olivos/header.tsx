@@ -150,7 +150,7 @@ export function Header() {
       title: "Nuestras Sedes",
       items: [
         {
-          label: "Sedes en Cartagena",
+          label: "Salas en Cartagena",
           description: "Encuentra la sede mas cercana a ti",
           href: "/planes",
           icon: MapPin
