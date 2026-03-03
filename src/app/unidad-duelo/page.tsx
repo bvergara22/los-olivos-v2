@@ -41,7 +41,7 @@ const articulos = [
     excerpt: "Hoy por hoy las necesidades de nuestra sociedad son muy variadas. Desde hace un ano, vivimos para cuidarnos, muchas de las cosas buenas que antes teniamos nos toco dejar atras para cuidar lo vital en nuestras vidas.",
   },
   {
-    title: "Que hacer en el acompanamiento a una persona en duelo?",
+    title: "Que hacer en el acompañamiento a una persona en duelo?",
     excerpt: "Todos en algun momento de nuestra vida nos hemos visto enfrentados a situaciones complejas en donde nuestro sistema de creencias y experiencias vividas se ven afectadas.",
   },
 ]
@@ -156,7 +156,7 @@ export default function UnidadDueloPage() {
                 <div className="flex items-start gap-2">
                   <input type="checkbox" id="terms" className="mt-1" />
                   <label htmlFor="terms" className="text-xs text-muted-foreground">
-                    Acepto los terminos y condiciones y la politica de tratamiento de datos personales.
+                    Acepto los términos y condiciones y la política de tratamiento de datos personales.
                   </label>
                 </div>
                 <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
@@ -172,12 +172,12 @@ export default function UnidadDueloPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Acompanamiento integral</span>
+            <span className="text-sm font-medium text-primary">Acompañamiento integral</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Momentos
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
-              Brindamos acompanamiento psicologico a la comunidad doliente a traves de herramientas que les faciliten sobrellevar su proceso de duelo, promoviendo la sensibilizacion de la sociedad.
+              Brindamos acompañamiento psicologico a la comunidad doliente a traves de herramientas que les faciliten sobrellevar su proceso de duelo, promoviendo la sensibilizacion de la sociedad.
             </p>
           </div>
 

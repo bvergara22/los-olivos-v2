@@ -1,10 +1,10 @@
-import { PageBanner } from "@/components/los-olivos/page-banner"
-import { Award, Building2, Eye, Heart, Shield, Target, Users } from "lucide-react"
+import { Award, Building2, Heart, Shield, Users } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Nosotros - Los Olivos Cartagena",
-  description: "Conoce la historia de Los Olivos Cartagena. Mas de 30 anos al servicio solidario de las familias de Cartagena y la region.",
+  description: "Conoce la historia de Los Olivos Cartagena. Mas de 30 años al servicio solidario de las familias de Cartagena y la region.",
 }
 
 const valores = [
@@ -33,12 +33,12 @@ const valores = [
 const hitos = [
   {
     year: "1993",
-    title: "Fundacion",
+    title: "Fundación",
     description: "Nace Los Olivos Cartagena con la vision de brindar proteccion exequial solidaria a las familias cartageneras.",
   },
   {
     year: "2000",
-    title: "Expansion regional",
+    title: "Expansión regional",
     description: "Abrimos nuestras primeras sedes en municipios de Bolivar, extendiendo nuestra cobertura.",
   },
   {
@@ -64,7 +64,7 @@ const hitos = [
 ]
 
 const cifras = [
-  { numero: "+30", label: "Anos de experiencia", icon: Award },
+  { numero: "+30", label: "Años de experiencia", icon: Award },
   { numero: "+50K", label: "Familias protegidas", icon: Users },
   { numero: "8", label: "Sedes en la region", icon: Building2 },
   { numero: "24/7", label: "Atencion disponible", icon: Shield },
@@ -73,10 +73,40 @@ const cifras = [
 export default function NosotrosPage() {
   return (
     <>
-      <PageBanner
-        title="Nuestra historia"
-        description="Mas de 30 anos al servicio solidario de las familias de Cartagena y la region. Conoce quienes somos y por que nos eligen."
-      />
+      {/* Hero */}
+      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="space-y-6 text-center md:text-left">
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+                Nuestra historia
+              </h1>
+              <p className="text-muted-foreground leading-relaxed">
+                Mas de 30 años al servicio solidario de las familias de Cartagena y la region. Conoce quienes somos y por que nos eligen.
+              </p>
+            </div>
+            <div className="relative w-3/4 md:w-full max-w-lg mx-auto">
+              <Image
+                src="/nosotros.png"
+                alt="Nosotros Los Olivos"
+                aria-hidden
+                width={600}
+                height={500}
+                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]"
+              />
+              <Image
+                src="/nosotros.png"
+                alt="Nosotros Los Olivos"
+                width={600}
+                height={500}
+                priority
+                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Quien somos */}
       <section className="py-16 md:py-20 bg-muted/30">
@@ -135,8 +165,14 @@ export default function NosotrosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div className="bg-card rounded-2xl border border-border p-8">
-              <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6">
-                <Target className="w-7 h-7" />
+              <div className="relative w-full rounded-xl overflow-hidden mb-6">
+                <Image
+                  src="/mision.png"
+                  alt="Nuestra Mision"
+                  width={600}
+                  height={176}
+                  className="w-full h-auto object-contain"
+                />
               </div>
               <h3 className="font-display text-2xl font-bold text-foreground mb-4">Nuestra Mision</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -147,8 +183,14 @@ export default function NosotrosPage() {
             </div>
 
             <div className="bg-card rounded-2xl border border-border p-8">
-              <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6">
-                <Eye className="w-7 h-7" />
+              <div className="relative w-full rounded-xl overflow-hidden mb-6">
+                <Image
+                  src="/vision.png"
+                  alt="Nuestra Vision"
+                  width={600}
+                  height={176}
+                  className="w-full h-auto object-contain"
+                />
               </div>
               <h3 className="font-display text-2xl font-bold text-foreground mb-4">Nuestra Vision</h3>
               <p className="text-muted-foreground leading-relaxed">

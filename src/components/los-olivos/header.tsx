@@ -152,7 +152,7 @@ export function Header() {
         {
           label: "Salas en Cartagena",
           description: "Encuentra la sede mas cercana a ti",
-          href: "/planes",
+          href: "/salas-cartagena",
           icon: MapPin
         },
         {
