@@ -18,6 +18,9 @@ const documentosRequeridos = [
 const notasImportantes = [
   "Una vez tenga los Permisos Originales debe llevarlos al Parque Cementerio para poder programar la Exhumacion.",
   "Solo solicitar los permisos que va a utilizar.",
+  "Si se va a realizar cremación de restos, también necesitas:",
+  "Permiso de cremación del DADIS.",
+  "Carta de autorización notariada.",
 ]
 
 const productos = [
@@ -61,16 +64,17 @@ export default function ParqueCementerioPage() {
 
             <div className="bg-card rounded-2xl border border-border p-6 md:p-8 mb-8">
               <h3 className="font-display font-bold text-lg text-foreground mb-2">
-                Exhumacion, Traslado y Cremacion
+                🕊️ Exhumación, Traslado y Cremación
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                Realizar solicitud en oficina DADIS. Horario de atencion: Lunes a jueves de 8:00 a.m. - 6:00 p.m. 
-                Los viernes no tramitan licencias. Barrio Manga, #29-109 de la calle 28 o tercera avenida, Cartagena Bolivar.
+                Para iniciar el proceso, debes solicitar los permisos en la Alcaldía de Cartagena (Cra. 2 #36-86, El Centro).
+                🕘 Horario de atención:
+                Lunes a viernes de 8:00 a.m. a 11:00 a.m.
               </p>
 
               {/* Documentos requeridos */}
               <div className="mb-6">
-                <h4 className="font-display font-semibold text-foreground mb-3">Deben llevar:</h4>
+                <h4 className="font-display font-semibold text-foreground mb-3">Documentos requeridos:</h4>
                 <ul className="space-y-3">
                   {documentosRequeridos.map((doc) => (
                     <li key={doc} className="flex items-start gap-3 text-sm text-muted-foreground">

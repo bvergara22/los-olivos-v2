@@ -28,21 +28,21 @@ export const metadata: Metadata = {
 const planesPersonas = [
   {
     title: "Plan Amor Fraternal",
-    price: "$37.000",
+    price: "$42.400",
     description:
-      "Este plan es ideal para tu nucleo familiar basico, si te conviertes en titular debes ser menor de 65 anos. Podras incluir a 2 adultos mayores hasta una edad de 80 anos (Padres, a falta de padres, suegros), Hijos sin limite de edad y conyuge. Si eres soltero, podras incluir a tu nucleo basico como padres y hermanos.",
+      "Este plan es ideal para tu nucleo familiar basico, si te conviertes en titular debes ser menor de 65 años. Podras incluir a conyuge hasta los 65 años, 2 adultos mayores hasta una edad de 80 años (Padres, a falta de padres, suegros), Hijos sin limite de edad. Si eres soltero, podras incluir a tu nucleo basico como padres y hermanos.",
     popular: true,
   },
   {
     title: "Plan Fraternal",
     price: "$30.000",
     description:
-      "Este plan es ideal para tu nucleo familiar basico, si te conviertes en titular debes ser menor a 65 anos, podras incluir a 2 adultos mayores hasta una edad de 75 anos (Padres, a falta de padres, suegros), si eres casado podras incluir a hijos sin limite de edad y conyuge. Si eres soltero, podras incluir a tu nucleo basico como padres y hermanos.",
+      "Este plan es ideal para tu nucleo familiar basico, si te conviertes en titular debes ser menor a 65 años. Podras incluir a conyuge hasta los 65 años, 2 adultos mayores hasta una edad de 75 años (Padres, a falta de padres, suegros), si eres casado podras incluir a hijos sin limite de edad. Si eres soltero, podras incluir a tu nucleo basico como padres y hermanos.",
     popular: false,
   },
   {
     title: "Plan Amor Unidos",
-    price: "$37.000",
+    price: "$42.400",
     description:
       "Este plan es ideal para todos los miembros de tu familia, si te conviertes en titular debes ser menor de 65 anos. Podras incluir a 2 adultos mayores hasta una edad de 80 anos, y a 4 personas menores a 65 anos, sin importar lazos de consanguinidad o afinidad.",
     popular: false,
