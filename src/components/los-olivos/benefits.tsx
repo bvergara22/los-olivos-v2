@@ -32,7 +32,7 @@ export function Benefits() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
-            <span className="text-3xl md:text-4xl text-primary block">Beneficios exclusivos</span>
+            <span className="text-3xl md:text-4xl text-vida-main block">Beneficios exclusivos</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground text-balance">
               Tus beneficios Olivos
             </h2>
@@ -45,7 +45,7 @@ export function Benefits() {
             <Button 
             asChild
               size="lg" 
-              className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 mt-4"
+              className="gap-2 bg-vida-dark text-white hover:bg-vida-main mt-4"
             >
               <Link href="/beneficios">
                 Conoce todos los beneficios
@@ -59,10 +59,10 @@ export function Benefits() {
             {benefits.map((benefit) => (
               <div 
                 key={benefit.title}
-                className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+                className="group p-6 rounded-2xl bg-card border border-border hover:border-vida-main/50 hover:shadow-lg transition-all duration-300"
               >
                 {/* Ley de Pregnancia: Iconos simples */}
-                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center mb-4 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                   <benefit.icon className="w-6 h-6" />
                 </div>
                 

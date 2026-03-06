@@ -256,7 +256,7 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Asistencias Premium</span>
+            <span className="text-sm font-medium text-vida-main">Asistencias Premium</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Orientacion profesional 24/7
             </h2>
@@ -270,21 +270,21 @@ export default function BeneficiosPage() {
             {asistenciasPremiumVirtuales.map((asistencia) => (
               <div
                 key={asistencia.title}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all"
+                className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                     <asistencia.icon className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display font-bold text-foreground mb-2 leading-snug">{asistencia.title}</h3>
                     <div className="space-y-1">
                       <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                        <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                         {asistencia.monto}
                       </p>
                       <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                        <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                         {asistencia.eventos}
                       </p>
                     </div>
@@ -300,7 +300,7 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Asistencia a domicilio</span>
+            <span className="text-sm font-medium text-vida-main">Asistencia a domicilio</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Servicios presenciales en tu hogar
             </h2>
@@ -313,22 +313,22 @@ export default function BeneficiosPage() {
             {asistenciasDomicilio.map((asistencia) => (
               <div
                 key={asistencia.title}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all"
+                className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                     <asistencia.icon className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display font-bold text-foreground mb-2 leading-snug">{asistencia.title}</h3>
                     <div className="space-y-1">
                       <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                        <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                         {asistencia.monto}
                       </p>
                       {asistencia.eventos && (
                         <p className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                           {asistencia.eventos}
                         </p>
                       )}
@@ -345,7 +345,7 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Paquete Solientegral</span>
+            <span className="text-sm font-medium text-vida-main">Paquete Solientegral</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Sinergia - Valores asegurados
             </h2>
@@ -357,7 +357,7 @@ export default function BeneficiosPage() {
           <div className="max-w-5xl mx-auto overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-primary text-primary-foreground">
+                <tr className="bg-vida-dark text-white">
                   <th className="text-left p-4 rounded-tl-xl font-display font-bold">Plan</th>
                   <th className="text-left p-4 font-display font-bold">Valores Asegurados</th>
                   <th className="text-center p-4 font-display font-bold">Opcion 1</th>
@@ -370,12 +370,12 @@ export default function BeneficiosPage() {
                   grupo.items.map((item, idx) => (
                     <tr
                       key={`${grupo.plan}-${item.nombre}`}
-                      className="border-b border-border hover:bg-primary/5 transition-colors"
+                      className="border-b border-border hover:bg-vida-main/5 transition-colors"
                     >
                       {idx === 0 && (
                         <td
                           rowSpan={grupo.items.length}
-                          className="p-4 font-display font-bold text-primary bg-primary/5 align-middle"
+                          className="p-4 font-display font-bold text-vida-main bg-vida-main/5 align-middle"
                         >
                           {grupo.plan}
                         </td>
@@ -397,7 +397,7 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Paquete Solienvida</span>
+            <span className="text-sm font-medium text-vida-main">Paquete Solienvida</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Amparos y alternativas de cobertura
             </h2>
@@ -409,7 +409,7 @@ export default function BeneficiosPage() {
           <div className="max-w-6xl mx-auto overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-primary text-primary-foreground">
+                <tr className="bg-vida-dark text-white">
                   <th className="text-left p-4 rounded-tl-xl font-display font-bold">Amparo</th>
                   <th className="text-center p-4 font-display font-bold">Opcion 1</th>
                   <th className="text-center p-4 font-display font-bold">Opcion 2</th>
@@ -419,32 +419,32 @@ export default function BeneficiosPage() {
               </thead>
               <tbody>
                 {solientevidaRows.map((row) => (
-                  <tr key={row.nombre} className="border-b border-border hover:bg-primary/5 transition-colors">
+                  <tr key={row.nombre} className="border-b border-border hover:bg-vida-main/5 transition-colors">
                     <td className="p-4 text-sm text-foreground font-medium">{row.nombre}</td>
                     <td className="p-4 text-sm text-center text-muted-foreground">
                       {row.op1 === "SI" ? (
-                        <Check className="w-5 h-5 text-primary mx-auto" />
+                        <Check className="w-5 h-5 text-vida-main mx-auto" />
                       ) : (
                         <span className="font-medium">{row.op1}</span>
                       )}
                     </td>
                     <td className="p-4 text-sm text-center text-muted-foreground">
                       {row.op2 === "SI" ? (
-                        <Check className="w-5 h-5 text-primary mx-auto" />
+                        <Check className="w-5 h-5 text-vida-main mx-auto" />
                       ) : (
                         <span className="font-medium">{row.op2}</span>
                       )}
                     </td>
                     <td className="p-4 text-sm text-center text-muted-foreground">
                       {row.op3 === "SI" ? (
-                        <Check className="w-5 h-5 text-primary mx-auto" />
+                        <Check className="w-5 h-5 text-vida-main mx-auto" />
                       ) : (
                         <span className="font-medium">{row.op3}</span>
                       )}
                     </td>
                     <td className="p-4 text-sm text-center text-muted-foreground">
                       {row.op4 === "SI" ? (
-                        <Check className="w-5 h-5 text-primary mx-auto" />
+                        <Check className="w-5 h-5 text-vida-main mx-auto" />
                       ) : (
                         <span className="font-medium">{row.op4}</span>
                       )}
@@ -461,7 +461,7 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Mascota Light</span>
+            <span className="text-sm font-medium text-vida-main">Mascota Light</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Asistencia para tu mascota 24/7
             </h2>
@@ -474,10 +474,10 @@ export default function BeneficiosPage() {
             {mascotaAsistencia.map((asistencia) => (
               <div
                 key={asistencia.title}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all"
+                className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                     <asistencia.icon className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -487,11 +487,11 @@ export default function BeneficiosPage() {
                     )}
                     <div className="space-y-1">
                       <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                        <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                         {asistencia.monto}
                       </p>
                       <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                        <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                         {asistencia.eventos}
                       </p>
                     </div>
@@ -508,10 +508,10 @@ export default function BeneficiosPage() {
               {mascotaLegal.map((item) => (
                 <div
                   key={item.title}
-                  className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all"
+                  className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                       <item.icon className="w-6 h-6" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -519,11 +519,11 @@ export default function BeneficiosPage() {
                       <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{item.descripcion}</p>
                       <div className="space-y-1">
                         <p className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Shield className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                           {item.monto}
                         </p>
                         <p className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
                           {item.eventos}
                         </p>
                       </div>
@@ -544,9 +544,9 @@ export default function BeneficiosPage() {
               {mascotaReferencia.map((item) => (
                 <div
                   key={item}
-                  className="flex items-start gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors"
+                  className="flex items-start gap-3 p-4 bg-card rounded-xl border border-border hover:border-vida-main/50 transition-colors"
                 >
-                  <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-vida-main flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-foreground">{item}</span>
                 </div>
               ))}
@@ -556,10 +556,10 @@ export default function BeneficiosPage() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-16 md:py-20 bg-primary/5">
+      <section className="py-16 md:py-20 bg-vida-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <PawPrint className="w-12 h-12 text-primary mx-auto mb-4" />
+            <PawPrint className="w-12 h-12 text-vida-main mx-auto mb-4" />
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
               Accede a todos estos beneficios hoy
             </h2>
@@ -568,7 +568,7 @@ export default function BeneficiosPage() {
               mascotas.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
+              <Button size="lg" className="gap-2 bg-vida-dark text-white hover:bg-vida-main px-8" asChild>
                 <Link href="/cotizar">
                   Cotizar mi plan
                   <ArrowRight className="w-5 h-5" />

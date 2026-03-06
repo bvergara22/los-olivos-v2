@@ -8,11 +8,13 @@ const sedes = [
   { name: "Sede Cartagena", slug: "cartagena", src: "/cartagena.jpg" },
   { name: "Sede Turbaco", slug: "turbaco", src: "/turbaco.jpg" },
   { name: "Sede Arjona", slug: "arjona", src: "/arjona.jpg" },
-  { name: "Sede Magangue", slug: "magangue", src: "/magangue.jpg" },
-  { name: "Sede Maria la Baja", slug: "maria-la-baja", src: "/maria.jpg" },
-  { name: "Sede San Andres", slug: "san-andres", src: "/san-andres.jpg" },
+  { name: "Sede Magangué", slug: "magangue", src: "/magangue.jpg" },
+  { name: "Sede María la Baja", slug: "maria-la-baja", src: "/maria.jpg" },
+  { name: "Sede San Andrés", slug: "san-andres", src: "/san-andres.jpg" },
   { name: "Sede Mahates", slug: "mahates", src: "/mahates.jpg" },
   { name: "Sede Soplaviento", slug: "soplaviento", src: "/soplaviento.jpg" },
+  { name: "Sede San Juan", slug: "san-juan", src: "/san-juan.jpg" },
+  { name: "Sede Mompox", slug: "mompox", src: "/mompox.jpg" },
 ]
 
 export function SedesPlanes() {

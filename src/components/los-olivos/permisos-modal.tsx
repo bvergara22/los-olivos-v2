@@ -22,8 +22,7 @@ export function PermisosModal() {
     <>
       <Button
         onClick={() => setOpen(true)}
-        className="gap-2 text-white hover:bg-[#240e36]"
-        style={{ background: "#3e2455" }}
+        className="gap-2 bg-duelo-main text-white hover:bg-duelo-dark"
       >
         Obtener carta de permisos
       </Button>
@@ -31,7 +30,7 @@ export function PermisosModal() {
       {open && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ background: "rgba(36,14,54,0.6)", backdropFilter: "blur(4px)" }}
+          style={{ background: "color-mix(in srgb, var(--duelo-dark) 60%, transparent)", backdropFilter: "blur(4px)" }}
           onClick={() => setOpen(false)}
         >
           <div
@@ -40,7 +39,7 @@ export function PermisosModal() {
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-display text-lg font-semibold" style={{ color: "#240e36" }}>
+              <h3 className="font-display text-lg font-semibold text-duelo-dark">
                 Cartas de permisos
               </h3>
               <button
@@ -56,13 +55,9 @@ export function PermisosModal() {
               {permisos.map((permiso) => (
                 <div
                   key={permiso.file}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border"
-                  style={{ background: "rgba(62,36,85,0.04)" }}
+                  className="flex items-center gap-4 p-4 rounded-xl border border-border bg-duelo-main/[0.04]"
                 >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(62,36,85,0.1)", color: "#3e2455" }}
-                  >
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-duelo-main/10 text-duelo-main">
                     <FileText className="w-5 h-5" />
                   </div>
                   <p className="text-sm font-medium text-foreground flex-1 leading-snug">
@@ -78,7 +73,7 @@ export function PermisosModal() {
                       <Button
                         variant="outline"
                         size="icon"
-                        className="w-8 h-8 hover:bg-[#3e2455]/10 hover:border-[#3e2455] hover:text-[#3e2455]"
+                        className="w-8 h-8 hover:bg-duelo-main/10 hover:border-duelo-main hover:text-duelo-main"
                       >
                         <Eye className="w-4 h-4" />
                       </Button>
@@ -86,8 +81,7 @@ export function PermisosModal() {
                     <a href={permiso.file} download title="Descargar">
                       <Button
                         size="icon"
-                        className="w-8 h-8 text-white hover:bg-[#240e36]"
-                        style={{ background: "#3e2455" }}
+                        className="w-8 h-8 bg-duelo-main text-white hover:bg-duelo-dark"
                       >
                         <Download className="w-4 h-4" />
                       </Button>

@@ -60,7 +60,7 @@ export function Header() {
   const serviciosColumns: DropdownColumn[] = [
     {
       title: "Nuestros Servicios",
-      accent: "#3e2455",
+      accent: "var(--duelo-main)",
       items: [
         { 
           label: "Homenaje al amor", 
@@ -75,7 +75,7 @@ export function Header() {
           icon: TreePine 
         },
         { 
-          label: "Unidad de gestion de las emociones", 
+          label: "Unidad de gestión de las emociones",
           description: "Acompañamiento profesional en momentos difíciles",
           href: "/unidad-duelo", 
           icon: Flower2 
@@ -86,7 +86,7 @@ export function Header() {
       title: "Servicios en Línea",
       items: [
         { 
-          label: "Pagos en Linea", 
+          label: "Pagos en línea",
           description: "Realiza tus pagos de forma segura y rápida",
           href: "/pagos", 
           icon: CreditCard,
@@ -113,11 +113,13 @@ export function Header() {
     { label: "Cartagena", href: "/planes/cartagena" },
     { label: "Turbaco", href: "/planes/turbaco" },
     { label: "Arjona", href: "/planes/arjona" },
-    { label: "Magangue", href: "/planes/magangue" },
-    { label: "Maria la Baja", href: "/planes/maria-la-baja" },
-    { label: "San Andres", href: "/planes/san-andres" },
+    { label: "Magangué", href: "/planes/magangue" },
+    { label: "María la Baja", href: "/planes/maria-la-baja" },
+    { label: "San Andrés", href: "/planes/san-andres" },
     { label: "Mahates", href: "/planes/mahates" },
     { label: "Soplaviento", href: "/planes/soplaviento" },
+    { label: "San Juan", href: "/planes/san-juan" },
+    { label: "Mompox", href: "/planes/mompox" },
   ]
 
   // Estado para mostrar el panel de sedes dentro del mega menu
@@ -168,7 +170,7 @@ export function Header() {
           icon: HeartHandshake 
         },
         { 
-          label: "Asistencia Psicologica", 
+          label: "Asistencia Psicológica",
           description: "Apoyo emocional profesional",
           href: "/beneficios", 
           icon: Brain 
@@ -372,36 +374,41 @@ export function Header() {
         {openDropdown && (
           <div className="hidden lg:block absolute left-0 right-0 top-full bg-card border-b border-border shadow-lg">
             <div className="container mx-auto px-4 py-8">
-              {/* Conocenos - items en fila sin titulos */}
+              {/* Conócenos - misma estructura que Sedes & Planes */}
               {openDropdown === "Conócenos" && (
-                <div className="flex justify-center gap-6">
-                  {conocenosItems.map((subItem, itemIndex) => (
-                    <a
-                      key={itemIndex}
-                      href={subItem.href}
-                      target={subItem.isExternal ? "_blank" : undefined}
-                      rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                      onClick={() => setOpenDropdown(null)}
-                      className="flex items-start gap-3 p-4 rounded-lg hover:bg-muted transition-colors group min-w-[200px]"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        <subItem.icon className="w-5 h-5" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1">
-                          <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
-                            {subItem.label}
-                          </span>
-                          {subItem.isExternal && (
-                            <ExternalLink className="w-3 h-3 text-muted-foreground" />
-                          )}
+                <div>
+                  <h3 className="text-primary font-semibold text-sm mb-4 uppercase tracking-wide">
+                    Nuestra empresa
+                  </h3>
+                  <div className="grid grid-cols-3 gap-2">
+                    {conocenosItems.map((subItem, itemIndex) => (
+                      <a
+                        key={itemIndex}
+                        href={subItem.href}
+                        target={subItem.isExternal ? "_blank" : undefined}
+                        rel={subItem.isExternal ? "noopener noreferrer" : undefined}
+                        onClick={() => setOpenDropdown(null)}
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          <subItem.icon className="w-5 h-5" />
                         </div>
-                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                          {subItem.description}
-                        </p>
-                      </div>
-                    </a>
-                  ))}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1">
+                            <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                              {subItem.label}
+                            </span>
+                            {subItem.isExternal && (
+                              <ExternalLink className="w-3 h-3 text-muted-foreground" />
+                            )}
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                            {subItem.description}
+                          </p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -435,69 +442,58 @@ export function Header() {
                 </div>
               )}
 
-              {/* Sedes & Planes - con panel de sedes */}
+              {/* Sedes & Planes - 1 columna por item */}
               {openDropdown === "Sedes & Planes" && !showSedesPanel && (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                  {sedesColumns.map((column, colIndex) => (
-                    <div key={colIndex}>
-                      <h3 className="text-primary font-semibold text-sm mb-4 uppercase tracking-wide">
-                        {column.title}
-                      </h3>
-                      <div className="space-y-1">
-                        {column.items.map((subItem, itemIndex) => (
-                          subItem.href === "#ver-sedes" ? (
-                            <button
-                              key={itemIndex}
-                              type="button"
-                              onClick={() => setShowSedesPanel(true)}
-                              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group w-full text-left"
-                            >
-                              <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                                <subItem.icon className="w-5 h-5" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-1">
-                                  <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
-                                    {subItem.label}
-                                  </span>
-                                  <ChevronDown className="w-3 h-3 text-muted-foreground -rotate-90" />
-                                </div>
-                                <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                                  {subItem.description}
-                                </p>
-                              </div>
-                            </button>
-                          ) : (
-                            <a
-                              key={itemIndex}
-                              href={subItem.href}
-                              target={subItem.isExternal ? "_blank" : undefined}
-                              rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                              onClick={() => setOpenDropdown(null)}
-                              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
-                            >
-                              <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                                <subItem.icon className="w-5 h-5" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-1">
-                                  <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
-                                    {subItem.label}
-                                  </span>
-                                  {subItem.isExternal && (
-                                    <ExternalLink className="w-3 h-3 text-muted-foreground" />
-                                  )}
-                                </div>
-                                <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                                  {subItem.description}
-                                </p>
-                              </div>
-                            </a>
-                          )
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                <div>
+                  <h3 className="text-primary font-semibold text-sm mb-4 uppercase tracking-wide">
+                    {sedesColumns[0].title}
+                  </h3>
+                  <div className="grid grid-cols-3 gap-2">
+                    {sedesColumns[0].items.map((subItem, itemIndex) => (
+                      subItem.href === "#ver-sedes" ? (
+                        <button
+                          key={itemIndex}
+                          type="button"
+                          onClick={() => setShowSedesPanel(true)}
+                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group w-full text-left"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            <subItem.icon className="w-5 h-5" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1">
+                              <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                                {subItem.label}
+                              </span>
+                              <ChevronDown className="w-3 h-3 text-muted-foreground -rotate-90" />
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                              {subItem.description}
+                            </p>
+                          </div>
+                        </button>
+                      ) : (
+                        <a
+                          key={itemIndex}
+                          href={subItem.href}
+                          onClick={() => setOpenDropdown(null)}
+                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            <subItem.icon className="w-5 h-5" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors block">
+                              {subItem.label}
+                            </span>
+                            <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                              {subItem.description}
+                            </p>
+                          </div>
+                        </a>
+                      )
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -560,7 +556,7 @@ export function Header() {
                             className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                           >
                             {column.accent ? (
-                              <div className="w-10 h-10 rounded-lg bg-[#3e2455]/10 text-[#3e2455] flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-[#3e2455] group-hover:text-white">
+                              <div className="w-10 h-10 rounded-lg bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-duelo-main group-hover:text-white">
                                 <subItem.icon className="w-5 h-5" />
                               </div>
                             ) : (
@@ -570,7 +566,7 @@ export function Header() {
                             )}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1">
-                                <span className={`font-medium text-foreground text-sm transition-colors ${column.accent ? "group-hover:text-[#3e2455]" : "group-hover:text-primary"}`}>
+                                <span className={`font-medium text-foreground text-sm transition-colors ${column.accent ? "group-hover:text-duelo-main" : "group-hover:text-primary"}`}>
                                   {subItem.label}
                                 </span>
                                 {subItem.isExternal && (

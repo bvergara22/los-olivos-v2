@@ -4,8 +4,23 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  
-  --primary: #4caf50; 
+
+  /* ── Colores de Duelo ───────────────────────────────────────── */
+  /* Cambia estos valores para actualizar los colores en todas las
+     páginas: Homenaje al Amor, Parque Cementerio y Unidad de Duelo */
+  --duelo-main: #3e2455;   /* morado principal (botones, íconos, acentos) */
+  --duelo-dark: #240e36;   /* morado oscuro (títulos) */
+  --duelo-light: #a183b5;  /* morado claro (focus rings, fondos suaves)  */
+  --duelo-mid: #77608b;    /* morado medio (uso secundario)              */
+
+  /* ── Colores de Vida ────────────────────────────────────────── */
+  /* Cambia estos valores para actualizar los colores en la
+     sección y página de Beneficios                               */
+  --vida-main: #e97783;    /* rosa/rojo principal (íconos, acentos)      */
+  --vida-dark: #cf4545;    /* rojo oscuro (botones, hover)               */
+  /* ─────────────────────────────────────────────────────────── */
+
+  --primary: #4caf50;
   --primary-foreground: #ffffff;
   --secondary: #81c784;
   --secondary-foreground: #010101;
@@ -76,6 +91,16 @@
 }
 
 @theme inline {
+  /* Colores de Duelo como tokens de Tailwind */
+  --color-duelo-main: var(--duelo-main);
+  --color-duelo-dark: var(--duelo-dark);
+  --color-duelo-light: var(--duelo-light);
+  --color-duelo-mid: var(--duelo-mid);
+
+  /* Colores de Vida como tokens de Tailwind */
+  --color-vida-main: var(--vida-main);
+  --color-vida-dark: var(--vida-dark);
+
   --font-sans: 'Raleway', 'Raleway Fallback', sans-serif;
   --font-display: 'Comfortaa', 'Comfortaa Fallback', sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
