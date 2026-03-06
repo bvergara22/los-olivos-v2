@@ -256,8 +256,8 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-vida-main">Asistencias Premium</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-vida-main block">Asistencias Premium</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Orientacion profesional 24/7
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -300,8 +300,8 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-vida-main">Asistencia a domicilio</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-vida-main block">Asistencia a domicilio</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Servicios presenciales en tu hogar
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -345,8 +345,8 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-vida-main">Paquete Solientegral</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-vida-main block">Paquete Solientegral</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Sinergia - Valores asegurados
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -397,8 +397,8 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-vida-main">Paquete Solienvida</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-vida-main block">Paquete Solienvida</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Amparos y alternativas de cobertura
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -461,8 +461,8 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-vida-main">Mascota Light</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-vida-main block">Mascota Light</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Asistencia para tu mascota 24/7
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -559,7 +559,7 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-vida-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+            <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 text-balance">
               Accede a todos estos beneficios hoy
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">

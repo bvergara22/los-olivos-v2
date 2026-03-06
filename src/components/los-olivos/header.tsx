@@ -608,33 +608,52 @@ export function Header() {
                         type="button"
                         onClick={() => toggleDropdown(item.label)}
                         className={`flex items-center justify-between w-full text-sm font-medium py-3 px-2 ${
-                          openDropdown === item.label 
-                            ? "text-primary" 
-                            : "text-foreground hover:text-primary"
+                          item.accent === "vida"
+                            ? openDropdown === item.label ? "text-vida-main" : "text-foreground hover:text-vida-main"
+                            : openDropdown === item.label ? "text-primary" : "text-foreground hover:text-primary"
                         }`}
                       >
                         {item.label}
-                        <ChevronDown 
+                        <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ease-in-out ${
                             openDropdown === item.label ? "rotate-180" : "rotate-0"
-                          }`} 
+                          }`}
                         />
                       </button>
                       {openDropdown === item.label && (
-                        <div className="ml-2 border-l-2 border-primary/20 pl-4 py-2">
-                          {/* Conocenos y Beneficios - sin titulos */}
-                          {(item.label === "Conocenos" || item.label === "Beneficios") ? (
+                        <div className={`ml-2 border-l-2 pl-4 py-2 ${item.accent === "vida" ? "border-vida-main/20" : "border-primary/20"}`}>
+
+                          {/* Beneficios - colores Vida */}
+                          {item.label === "Beneficios" && (
                             <div className="space-y-1">
-                              {(item.label === "Conocenos" ? conocenosItems : beneficiosColumns[0].items).map((subItem, itemIndex) => (
+                              <p className="text-vida-main font-semibold text-xs mb-2 uppercase tracking-wide">{beneficiosColumns[0].title}</p>
+                              {beneficiosColumns[0].items.map((subItem, itemIndex) => (
+                                <a
+                                  key={itemIndex}
+                                  href={subItem.href}
+                                  onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
+                                  className="flex items-center gap-3 text-sm text-muted-foreground hover:text-vida-main py-2"
+                                >
+                                  <div className="w-8 h-8 rounded-lg bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0">
+                                    <subItem.icon className="w-4 h-4" />
+                                  </div>
+                                  <span>{subItem.label}</span>
+                                </a>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Conócenos */}
+                          {item.label === "Conócenos" && (
+                            <div className="space-y-1">
+                              <p className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">Nuestra empresa</p>
+                              {conocenosItems.map((subItem, itemIndex) => (
                                 <a
                                   key={itemIndex}
                                   href={subItem.href}
                                   target={subItem.isExternal ? "_blank" : undefined}
                                   rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                                  onClick={() => {
-                                    setOpenDropdown(null)
-                                    setIsMenuOpen(false)
-                                  }}
+                                  onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
                                   className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
                                 >
                                   <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
@@ -642,105 +661,85 @@ export function Header() {
                                   </div>
                                   <div className="flex items-center gap-1">
                                     <span>{subItem.label}</span>
-                                    {subItem.isExternal && (
-                                      <ExternalLink className="w-3 h-3" />
-                                    )}
+                                    {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
                                   </div>
                                 </a>
                               ))}
                             </div>
-                          ) : item.label === "Sedes & Planes" ? (
-                            /* Sedes & Planes - con panel de sedes en movil */
-                            !showSedesPanel ? (
-                              <div className="space-y-4">
-                                {item.columns?.map((column, colIndex) => (
-                                  <div key={colIndex}>
-                                    <h4 className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">
-                                      {column.title}
-                                    </h4>
-                                    <div className="space-y-1">
-                                      {column.items.map((subItem, itemIndex) => (
-                                        subItem.href === "#ver-sedes" ? (
-                                          <button
-                                            key={itemIndex}
-                                            type="button"
-                                            onClick={() => setShowSedesPanel(true)}
-                                            className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2 w-full text-left"
-                                          >
-                                            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                                              <subItem.icon className="w-4 h-4" />
-                                            </div>
-                                            <span>{subItem.label}</span>
-                                            <ChevronDown className="w-3 h-3 text-muted-foreground -rotate-90 ml-auto" />
-                                          </button>
-                                        ) : (
-                                          <a
-                                            key={itemIndex}
-                                            href={subItem.href}
-                                            target={subItem.isExternal ? "_blank" : undefined}
-                                            rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                                            onClick={() => {
-                                              setOpenDropdown(null)
-                                              setIsMenuOpen(false)
-                                            }}
-                                            className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
-                                          >
-                                            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                                              <subItem.icon className="w-4 h-4" />
-                                            </div>
-                                            <div className="flex items-center gap-1">
-                                              <span>{subItem.label}</span>
-                                              {subItem.isExternal && (
-                                                <ExternalLink className="w-3 h-3" />
-                                              )}
-                                            </div>
-                                          </a>
-                                        )
-                                      ))}
+                          )}
+
+                          {/* Sedes & Planes */}
+                          {item.label === "Sedes & Planes" && !showSedesPanel && (
+                            <div className="space-y-1">
+                              <p className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">{sedesColumns[0].title}</p>
+                              {sedesColumns[0].items.map((subItem, itemIndex) => (
+                                subItem.href === "#ver-sedes" ? (
+                                  <button
+                                    key={itemIndex}
+                                    type="button"
+                                    onClick={() => setShowSedesPanel(true)}
+                                    className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2 w-full text-left"
+                                  >
+                                    <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                      <subItem.icon className="w-4 h-4" />
                                     </div>
-                                  </div>
+                                    <span>{subItem.label}</span>
+                                    <ChevronDown className="w-3 h-3 text-muted-foreground -rotate-90 ml-auto" />
+                                  </button>
+                                ) : (
+                                  <a
+                                    key={itemIndex}
+                                    href={subItem.href}
+                                    onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
+                                    className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
+                                  >
+                                    <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                      <subItem.icon className="w-4 h-4" />
+                                    </div>
+                                    <span>{subItem.label}</span>
+                                  </a>
+                                )
+                              ))}
+                            </div>
+                          )}
+                          {item.label === "Sedes & Planes" && showSedesPanel && (
+                            <div>
+                              <button
+                                type="button"
+                                onClick={() => setShowSedesPanel(false)}
+                                className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary mb-3 transition-colors"
+                              >
+                                <ChevronDown className="w-3 h-3 rotate-90" />
+                                Volver
+                              </button>
+                              <p className="text-primary font-semibold text-xs mb-3 uppercase tracking-wide">Selecciona una sede</p>
+                              <div className="grid grid-cols-2 gap-2">
+                                {sedesItems.map((sede) => (
+                                  <Link
+                                    key={sede.href}
+                                    href={sede.href}
+                                    onClick={() => { setOpenDropdown(null); setIsMenuOpen(false); setShowSedesPanel(false) }}
+                                    className="flex items-center gap-2 p-3 rounded-lg border border-border hover:border-primary/50 transition-all group text-sm"
+                                  >
+                                    <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                                    <span className="text-foreground group-hover:text-primary transition-colors">{sede.label}</span>
+                                  </Link>
                                 ))}
                               </div>
-                            ) : (
-                              <div>
-                                <button
-                                  type="button"
-                                  onClick={() => setShowSedesPanel(false)}
-                                  className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary mb-3 transition-colors"
-                                >
-                                  <ChevronDown className="w-3 h-3 rotate-90" />
-                                  Volver
-                                </button>
-                                <h4 className="text-primary font-semibold text-xs mb-3 uppercase tracking-wide">
-                                  Selecciona una sede
-                                </h4>
-                                <div className="grid grid-cols-2 gap-2">
-                                  {sedesItems.map((sede) => (
-                                    <Link
-                                      key={sede.href}
-                                      href={sede.href}
-                                      onClick={() => {
-                                        setOpenDropdown(null)
-                                        setIsMenuOpen(false)
-                                        setShowSedesPanel(false)
-                                      }}
-                                      className="flex items-center gap-2 p-3 rounded-lg border border-border hover:border-primary/50 transition-all group text-sm"
-                                    >
-                                      <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-                                      <span className="text-foreground group-hover:text-primary transition-colors">{sede.label}</span>
-                                    </Link>
-                                  ))}
-                                </div>
-                              </div>
-                            )
-                          ) : (
-                            /* Otros menus - con titulos */
+                            </div>
+                          )}
+
+                          {/* Servicios y demás - respeta accent por columna */}
+                          {item.label !== "Beneficios" && item.label !== "Conócenos" && item.label !== "Sedes & Planes" && (
                             <div className="space-y-4">
                               {item.columns?.map((column, colIndex) => (
                                 <div key={colIndex}>
-                                  <h4 className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">
+                                  <p
+                                    className="font-semibold text-xs mb-2 uppercase tracking-wide"
+                                    style={{ color: column.accent ?? "var(--color-primary)" }}
+                                  >
                                     {column.title}
-                                  </h4>
+                                  </p>
                                   <div className="space-y-1">
                                     {column.items.map((subItem, itemIndex) => (
                                       <a
@@ -748,20 +747,15 @@ export function Header() {
                                         href={subItem.href}
                                         target={subItem.isExternal ? "_blank" : undefined}
                                         rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                                        onClick={() => {
-                                          setOpenDropdown(null)
-                                          setIsMenuOpen(false)
-                                        }}
-                                        className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
+                                        onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
+                                        className="flex items-center gap-3 text-sm text-muted-foreground py-2 group"
                                       >
-                                        <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${column.accent ? "bg-duelo-main/10 text-duelo-main" : "bg-primary/10 text-primary"}`}>
                                           <subItem.icon className="w-4 h-4" />
                                         </div>
                                         <div className="flex items-center gap-1">
-                                          <span>{subItem.label}</span>
-                                          {subItem.isExternal && (
-                                            <ExternalLink className="w-3 h-3" />
-                                          )}
+                                          <span className={column.accent ? "group-hover:text-duelo-main" : "group-hover:text-primary"}>{subItem.label}</span>
+                                          {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
                                         </div>
                                       </a>
                                     ))}
@@ -770,6 +764,7 @@ export function Header() {
                               ))}
                             </div>
                           )}
+
                         </div>
                       )}
                     </>
