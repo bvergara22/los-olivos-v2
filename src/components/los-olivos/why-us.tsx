@@ -2,28 +2,24 @@
 
 import { Award, Clock, Heart, MapPin, Shield, Users } from "lucide-react"
 
-/**
- * Por que elegirnos - Con colores verde y naranja de la marca
- * Sin boton de contacto al final
- */
 export function WhyUs() {
   const reasons = [
     {
       icon: Shield,
       title: "Cobertura Total",
-      description: "Proteccion en el presente y el futuro para toda tu familia con planes integrales.",
+      description: "Protección en el presente y el futuro para toda tu familia con planes integrales.",
       color: "primary",
     },
     {
       icon: Clock,
       title: "+30 Años de Experiencia",
-      description: "Mas de tres decadas al servicio solidario exequial en Cartagena y la region.",
+      description: "Más de tres décadas al servicio solidario exequial en Cartagena y la región.",
       color: "primary",
     },
     {
       icon: MapPin,
       title: "Cobertura Nacional",
-      description: "Presencia en todo el territorio colombiano con multiples sedes y aliados.",
+      description: "Presencia en todo el territorio colombiano con múltiples sedes y aliados.",
       color: "primary",
     },
     {
@@ -34,14 +30,14 @@ export function WhyUs() {
     },
     {
       icon: Award,
-      title: "Respetamos tu Antiguedad",
+      title: "Respetamos tu Antigüedad",
       description: "Reconocemos el tiempo que tengas con otra entidad sin costos adicionales.",
       color: "primary",
     },
     {
       icon: Users,
       title: "+50,000 Familias",
-      description: "Miles de familias confian en nosotros para su proteccion integral.",
+      description: "Miles de familias confían en nosotros para su protección integral.",
       color: "primary",
     },
   ]
@@ -55,12 +51,12 @@ export function WhyUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-medium text-primary">Nuestra diferencia</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-            Por que elegirnos?
+          <span className="text-3xl md:text-4xl text-primary block">Nuestra diferencia</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+            ¿Por qué elegirnos?
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
-            Somos tu mejor opcion para la proteccion familiar integral. Conoce las razones que nos distinguen.
+            Somos tu mejor opción para la protección familiar integral. Conoce las razones que nos distinguen.
           </p>
         </div>
 

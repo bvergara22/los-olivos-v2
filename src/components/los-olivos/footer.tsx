@@ -4,10 +4,10 @@ import Link from "next/link"
 
 export function Footer() {
   const quickLinks = [
-    { label: "Prevision exequial", href: "/planes", external: false },
+    { label: "Previsión exequial", href: "/planes", external: false },
     { label: "Pagos en linea", href: "/pagos", external: false },
     { label: "Cotizar homenaje", href: "/cotizar", external: false },
-    { label: "Tramites", href: "/tramites", external: false },
+    { label: "Trámites", href: "/tramites", external: false },
   ]
 
   const serviceLinks = [
@@ -40,13 +40,13 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-background/70 leading-relaxed">
-              Mas de 30 años protegiendo familias con servicios exequiales integrales.
+              Más de 30 años protegiendo familias con servicios exequiales integrales.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display font-bold mb-4">Enlaces rapidos</h4>
+            <h4 className="font-display font-bold mb-4">Enlaces rápidos</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
@@ -119,9 +119,9 @@ export function Footer() {
             <div className="space-y-3 text-sm text-background/70">
               <p>PBX: (5) 6930172</p>
               <p>WhatsApp: 323 3093435</p>
-              <p>Linea Nacional: 018000-180-150</p>
+              <p>Línea Nacional: 018000-180-150</p>
               <p>contacto@losolivoscartagena.com</p>
-              <p className="text-background/50 text-xs leading-relaxed">Carretera la Cordialidad Trv 54 #31-J27, Cartagena, Bolivar</p>
+              <p className="text-background/50 text-xs leading-relaxed">Carretera la Cordialidad Trv 54 #31-J27, Cartagena, Bolívar</p>
             </div>
             
             <div className="flex gap-3 mt-4">

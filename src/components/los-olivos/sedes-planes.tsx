@@ -52,12 +52,12 @@ export function SedesPlanes() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-medium text-primary">Presencia municipal</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+          <span className="text-3xl md:text-4xl text-primary block">Presencia municipal</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             Nuestras sedes y planes!
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
-            Contamos con presencia en toda la region para estar siempre cerca de ti y tu familia.
+            Contamos con presencia en toda la región para estar siempre cerca de ti y tu familia.
           </p>
         </div>
 

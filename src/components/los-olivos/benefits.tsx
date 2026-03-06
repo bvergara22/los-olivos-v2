@@ -7,22 +7,22 @@ export function Benefits() {
     {
       icon: Heart,
       title: "Asistencia Exequial",
-      description: "Mas de 3 protocolos para rendir el mejor homenaje: Desprendimiento, Acogida, Despedida, Renacimiento y Nicho a perpetuidad.",
+      description: "Más de 3 protocolos para rendir el mejor homenaje: Desprendimiento, Acogida, Despedida, Renacimiento y Nicho a perpetuidad.",
     },
     {
       icon: Home,
       title: "Asistencia en Vida",
-      description: "Servicios domiciliarios gratuitos: vidrieria, electricidad, cerrajeria, plomeria y la exclusiva Tarjeta Beneficios Olivos.",
+      description: "Servicios domiciliarios gratuitos: vidriería, electricidad, cerrajería, plomería y la exclusiva Tarjeta Beneficios Olivos.",
     },
     {
       icon: Brain,
       title: "Asistencia Psicologica",
-      description: "Equipo de psicologos especializados brindando acompanamiento optimo y ayuda psicologica personalizada.",
+      description: "Equipo de psicólogos especializados brindando acompañamiento óptimo y ayuda psicológica personalizada.",
     },
     {
       icon: Gift,
       title: "Beneficios Adicionales",
-      description: "Descuentos exclusivos, eventos familiares, sorteos, rifas y muchos mas beneficios para nuestra familia Olivos.",
+      description: "Descuentos exclusivos, eventos familiares, sorteos, rifas y muchos más beneficios para nuestra familia Olivos.",
     },
   ]
 
@@ -32,12 +32,12 @@ export function Benefits() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
-            <span className="text-sm font-medium text-primary">Beneficios exclusivos</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
+            <span className="text-3xl md:text-4xl text-primary block">Beneficios exclusivos</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground text-balance">
               Tus beneficios Olivos
             </h2>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Mas que un servicio exequial, somos una familia que te acompana 
+              Más que un servicio exequial, somos una familia que te acompaña
               en cada momento de tu vida con beneficios integrales.
             </p>
             

@@ -9,8 +9,8 @@ export function Services() {
   const services = [
     {
       icon: CreditCard,
-      title: "Pagos en linea",
-      description: "Paga todo lo que necesites desde la comodidad de tu hogar de forma rapida y segura.",
+      title: "Pagos en línea",
+      description: "Paga todo lo que necesites desde la comodidad de tu hogar de forma rápida y segura.",
       cta: "Pagar ahora",
       href: "/pagos",
       highlight: false,
@@ -18,16 +18,16 @@ export function Services() {
     {
       icon: Calculator,
       title: "Cotizar homenaje",
-      description: "Consulta el valor de nuestro servicio segun tus requerimientos y condiciones.",
+      description: "Consulta el valor de nuestro servicio según tus requerimientos y condiciones.",
       cta: "Cotizar",
       href: "/cotizar",
       highlight: false,
     },
     {
       icon: FileText,
-      title: "Tramites fallecidos",
-      description: "Consulta toda la documentacion e informacion del proceso de tu ser querido.",
-      cta: "Ver tramites",
+      title: "Trámites fallecidos",
+      description: "Consulta toda la documentación e información del proceso de tu ser querido.",
+      cta: "Ver trámites",
       href: "/tramites",
       highlight: false,
     },
@@ -37,12 +37,12 @@ export function Services() {
     <section id="servicios" className="py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-sm font-medium text-primary">Servicios en linea</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+          <span className="text-3xl md:text-4xl text-primary block">Servicios en línea</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             Gestiona todo desde tu hogar
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
-            Accede a nuestros servicios de manera rapida, sencilla y segura.
+            Accede a nuestros servicios de manera rápida, sencilla y segura.
           </p>
         </div>
 

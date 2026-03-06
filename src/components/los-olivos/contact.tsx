@@ -18,13 +18,13 @@ export function Contact() {
           {/* Contact Info - Ley de Proximidad */}
           <div className="space-y-8">
             <div>
-              <span className="text-sm font-medium text-primary">Listo para proteger a tu familia?</span>
+              <span className="text-base font-medium text-primary">¿Listo para proteger a tu familia?</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-                Contactanos!
+                !Contáctanos!
               </h2>
               <p className="text-muted-foreground mt-4 leading-relaxed">
-                Comunicate con nosotros de manera directa, rapida y sencilla.
-                Nuestros asesores te atenderan de manera inmediata.
+                Comunícate con nosotros de manera directa, rápida y sencilla.
+                Nuestros asesores te atenderán de manera inmediata.
               </p>
             </div>
 
@@ -76,7 +76,7 @@ export function Contact() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Direccion</p>
+                  <p className="font-medium text-foreground">Dirección</p>
                   <p className="text-sm text-muted-foreground">Carretera la Cordialidad Trv 54 #31-J27</p>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export function Contact() {
           {/* Contact Form - Ley de Hick: Solo 3 campos */}
           <div className="bg-card rounded-2xl p-8 border border-border shadow-sm">
             <h3 className="font-display text-xl font-bold text-foreground mb-6">
-              Escribenos un mensaje
+              Escríbenos un mensaje
             </h3>
             
             <form className="space-y-5">
@@ -104,11 +104,11 @@ export function Contact() {
               
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
-                  Telefono o WhatsApp
+                  Teléfono o WhatsApp
                 </label>
                 <Input 
                   type="tel" 
-                  placeholder="Tu numero de contacto" 
+                  placeholder="Tu número de contacto"
                   className="h-12"
                 />
               </div>
@@ -118,7 +118,7 @@ export function Contact() {
                   Mensaje
                 </label>
                 <Textarea 
-                  placeholder="En que podemos ayudarte?" 
+                  placeholder="¿En qué podemos ayudarte?"
                   rows={4}
                 />
               </div>

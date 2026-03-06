@@ -26,7 +26,11 @@ const salas = [
   },
 ]
 
-export function SalasGallery() {
+interface SalasGalleryProps {
+  accent?: string
+}
+
+export function SalasGallery({ accent }: SalasGalleryProps = {}) {
   const [activeSala, setActiveSala] = useState(salas[0].id)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -47,9 +51,10 @@ export function SalasGallery() {
             onClick={() => handleTabChange(s.id)}
             className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
               activeSala === s.id
-                ? "bg-primary text-primary-foreground"
+                ? accent ? "text-white" : "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:text-foreground"
             }`}
+            style={activeSala === s.id && accent ? { background: accent } : undefined}
           >
             {s.name}
           </button>
@@ -78,9 +83,10 @@ export function SalasGallery() {
               onClick={() => setActiveIndex(index)}
               className={`relative flex-shrink-0 w-24 h-16 md:w-full md:h-[78px] rounded-xl overflow-hidden transition-all ${
                 activeIndex === index
-                  ? "ring-2 ring-primary ring-offset-2"
+                  ? accent ? "ring-2 ring-offset-2" : "ring-2 ring-primary ring-offset-2"
                   : "opacity-50 hover:opacity-90"
               }`}
+              style={activeIndex === index && accent ? { outline: `2px solid ${accent}`, outlineOffset: "2px" } : undefined}
             >
               <Image
                 src={img.src}

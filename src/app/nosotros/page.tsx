@@ -4,14 +4,14 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Nosotros - Los Olivos Cartagena",
-  description: "Conoce la historia de Los Olivos Cartagena. Mas de 30 años al servicio solidario de las familias de Cartagena y la region.",
+  description: "Conoce la historia de Los Olivos Cartagena. Más de 30 años al servicio solidario de las familias de Cartagena y la región.",
 }
 
 const valores = [
   {
     icon: Heart,
     title: "Solidaridad",
-    description: "Trabajamos en pro del bienestar de nuestros asociados y sus familias, con espiritu de servicio y apoyo mutuo.",
+    description: "Trabajamos en pro del bienestar de nuestros asociados y sus familias, con espíritu de servicio y apoyo mutuo.",
   },
   {
     icon: Shield,
@@ -21,7 +21,7 @@ const valores = [
   {
     icon: Users,
     title: "Respeto",
-    description: "Valoramos la dignidad humana en cada servicio, tratando a cada familia con empatia y consideracion.",
+    description: "Valoramos la dignidad humana en cada servicio, tratando a cada familia con empatía y consideración.",
   },
   {
     icon: Award,
@@ -34,40 +34,40 @@ const hitos = [
   {
     year: "1993",
     title: "Fundación",
-    description: "Nace Los Olivos Cartagena con la vision de brindar proteccion exequial solidaria a las familias cartageneras.",
+    description: "Nace Los Olivos Cartagena con la visión de brindar protección exequial solidaria a las familias cartageneras.",
   },
   {
     year: "2000",
     title: "Expansión regional",
-    description: "Abrimos nuestras primeras sedes en municipios de Bolivar, extendiendo nuestra cobertura.",
+    description: "Abrimos nuestras primeras sedes en municipios de Bolívar, extendiendo nuestra cobertura.",
   },
   {
     year: "2010",
     title: "Parque Cementerio",
-    description: "Inauguramos nuestro Parque Cementerio Jardin, un espacio de paz y naturaleza.",
+    description: "Inauguramos nuestro Parque Cementerio Jardín, un espacio de paz y naturaleza.",
   },
   {
     year: "2015",
     title: "Cobertura nacional",
-    description: "Alcanzamos presencia en todo el territorio colombiano a traves de alianzas estrategicas.",
+    description: "Alcanzamos presencia en todo el territorio colombiano a través de alianzas estratégicas.",
   },
   {
     year: "2020",
-    title: "Transformacion digital",
-    description: "Implementamos servicios digitales y atencion virtual para estar mas cerca de nuestros afiliados.",
+    title: "Transformación digital",
+    description: "Implementamos servicios digitales y atención virtual para estar más cerca de nuestros afiliados.",
   },
   {
     year: "2023",
     title: "+50,000 familias",
-    description: "Celebramos protegiendo a mas de 50,000 familias en toda la region.",
+    description: "Celebramos protegiendo a más de 50,000 familias en toda la región.",
   },
 ]
 
 const cifras = [
   { numero: "+30", label: "Años de experiencia", icon: Award },
   { numero: "+50K", label: "Familias protegidas", icon: Users },
-  { numero: "8", label: "Sedes en la region", icon: Building2 },
-  { numero: "24/7", label: "Atencion disponible", icon: Shield },
+  { numero: "8", label: "Sedes en la región", icon: Building2 },
+  { numero: "24/7", label: "Atención disponible", icon: Shield },
 ]
 
 export default function NosotrosPage() {
@@ -83,7 +83,7 @@ export default function NosotrosPage() {
                 Nuestra historia
               </h1>
               <p className="text-muted-foreground leading-relaxed">
-                Mas de 30 años al servicio solidario de las familias de Cartagena y la region. Conoce quienes somos y por que nos eligen.
+                Más de 30 años al servicio solidario de las familias de Cartagena y la región. Conoce quiénes somos y por qué nos eligen.
               </p>
             </div>
             <div className="relative w-3/4 md:w-full max-w-lg mx-auto">
@@ -113,7 +113,7 @@ export default function NosotrosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-sm font-medium text-primary">Quienes somos</span>
+              <span className="text-sm font-medium text-primary">Quiénes somos</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
                 Central Cooperativa de Servicios Funerarios de Cartagena
               </h2>
@@ -122,21 +122,21 @@ export default function NosotrosPage() {
             <div className="prose prose-lg max-w-none">
               <p className="text-muted-foreground leading-relaxed text-center mb-6">
                 Los Olivos Cartagena, conocida legalmente como <strong>CARTAFUN</strong> (Central Cooperativa de Servicios Funerarios de Cartagena),
-                es una organizacion solidaria que desde 1993 ha trabajado incansablemente para brindar proteccion exequial integral
-                a las familias de Cartagena y la region Caribe.
+                es una organización solidaria que desde 1993 ha trabajado incansablemente para brindar protección exequial integral
+                a las familias de Cartagena y la región Caribe.
               </p>
 
               <p className="text-muted-foreground leading-relaxed text-center mb-6">
-                Nacimos con el proposito de ofrecer servicios funerarios dignos y accesibles, basados en principios
-                cooperativos de solidaridad, ayuda mutua y responsabilidad social. A lo largo de mas de tres decadas,
+                Nacimos con el propósito de ofrecer servicios funerarios dignos y accesibles, basados en principios
+                cooperativos de solidaridad, ayuda mutua y responsabilidad social. A lo largo de más de tres décadas,
                 hemos evolucionado de ser una simple cooperativa exequial a convertirnos en un verdadero apoyo integral
-                para las familias, ofreciendo servicios que van mas alla de lo funerario.
+                para las familias, ofreciendo servicios que van más allá de lo funerario.
               </p>
 
               <p className="text-muted-foreground leading-relaxed text-center">
-                Hoy, con mas de 50,000 familias protegidas, 8 sedes en la region y cobertura nacional, nos enorgullece
-                ser la opcion de confianza de miles de cartageneros que han encontrado en nosotros no solo un proveedor
-                de servicios, sino una verdadera familia que los acompana en los momentos mas dificiles.
+                Hoy, con más de 50,000 familias protegidas, 8 sedes en la región y cobertura nacional, nos enorgullece
+                ser la opción de confianza de miles de cartageneros que han encontrado en nosotros no solo un proveedor
+                de servicios, sino una verdadera familia que los acompaña en los momentos más difíciles.
               </p>
             </div>
           </div>
@@ -168,16 +168,16 @@ export default function NosotrosPage() {
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/mision.png"
-                  alt="Nuestra Mision"
+                  alt="Nuestra Misión"
                   width={600}
                   height={176}
                   className="w-full h-auto object-contain"
                 />
               </div>
-              <h3 className="font-display text-2xl font-bold text-foreground mb-4">Nuestra Mision</h3>
+              <h3 className="font-display text-2xl font-bold text-foreground mb-4">Nuestra Misión</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Brindar proteccion exequial integral y servicios de calidad a nuestros asociados y sus familias,
-                con un enfoque solidario, humano y profesional. Acompanamos a las familias en su proceso de duelo,
+                Brindar protección exequial integral y servicios de calidad a nuestros asociados y sus familias,
+                con un enfoque solidario, humano y profesional. Acompañamos a las familias en su proceso de duelo,
                 ofreciendo un homenaje digno que honre la memoria de sus seres queridos y contribuya a su bienestar emocional.
               </p>
             </div>
@@ -186,15 +186,15 @@ export default function NosotrosPage() {
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/vision.png"
-                  alt="Nuestra Vision"
+                  alt="Nuestra Visión"
                   width={600}
                   height={176}
                   className="w-full h-auto object-contain"
                 />
               </div>
-              <h3 className="font-display text-2xl font-bold text-foreground mb-4">Nuestra Vision</h3>
+              <h3 className="font-display text-2xl font-bold text-foreground mb-4">Nuestra Visión</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Ser la organizacion lider en proteccion familiar integral en la region Caribe colombiana,
+                Ser la organización líder en protección familiar integral en la región Caribe colombiana,
                 reconocida por la calidad de nuestros servicios, nuestro compromiso social y nuestra capacidad
                 de innovar para satisfacer las necesidades cambiantes de nuestros asociados, siendo un referente
                 de excelencia en el sector solidario.
@@ -210,7 +210,7 @@ export default function NosotrosPage() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-sm font-medium text-primary">Nuestros principios</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-              Valores que nos guian
+              Valores que nos guían
             </h2>
           </div>
 
@@ -237,7 +237,7 @@ export default function NosotrosPage() {
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-sm font-medium text-primary">Nuestra trayectoria</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-              Mas de 30 anos de historia
+              Más de 30 años de historia
             </h2>
           </div>
 
@@ -269,10 +269,10 @@ export default function NosotrosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              Unete a nuestra familia
+              Únete a nuestra familia
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
-              Mas de 50,000 familias ya confian en nosotros. Se parte de esta gran familia solidaria.
+              Más de 50,000 familias ya confían en nosotros. Sé parte de esta gran familia solidaria.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -286,7 +286,7 @@ export default function NosotrosPage() {
                 href="/#contacto"
                 className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md text-sm font-medium border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground transition-colors"
               >
-                Contactanos
+                Contáctanos
               </a>
             </div>
           </div>

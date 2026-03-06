@@ -25,7 +25,7 @@ export function Novedades() {
     { 
       title: "Sorteo especial de aniversario", 
       src: "/placeholder.svg?height=400&width=800&text=Novedad+3",
-      description: "Celebramos nuestro aniversario con premios increibles"
+      description: "Celebramos nuestro aniversario con premios increíbles"
     },
     { 
       title: "Golden Offers - Tarjeta Premium", 
@@ -50,12 +50,12 @@ export function Novedades() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-sm font-medium text-primary">Mantente informado</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+          <span className="text-3xl md:text-4xl text-primary block">Mantente informado</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             Novedades
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
-            Enterate de las ultimas noticias, eventos y promociones de Los Olivos Cartagena.
+            Entérate de las últimas noticias, eventos y promociones de Los Olivos Cartagena.
           </p>
         </div>
 

@@ -10,7 +10,7 @@ export function Steps() {
   const steps = [
     {
       number: 1,
-      title: "Prepara tu informacion",
+      title: "Prepara tu información",
       description: "Ten a la mano los datos de los beneficiarios: nombre completo, documento y fecha de nacimiento.",
     },
     {
@@ -26,7 +26,7 @@ export function Steps() {
     {
       number: 4,
       title: "Realiza el pago",
-      description: "Paga en linea el plan escogido y listo! Ya eres parte de la familia Olivos.",
+      description: "Paga en línea el plan escogido y ¡listo! Ya eres parte de la familia Olivos.",
     },
   ]
 
@@ -35,12 +35,12 @@ export function Steps() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header - Ley de Posicion Serial */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-medium text-primary">Proceso simple</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-            Como pertenecer a la familia Olivos?
+          <span className="text-3xl md:text-4xl text-primary block">Proceso simple</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+            ¿Cómo pertenecer a la familia Olivos?
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
-            Unirte es muy facil. Solo sigue estos 4 sencillos pasos.
+            Unirte es muy fácil. Solo sigue estos 4 sencillos pasos.
           </p>
         </div>
 

@@ -73,7 +73,8 @@ export function Hero() {
                         aria-hidden
                         width={1200}
                         height={900}
-                        className={`absolute scale-[1.03] blur-2xl opacity-60 ${image.sizeClass} ${image.edgeShadow}`}
+                        className={`absolute scale-[1.08] opacity-50 ${image.sizeClass}`}
+                        style={{ filter: "blur(32px) saturate(1.8) hue-rotate(10deg)" }}
                       />
                     )}
 
@@ -109,11 +110,11 @@ export function Hero() {
           {/* 📝 CONTENIDO */}
           <div className="space-y-8 order-2 lg:order-1 text-center lg:text-left">
             <div className="space-y-4">
-              <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                Mas de 30 años protegiendo familias
+              <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-base font-medium rounded-full">
+                Más de 30 años protegiendo familias
               </span>
 
-              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
                 Transcendimos de la protección exequial, a la{" "}
                 <span className="text-primary">
                   protección familiar integral
@@ -122,7 +123,7 @@ export function Hero() {
 
               <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 En Los Olivos Cartagena brindamos un verdadero homenaje al amor,
-                acompanando a las familias con servicios integrales de calidad.
+                acompañando a las familias con servicios integrales de calidad.
               </p>
             </div>
 
@@ -133,7 +134,7 @@ export function Hero() {
                 className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6"
               >
                 <a href="#contacto">
-                  Contactanos ahora
+                  Contáctanos ahora
                   <ArrowRight className="w-5 h-5" />
                 </a>
               </Button>
@@ -146,7 +147,7 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Heart className="w-5 h-5 text-primary" />
-                <span>Atencion 24/7</span>
+                <span>Atención 24/7</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Users className="w-5 h-5 text-primary" />

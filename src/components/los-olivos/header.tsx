@@ -40,6 +40,7 @@ interface DropdownItem {
 interface DropdownColumn {
   title: string
   items: DropdownItem[]
+  accent?: string
 }
 
 interface NavItem {
@@ -59,6 +60,7 @@ export function Header() {
   const serviciosColumns: DropdownColumn[] = [
     {
       title: "Nuestros Servicios",
+      accent: "#3e2455",
       items: [
         { 
           label: "Homenaje al amor", 
@@ -74,31 +76,31 @@ export function Header() {
         },
         { 
           label: "Unidad de gestion de las emociones", 
-          description: "Acompañamiento profesional en momentos dificiles",
+          description: "Acompañamiento profesional en momentos difíciles",
           href: "/unidad-duelo", 
           icon: Flower2 
         },
       ]
     },
     {
-      title: "Servicios en Linea",
+      title: "Servicios en Línea",
       items: [
         { 
           label: "Pagos en Linea", 
-          description: "Realiza tus pagos de forma segura y rapida",
+          description: "Realiza tus pagos de forma segura y rápida",
           href: "/pagos", 
           icon: CreditCard,
           
         },
         { 
           label: "Cotizar Homenaje", 
-          description: "Solicita una cotizacion personalizada",
+          description: "Solicita una cotización personalizada",
           href: "/cotizar", 
           icon: FileText 
         },
         { 
-          label: "Tramites fallecido", 
-          description: "Gestion de documentos y tramites necesarios",
+          label: "Trámites fallecido",
+          description: "Gestión de documentos y trámites necesarios",
           href: "/tramites", 
           icon: ClipboardList 
         },
@@ -124,11 +126,11 @@ export function Header() {
   // Sedes & Planes dropdown
   const sedesColumns: DropdownColumn[] = [
     {
-      title: "Prevision Exequial",
+      title: "Previsión Exequial",
       items: [
         {
           label: "Planes exequial",
-          description: "Planes de proteccion para ti y tu familia",
+          description: "Planes de protección para ti y tu familia",
           href: "#ver-sedes",
           icon: Shield,
         },
@@ -146,23 +148,6 @@ export function Header() {
         },
       ]
     },
-    {
-      title: "Nuestras Sedes",
-      items: [
-        {
-          label: "Salas en Cartagena",
-          description: "Encuentra la sede mas cercana a ti",
-          href: "/salas-cartagena",
-          icon: MapPin
-        },
-        {
-          label: "Tienda",
-          description: "Accede a nuestro portal de servicios",
-          href: "https://www.portal.losolivoscartagena.com/tienda",
-          icon: Building2,
-        },
-      ]
-    }
   ]
 
   // Beneficios dropdown
@@ -202,21 +187,21 @@ export function Header() {
   const conocenosItems: DropdownItem[] = [
     { 
       label: "Nosotros", 
-      description: "Conoce nuestra historia y mision",
+      description: "Conoce nuestra historia y misión",
       href: "/nosotros", 
       icon: Users,
       
     },
     { 
       label: "Blog", 
-      description: "Articulos y noticias de interes",
+      description: "Artículos y noticias de interés",
       href: "/blog", 
       icon: BookOpen,
       
     },
     { 
       label: "Tratamiento de datos", 
-      description: "Politica de privacidad y proteccion de datos",
+      description: "Política de privacidad y protección de datos",
       href: "/tratamiento-de-datos", 
       icon: FileCheck,
       
@@ -365,7 +350,7 @@ export function Header() {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <ExternalLink className="w-4 h-4" />
+      <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />
       <span>Portal</span>
     </Link>
   </Button>
@@ -558,7 +543,10 @@ export function Header() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                   {navItems.find(item => item.label === openDropdown)?.columns?.map((column, colIndex) => (
                     <div key={colIndex}>
-                      <h3 className="text-primary font-semibold text-sm mb-4 uppercase tracking-wide">
+                      <h3
+                        className="font-semibold text-sm mb-4 uppercase tracking-wide"
+                        style={{ color: column.accent ?? "var(--color-primary)" }}
+                      >
                         {column.title}
                       </h3>
                       <div className="space-y-1">
@@ -571,12 +559,18 @@ export function Header() {
                             onClick={() => setOpenDropdown(null)}
                             className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                           >
-                            <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                              <subItem.icon className="w-5 h-5" />
-                            </div>
+                            {column.accent ? (
+                              <div className="w-10 h-10 rounded-lg bg-[#3e2455]/10 text-[#3e2455] flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-[#3e2455] group-hover:text-white">
+                                <subItem.icon className="w-5 h-5" />
+                              </div>
+                            ) : (
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                                <subItem.icon className="w-5 h-5" />
+                              </div>
+                            )}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1">
-                                <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                                <span className={`font-medium text-foreground text-sm transition-colors ${column.accent ? "group-hover:text-[#3e2455]" : "group-hover:text-primary"}`}>
                                   {subItem.label}
                                 </span>
                                 {subItem.isExternal && (
@@ -793,7 +787,7 @@ export function Header() {
                   <span>Golden Offers</span>
                 </Button>
                 <Button className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90">
-                  <ExternalLink className="w-4 h-4" />
+                  <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />
                   <span>Portal</span>
                 </Button>
               </div>
