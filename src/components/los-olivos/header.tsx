@@ -48,6 +48,7 @@ interface NavItem {
   href: string
   hasDropdown: boolean
   columns?: DropdownColumn[]
+  accent?: "vida"
 }
 
 
@@ -222,7 +223,7 @@ export function Header() {
     { label: "Inicio", href: "/", hasDropdown: false },
     { label: "Servicios", href: "#servicios", hasDropdown: true, columns: serviciosColumns },
     { label: "Sedes & Planes", href: "#sedes-planes", hasDropdown: true, columns: sedesColumns },
-    { label: "Beneficios", href: "#beneficios", hasDropdown: true, columns: beneficiosColumns },
+    { label: "Beneficios", href: "#beneficios", hasDropdown: true, columns: beneficiosColumns, accent: "vida" },
     { label: "Conócenos", href: "#nosotros", hasDropdown: true, columns: nosotrosColumns },
   ]
 
@@ -299,9 +300,13 @@ export function Header() {
                     type="button"
                     onClick={() => toggleDropdown(item.label)}
                     className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${
-                      openDropdown === item.label 
-                        ? "text-primary" 
-                        : "text-muted-foreground hover:text-primary"
+                      item.accent === "vida"
+                        ? openDropdown === item.label
+                          ? "text-vida-main"
+                          : "text-muted-foreground hover:text-vida-main"
+                        : openDropdown === item.label
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-primary"
                     }`}
                   >
                     {item.label}
@@ -412,23 +417,26 @@ export function Header() {
                 </div>
               )}
 
-              {/* Beneficios - grid 2x2 sin titulo */}
+              {/* Beneficios - grid 2x2 con colores Vida */}
               {openDropdown === "Beneficios" && (
                 <div className="max-w-2xl mx-auto">
+                  <h3 className="text-vida-main font-semibold text-sm mb-4 uppercase tracking-wide">
+                    {beneficiosColumns[0].title}
+                  </h3>
                   <div className="grid grid-cols-2 gap-4">
                     {beneficiosColumns[0].items.map((subItem, itemIndex) => (
                       <a
                         key={itemIndex}
                         href={subItem.href}
                         onClick={() => setOpenDropdown(null)}
-                        className="flex items-start gap-3 p-4 rounded-lg hover:bg-muted transition-colors group"
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                       >
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                        <div className="w-10 h-10 rounded-lg bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                           <subItem.icon className="w-5 h-5" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1">
-                            <span className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
+                            <span className="font-medium text-foreground text-sm group-hover:text-vida-main transition-colors">
                               {subItem.label}
                             </span>
                           </div>

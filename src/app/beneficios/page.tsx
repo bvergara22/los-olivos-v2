@@ -559,7 +559,6 @@ export default function BeneficiosPage() {
       <section className="py-16 md:py-20 bg-vida-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <PawPrint className="w-12 h-12 text-vida-main mx-auto mb-4" />
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
               Accede a todos estos beneficios hoy
             </h2>
@@ -574,16 +573,9 @@ export default function BeneficiosPage() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
+              <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-vida-main/10 hover:border-vida-main hover:text-vida-main" asChild>
                 <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5" />
                   Contactar por WhatsApp
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
-                <a href="tel:6930172">
-                  <Phone className="w-5 h-5" />
-                  Llamar al PBX
                 </a>
               </Button>
             </div>
