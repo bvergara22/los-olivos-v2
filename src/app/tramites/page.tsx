@@ -1,6 +1,6 @@
-import { PageBanner } from "@/components/los-olivos/page-banner"
 import { AlertTriangle, ClipboardList, FileCheck, FileText, Phone, Scale, Shield, UserCheck } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Tramites para Seres Queridos Fallecidos - Los Olivos Cartagena",
@@ -152,17 +152,47 @@ const despuesFuneral = [
 export default function TramitesPage() {
   return (
     <>
-      <PageBanner
-        title="Tramites para seres queridos fallecidos"
-        description="Para dar cumplimiento con nuestra promesa de valor, es importante que conozcas los pasos a tener en cuenta en la prestacion de nuestro homenaje."
-      />
+      {/* Hero con imagen */}
+      <section className="relative pt-28 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-duelo-main/10 via-background to-duelo-dark/10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-center">
+            <div>
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-duelo-dark leading-tight text-balance">
+                Trámites para seres queridos fallecidos
+              </h1>
+              <p className="text-lg text-muted-foreground mt-6 leading-relaxed">
+                Para dar cumplimiento con nuestra promesa de valor, es importante que conozcas los pasos a tener en cuenta en la prestación de nuestro homenaje.
+              </p>
+            </div>
+            <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
+              <Image
+                src="/tramitesolivos.png"
+                alt=""
+                aria-hidden
+                width={500}
+                height={380}
+                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(62,36,85,0.4)]"
+              />
+              <Image
+                src="/tramitesolivos.png"
+                alt="Trámites Los Olivos"
+                width={500}
+                height={380}
+                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Que hacer - Pasos iniciales */}
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-sm font-medium text-primary">Primeros pasos</span>
+              <span className="text-sm font-medium text-duelo-main">Primeros pasos</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
                 Que hacer?
               </h2>
@@ -170,9 +200,9 @@ export default function TramitesPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {pasosIniciales.map((paso) => (
-                <div key={paso.number} className="bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all">
+                <div key={paso.number} className="bg-card rounded-2xl border border-border p-6 hover:border-duelo-main/50 hover:shadow-lg transition-all">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold font-display flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-duelo-main text-white flex items-center justify-center text-xl font-bold font-display flex-shrink-0">
                       {paso.number}
                     </div>
                     <div className="flex-1">
@@ -203,7 +233,7 @@ export default function TramitesPage() {
             <div className="space-y-4">
               {causasNaturales.map((paso) => (
                 <div key={paso.number} className="flex items-start gap-4 p-5 bg-card rounded-xl border border-border">
-                  <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold font-display flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-duelo-main text-white flex items-center justify-center text-sm font-bold font-display flex-shrink-0">
                     {paso.number}
                   </div>
                   <div>
@@ -218,11 +248,11 @@ export default function TramitesPage() {
       </section>
 
       {/* Documentacion requerida */}
-      <section className="py-16 md:py-20 bg-primary/5">
+      <section className="py-16 md:py-20 bg-duelo-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-sm font-medium text-primary">Documentos importantes</span>
+              <span className="text-sm font-medium text-duelo-main">Documentos importantes</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
                 Documentacion requerida antes y durante del funeral
               </h2>
@@ -232,12 +262,12 @@ export default function TramitesPage() {
               {documentacion.map((doc) => (
                 <div key={doc.number} className="bg-card rounded-2xl border border-border p-6 md:p-8">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0">
                       <doc.icon className="w-6 h-6" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-bold text-primary uppercase">Paso {doc.number}</span>
+                        <span className="text-xs font-bold text-duelo-main uppercase">Paso {doc.number}</span>
                       </div>
                       <h3 className="font-display font-bold text-lg text-foreground mb-2">{doc.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{doc.description}</p>
@@ -290,7 +320,7 @@ export default function TramitesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start gap-4 mb-10">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0">
                 <Scale className="w-6 h-6" />
               </div>
               <div>
@@ -305,9 +335,9 @@ export default function TramitesPage() {
 
             <div className="grid md:grid-cols-2 gap-4">
               {despuesFuneral.map((paso) => (
-                <div key={paso.number} className="bg-card rounded-xl border border-border p-5 hover:border-primary/50 transition-colors">
+                <div key={paso.number} className="bg-card rounded-xl border border-border p-5 hover:border-duelo-main/50 transition-colors">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                    <div className="w-8 h-8 rounded-full bg-duelo-main/10 text-duelo-main flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                       {paso.number}
                     </div>
                     <div>

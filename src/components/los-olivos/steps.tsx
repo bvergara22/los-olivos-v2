@@ -26,7 +26,12 @@ export function Steps() {
     {
       number: 4,
       title: "Realiza el pago",
-      description: "Paga en línea el plan escogido y ¡listo! Ya eres parte de la familia Olivos.",
+      description: "Paga en línea el plan escogido para completar tu proceso de afiliación.",
+    },
+    {
+      number: 5,
+      title: "Contacto y firma",
+      description: "Uno de nuestros asesores se pondrá en contacto contigo para validar tu información y realizar la firma del contrato.",
     },
   ]
 
@@ -40,12 +45,12 @@ export function Steps() {
             ¿Cómo pertenecer a la familia Olivos?
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
-            Unirte es muy fácil. Solo sigue estos 4 sencillos pasos.
+            Unirte es muy fácil. Solo sigue estos 5 sencillos pasos.
           </p>
         </div>
 
         {/* Steps - Ley de Proximidad y Similitud */}
-        <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+        <div className="grid md:grid-cols-5 gap-6 max-w-5xl mx-auto mb-12">
           {steps.map((step, index) => (
             <div key={step.number} className="relative">
               {/* Connector line */}

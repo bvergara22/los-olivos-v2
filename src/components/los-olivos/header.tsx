@@ -35,6 +35,7 @@ interface DropdownItem {
   href: string
   icon: LucideIcon
   isExternal?: boolean
+  duelo?: boolean
 }
 
 interface DropdownColumn {
@@ -99,11 +100,12 @@ export function Header() {
           href: "/cotizar", 
           icon: FileText 
         },
-        { 
+        {
           label: "Trámites fallecido",
           description: "Gestión de documentos y trámites necesarios",
-          href: "/tramites", 
-          icon: ClipboardList 
+          href: "/tramites",
+          icon: ClipboardList,
+          duelo: true,
         },
       ]
     }
@@ -563,7 +565,7 @@ export function Header() {
                             onClick={() => setOpenDropdown(null)}
                             className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                           >
-                            {column.accent ? (
+                            {column.accent || subItem.duelo ? (
                               <div className="w-10 h-10 rounded-lg bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-duelo-main group-hover:text-white">
                                 <subItem.icon className="w-5 h-5" />
                               </div>
@@ -574,7 +576,7 @@ export function Header() {
                             )}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1">
-                                <span className={`font-medium text-foreground text-sm transition-colors ${column.accent ? "group-hover:text-duelo-main" : "group-hover:text-primary"}`}>
+                                <span className={`font-medium text-foreground text-sm transition-colors ${column.accent || subItem.duelo ? "group-hover:text-duelo-main" : "group-hover:text-primary"}`}>
                                   {subItem.label}
                                 </span>
                                 {subItem.isExternal && (
@@ -750,11 +752,11 @@ export function Header() {
                                         onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
                                         className="flex items-center gap-3 text-sm text-muted-foreground py-2 group"
                                       >
-                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${column.accent ? "bg-duelo-main/10 text-duelo-main" : "bg-primary/10 text-primary"}`}>
+                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${column.accent || subItem.duelo ? "bg-duelo-main/10 text-duelo-main" : "bg-primary/10 text-primary"}`}>
                                           <subItem.icon className="w-4 h-4" />
                                         </div>
                                         <div className="flex items-center gap-1">
-                                          <span className={column.accent ? "group-hover:text-duelo-main" : "group-hover:text-primary"}>{subItem.label}</span>
+                                          <span className={column.accent || subItem.duelo ? "group-hover:text-duelo-main" : "group-hover:text-primary"}>{subItem.label}</span>
                                           {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
                                         </div>
                                       </a>
