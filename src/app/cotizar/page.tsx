@@ -6,8 +6,8 @@ import { CheckCircle, Flame, MapPin, Users } from "lucide-react"
 import { useState } from "react"
 
 const tiposServicio = [
-  { id: "cremacion", label: "Cremacion", icon: Flame },
-  { id: "inhumacion", label: "Inhumacion", icon: MapPin },
+  { id: "cremacion", label: "Cremación", icon: Flame },
+  { id: "inhumacion", label: "Inhumación", icon: MapPin },
   { id: "traslado", label: "Traslado", icon: Users },
 ]
 
@@ -20,26 +20,27 @@ export default function CotizarPage() {
   return (
     <>
       <PageBanner
-        title="Haz tu cotizacion en un minuto"
-        description="Coordina el homenaje de tu ser querido o consulta el valor de nuestro servicio de necesidad inmediata segun tus requerimientos."
+        title="Haz tu cotización en un minuto"
+        description="Coordina el homenaje de tu ser querido o consulta el valor de nuestro servicio de necesidad inmediata según tus requerimientos."
+        titleClassName="text-cotizar-dark"
       />
 
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             {/* Progress indicator */}
             <div className="flex items-center gap-2 mb-8">
               {[1, 2, 3].map((s) => (
                 <div key={s} className="flex items-center gap-2 flex-1">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
                     step >= s 
-                      ? "bg-primary text-primary-foreground" 
+                      ? "bg-cotizar-main text-white" 
                       : "bg-muted text-muted-foreground"
                   }`}>
                     {step > s ? <CheckCircle className="w-5 h-5" /> : s}
                   </div>
                   {s < 3 && (
-                    <div className={`flex-1 h-0.5 ${step > s ? "bg-primary" : "bg-border"}`} />
+                    <div className={`flex-1 h-0.5 ${step > s ? "bg-cotizar-main" : "bg-border"}`} />
                   )}
                 </div>
               ))}
@@ -49,7 +50,7 @@ export default function CotizarPage() {
             {step === 1 && (
               <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">1</div>
+                  <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">1</div>
                   <div>
                     <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Servicio y localidad</h3>
                     <h2 className="font-display text-xl font-bold text-foreground">
@@ -64,8 +65,8 @@ export default function CotizarPage() {
                     onClick={() => setTipoUsuario("afiliado")}
                     className={`p-6 rounded-xl border-2 text-left transition-all ${
                       tipoUsuario === "afiliado"
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
+                        ? "border-cotizar-main bg-cotizar-main/5"
+                        : "border-border hover:border-cotizar-main/50"
                     }`}
                   >
                     <h4 className="font-display font-bold text-foreground mb-1">Soy afiliado</h4>
@@ -78,13 +79,13 @@ export default function CotizarPage() {
                     onClick={() => setTipoUsuario("particular")}
                     className={`p-6 rounded-xl border-2 text-left transition-all ${
                       tipoUsuario === "particular"
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
+                        ? "border-cotizar-main bg-cotizar-main/5"
+                        : "border-border hover:border-cotizar-main/50"
                     }`}
                   >
                     <h4 className="font-display font-bold text-foreground mb-1">Soy particular</h4>
                     <p className="text-sm text-muted-foreground">
-                      No tengo afiliacion, deseo contratar el servicio.
+                      No tengo afiliación, deseo contratar el servicio.
                     </p>
                   </button>
                 </div>
@@ -92,7 +93,7 @@ export default function CotizarPage() {
                 <Button
                   onClick={() => tipoUsuario && setStep(2)}
                   disabled={!tipoUsuario}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="bg-cotizar-main text-white hover:bg-cotizar-dark"
                 >
                   Siguiente
                 </Button>
@@ -103,7 +104,7 @@ export default function CotizarPage() {
             {step === 2 && (
               <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">2</div>
+                  <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">2</div>
                   <div>
                     <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Tipo de servicio</h3>
                     <h2 className="font-display text-xl font-bold text-foreground">
@@ -120,12 +121,12 @@ export default function CotizarPage() {
                       onClick={() => setServicioSeleccionado(tipo.id)}
                       className={`p-5 rounded-xl border-2 text-center transition-all ${
                         servicioSeleccionado === tipo.id
-                          ? "border-primary bg-primary/5"
-                          : "border-border hover:border-primary/50"
+                          ? "border-cotizar-main bg-cotizar-main/5"
+                          : "border-border hover:border-cotizar-main/50"
                       }`}
                     >
                       <tipo.icon className={`w-8 h-8 mx-auto mb-2 ${
-                        servicioSeleccionado === tipo.id ? "text-primary" : "text-muted-foreground"
+                        servicioSeleccionado === tipo.id ? "text-cotizar-main" : "text-muted-foreground"
                       }`} />
                       <h4 className="font-display font-bold text-foreground">{tipo.label}</h4>
                     </button>
@@ -134,7 +135,7 @@ export default function CotizarPage() {
 
                 <div className="mb-6">
                   <h3 className="font-display font-semibold text-foreground mb-3">
-                    Deseas sala de homenaje?
+                    ¿Deseas sala de homenaje?
                   </h3>
                   <div className="flex gap-4">
                     <button
@@ -142,19 +143,19 @@ export default function CotizarPage() {
                       onClick={() => setDeseaSala(true)}
                       className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
                         deseaSala === true
-                          ? "border-primary bg-primary/5 text-primary"
-                          : "border-border text-muted-foreground hover:border-primary/50"
+                          ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
+                          : "border-border text-muted-foreground hover:border-cotizar-main/50"
                       }`}
                     >
-                      Si
+                      Sí
                     </button>
                     <button
                       type="button"
                       onClick={() => setDeseaSala(false)}
                       className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
                         deseaSala === false
-                          ? "border-primary bg-primary/5 text-primary"
-                          : "border-border text-muted-foreground hover:border-primary/50"
+                          ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
+                          : "border-border text-muted-foreground hover:border-cotizar-main/50"
                       }`}
                     >
                       No
@@ -164,12 +165,12 @@ export default function CotizarPage() {
 
                 <div className="flex gap-3">
                   <Button variant="outline" onClick={() => setStep(1)}>
-                    Atras
+                    Atrás
                   </Button>
                   <Button
                     onClick={() => servicioSeleccionado && deseaSala !== null && setStep(3)}
                     disabled={!servicioSeleccionado || deseaSala === null}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    className="bg-cotizar-main text-white hover:bg-cotizar-dark"
                   >
                     Siguiente
                   </Button>
@@ -181,11 +182,11 @@ export default function CotizarPage() {
             {step === 3 && (
               <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">3</div>
+                  <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">3</div>
                   <div>
-                    <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Confirmacion</h3>
+                    <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Confirmación</h3>
                     <h2 className="font-display text-xl font-bold text-foreground">
-                      Resumen de tu cotizacion
+                      Resumen de tu cotización
                     </h2>
                   </div>
                 </div>
@@ -201,19 +202,19 @@ export default function CotizarPage() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Sala de homenaje:</span>
-                    <span className="font-medium text-foreground">{deseaSala ? "Si" : "No"}</span>
+                    <span className="font-medium text-foreground">{deseaSala ? "Sí" : "No"}</span>
                   </div>
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                  Un asesor de Los Olivos Cartagena se comunicara contigo para brindarte una cotizacion personalizada basada en tus requerimientos. Puedes contactarnos directamente al WhatsApp 323 3093435.
+                  Un asesor de Los Olivos Cartagena se comunicará contigo para brindarte una cotización personalizada basada en tus requerimientos. Puedes contactarnos directamente al WhatsApp 323 3093435.
                 </p>
 
                 <div className="flex gap-3">
                   <Button variant="outline" onClick={() => setStep(2)}>
-                    Atras
+                    Atrás
                   </Button>
-                  <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark">
                     <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
                       Contactar por WhatsApp
                     </a>

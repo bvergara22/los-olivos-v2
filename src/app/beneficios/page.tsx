@@ -567,7 +567,7 @@ export default function BeneficiosPage() {
               mascotas.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2 bg-vida-dark text-white hover:bg-vida-main px-8" asChild>
+              <Button size="lg" className="gap-2 bg-vida-dark text-white hover:bg-vida-dark/90 px-8" asChild>
                 <Link href="/cotizar">
                   Cotizar mi plan
                   <ArrowRight className="w-5 h-5" />

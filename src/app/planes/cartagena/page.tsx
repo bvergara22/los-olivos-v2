@@ -204,7 +204,7 @@ export default function CartagenaPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary">
+            <h2 className="font-display text-xl md:text-2xl text-primary">
               Asistencias
             </h2>
           </div>
@@ -236,7 +236,7 @@ export default function CartagenaPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="font-display text-xl md:text-2xl text-foreground">
               Seguros
             </h2>
           </div>
@@ -265,8 +265,8 @@ export default function CartagenaPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Planes Personas</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-primary block">Planes Personas</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Proteccion familiar a tu medida
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -309,8 +309,8 @@ export default function CartagenaPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Planes Empresas</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-primary block">Planes Empresas</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Protege a tus colaboradores
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -347,7 +347,7 @@ export default function CartagenaPage() {
       <section className="py-16 md:py-20 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+            <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 text-balance">
               Protege a tu familia en Cartagena hoy
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">

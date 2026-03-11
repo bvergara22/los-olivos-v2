@@ -120,11 +120,11 @@ export default function HomenajePage() {
       {/* CTA Cotizar */}
       <section className="py-16 md:py-20 bg-duelo-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="text-center">
             <h2 className="font-display text-3xl md:text-4xl text-duelo-dark mb-4 text-balance">
               Coordina el homenaje de tu ser querido o haz tu cotizacion en un minuto
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               Consulta el valor de nuestro servicio de necesidad inmediata segun tus requerimientos y condiciones.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -153,9 +153,7 @@ export default function HomenajePage() {
               Nuestras salas de velacion
             </h2>
           </div>
-          <div className="max-w-5xl mx-auto">
-            <SalasGallery accent="var(--duelo-main)" />
-          </div>
+          <SalasGallery accent="var(--duelo-main)" />
         </div>
       </section>
 
@@ -169,7 +167,7 @@ export default function HomenajePage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
             {flores.map((flor) => (
               <div
                 key={flor.name}

@@ -45,7 +45,7 @@ export function Benefits() {
             <Button 
             asChild
               size="lg" 
-              className="gap-2 bg-vida-dark text-white hover:bg-vida-main mt-4"
+              className="gap-2 bg-vida-dark text-white hover:bg-vida-dark/90 mt-4"
             >
               <Link href="/beneficios">
                 Conoce todos los beneficios

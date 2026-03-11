@@ -40,3 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env
+
+# videos (archivos pesados - alojar externamente)
+public/*.mp4
+public/*.webm
+public/*.mov

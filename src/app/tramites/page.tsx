@@ -190,7 +190,7 @@ export default function TramitesPage() {
       {/* Que hacer - Pasos iniciales */}
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="text-center mb-12">
               <span className="text-sm font-medium text-duelo-main">Primeros pasos</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
@@ -220,7 +220,7 @@ export default function TramitesPage() {
       {/* Fallecimiento por causas naturales */}
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="mb-10">
               <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3 text-balance">
                 Que hacer en caso de fallecimiento por causas naturales?
@@ -250,7 +250,7 @@ export default function TramitesPage() {
       {/* Documentacion requerida */}
       <section className="py-16 md:py-20 bg-duelo-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="text-center mb-12">
               <span className="text-sm font-medium text-duelo-main">Documentos importantes</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
@@ -283,7 +283,7 @@ export default function TramitesPage() {
       {/* Causa violenta */}
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="flex items-start gap-4 mb-10">
               <div className="w-12 h-12 rounded-xl bg-destructive/10 text-destructive flex items-center justify-center flex-shrink-0">
                 <AlertTriangle className="w-6 h-6" />
@@ -318,7 +318,7 @@ export default function TramitesPage() {
       {/* Despues del funeral */}
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="flex items-start gap-4 mb-10">
               <div className="w-12 h-12 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0">
                 <Scale className="w-6 h-6" />

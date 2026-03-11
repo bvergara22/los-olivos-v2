@@ -7,12 +7,12 @@ import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Plan Olihuellitas - Los Olivos Cartagena",
-  description: "Proteccion especial para tus mascotas. Un plan pensado para darles el mejor cuidado en vida y un homenaje digno cuando partan.",
+  description: "Protección especial para tus mascotas. Un plan pensado para darles el mejor cuidado en vida y un homenaje digno cuando partan.",
 }
 
 const asistencias = [
-  "Consulta veterinaria telefonica",
-  "Orientacion medica veterinaria telefonica",
+  "Consulta veterinaria telefónica",
+  "Orientación médica veterinaria telefónica",
   "Traslado de la mascota en caso de enfermedad o accidente",
   "Medicamentos en caso de accidente",
   "Vacuna de refuerzo en la red veterinaria",
@@ -31,17 +31,17 @@ export default function HuellitasPage() {
             <div className="space-y-6 text-center md:text-left order-1 md:col-start-1 md:row-start-1">
               <div className="flex items-center gap-2 justify-center md:justify-start">
                 <PawPrint className="w-6 h-6 text-primary" />
-                <span className="text-sm font-medium text-primary">Proteccion para mascotas</span>
+                <span className="text-sm font-medium text-primary">Protección para mascotas</span>
               </div>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
                 Plan Olihuellitas
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Porque ellos tambien son familia. En Los Olivos Cartagena entendemos que tus mascotas merecen el mismo amor y cuidado que el resto de tu hogar.
+                  Porque ellos también son familia. En Los Olivos Cartagena entendemos que tus mascotas merecen el mismo amor y cuidado que el resto de tu hogar.
                 </p>
                 <p>
-                  Con el Plan Huellitas, tu companero fiel tendra cobertura en vida con asistencia veterinaria, y un homenaje digno cuando llegue el momento de partir.
+                  Con el Plan Huellitas, tu compañero fiel tendrá cobertura en vida con asistencia veterinaria, y un homenaje digno cuando llegue el momento de partir.
                 </p>
                 <p className="font-display font-bold text-foreground text-lg">
                   ¡Porque cada huella que dejan merece ser recordada!
@@ -52,11 +52,12 @@ export default function HuellitasPage() {
             <div className="relative w-3/4 md:w-full max-w-lg mx-auto order-2 md:col-start-2 md:row-start-1 md:row-span-2">
               <Image
                 src="/huellitas-main.png"
-                alt="Plan Huellitas Los Olivos"
+                alt=""
                 aria-hidden
                 width={600}
                 height={500}
-                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]"
+                className="absolute w-full h-auto object-contain scale-[1.08] opacity-50"
+                style={{ filter: "blur(32px) saturate(1.8) hue-rotate(10deg)" }}
               />
               <Image
                 src="/huellitas-main.png"
@@ -86,10 +87,10 @@ export default function HuellitasPage() {
             {/* Que ofrecemos */}
             <div className="space-y-6">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-                ¿Que le ofrecemos a tu mascota?
+                ¿Qué le ofrecemos a tu mascota?
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Con el Plan Olihuellitas tu mascota tendra cobertura nacional con los mejores aliados veterinarios. Un plan pensado para acompanarte en cada etapa de la vida de tu companero fiel, desde la asistencia en vida hasta el homenaje postumo que merece.
+                Con el Plan Olihuellitas tu mascota tendrá cobertura nacional con los mejores aliados veterinarios. Un plan pensado para acompañarte en cada etapa de la vida de tu compañero fiel, desde la asistencia en vida hasta el homenaje póstumo que merece.
               </p>
               <div className="bg-card rounded-2xl border border-border p-6">
                 <h3 className="font-display font-bold text-lg text-foreground mb-5">
@@ -113,7 +114,7 @@ export default function HuellitasPage() {
                   ¿Ya eres afiliado?
                 </h2>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
-                  Actualiza los datos de tu mascota aqui. Mantener la informacion de tu companero al dia nos permite brindarte un mejor servicio cuando mas lo necesitas.
+                  Actualiza los datos de tu mascota aquí. Mantener la información de tu compañero al día nos permite brindarte un mejor servicio cuando más lo necesitas.
                 </p>
               </div>
               <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
@@ -129,13 +130,13 @@ export default function HuellitasPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              Demuestrale a tu mascota cuanto la amas
+              Demuéstrale a tu mascota cuánto la amas
             </h2>
             <p className="text-primary font-display font-bold text-xl mb-4">
               ¡Afilialа ahora!
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
-              Conoce todos los detalles del Plan Huellitas y empieza a proteger a tu companero fiel hoy mismo.
+              Conoce todos los detalles del Plan Huellitas y empieza a proteger a tu compañero fiel hoy mismo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>

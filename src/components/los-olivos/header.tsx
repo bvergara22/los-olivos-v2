@@ -36,6 +36,7 @@ interface DropdownItem {
   icon: LucideIcon
   isExternal?: boolean
   duelo?: boolean
+  cotizar?: boolean
 }
 
 interface DropdownColumn {
@@ -94,11 +95,12 @@ export function Header() {
           icon: CreditCard,
           
         },
-        { 
-          label: "Cotizar Homenaje", 
+        {
+          label: "Cotizar Homenaje",
           description: "Solicita una cotización personalizada",
-          href: "/cotizar", 
-          icon: FileText 
+          href: "/cotizar",
+          icon: FileText,
+          cotizar: true,
         },
         {
           label: "Trámites fallecido",
@@ -277,7 +279,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4" ref={dropdownRef}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={dropdownRef}>
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="/" className="flex items-center ml-6">
@@ -380,7 +382,7 @@ export function Header() {
         {/* Mega Menu Dropdown - Desktop (estilo Nequi) */}
         {openDropdown && (
           <div className="hidden lg:block absolute left-0 right-0 top-full bg-card border-b border-border shadow-lg">
-            <div className="container mx-auto px-4 py-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               {/* Conócenos - misma estructura que Sedes & Planes */}
               {openDropdown === "Conócenos" && (
                 <div>
@@ -569,6 +571,10 @@ export function Header() {
                               <div className="w-10 h-10 rounded-lg bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-duelo-main group-hover:text-white">
                                 <subItem.icon className="w-5 h-5" />
                               </div>
+                            ) : subItem.cotizar ? (
+                              <div className="w-10 h-10 rounded-lg bg-cotizar-main/10 text-cotizar-main flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-cotizar-main group-hover:text-white">
+                                <subItem.icon className="w-5 h-5" />
+                              </div>
                             ) : (
                               <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                                 <subItem.icon className="w-5 h-5" />
@@ -576,7 +582,7 @@ export function Header() {
                             )}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1">
-                                <span className={`font-medium text-foreground text-sm transition-colors ${column.accent || subItem.duelo ? "group-hover:text-duelo-main" : "group-hover:text-primary"}`}>
+                                <span className={`font-medium text-foreground text-sm transition-colors ${column.accent || subItem.duelo ? "group-hover:text-duelo-main" : subItem.cotizar ? "group-hover:text-cotizar-main" : "group-hover:text-primary"}`}>
                                   {subItem.label}
                                 </span>
                                 {subItem.isExternal && (
@@ -752,11 +758,11 @@ export function Header() {
                                         onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
                                         className="flex items-center gap-3 text-sm text-muted-foreground py-2 group"
                                       >
-                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${column.accent || subItem.duelo ? "bg-duelo-main/10 text-duelo-main" : "bg-primary/10 text-primary"}`}>
+                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${column.accent || subItem.duelo ? "bg-duelo-main/10 text-duelo-main" : subItem.cotizar ? "bg-cotizar-main/10 text-cotizar-main" : "bg-primary/10 text-primary"}`}>
                                           <subItem.icon className="w-4 h-4" />
                                         </div>
                                         <div className="flex items-center gap-1">
-                                          <span className={column.accent || subItem.duelo ? "group-hover:text-duelo-main" : "group-hover:text-primary"}>{subItem.label}</span>
+                                          <span className={column.accent || subItem.duelo ? "group-hover:text-duelo-main" : subItem.cotizar ? "group-hover:text-cotizar-main" : "group-hover:text-primary"}>{subItem.label}</span>
                                           {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
                                         </div>
                                       </a>
@@ -782,14 +788,17 @@ export function Header() {
                 </div>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border mt-2">
-                
-                <Button variant="outline" className="gap-2 w-full justify-center bg-transparent hover:bg-amber-500 hover:text-white hover:border-amber-500">
-                  <CreditCard className="w-4 h-4" />
-                  <span>Golden Offers</span>
+                <Button asChild variant="outline" className="gap-2 w-full justify-center bg-transparent hover:bg-amber-500 hover:text-white hover:border-amber-500">
+                  <Link href="https://goldenoffer.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                    <CreditCard className="w-4 h-4" />
+                    <span>Golden Offers</span>
+                  </Link>
                 </Button>
-                <Button className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />
-                  <span>Portal</span>
+                <Button asChild className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Link href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                    <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />
+                    <span>Portal</span>
+                  </Link>
                 </Button>
               </div>
             </nav>

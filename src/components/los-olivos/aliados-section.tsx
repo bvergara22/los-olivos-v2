@@ -60,8 +60,9 @@ export function AliadosSection() {
     <section className="py-16 md:py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Nuestros aliados
+          <span className="text-3xl md:text-4xl text-primary block">Nuestros aliados</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+            Empresas que confían en nosotros
           </h2>
         </div>
 
@@ -78,7 +79,7 @@ export function AliadosSection() {
                 alt={aliado.name}
                 width={260}
                 height={160}
-                className="object-contain max-h-32 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-none group-hover:drop-shadow-[0_0_8px_rgba(207,69,69,0.7)]"
+                className="object-contain max-h-32 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-none group-hover:drop-shadow-[0_0_8px_rgba(76,175,80,0.7)]"
               />
             </button>
           ))}

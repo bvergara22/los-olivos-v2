@@ -22,6 +22,7 @@ export function Services() {
       cta: "Cotizar",
       href: "/cotizar",
       highlight: false,
+      cotizar: true,
     },
     {
       icon: FileText,
@@ -47,7 +48,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6">
           {services.map((service) => (
             <Card
               key={service.title}
@@ -56,6 +57,8 @@ export function Services() {
                   ? "border-primary bg-primary/5 ring-2 ring-primary/20"
                   : service.duelo
                   ? "bg-card hover:border-duelo-main/50"
+                  : service.cotizar
+                  ? "bg-card hover:border-cotizar-main/50"
                   : "bg-card hover:border-primary/50"
               }`}
             >
@@ -71,6 +74,8 @@ export function Services() {
                     ? "bg-primary text-primary-foreground"
                     : service.duelo
                     ? "bg-duelo-main/10 text-duelo-main group-hover:bg-duelo-main group-hover:text-white"
+                    : service.cotizar
+                    ? "bg-cotizar-main/10 text-cotizar-main group-hover:bg-cotizar-main group-hover:text-white"
                     : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
                 }`}>
                   <service.icon className="w-7 h-7" />
@@ -89,7 +94,9 @@ export function Services() {
                       ? "bg-primary text-primary-foreground hover:bg-primary/90"
                       : service.duelo
                       ? "hover:bg-duelo-main/10 hover:border-duelo-main hover:text-duelo-main"
-                      : ""
+                      : service.cotizar
+                      ? "hover:bg-cotizar-main/10 hover:border-cotizar-main hover:text-cotizar-main"
+                      : "hover:bg-primary/10 hover:border-primary hover:text-primary"
                   }`}
                   variant={service.highlight ? "default" : "outline"}
                   asChild

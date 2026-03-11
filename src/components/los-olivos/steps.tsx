@@ -50,7 +50,7 @@ export function Steps() {
         </div>
 
         {/* Steps - Ley de Proximidad y Similitud */}
-        <div className="grid md:grid-cols-5 gap-6 max-w-5xl mx-auto mb-12">
+        <div className="grid md:grid-cols-5 gap-6 mb-12">
           {steps.map((step, index) => (
             <div key={step.number} className="relative">
               {/* Connector line */}

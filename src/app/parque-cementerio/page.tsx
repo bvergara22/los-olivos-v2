@@ -89,7 +89,7 @@ export default function ParqueCementerioPage() {
             <span className="text-3xl md:text-4xl text-duelo-main block">Horarios</span>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6">
             {/* Horario de atención */}
             <div className="rounded-2xl border border-border p-6 md:p-8 bg-duelo-main/[0.04]">
               <div className="flex items-center gap-3 mb-6">
@@ -155,7 +155,7 @@ export default function ParqueCementerioPage() {
         <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-duelo-main/5 -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-duelo-dark/5 translate-x-1/2 translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <h2 className="font-display text-3xl md:text-4xl text-duelo-dark mb-6">
               Trámites
             </h2>
@@ -213,7 +213,7 @@ export default function ParqueCementerioPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
             {productos.map((producto) => (
               <div
                 key={producto.title}

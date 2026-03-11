@@ -17,8 +17,8 @@ export function TarjetaBeneficios() {
     <section className="py-16 md:py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-sm font-medium text-primary">Mas beneficios para ti</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+          <span className="text-3xl md:text-4xl text-primary block">Más beneficios para ti</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             Tarjeta Golden Offers
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
@@ -37,7 +37,7 @@ export function TarjetaBeneficios() {
               alt={tarjeta.title}
               width={480}
               height={300}
-              className="object-contain w-full max-w-md h-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_0_16px_rgba(207,69,69,0.5)]"
+              className="object-contain w-full max-w-md h-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_0_16px_rgba(76,175,80,0.5)]"
             />
           </button>
         </div>

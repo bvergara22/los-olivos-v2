@@ -107,8 +107,8 @@ export default function MariaLaBajaPage() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Planes Personas</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-primary block">Planes Personas</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Planes disponibles
             </h2>
           </div>
@@ -151,8 +151,8 @@ export default function MariaLaBajaPage() {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-medium text-primary">Planes Empresas</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-3xl md:text-4xl text-primary block">Planes Empresas</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Planes empresariales
             </h2>
           </div>
@@ -193,7 +193,7 @@ export default function MariaLaBajaPage() {
       <section className="py-16 md:py-20 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Protege a tu familia en Maria la Baja</h2>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 text-balance">Protege a tu familia en Maria la Baja</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">Visitanos en la Calle del Puerto # 41-11 o contactanos.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild><Link href="/cotizar">Cotizar mi plan <ArrowRight className="w-5 h-5" /></Link></Button>

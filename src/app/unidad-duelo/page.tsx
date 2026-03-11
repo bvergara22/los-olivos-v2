@@ -53,7 +53,7 @@ export default function UnidadDueloPage() {
       <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-duelo-main/10 via-background to-duelo-dark/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-center md:text-left">
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-duelo-main">
                 Unidad de gestion de las emociones
@@ -171,7 +171,7 @@ export default function UnidadDueloPage() {
       {/* Momentos */}
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-3xl md:text-4xl text-duelo-main block">Acompañamiento integral</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
               Momentos
@@ -181,7 +181,7 @@ export default function UnidadDueloPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
             {/* En sede */}
             <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
               <h3 className="font-display font-bold text-xl text-duelo-dark mb-4">En sede</h3>
@@ -246,7 +246,7 @@ export default function UnidadDueloPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
             {articulos.map((articulo) => (
               <div
                 key={articulo.title}

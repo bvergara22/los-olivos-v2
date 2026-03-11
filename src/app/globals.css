@@ -16,8 +16,14 @@
   /* ── Colores de Vida ────────────────────────────────────────── */
   /* Cambia estos valores para actualizar los colores en la
      sección y página de Beneficios                               */
-  --vida-main: #e97783;    /* rosa/rojo principal (íconos, acentos)      */
-  --vida-dark: #cf4545;    /* rojo oscuro (botones, hover)               */
+  --vida-main: #f0c33d;    /* naranja dorado principal (íconos, acentos) */
+  --vida-dark: #e65c36;    /* naranja oscuro (botones, fondo)            */
+
+  /* ── Colores de Cotizar ─────────────────────────────────────── */
+  /* Cambia estos valores para actualizar los colores en la
+     sección y página de Cotizar Homenaje                         */
+  --cotizar-main: #477a7b; /* verde azulado principal (íconos, acentos) */
+  --cotizar-dark: #274149; /* verde oscuro (botones, hover)              */
   /* ─────────────────────────────────────────────────────────── */
 
   --primary: #4caf50;
@@ -92,14 +98,18 @@
 
 @theme inline {
   /* Colores de Duelo como tokens de Tailwind */
-  --color-duelo-main: var(--duelo-main);
-  --color-duelo-dark: var(--duelo-dark);
-  --color-duelo-light: var(--duelo-light);
-  --color-duelo-mid: var(--duelo-mid);
+  --color-duelo-main: #3e2455;
+  --color-duelo-dark: #240e36;
+  --color-duelo-light: #a183b5;
+  --color-duelo-mid: #77608b;
 
   /* Colores de Vida como tokens de Tailwind */
-  --color-vida-main: var(--vida-main);
-  --color-vida-dark: var(--vida-dark);
+  --color-vida-main: #f0a33d;
+  --color-vida-dark: #e65c36;
+
+  /* Colores de Cotizar como tokens de Tailwind */
+  --color-cotizar-main: #477a7b;
+  --color-cotizar-dark: #274149;
 
   --font-sans: 'Raleway', 'Raleway Fallback', sans-serif;
   --font-display: 'Comfortaa', 'Comfortaa Fallback', sans-serif;
