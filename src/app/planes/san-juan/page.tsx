@@ -33,7 +33,7 @@ export default function SanJuanPage() {
             </div>
             <div className="relative w-3/4 md:w-full max-w-lg mx-auto">
               <Image
-                src="/san-juan.jpg"
+                src="/san-juan-vector.png"
                 alt=""
                 aria-hidden
                 width={600}
@@ -41,7 +41,7 @@ export default function SanJuanPage() {
                 className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(76,175,80,0.4)]"
               />
               <Image
-                src="/san-juan.jpg"
+                src="/san-juan-vector.png"
                 alt="Sede San Juan - Los Olivos"
                 width={600}
                 height={500}

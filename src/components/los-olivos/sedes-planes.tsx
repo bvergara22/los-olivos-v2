@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 const sedes = [
   { name: "Sede Cartagena", slug: "cartagena", src: "/cartagena.jpg" },
@@ -18,36 +18,50 @@ const sedes = [
 ]
 
 export function SedesPlanes() {
-  const [currentSedeIndex, setCurrentSedeIndex] = useState(0)
-  const [mounted, setMounted] = useState(false)
+  const [current, setCurrent] = useState(0)
   const [visibleCount, setVisibleCount] = useState(4)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [itemWidth, setItemWidth] = useState(0)
 
+  const maxIndex = sedes.length - visibleCount
+
+  // Measure container to get pixel-accurate item width
   useEffect(() => {
-    setMounted(true)
+    const measure = () => {
+      if (containerRef.current) {
+        setItemWidth(containerRef.current.offsetWidth / visibleCount)
+      }
+    }
     const updateCount = () => {
-      setVisibleCount(window.innerWidth < 768 ? 1 : 4)
+      const count = window.innerWidth < 768 ? 1 : 4
+      setVisibleCount(count)
     }
     updateCount()
-    window.addEventListener("resize", updateCount)
-    return () => window.removeEventListener("resize", updateCount)
-  }, [])
+    measure()
+    window.addEventListener("resize", () => { updateCount(); measure() })
+    return () => window.removeEventListener("resize", () => { updateCount(); measure() })
+  }, [visibleCount])
 
-  // Auto-rotate sedes every 3 seconds
+  // Re-measure when visibleCount changes
   useEffect(() => {
-    if (!mounted) return
-    const interval = setInterval(() => {
-      setCurrentSedeIndex((prev) => (prev + 1) % sedes.length)
-    }, 3000)
+    if (containerRef.current) {
+      setItemWidth(containerRef.current.offsetWidth / visibleCount)
+    }
+  }, [visibleCount])
+
+  const next = useCallback(() => {
+    setCurrent((c) => (c >= maxIndex ? 0 : c + 1))
+  }, [maxIndex])
+
+  const prev = useCallback(() => {
+    setCurrent((c) => (c <= 0 ? maxIndex : c - 1))
+  }, [maxIndex])
+
+  // Auto-rotate
+  useEffect(() => {
+    const interval = setInterval(next, 3000)
     return () => clearInterval(interval)
-  }, [mounted])
-
-  const nextSede = () => setCurrentSedeIndex((prev) => (prev + 1) % sedes.length)
-  const prevSede = () => setCurrentSedeIndex((prev) => (prev - 1 + sedes.length) % sedes.length)
-
-  const visibleSedes = []
-  for (let i = 0; i < visibleCount; i++) {
-    visibleSedes.push(sedes[(currentSedeIndex + i) % sedes.length])
-  }
+  }, [next])
 
   return (
     <section id="sedes-planes" className="py-20 bg-muted/30">
@@ -63,14 +77,13 @@ export function SedesPlanes() {
           </p>
         </div>
 
-        {/* Sedes Carousel */}
+        {/* Carousel */}
         <div className="mb-16">
-          
           <div className="relative">
-            {/* Navigation buttons */}
+            {/* Arrows */}
             <button
               type="button"
-              onClick={prevSede}
+              onClick={prev}
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border flex items-center justify-center hover:bg-muted transition-colors"
               aria-label="Sede anterior"
             >
@@ -78,54 +91,58 @@ export function SedesPlanes() {
             </button>
             <button
               type="button"
-              onClick={nextSede}
+              onClick={next}
               className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border flex items-center justify-center hover:bg-muted transition-colors"
               aria-label="Siguiente sede"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Sedes grid */}
-            <div className={`grid gap-4 px-12 ${visibleCount === 1 ? "grid-cols-1 max-w-sm mx-auto w-full" : "grid-cols-4"}`}>
-              {visibleSedes.map((sede, index) => (
-                <Link
-                  key={`${sede.slug}-${index}`}
-                  href={`/planes/${sede.slug}`}
-                  className="group overflow-hidden rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg block"
-                >
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={sede.src || "/placeholder.svg"}
-                      alt={sede.name}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                </Link>
-              ))}
+            {/* Track — all images always in DOM, never unmount */}
+            <div ref={containerRef} className="overflow-hidden px-12">
+              <div
+                className="flex transition-transform duration-500 ease-in-out gap-4"
+                style={{
+                  transform: `translateX(calc(-${current} * (${itemWidth}px)))`,
+                }}
+              >
+                {sedes.map((sede) => (
+                  <Link
+                    key={sede.slug}
+                    href={`/planes/${sede.slug}`}
+                    className="group flex-shrink-0 overflow-hidden rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg block"
+                    style={{ width: itemWidth > 0 ? `${itemWidth - 16}px` : `calc(${100 / visibleCount}% - 16px)` }}
+                  >
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={sede.src}
+                        alt={sede.name}
+                        loading="lazy"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            {/* Indicators */}
+            {/* Dots */}
             <div className="flex justify-center gap-2 mt-6">
-              {sedes.map((_, index) => (
+              {sedes.map((sede, index) => (
                 <button
-                  key={`sede-indicator-${index}`}
+                  key={`dot-${sede.slug}`}
                   type="button"
-                  onClick={() => setCurrentSedeIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentSedeIndex 
-                      ? "bg-primary w-6" 
-                      : "bg-primary/30 hover:bg-primary/50"
+                  onClick={() => setCurrent(index > maxIndex ? maxIndex : index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === current
+                      ? "bg-primary w-6"
+                      : "bg-primary/30 hover:bg-primary/50 w-2"
                   }`}
-                  aria-label={`Ir a sede ${index + 1}`}
+                  aria-label={`Ir a ${sede.name}`}
                 />
               ))}
             </div>
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-12">
-          
         </div>
       </div>
     </section>
