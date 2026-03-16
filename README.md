@@ -1,29 +1,58 @@
+<div align="center">
+
 # Los Olivos Cartagena — Sitio Web v2
 
-Sitio web institucional de **Los Olivos Cartagena**, empresa líder en servicios funerarios y de previsión exequial en la región Caribe de Colombia. Construido con Next.js 16, React 19 y Tailwind CSS v4.
+**Sitio web institucional de Los Olivos Cartagena**
+Empresa líder en servicios funerarios y previsión exequial en la región Caribe de Colombia.
+
+[![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+
+[![Deploy](https://img.shields.io/badge/Deploy-DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white)](https://v2.losolivoscartagena.com)
+[![Live](https://img.shields.io/badge/Live-v2.losolivoscartagena.com-4caf50?style=for-the-badge&logo=googlechrome&logoColor=white)](https://v2.losolivoscartagena.com)
+[![License](https://img.shields.io/badge/License-Privado-red?style=for-the-badge)](/)
+
+</div>
 
 ---
 
-## Tecnologías
+## Tabla de contenidos
+
+- [Stack tecnológico](#stack-tecnológico)
+- [Requisitos previos](#requisitos-previos)
+- [Instalación y desarrollo](#instalación-y-desarrollo)
+- [Scripts disponibles](#scripts-disponibles)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Páginas y rutas](#páginas-y-rutas)
+- [Despliegue](#despliegue)
+- [Archivos multimedia](#archivos-multimedia)
+- [Optimización de recursos](#optimización-de-recursos)
+- [Sistema de diseño](#sistema-de-diseño)
+
+---
+
+## Stack tecnológico
 
 | Tecnología | Versión | Uso |
 |---|---|---|
-| [Next.js](https://nextjs.org/) | 16.1.6 | Framework principal (static export) |
-| [React](https://react.dev/) | 19 | UI |
-| [Tailwind CSS](https://tailwindcss.com/) | 4 | Estilos |
-| [Radix UI](https://www.radix-ui.com/) | — | Componentes accesibles (Dialog, Tabs, Toast…) |
-| [Lucide React](https://lucide.dev/) | 0.454 | Iconografía |
-| [React Hook Form](https://react-hook-form.com/) | 7 | Formularios |
-| [Zod](https://zod.dev/) | 3 | Validación de esquemas |
-| [Sonner](https://sonner.emilkowal.ski/) | 1 | Notificaciones toast |
-| [TypeScript](https://www.typescriptlang.org/) | 5 | Tipado estático |
+| [![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js)](https://nextjs.org/) | 16.1.6 | Framework principal (static export) |
+| [![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://react.dev/) | 19 | UI |
+| [![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/) | 4 | Estilos |
+| [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) | 5 | Tipado estático |
+| [![Radix UI](https://img.shields.io/badge/Radix_UI-161618?logo=radixui&logoColor=white)](https://www.radix-ui.com/) | — | Componentes accesibles |
+| [![Lucide](https://img.shields.io/badge/Lucide-F56565?logo=lucide&logoColor=white)](https://lucide.dev/) | 0.454 | Iconografía |
+| [![React Hook Form](https://img.shields.io/badge/React_Hook_Form-EC5990?logo=reacthookform&logoColor=white)](https://react-hook-form.com/) | 7 | Formularios |
+| [![Zod](https://img.shields.io/badge/Zod-3E67B1?logo=zod&logoColor=white)](https://zod.dev/) | 3 | Validación de esquemas |
+| [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/) | ≥ 18 | Entorno de ejecución |
 
 ---
 
 ## Requisitos previos
 
-- **Node.js** ≥ 18
-- **npm** ≥ 9
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![npm](https://img.shields.io/badge/npm-%3E%3D9-CB3837?style=flat-square&logo=npm&logoColor=white)](https://www.npmjs.com/)
 
 ---
 
@@ -41,7 +70,7 @@ npm install
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+> Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
 ---
 
@@ -60,51 +89,42 @@ npm run lint     # Análisis estático del código
 
 ```
 sitio-web-los-olivos/
-├── public/                        # Archivos estáticos (imágenes, PDFs)
-├── src/
-│   ├── app/                       # Rutas de la aplicación (Next.js App Router)
-│   │   ├── page.tsx               # Página principal (Home)
-│   │   ├── globals.css            # Estilos globales, tokens de diseño
-│   │   ├── beneficios/            # Página de beneficios
-│   │   ├── cotizar/               # Cotizador de planes
-│   │   ├── homenaje/              # Homenaje al amor
-│   │   ├── huellitas/             # Planes Huellitas (mascotas)
-│   │   ├── nosotros/              # Quiénes somos
-│   │   ├── pagos/                 # Medios de pago
-│   │   ├── parque-cementerio/     # Parque Cementerio Jardín
-│   │   ├── salas-cartagena/       # Salas de velación
-│   │   ├── tramites/              # Trámites y documentos
-│   │   ├── unidad-duelo/          # Unidad de apoyo al duelo
-│   │   └── planes/                # Páginas por sede
-│   │       ├── arjona/
-│   │       ├── cartagena/
-│   │       ├── magangue/
-│   │       ├── mahates/
-│   │       ├── maria-la-baja/
-│   │       ├── mompox/
-│   │       ├── san-andres/
-│   │       ├── san-juan/
-│   │       ├── soplaviento/
+├── 📁 public/                     # Archivos estáticos (imágenes, PDFs)
+├── 📁 src/
+│   ├── 📁 app/                    # Rutas (Next.js App Router)
+│   │   ├── 📄 page.tsx            # Página principal (Home)
+│   │   ├── 📄 globals.css         # Estilos globales y tokens de diseño
+│   │   ├── 📁 beneficios/
+│   │   ├── 📁 cotizar/
+│   │   ├── 📁 homenaje/
+│   │   ├── 📁 huellitas/
+│   │   ├── 📁 nosotros/
+│   │   ├── 📁 pagos/
+│   │   ├── 📁 parque-cementerio/
+│   │   ├── 📁 salas-cartagena/
+│   │   ├── 📁 tramites/
+│   │   ├── 📁 unidad-duelo/
+│   │   └── 📁 planes/             # Páginas por sede
+│   │       ├── arjona/  ├── cartagena/  ├── magangue/
+│   │       ├── mahates/ ├── maria-la-baja/ ├── mompox/
+│   │       ├── san-andres/ ├── san-juan/ ├── soplaviento/
 │   │       └── turbaco/
-│   ├── components/
-│   │   ├── los-olivos/            # Componentes propios del sitio
-│   │   │   ├── hero.tsx           # Sección principal (home)
-│   │   │   ├── header.tsx         # Navegación principal
+│   ├── 📁 components/
+│   │   ├── 📁 los-olivos/         # Componentes propios del sitio
+│   │   │   ├── hero.tsx           # Sección principal
+│   │   │   ├── header.tsx         # Navegación
 │   │   │   ├── footer.tsx         # Pie de página
-│   │   │   ├── novedades.tsx      # Sección de videos / novedades
+│   │   │   ├── novedades.tsx      # Galería de videos
 │   │   │   ├── sedes-planes.tsx   # Carrusel de sedes
-│   │   │   ├── benefits.tsx       # Sección de beneficios
+│   │   │   ├── benefits.tsx       # Beneficios
 │   │   │   ├── services.tsx       # Servicios
-│   │   │   ├── why-us.tsx         # Por qué elegirnos
-│   │   │   ├── steps.tsx          # Pasos del proceso
 │   │   │   ├── contact.tsx        # Formulario de contacto
-│   │   │   ├── aliados-section.tsx# Aliados comerciales
-│   │   │   ├── permisos-modal.tsx # Modal de descarga de permisos
-│   │   │   └── ...
-│   │   └── ui/                    # Componentes base (Radix + shadcn)
-│   └── lib/                       # Utilidades
-├── next.config.ts                 # Configuración de Next.js
-└── tsconfig.json                  # Configuración de TypeScript
+│   │   │   ├── aliados-section.tsx
+│   │   │   └── permisos-modal.tsx
+│   │   └── 📁 ui/                 # Componentes base (Radix + shadcn)
+│   └── 📁 lib/                    # Utilidades
+├── 📄 next.config.ts
+└── 📄 tsconfig.json
 ```
 
 ---
@@ -115,16 +135,16 @@ sitio-web-los-olivos/
 |---|---|
 | `/` | Página principal |
 | `/planes` | Listado de sedes y planes |
-| `/planes/cartagena` | Planes sede Cartagena |
-| `/planes/turbaco` | Planes sede Turbaco |
-| `/planes/arjona` | Planes sede Arjona |
-| `/planes/magangue` | Planes sede Magangué |
-| `/planes/mahates` | Planes sede Mahates |
-| `/planes/maria-la-baja` | Planes sede María La Baja |
-| `/planes/san-andres` | Planes sede San Andrés |
-| `/planes/san-juan` | Planes sede San Juan de Nepomuceno |
-| `/planes/soplaviento` | Planes sede Soplaviento |
-| `/planes/mompox` | Planes sede Mompox |
+| `/planes/cartagena` | Sede Cartagena |
+| `/planes/turbaco` | Sede Turbaco |
+| `/planes/arjona` | Sede Arjona |
+| `/planes/magangue` | Sede Magangué |
+| `/planes/mahates` | Sede Mahates |
+| `/planes/maria-la-baja` | Sede María La Baja |
+| `/planes/san-andres` | Sede San Andrés |
+| `/planes/san-juan` | Sede San Juan de Nepomuceno |
+| `/planes/soplaviento` | Sede Soplaviento |
+| `/planes/mompox` | Sede Mompox |
 | `/parque-cementerio` | Parque Cementerio Jardín |
 | `/homenaje` | Homenaje al amor |
 | `/unidad-duelo` | Unidad de apoyo al duelo |
@@ -137,9 +157,11 @@ sitio-web-los-olivos/
 
 ---
 
-## Configuración de despliegue
+## Despliegue
 
-El proyecto usa `output: 'export'` en `next.config.ts`, lo que genera un sitio completamente estático en la carpeta `/out`.
+[![DigitalOcean](https://img.shields.io/badge/Hospedado_en-DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white)](https://v2.losolivoscartagena.com)
+
+El proyecto genera un sitio completamente estático con `output: 'export'`:
 
 ```ts
 // next.config.ts
@@ -149,20 +171,14 @@ const nextConfig = {
 }
 ```
 
-Actualmente desplegado en **DigitalOcean** en el dominio:
+### Repositorios remotos
 
 ```
-https://v2.losolivoscartagena.com
+origin:   https://github.com/DigitalAllianceCtg/olivos-cartagena-v2.git  (repo principal)
+personal: https://github.com/bvergara22/los-olivos-v2.git                (fork de trabajo)
 ```
 
-Los repositorios remotos son:
-
-```
-origin:   https://github.com/DigitalAllianceCtg/olivos-cartagena-v2.git
-personal: https://github.com/bvergara22/los-olivos-v2.git
-```
-
-Para sincronizar cambios del repo origen al personal:
+### Sincronizar cambios del repo principal
 
 ```bash
 git fetch origin
@@ -174,28 +190,29 @@ git push personal main
 
 ## Archivos multimedia
 
-Los videos están alojados en **DigitalOcean Spaces** y excluidos del repositorio (ver `.gitignore`):
+> Los videos están en **DigitalOcean Spaces** y excluidos del repositorio vía `.gitignore`.
 
-| Video | Nombre en Spaces |
+[![DigitalOcean Spaces](https://img.shields.io/badge/Almacenamiento-DO_Spaces_sfo3-0080FF?style=flat-square&logo=digitalocean&logoColor=white)](https://cloud.digitalocean.com/)
+
+**Space:** `losolivoscartagena` · **Región:** `sfo3` · **Carpeta:** `/video/` · **Acceso:** público
+
+| Video | Archivo |
 |---|---|
 | Parque Memorial | `VIDEO PARQUE (1).mp4` |
 | Nuestro Proyecto | `Video Project 1.mp4` |
 | Sanando el Dolor | `SANANDO JUNTOS.mp4` |
 
-**Space:** `losolivoscartagena` — región `sfo3` — carpeta `/video/` — acceso público.
-
-Para actualizar un video:
-1. Comprimir con ffmpeg (ver sección siguiente)
-2. Subir al Space con el mismo nombre, carpeta `/video/`, acceso público
+Para actualizar un video: comprimir → subir al Space con el mismo nombre → acceso público.
 
 ---
 
 ## Optimización de recursos
 
-### Videos — ffmpeg
+### Videos
+
+[![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white)](https://ffmpeg.org/)
 
 ```bash
-# Comprimir video manteniendo calidad visual (CRF 28-32)
 ffmpeg -i input.mp4 \
   -c:v libx264 -crf 28 -preset slow \
   -vf "scale=1280:-2" \
@@ -204,22 +221,18 @@ ffmpeg -i input.mp4 \
   output.mp4
 ```
 
-### Imágenes — sharp
+### Imágenes
 
-Todas las imágenes en `/public` están optimizadas a ≤ 500 KB. Para comprimir nuevas imágenes:
+[![Sharp](https://img.shields.io/badge/Sharp-99cc00?style=flat-square&logoColor=white)](https://sharp.pixelplumbing.com/)
+
+Todas las imágenes en `/public` están optimizadas a **≤ 500 KB**.
 
 ```bash
-node -e "
-const sharp = require('sharp');
-// PNG
-sharp('public/imagen.png')
-  .png({ quality: 70, compressionLevel: 9 })
-  .toFile('public/imagen.png');
-// JPG
-sharp('public/imagen.jpg')
-  .jpeg({ quality: 75, mozjpeg: true })
-  .toFile('public/imagen.jpg');
-"
+# PNG
+node -e "require('sharp')('public/img.png').png({ quality: 70, compressionLevel: 9 }).toFile('public/img.png')"
+
+# JPG
+node -e "require('sharp')('public/img.jpg').jpeg({ quality: 75, mozjpeg: true }).toFile('public/img.jpg')"
 ```
 
 ---
@@ -233,31 +246,27 @@ sharp('public/imagen.jpg')
 | `--font-sans` | Raleway | Cuerpo de texto general |
 | `--font-display` | Comfortaa | Títulos y encabezados |
 
-Los tamaños de fuente están incrementados en 1px sobre los defaults de Tailwind, configurados en `src/app/globals.css` dentro del bloque `@theme inline`.
+> Los tamaños de fuente tienen +1px sobre los defaults de Tailwind, configurados en `src/app/globals.css`.
 
 ### Colores
 
-Los colores se definen en `src/app/globals.css` y se pueden modificar desde un solo lugar para actualizar todo el sitio:
+Todos los tokens se definen en `src/app/globals.css` y se propagan automáticamente a todo el sitio.
 
-| Token | Valor | Sección |
+| Token | Color | Sección |
 |---|---|---|
-| `--primary` | `#4caf50` | Color de marca principal (verde) |
-| `--duelo-main` | `#3e2455` | Parque Cementerio / Homenaje / Duelo |
-| `--duelo-dark` | `#240e36` | Títulos sección Duelo |
-| `--duelo-light` | `#a183b5` | Fondos suaves sección Duelo |
-| `--vida-main` | `#f0a33d` | Sección Beneficios |
-| `--vida-dark` | `#e65c36` | Botones sección Beneficios |
-| `--cotizar-main` | `#477a7b` | Sección Cotizar |
-| `--cotizar-dark` | `#274149` | Botones sección Cotizar |
+| `--primary` | ![#4caf50](https://img.shields.io/badge/%234caf50-4caf50?style=flat-square) | Marca principal |
+| `--duelo-main` | ![#3e2455](https://img.shields.io/badge/%233e2455-3e2455?style=flat-square) | Parque Cementerio / Homenaje / Duelo |
+| `--duelo-dark` | ![#240e36](https://img.shields.io/badge/%23240e36-240e36?style=flat-square) | Títulos sección Duelo |
+| `--vida-main` | ![#f0a33d](https://img.shields.io/badge/%23f0a33d-f0a33d?style=flat-square) | Sección Beneficios |
+| `--vida-dark` | ![#e65c36](https://img.shields.io/badge/%23e65c36-e65c36?style=flat-square) | Botones sección Beneficios |
+| `--cotizar-main` | ![#477a7b](https://img.shields.io/badge/%23477a7b-477a7b?style=flat-square) | Sección Cotizar |
+| `--cotizar-dark` | ![#274149](https://img.shields.io/badge/%23274149-274149?style=flat-square) | Botones sección Cotizar |
 
 ---
 
-## Variables de entorno
+<div align="center">
 
-El proyecto no requiere variables de entorno para su funcionamiento básico. Si se agregan integraciones externas, crear un archivo `.env.local` (incluido en `.gitignore`).
+© Los Olivos Cartagena — Todos los derechos reservados.
+Desarrollado por **[Digital Alliance CTG](https://github.com/DigitalAllianceCtg)**
 
----
-
-## Licencia
-
-Proyecto privado — © Los Olivos Cartagena. Todos los derechos reservados.
+</div>
