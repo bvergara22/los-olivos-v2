@@ -114,6 +114,21 @@
   --font-sans: 'Raleway', 'Raleway Fallback', sans-serif;
   --font-display: 'Comfortaa', 'Comfortaa Fallback', sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+
+  /* Tamaños de fuente +1px respecto al default de Tailwind */
+  --text-xs:   0.8125rem;   /* 13px */
+  --text-sm:   0.9375rem;   /* 15px */
+  --text-base: 1.0625rem;   /* 17px */
+  --text-lg:   1.1875rem;   /* 19px */
+  --text-xl:   1.3125rem;   /* 21px */
+  --text-2xl:  1.5625rem;   /* 25px */
+  --text-3xl:  1.9375rem;   /* 31px */
+  --text-4xl:  2.3125rem;   /* 37px */
+  --text-5xl:  3.0625rem;   /* 49px */
+  --text-6xl:  3.8125rem;   /* 61px */
+  --text-7xl:  4.5625rem;   /* 73px */
+  --text-8xl:  6.0625rem;   /* 97px */
+  --text-9xl:  8.0625rem;   /* 129px */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
