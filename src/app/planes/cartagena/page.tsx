@@ -369,7 +369,7 @@ export default function CartagenaPage() {
               <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
                 <a href="tel:6056930172">
                   <Phone className="w-5 h-5" />
-                  PBX 693 0172
+                  693 0172
                 </a>
               </Button>
             </div>

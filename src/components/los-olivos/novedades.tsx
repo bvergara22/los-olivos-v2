@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { Play, Pause, Volume2, VolumeX, Maximize2, X } from "lucide-react"
+import { Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 const videos = [
   {
@@ -16,7 +16,7 @@ const videos = [
   },
   {
     src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/video/SANANDO%20JUNTOS.mp4",
-    title: "Sanando el Dolor",
+    title: "Sanando Juntos",
     description: "Acompañamos a las familias en su proceso de duelo con programas de apoyo emocional.",
   },
 ]

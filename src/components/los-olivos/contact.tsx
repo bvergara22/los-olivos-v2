@@ -38,7 +38,7 @@ export function Contact() {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">PBX</p>
+                  <p className="font-medium text-foreground">Teléfono</p>
                   <p className="text-sm text-muted-foreground">6930172</p>
                 </div>
               </a>

@@ -24,7 +24,7 @@ const metodosPago = [
     icon: Phone,
     href: "tel:6930172",
     external: false,
-    cta: "Llamar al PBX",
+    cta: "Llamar",
   },
 ]
 

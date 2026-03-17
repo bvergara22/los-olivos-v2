@@ -204,7 +204,7 @@ export default function PlanesPage() {
               </Button>
               <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
                 <a href="tel:6930172">
-                  Llamar al PBX
+                  Llamar
                 </a>
               </Button>
             </div>
