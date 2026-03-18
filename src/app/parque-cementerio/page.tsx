@@ -1,6 +1,5 @@
 import { PermisosModal } from "@/components/los-olivos/permisos-modal"
-import { Button } from "@/components/ui/button"
-import { AlertCircle, ArrowRight, CheckCircle, Flame, MapPin, Clock, Package } from "lucide-react"
+import { AlertCircle, ArrowRight, CheckCircle, MapPin, Clock } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 
@@ -28,17 +27,20 @@ const productos = [
   {
     title: "Cenizario",
     description: "Espacio en pared para alojar las cenizas de tu ser querido en el parque cementerio Los Olivos.",
-    icon: Flame,
+    image: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/imagenes-productos-parque/cenizario.jpg",
+    link: "https://www.portal.losolivoscartagena.com/tienda/producto/PPCO0008-osarios-de-pared-sencillo-plazoleta",
   },
   {
     title: "Osario individual",
     description: "Espacio para el depósito de los restos óseos de tu ser querido en un nicho individual.",
-    icon: Package,
+    image: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/imagenes-productos-parque/osariodepared.png",
+    link: "https://www.portal.losolivoscartagena.com/tienda/producto/PPCO0008-osarios-de-pared-sencillo-plazoleta",
   },
   {
     title: "Osario familiar",
     description: "Espacio amplio para el depósito de los restos óseos de varios seres queridos de la familia.",
-    icon: Package,
+    image: "https://www.portalapi.losolivoscartagena.com/uploads/images/OSARIOS%20DE%20PARED%20SENCILLO%20(PLAZOLETA)%20PORTADA.jpg",
+    link: "https://www.portal.losolivoscartagena.com/tienda/producto/PPCO0008-osarios-de-pared-sencillo-plazoleta",
   },
 ]
 
@@ -330,15 +332,23 @@ export default function ParqueCementerioPage() {
                 key={producto.title}
                 className="group bg-card rounded-2xl border border-border hover:border-duelo-main/40 hover:shadow-lg transition-all p-6"
               >
-                <div className="w-full aspect-[4/3] rounded-xl bg-muted mb-4 flex items-center justify-center">
-                  <producto.icon className="w-10 h-10 text-muted-foreground/40" />
+                <div className="w-full aspect-video rounded-xl overflow-hidden mb-4">
+                  <img
+                    src={producto.image}
+                    alt={producto.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <h3 className="font-display text-lg text-duelo-dark mb-2">{producto.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">{producto.description}</p>
-                <Button variant="outline" size="sm" className="gap-2 hover:bg-duelo-main/10 hover:border-duelo-main hover:text-duelo-main">
+                <a
+                  href={producto.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-duelo-main hover:text-duelo-dark border border-duelo-main/30 hover:border-duelo-main rounded-lg px-4 py-2 transition-all hover:bg-duelo-main/5"
+                >
                   Ver detalles
                   <ArrowRight className="w-4 h-4" />
-                </Button>
+                </a>
               </div>
             ))}
           </div>

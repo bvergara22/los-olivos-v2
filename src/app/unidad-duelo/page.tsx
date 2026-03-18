@@ -121,37 +121,37 @@ export default function UnidadDueloPage() {
                   <label className="text-sm font-medium text-duelo-dark mb-2 block">
                     Nombres y apellidos
                   </label>
-                  <Input type="text" placeholder="Tu nombre completo" className="h-12 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
+                  <Input type="text" placeholder="Tu nombre completo" className="h-12 bg-muted/30 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-duelo-dark mb-2 block">
                     Numero de cedula
                   </label>
-                  <Input type="text" placeholder="Tu numero de documento" className="h-12 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
+                  <Input type="text" placeholder="Tu numero de documento" className="h-12 bg-muted/30 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-duelo-dark mb-2 block">
                     Numero de celular
                   </label>
-                  <Input type="tel" placeholder="Tu numero de celular" className="h-12 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
+                  <Input type="tel" placeholder="Tu numero de celular" className="h-12 bg-muted/30 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-duelo-dark mb-2 block">
                     Correo electronico
                   </label>
-                  <Input type="email" placeholder="tu@correo.com" className="h-12 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
+                  <Input type="email" placeholder="tu@correo.com" className="h-12 bg-muted/30 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-duelo-dark mb-2 block">
                     Motivo de la consulta
                   </label>
-                  <Textarea placeholder="Describenos el motivo de tu consulta" rows={3} className="focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
+                  <Textarea placeholder="Describenos el motivo de tu consulta" rows={3} className="bg-muted/30 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-duelo-dark mb-2 block">
                     Fecha de la cita
                   </label>
-                  <Input type="date" className="h-12 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
+                  <Input type="date" className="h-12 bg-muted/30 focus-visible:ring-duelo-light focus-visible:border-duelo-light" />
                 </div>
                 <div className="flex items-start gap-2">
                   <input type="checkbox" id="terms" className="mt-1" />

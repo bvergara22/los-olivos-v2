@@ -95,7 +95,7 @@ export default function PagosPage() {
                 <Input 
                   type="text" 
                   placeholder="Numero de documento" 
-                  className="h-12 flex-1"
+                  className="h-12 flex-1 bg-muted/30"
                 />
                 <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8">
                   Consultar

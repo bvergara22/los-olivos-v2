@@ -189,7 +189,7 @@ export default function BlogPage() {
                     placeholder="Buscar articulos..."
                     value={busqueda}
                     onChange={(e) => setBusqueda(e.target.value)}
-                    className="h-10"
+                    className="h-10 bg-muted/30"
                   />
                 </div>
               </div>

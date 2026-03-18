@@ -5,11 +5,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react"
 
-/**
- * LEY DE FITT: Campos de formulario grandes y accesibles
- * LEY DE PROXIMIDAD: Informacion de contacto agrupada
- * LEY DE HICK: Formulario con solo 3 campos esenciales
- */
 export function Contact() {
   return (
     <section id="contacto" className="py-20 bg-muted/30">
@@ -18,9 +13,9 @@ export function Contact() {
           {/* Contact Info - Ley de Proximidad */}
           <div className="space-y-8">
             <div>
-              <span className="text-base font-medium text-primary">¿Listo para proteger a tu familia?</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-                !Contáctanos!
+              <span className="text-3xl md:text-4xl text-primary block">¡Contáctanos!</span>
+              <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+                ¿Listo para proteger a tu familia?
               </h2>
               <p className="text-muted-foreground mt-4 leading-relaxed">
                 Comunícate con nosotros de manera directa, rápida y sencilla.
@@ -71,8 +66,8 @@ export function Contact() {
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
@@ -89,45 +84,46 @@ export function Contact() {
               Escríbenos un mensaje
             </h3>
             
-            <form className="space-y-5">
+            <form className="flex flex-col gap-5">
               {/* Ley de Fitt: Campos grandes */}
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
                   Nombre completo
                 </label>
-                <Input 
-                  type="text" 
-                  placeholder="Tu nombre" 
-                  className="h-12"
+                <Input
+                  type="text"
+                  placeholder="Tu nombre"
+                  className="h-12 bg-muted/30"
                 />
               </div>
-              
+
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
                   Teléfono o WhatsApp
                 </label>
-                <Input 
-                  type="tel" 
+                <Input
+                  type="tel"
                   placeholder="Tu número de contacto"
-                  className="h-12"
-                />
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
-                  Mensaje
-                </label>
-                <Textarea 
-                  placeholder="¿En qué podemos ayudarte?"
-                  rows={4}
+                  className="h-12 bg-muted/30"
                 />
               </div>
 
-              {/* CTA - Ley de Von Restorff */}
-              <Button 
+              <div className="flex-1">
+                <label className="text-sm font-medium text-foreground mb-2 block">
+                  Mensaje
+                </label>
+                <Textarea
+                  placeholder="¿En qué podemos ayudarte?"
+                  rows={4}
+                  className="bg-muted/30"
+                />
+              </div>
+
+              
+              <Button
                 type="submit"
-                size="lg" 
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                size="lg"
+                className="w-full mt-10 bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 Enviar mensaje
               </Button>

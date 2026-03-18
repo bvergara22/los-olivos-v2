@@ -128,17 +128,17 @@ export function SedesPlanes() {
 
             {/* Dots */}
             <div className="flex justify-center gap-2 mt-6">
-              {sedes.map((sede, index) => (
+              {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
                 <button
-                  key={`dot-${sede.slug}`}
+                  key={`dot-${i}`}
                   type="button"
-                  onClick={() => setCurrent(index > maxIndex ? maxIndex : index)}
+                  onClick={() => setCurrent(i)}
                   className={`h-2 rounded-full transition-all ${
-                    index === current
+                    i === current
                       ? "bg-primary w-6"
                       : "bg-primary/30 hover:bg-primary/50 w-2"
                   }`}
-                  aria-label={`Ir a ${sede.name}`}
+                  aria-label={`Ir a posición ${i + 1}`}
                 />
               ))}
             </div>

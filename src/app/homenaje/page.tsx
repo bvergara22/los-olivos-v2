@@ -1,8 +1,8 @@
-import { PageBanner } from "@/components/los-olivos/page-banner"
 import { SalasGallery } from "@/components/los-olivos/salas-gallery"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Flower2, Heart, Sparkles, Users } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -54,27 +54,61 @@ const etapas = [
 
 const flores = [
   {
-    name: "Arreglo Clasico",
     description: "Elaborado con pompones blancos, fullis blancos y amarrillos, rosas amarillas, solidago, yicsofilia, dracena.",
+    image: "https://portalapi.losolivoscartagena.com/uploads/images/PC%203corona%20ovala.jpg",
+    link: "https://www.portal.losolivoscartagena.com/tienda/producto/FDD0003-corona-ovalada-en-atril",
   },
   {
-    name: "Arreglo Elegante",
     description: "Elaborado con Rosas Blancas, Ruscus, Helecho Cuero, Dracenas y yicsofilia.",
+    image: "https://portalapi.losolivoscartagena.com/uploads/images/PC%203TRIANG%20ARREG.jpg",
+    link: "https://www.portal.losolivoscartagena.com/tienda/producto/FDD0001-arreglo-triangular",
   },
   {
-    name: "Arreglo Tradicional",
     description: "Elaborado en fullis amarrillos y blancos, claveles rojos, margaritas blancas, helecho cuero, aster blancos.",
+    image: "https://portalapi.losolivoscartagena.com/uploads/images/CORONA%20REDONDA%201.jpg",
+    link: "https://www.portal.losolivoscartagena.com/tienda/producto/FFF010-corona-redonda",
   },
 ]
 
 export default function HomenajePage() {
   return (
     <>
-      <PageBanner
-        title="Nuestro homenaje al amor"
-        description="En Olivos Cartagena, rendimos un protocolo de 4 etapas en la que prometemos brindarte un respaldo total en la transcendencia de tu ser querido."
-        titleClassName="text-duelo-dark"
-      />
+      {/* Hero */}
+      <section className="relative pt-28 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-duelo-main/10 via-background to-duelo-dark/10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-center">
+            {/* Texto */}
+            <div>
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-duelo-dark leading-tight text-balance">
+                Nuestro homenaje al amor
+              </h1>
+              <p className="text-lg text-muted-foreground mt-6 leading-relaxed">
+                En Olivos Cartagena, rendimos un protocolo de 4 etapas en la que prometemos brindarte un respaldo total en la transcendencia de tu ser querido.
+              </p>
+            </div>
+            {/* Imagen */}
+            <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
+              <Image
+                src="/homenaje-imagen.png"
+                alt=""
+                aria-hidden
+                width={500}
+                height={380}
+                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(62,36,85,0.4)]"
+              />
+              <Image
+                src="/homenaje-imagen.png"
+                alt="Homenaje al amor"
+                width={500}
+                height={380}
+                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* 4 Etapas */}
       <section className="py-16 md:py-20 bg-card relative overflow-hidden">
@@ -170,14 +204,26 @@ export default function HomenajePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {flores.map((flor) => (
               <div
-                key={flor.name}
+                key={flor.image}
                 className="group bg-card rounded-2xl border border-border p-6 hover:border-duelo-main/40 hover:shadow-lg transition-all"
               >
-                <div className="w-full aspect-square rounded-xl bg-muted mb-4 flex items-center justify-center">
-                  <Flower2 className="w-10 h-10 text-muted-foreground/40" />
+                <div className="w-full aspect-video rounded-xl overflow-hidden mb-4">
+                  <img
+                    src={flor.image}
+                    alt={flor.description}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <h3 className="font-display text-lg text-duelo-dark mb-2">{flor.name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{flor.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{flor.description}</p>
+                <a
+                  href={flor.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-duelo-main hover:text-duelo-dark border border-duelo-main/30 hover:border-duelo-main rounded-lg px-4 py-2 transition-all hover:bg-duelo-main/5"
+                >
+                  Ver detalles
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
             ))}
           </div>
