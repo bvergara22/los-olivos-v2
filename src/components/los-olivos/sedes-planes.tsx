@@ -109,7 +109,7 @@ export function SedesPlanes() {
                   <Link
                     key={sede.slug}
                     href={`/planes/${sede.slug}`}
-                    className="group flex-shrink-0 overflow-hidden rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg block"
+                    className="group flex-shrink-0 overflow-hidden rounded-2xl hover:shadow-lg transition-all block"
                     style={{ width: itemWidth > 0 ? `${itemWidth - (visibleCount > 1 ? 16 : 0)}px` : `calc(${100 / visibleCount}%)` }}
                   >
                     <div className="aspect-video overflow-hidden">

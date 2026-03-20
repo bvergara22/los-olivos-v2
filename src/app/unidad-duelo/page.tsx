@@ -118,7 +118,7 @@ export default function UnidadDueloPage() {
             </div>
 
             {/* Citas de duelo form */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-sm">
+            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-sm">
               <h3 className="font-display text-xl font-bold text-duelo-dark mb-6">
                 Citas de duelo
               </h3>
@@ -189,7 +189,7 @@ export default function UnidadDueloPage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* En sede */}
-            <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl p-6 md:p-8">
               <h3 className="font-display font-bold text-xl text-duelo-dark mb-4">En sede</h3>
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
@@ -213,7 +213,7 @@ export default function UnidadDueloPage() {
             </div>
 
             {/* En parque */}
-            <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl p-6 md:p-8">
               <h3 className="font-display font-bold text-xl text-duelo-dark mb-4">En parque</h3>
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
@@ -256,7 +256,7 @@ export default function UnidadDueloPage() {
             {articulos.map((articulo) => (
               <div
                 key={articulo.title}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-duelo-main/50 hover:shadow-lg transition-all"
+                className="group bg-card rounded-2xl p-6 hover:shadow-lg transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center mb-4 group-hover:bg-duelo-main group-hover:text-white transition-colors">
                   <BookOpen className="w-6 h-6" />

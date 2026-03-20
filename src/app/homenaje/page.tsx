@@ -125,27 +125,27 @@ export default function HomenajePage() {
             {etapas.map((etapa) => (
               <div
                 key={etapa.number}
-                className="group relative p-6 rounded-2xl bg-background border border-border hover:border-duelo-main/35 transition-all hover:shadow-lg"
+                className="group relative p-4 md:p-6 rounded-2xl bg-background hover:shadow-lg transition-all"
               >
                 {/* Decorative number */}
-                <span className="absolute top-4 right-4 text-6xl font-display text-duelo-dark/10">
+                <span className="absolute top-3 right-3 text-5xl md:text-6xl font-display text-duelo-dark/10">
                   {String(etapa.number).padStart(2, "0")}
                 </span>
 
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center mb-4 transition-colors group-hover:bg-duelo-main group-hover:text-white">
-                  <etapa.icon className="w-7 h-7" />
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center mb-3 md:mb-4 transition-colors group-hover:bg-duelo-main group-hover:text-white">
+                  <etapa.icon className="w-5 h-5 md:w-7 md:h-7" />
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display text-lg text-duelo-dark mb-3 relative z-10">
+                <h3 className="font-display text-sm md:text-lg text-duelo-dark mb-2 md:mb-3 relative z-10 break-words">
                   {etapa.title}
                 </h3>
 
                 {/* Items */}
                 <ul className="space-y-2 relative z-10">
                   {etapa.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <li key={item} className="flex items-start gap-2 text-xs md:text-sm text-muted-foreground">
                       <div className="w-1.5 h-1.5 rounded-full bg-duelo-main mt-1.5 flex-shrink-0" />
                       {item}
                     </li>

@@ -206,7 +206,7 @@ export default function TramitesPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {pasosIniciales.map((paso) => (
-                <div key={paso.number} className="bg-card rounded-2xl border border-border p-6 hover:border-duelo-main/50 hover:shadow-lg transition-all">
+                <div key={paso.number} className="bg-card rounded-2xl p-6 hover:shadow-lg transition-all">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-duelo-main text-white flex items-center justify-center text-xl font-bold font-display flex-shrink-0">
                       {paso.number}
@@ -238,7 +238,7 @@ export default function TramitesPage() {
 
             <div className="space-y-4">
               {causasNaturales.map((paso) => (
-                <div key={paso.number} className="flex items-start gap-4 p-5 bg-card rounded-xl border border-border">
+                <div key={paso.number} className="flex items-start gap-4 p-5 bg-card rounded-xl">
                   <div className="w-10 h-10 rounded-full bg-duelo-main text-white flex items-center justify-center text-sm font-bold font-display flex-shrink-0">
                     {paso.number}
                   </div>
@@ -266,7 +266,7 @@ export default function TramitesPage() {
 
             <div className="space-y-6">
               {documentacion.map((doc) => (
-                <div key={doc.number} className="bg-card rounded-2xl border border-border p-6 md:p-8">
+                <div key={doc.number} className="bg-card rounded-2xl p-6 md:p-8">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0">
                       <doc.icon className="w-6 h-6" />
@@ -306,7 +306,7 @@ export default function TramitesPage() {
 
             <div className="space-y-4">
               {causaViolenta.map((paso) => (
-                <div key={paso.number} className="flex items-start gap-4 p-5 bg-card rounded-xl border border-border">
+                <div key={paso.number} className="flex items-start gap-4 p-5 bg-card rounded-xl">
                   <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center text-sm font-bold font-display flex-shrink-0">
                     {paso.number}
                   </div>
@@ -341,7 +341,7 @@ export default function TramitesPage() {
 
             <div className="grid md:grid-cols-2 gap-4">
               {despuesFuneral.map((paso) => (
-                <div key={paso.number} className="bg-card rounded-xl border border-border p-5 hover:border-duelo-main/50 transition-colors">
+                <div key={paso.number} className="bg-card rounded-xl p-5 transition-colors">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-duelo-main/10 text-duelo-main flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                       {paso.number}
