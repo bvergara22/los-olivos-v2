@@ -83,7 +83,7 @@ export function SedesPlanes() {
             <button
               type="button"
               onClick={prev}
-              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
+              className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
               aria-label="Sede anterior"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -91,7 +91,7 @@ export function SedesPlanes() {
             <button
               type="button"
               onClick={next}
-              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
+              className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
               aria-label="Siguiente sede"
             >
               <ChevronRight className="w-5 h-5" />
