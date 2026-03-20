@@ -64,10 +64,9 @@ export function SedesPlanes() {
   }, [next])
 
   return (
-    <section id="sedes-planes" className="py-20 bg-muted/30">
+    <section id="sedes-planes" className="py-12 md:py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
           <span className="text-3xl md:text-4xl text-primary block">Presencia municipal</span>
           <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             Nuestras sedes y planes
@@ -80,11 +79,11 @@ export function SedesPlanes() {
         {/* Carousel */}
         <div className="mb-16">
           <div className="relative">
-            {/* Arrows */}
+            {/* Arrows — solo en sm+ */}
             <button
               type="button"
               onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border flex items-center justify-center hover:bg-muted transition-colors"
+              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
               aria-label="Sede anterior"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -92,16 +91,16 @@ export function SedesPlanes() {
             <button
               type="button"
               onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border flex items-center justify-center hover:bg-muted transition-colors"
+              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
               aria-label="Siguiente sede"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Track — all images always in DOM, never unmount */}
-            <div ref={containerRef} className="overflow-hidden px-12">
+            {/* Track */}
+            <div ref={containerRef} className="overflow-hidden sm:px-12">
               <div
-                className="flex transition-transform duration-500 ease-in-out gap-4"
+                className="flex transition-transform duration-500 ease-in-out gap-0 sm:gap-4"
                 style={{
                   transform: `translateX(calc(-${current} * (${itemWidth}px)))`,
                 }}
@@ -111,7 +110,7 @@ export function SedesPlanes() {
                     key={sede.slug}
                     href={`/planes/${sede.slug}`}
                     className="group flex-shrink-0 overflow-hidden rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-lg block"
-                    style={{ width: itemWidth > 0 ? `${itemWidth - 16}px` : `calc(${100 / visibleCount}% - 16px)` }}
+                    style={{ width: itemWidth > 0 ? `${itemWidth - (visibleCount > 1 ? 16 : 0)}px` : `calc(${100 / visibleCount}%)` }}
                   >
                     <div className="aspect-video overflow-hidden">
                       <img

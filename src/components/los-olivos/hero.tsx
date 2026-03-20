@@ -10,19 +10,19 @@ const carouselImages = [
     src: "/promocional.png",
     alt: "Promocional Los Olivos",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]",
-    sizeClass: "w-[65%] lg:w-full h-auto object-contain lg:max-h-[500px]",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] lg:w-full lg:max-h-[500px] h-auto object-contain",
   },
   {
     src: "/mesa-trabajo1-2.png",
     alt: "Mesa de Trabajo",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(234,124,92,0.4)]",
-    sizeClass: "w-full h-auto object-contain max-h-[820px] lg:max-h-[920px]",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] lg:w-full lg:max-h-[500px] h-auto object-contain",
   },
   {
     src: "/Linea-de-atención.png",
     alt: "Linea de Atencion",
     edgeShadow: "drop-shadow-[0_0_40px_rgba(189,89,122,0.4)]",
-    sizeClass: "w-[65%] lg:w-full h-auto object-contain lg:max-h-[500px]",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] lg:w-full lg:max-h-[500px] h-auto object-contain",
   },
 ]
 
@@ -45,18 +45,17 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-16 lg:pt-20 overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* 🔥 CAMBIO IMPORTANTE AQUÍ */}
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 lg:py-0">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
 
-          {/* 📸 CARRUSEL - AHORA SIEMPRE VISIBLE */}
-          <div className="relative w-full order-1 lg:order-2 pb-8">
-            <div className="relative w-full max-w-2xl mx-auto">
-              <div className="relative min-h-[480px] lg:min-h-[650px] flex items-center justify-center">
+          {/* Carrusel */}
+          <div className="relative w-full order-1 lg:order-2">
+            <div className="relative w-full max-w-md mx-auto lg:max-w-2xl">
+              <div className="relative min-h-[260px] sm:min-h-[340px] lg:min-h-[650px] flex items-center justify-center">
                 {carouselImages.map((image, index) => (
                   <div
                     key={image.alt}
@@ -77,7 +76,6 @@ export function Hero() {
                         style={{ filter: "blur(32px) saturate(1.8) hue-rotate(10deg)" }}
                       />
                     )}
-
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -91,15 +89,15 @@ export function Hero() {
               </div>
 
               {/* Indicators */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 hidden lg:flex gap-2">
                 {carouselImages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`h-2 rounded-full transition-all ${
+                    className={`h-1.5 rounded-full transition-all ${
                       index === currentImageIndex
-                        ? "bg-primary w-7"
-                        : "bg-primary/40 hover:bg-primary/60 w-2"
+                        ? "bg-primary w-6"
+                        : "bg-primary/40 hover:bg-primary/60 w-1.5"
                     }`}
                   />
                 ))}
@@ -107,53 +105,49 @@ export function Hero() {
             </div>
           </div>
 
-          {/* 📝 CONTENIDO */}
-          <div className="space-y-8 order-2 lg:order-1 text-center lg:text-left">
-            <div className="space-y-4">
-              <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-base font-medium rounded-full">
-                Más de 30 años protegiendo familias
-              </span>
+          {/* Contenido */}
+          <div className="order-2 lg:order-1 text-left space-y-6 lg:space-y-8">
 
-              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-                Transcendimos de la protección exequial, a la{" "}
-                <span className="text-primary">
-                  protección familiar integral
-                </span>
-              </h1>
+            <span className="inline-block px-3 py-1.5 bg-primary/10 text-primary text-xs lg:text-sm font-medium rounded-full">
+              Más de 30 años protegiendo familias
+            </span>
 
-              <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                En Los Olivos Cartagena brindamos un verdadero homenaje al amor,
-                acompañando a las familias con servicios integrales de calidad.
-              </p>
-            </div>
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+              Transcendimos de la protección exequial, a la{" "}
+              <span className="text-primary">protección familiar integral</span>
+            </h1>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button
-                size="lg"
-                asChild
-                className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6"
-              >
-                <a href="#contacto">
-                  Contáctanos ahora
-                  <ArrowRight className="w-5 h-5" />
-                </a>
-              </Button>
-            </div>
+            <p className="text-sm lg:text-lg text-muted-foreground leading-relaxed max-w-xl">
+              En Los Olivos Cartagena brindamos un verdadero homenaje al amor,
+              acompañando a las familias con servicios integrales de calidad.
+            </p>
 
-            <div className="flex flex-wrap gap-6 pt-4 justify-center lg:justify-start">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Shield className="w-5 h-5 text-primary" />
-                <span>Cobertura Nacional</span>
+            <Button
+              size="default"
+              asChild
+              className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 lg:text-base lg:px-8"
+            >
+              <a href="#contacto">
+                Contáctanos ahora
+                <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
+              </a>
+            </Button>
+
+            <div className="flex items-center gap-6 lg:gap-8 pt-2 border-t border-border">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 lg:w-5 lg:h-5 text-primary shrink-0" />
+                <span className="text-xs lg:text-sm text-muted-foreground">Cobertura Nacional</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Clock className="w-5 h-5 text-primary" />
-                <span>Atención 24/7</span>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 lg:w-5 lg:h-5 text-primary shrink-0" />
+                <span className="text-xs lg:text-sm text-muted-foreground">Atención 24/7</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Users className="w-5 h-5 text-primary" />
-                <span>+50,000 Familias</span>
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 lg:w-5 lg:h-5 text-primary shrink-0" />
+                <span className="text-xs lg:text-sm text-muted-foreground">+50,000 Familias</span>
               </div>
             </div>
+
           </div>
 
         </div>

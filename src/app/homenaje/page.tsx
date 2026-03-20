@@ -74,16 +74,16 @@ export default function HomenajePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-16 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-duelo-main/10 via-background to-duelo-dark/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-center">
+          <div className="grid lg:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-center">
             {/* Texto */}
             <div>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-duelo-dark leading-tight text-balance">
                 Nuestro homenaje al amor
               </h1>
-              <p className="text-lg text-muted-foreground mt-6 leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
                 En Olivos Cartagena, rendimos un protocolo de 4 etapas en la que prometemos brindarte un respaldo total en la transcendencia de tu ser querido.
               </p>
             </div>
@@ -95,27 +95,33 @@ export default function HomenajePage() {
                 aria-hidden
                 width={500}
                 height={380}
-                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(62,36,85,0.4)]"
+                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-40 mix-blend-multiply"
               />
               <Image
                 src="/homenaje-imagen.png"
                 alt="Homenaje al amor"
                 width={500}
                 height={380}
-                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                className="relative w-full h-auto object-contain mix-blend-multiply drop-shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
                 priority
               />
             </div>
           </div>
         </div>
+        {/* Wave separator */}
+        <div className="absolute -bottom-px left-0 right-0 z-20 text-card" aria-hidden>
+          <svg viewBox="0 0 1920 81" xmlns="http://www.w3.org/2000/svg" className="w-full block h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 2xl:h-20" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0 50.7364L80 59.1924C160 67.6485 320 84.5606 480 80.3326C640 76.1045 800 50.7364 960 46.5083C1120 42.2803 1280 59.1924 1440 63.4205C1600 67.6485 1760 59.1924 1840 54.9644L1920 50.7364L1920 81L0 81Z" />
+          </svg>
+        </div>
       </section>
 
       {/* 4 Etapas */}
-      <section className="py-16 md:py-20 bg-card relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-card relative overflow-hidden">
         <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-duelo-main/5 -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-duelo-dark/5 translate-x-1/2 translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {etapas.map((etapa) => (
               <div
                 key={etapa.number}
@@ -152,10 +158,10 @@ export default function HomenajePage() {
       </section>
 
       {/* CTA Cotizar */}
-      <section className="py-16 md:py-20 bg-duelo-main/5">
+      <section className="py-12 md:py-20 bg-duelo-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="font-display text-3xl md:text-4xl text-duelo-dark mb-4 text-balance">
+            <h2 className="font-display text-2xl md:text-4xl text-duelo-dark mb-4 text-balance">
               Coordina el homenaje de tu ser querido o haz tu cotizacion en un minuto
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8">
@@ -179,9 +185,9 @@ export default function HomenajePage() {
       </section>
 
       {/* Salas de velacion */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-duelo-main block">Espacios de despedida</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
               Nuestras salas de velacion
@@ -192,16 +198,16 @@ export default function HomenajePage() {
       </section>
 
       {/* Flores */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-duelo-main block">Detalles florales</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
               Flores
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {flores.map((flor) => (
               <div
                 key={flor.image}

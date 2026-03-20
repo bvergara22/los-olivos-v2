@@ -43,14 +43,14 @@ export function WhyUs() {
   ]
 
   return (
-    <section className="py-20 bg-card relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-card relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-primary/5 -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-secondary/5 translate-x-1/2 translate-y-1/2" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
           <span className="text-3xl md:text-4xl text-primary block">Nuestra diferencia</span>
           <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             ¿Por qué elegirnos?
@@ -61,11 +61,11 @@ export function WhyUs() {
         </div>
 
         {/* Reasons Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {reasons.map((reason, index) => (
-            <div 
+            <div
               key={reason.title}
-              className="group relative p-6 rounded-2xl bg-background border border-border hover:border-primary/30 transition-all hover:shadow-lg"
+              className="group relative p-4 md:p-6 rounded-2xl bg-background border border-border hover:border-primary/30 transition-all hover:shadow-lg"
             >
               {/* Decorative number */}
               <span className={`absolute top-4 right-4 text-6xl font-display font-bold ${
@@ -75,19 +75,19 @@ export function WhyUs() {
               </span>
               
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-colors ${
+              <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-3 md:mb-4 transition-colors ${
                 reason.color === "primary" 
                   ? "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground" 
                   : "bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-secondary-foreground"
               }`}>
-                <reason.icon className="w-7 h-7" />
+                <reason.icon className="w-5 h-5 md:w-7 md:h-7" />
               </div>
               
               {/* Content */}
-              <h3 className="font-display font-bold text-lg text-foreground mb-2 relative z-10">
+              <h3 className="font-display font-bold text-sm md:text-lg text-foreground mb-1 md:mb-2 relative z-10">
                 {reason.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed relative z-10">
+              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed relative z-10">
                 {reason.description}
               </p>
             </div>

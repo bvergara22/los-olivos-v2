@@ -50,12 +50,12 @@ export default function UnidadDueloPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-32 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-duelo-main/10 via-background to-duelo-dark/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 text-center md:text-left">
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-duelo-main">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-4 md:space-y-6 text-center md:text-left">
+              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-duelo-main">
                 Unidad de gestion de las emociones
               </h1>
               <p className="text-muted-foreground leading-relaxed">
@@ -82,12 +82,18 @@ export default function UnidadDueloPage() {
             </div>
           </div>
         </div>
+        {/* Wave separator */}
+        <div className="absolute -bottom-px left-0 right-0 z-20 text-background" aria-hidden>
+          <svg viewBox="0 0 1920 81" xmlns="http://www.w3.org/2000/svg" className="w-full block h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 2xl:h-20" preserveAspectRatio="none">
+            <path fill="currentColor" d="M0 50.7364L80 59.1924C160 67.6485 320 84.5606 480 80.3326C640 76.1045 800 50.7364 960 46.5083C1120 42.2803 1280 59.1924 1440 63.4205C1600 67.6485 1760 59.1924 1840 54.9644L1920 50.7364L1920 81L0 81Z" />
+          </svg>
+        </div>
       </section>
 
       {/* Que se hace */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
             <div>
               <span className="text-3xl md:text-4xl text-duelo-main block">Nuestro pilar</span>
               <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 mb-4 text-balance">
@@ -169,9 +175,9 @@ export default function UnidadDueloPage() {
       </section>
 
       {/* Momentos */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-duelo-main block">Acompañamiento integral</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
               Momentos
@@ -237,16 +243,16 @@ export default function UnidadDueloPage() {
       </section>
 
       {/* Recomendaciones / Articulos */}
-      <section className="py-16 md:py-20 bg-duelo-main/5">
+      <section className="py-12 md:py-20 bg-duelo-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-duelo-main block">Recursos de apoyo</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
               Recomendaciones
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {articulos.map((articulo) => (
               <div
                 key={articulo.title}

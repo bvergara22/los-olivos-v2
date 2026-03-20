@@ -58,7 +58,7 @@ export default function TratamientoDatosPage() {
       />
 
       {/* Introduccion */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-card rounded-2xl border border-border p-8 md:p-10">
@@ -98,9 +98,9 @@ export default function TratamientoDatosPage() {
       </section>
 
       {/* Principios */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-sm font-medium text-primary">Nuestro compromiso</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Principios del Tratamiento de Datos
@@ -125,7 +125,7 @@ export default function TratamientoDatosPage() {
       </section>
 
       {/* Finalidades */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
@@ -151,7 +151,7 @@ export default function TratamientoDatosPage() {
       </section>
 
       {/* Derechos */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start gap-4 mb-8">
@@ -186,7 +186,7 @@ export default function TratamientoDatosPage() {
       </section>
 
       {/* Procedimiento */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
@@ -244,7 +244,7 @@ export default function TratamientoDatosPage() {
       </section>
 
       {/* Seguridad */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-card rounded-2xl border border-border p-8 md:p-10">
@@ -283,7 +283,7 @@ export default function TratamientoDatosPage() {
       </section>
 
       {/* Vigencia */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-card rounded-2xl border border-border p-8 text-center">

@@ -36,9 +36,9 @@ export function Services() {
   ]
 
   return (
-    <section id="servicios" className="py-20 bg-muted/30">
+    <section id="servicios" className="py-12 md:py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
           <span className="text-3xl md:text-4xl text-primary block">Servicios en línea</span>
           <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             Gestiona todo desde tu hogar

@@ -132,7 +132,7 @@ function VideoCard({ video, onExpand }: { video: Video; onExpand: () => void }) 
         </div>
 
         {/* Top-right controls */}
-        <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-3 right-3 flex gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
           <button
             type="button"
             onClick={toggleMute}
@@ -167,10 +167,10 @@ export function Novedades() {
   const [modalVideo, setModalVideo] = useState<Video | null>(null)
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 md:py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
           <span className="text-3xl md:text-4xl text-primary block">Mantente informado</span>
           <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
             Novedades

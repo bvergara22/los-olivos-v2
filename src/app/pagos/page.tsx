@@ -55,7 +55,7 @@ export default function PagosPage() {
       />
 
       {/* Metodos de pago */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -107,7 +107,7 @@ export default function PagosPage() {
       </section>
 
       {/* Ventajas */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-sm font-medium text-primary">Seguridad ante todo</span>

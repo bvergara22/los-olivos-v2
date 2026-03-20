@@ -108,7 +108,7 @@ export function Contact() {
                 />
               </div>
 
-              <div className="flex-1">
+              <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
                   Mensaje
                 </label>

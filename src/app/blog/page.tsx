@@ -172,9 +172,9 @@ export default function BlogPage() {
         description="Articulos, consejos y recursos para acompanar a las familias en momentos dificiles. Informacion util sobre duelo, tramites y ceremonias."
       />
 
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="grid lg:grid-cols-4 gap-6 md:gap-8">
             {/* Sidebar */}
             <aside className="lg:col-span-1">
               {/* Buscador */}
@@ -287,7 +287,7 @@ export default function BlogPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto bg-primary/5 rounded-2xl border border-primary/20 p-8 md:p-12 text-center">
             <Heart className="w-12 h-12 text-primary mx-auto mb-4" />

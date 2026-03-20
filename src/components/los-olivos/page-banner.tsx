@@ -19,7 +19,7 @@ export function PageBanner({ title, description, titleClassName }: PageBannerPro
           <h1 className={`font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance ${titleClassName ?? "text-foreground"}`}>
             {title}
           </h1>
-          <p className="text-lg text-muted-foreground mt-4 leading-relaxed max-w-2xl">
+          <p className="text-base md:text-lg text-muted-foreground mt-4 leading-relaxed max-w-2xl">
             {description}
           </p>
         </div>

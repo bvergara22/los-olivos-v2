@@ -159,12 +159,12 @@ export default function CartagenaPage() {
   return (
     <>
       {/* Hero Sede Cartagena */}
-      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-32 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="space-y-6 text-center md:text-left">
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+            <div className="space-y-4 md:space-y-6 text-center md:text-left">
+              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
                 Sede Cartagena
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -201,9 +201,9 @@ export default function CartagenaPage() {
       </section>
 
       {/* Asistencias */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <h2 className="font-display text-xl md:text-2xl text-primary">
               Asistencias
             </h2>
@@ -233,9 +233,9 @@ export default function CartagenaPage() {
       </section>
 
       {/* Seguros */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <h2 className="font-display text-xl md:text-2xl text-foreground">
               Seguros
             </h2>
@@ -262,9 +262,9 @@ export default function CartagenaPage() {
       </section>
 
       {/* Planes Personas */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-primary block">Planes Personas</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Proteccion familiar a tu medida
@@ -306,9 +306,9 @@ export default function CartagenaPage() {
       </section>
 
       {/* Planes Empresas */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-primary block">Planes Empresas</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Protege a tus colaboradores
@@ -344,7 +344,7 @@ export default function CartagenaPage() {
       <AliadosSection />
 
       {/* CTA Final */}
-      <section className="py-16 md:py-20 bg-primary/5">
+      <section className="py-12 md:py-20 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 text-balance">

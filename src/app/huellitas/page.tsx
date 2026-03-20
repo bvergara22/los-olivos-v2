@@ -23,7 +23,7 @@ export default function HuellitasPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-32 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:grid md:grid-cols-2 md:grid-rows-[auto_auto] gap-8 md:gap-12 items-center max-w-6xl mx-auto">
@@ -33,7 +33,7 @@ export default function HuellitasPage() {
                 <PawPrint className="w-6 h-6 text-primary" />
                 <span className="text-sm font-medium text-primary">Protección para mascotas</span>
               </div>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
                 Plan Olihuellitas
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -81,7 +81,7 @@ export default function HuellitasPage() {
       </section>
 
       {/* Que ofrecemos + Formulario */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-start">
             {/* Que ofrecemos */}
@@ -126,7 +126,7 @@ export default function HuellitasPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-primary/5">
+      <section className="py-12 md:py-20 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">

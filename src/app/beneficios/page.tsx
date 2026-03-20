@@ -253,9 +253,9 @@ export default function BeneficiosPage() {
       />
 
       {/* Asistencias Premium - Virtuales/Telefonicas */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-vida-main block">Asistencias Premium</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Orientacion profesional 24/7
@@ -297,9 +297,9 @@ export default function BeneficiosPage() {
       </section>
 
       {/* Asistencias Premium - Domicilio */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-vida-main block">Asistencia a domicilio</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Servicios presenciales en tu hogar
@@ -342,9 +342,9 @@ export default function BeneficiosPage() {
       </section>
 
       {/* Paquete Solientegral - Sinergia */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-vida-main block">Paquete Solientegral</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Sinergia - Valores asegurados
@@ -394,9 +394,9 @@ export default function BeneficiosPage() {
       </section>
 
       {/* Paquete Solienvida */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-vida-main block">Paquete Solienvida</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Amparos y alternativas de cobertura
@@ -458,9 +458,9 @@ export default function BeneficiosPage() {
       </section>
 
       {/* Mascota Light - Asistencia */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-vida-main block">Mascota Light</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               Asistencia para tu mascota 24/7
@@ -556,7 +556,7 @@ export default function BeneficiosPage() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-16 md:py-20 bg-vida-main/5">
+      <section className="py-12 md:py-20 bg-vida-main/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 text-balance">

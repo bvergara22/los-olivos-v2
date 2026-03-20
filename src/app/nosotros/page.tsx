@@ -74,12 +74,12 @@ export default function NosotrosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-32 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="space-y-6 text-center md:text-left">
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+            <div className="space-y-4 md:space-y-6 text-center md:text-left">
+              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
                 Nuestra historia
               </h1>
               <p className="text-muted-foreground leading-relaxed">
@@ -109,10 +109,10 @@ export default function NosotrosPage() {
       </section>
 
       {/* Quien somos */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-12">
               <span className="text-sm font-medium text-primary">Quiénes somos</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
                 Central Cooperativa de Servicios Funerarios de Cartagena
@@ -144,15 +144,15 @@ export default function NosotrosPage() {
       </section>
 
       {/* Cifras */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto">
             {cifras.map((cifra) => (
               <div key={cifra.label} className="text-center">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
-                  <cifra.icon className="w-8 h-8" />
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <cifra.icon className="w-6 h-6 md:w-8 md:h-8" />
                 </div>
-                <div className="font-display text-4xl font-bold text-foreground mb-2">{cifra.numero}</div>
+                <div className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">{cifra.numero}</div>
                 <p className="text-sm text-muted-foreground">{cifra.label}</p>
               </div>
             ))}
@@ -161,10 +161,10 @@ export default function NosotrosPage() {
       </section>
 
       {/* Mision y Vision */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card rounded-2xl border border-border p-8">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            <div className="bg-card rounded-2xl border border-border p-5 md:p-8">
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/mision.png"
@@ -182,7 +182,7 @@ export default function NosotrosPage() {
               </p>
             </div>
 
-            <div className="bg-card rounded-2xl border border-border p-8">
+            <div className="bg-card rounded-2xl border border-border p-5 md:p-8">
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/vision.png"
@@ -205,20 +205,20 @@ export default function NosotrosPage() {
       </section>
 
       {/* Valores */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-sm font-medium text-primary">Nuestros principios</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Valores que nos guían
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             {valores.map((valor) => (
               <div
                 key={valor.title}
-                className="bg-card rounded-2xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all text-center"
+                className="bg-card rounded-2xl border border-border p-4 md:p-6 hover:border-primary/50 hover:shadow-lg transition-all text-center"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
                   <valor.icon className="w-6 h-6" />
@@ -232,9 +232,9 @@ export default function NosotrosPage() {
       </section>
 
       {/* Linea de Tiempo */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
             <span className="text-sm font-medium text-primary">Nuestra trayectoria</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
               Más de 30 años de historia
@@ -265,26 +265,26 @@ export default function NosotrosPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
               Únete a nuestra familia
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
+            <p className="text-muted-foreground leading-relaxed mb-6 md:mb-8 max-w-xl mx-auto">
               Más de 50,000 familias ya confían en nosotros. Sé parte de esta gran familia solidaria.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/#sedes-planes"
-                className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center gap-2 h-9 px-4 md:h-10 md:px-6 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Ver planes
                 <Award className="w-4 h-4" />
               </a>
               <a
                 href="/#contacto"
-                className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md text-sm font-medium border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground transition-colors"
+                className="inline-flex items-center justify-center gap-2 h-9 px-4 md:h-10 md:px-6 rounded-md text-sm font-medium border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground transition-colors"
               >
                 Contáctanos
               </a>
