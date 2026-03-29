@@ -3,33 +3,33 @@ import type { Metadata } from "next"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "Tramites para Seres Queridos Fallecidos - Los Olivos Cartagena",
-  description: "Conoce los pasos y documentacion necesaria para cumplir con todos los tramites en la prestacion de nuestro homenaje.",
+  title: "Trámites para Seres Queridos Fallecidos - Los Olivos Cartagena",
+  description: "Conoce los pasos y documentación necesaria para cumplir con todos los trámites en la prestación de nuestro homenaje.",
 }
 
 const pasosIniciales = [
   {
     number: 1,
-    title: "Que un medico certifique la defuncion",
-    description: "Si no estas en un hospital, llama al 125 e informa de la situacion. Procura tener la documentacion (Cedula, pasaporte, ...) del ser querido a la mano.",
+    title: "Que un médico certifique la defunción",
+    description: "Si no estás en un hospital, llama al 125 e informa de la situación. Procura tener la documentación (Cédula, pasaporte, ...) del ser querido a la mano.",
     icon: FileCheck,
   },
   {
     number: 2,
-    title: "Contactanos",
-    description: "Llamanos y nos encargaremos del traslado de tu ser querido. Te informaremos de todo el proceso.",
+    title: "Contáctanos",
+    description: "Llámanos y nos encargaremos del traslado de tu ser querido. Te informaremos de todo el proceso.",
     icon: Phone,
   },
   {
     number: 3,
-    title: "Seleccion de las opciones para el servicio funerario",
-    description: "Deberas elegir si se realiza inhumacion o cremacion, si se requiere sala de velacion, etc. Te acompanaremos y te apoyaremos en todo el proceso.",
+    title: "Selección de las opciones para el servicio funerario",
+    description: "Deberás elegir si se realiza inhumación o cremación, si se requiere sala de velación, etc. Te acompañaremos y te apoyaremos en todo el proceso.",
     icon: ClipboardList,
   },
   {
     number: 4,
     title: "Informar a familiares y amigos",
-    description: "Avisa primero a los familiares y amigos mas cercanos y luego al resto de conocidos. En la seccion de Obituarios encontraras la informacion de velacion y horario.",
+    description: "Avisa primero a los familiares y amigos más cercanos y luego al resto de conocidos. En la sección de Obituarios encontrarás la información de velación y horario.",
     icon: UserCheck,
   },
 ]
@@ -37,13 +37,13 @@ const pasosIniciales = [
 const causasNaturales = [
   {
     number: 1,
-    title: "Que el medico certifique la defuncion",
-    description: "Si no estas en un hospital, llama al 125 e informa de la situacion. Procura tener a mano la documentacion que identifique a tu ser querido.",
+    title: "Que el médico certifique la defunción",
+    description: "Si no estás en un hospital, llama al 125 e informa de la situación. Procura tener a mano la documentación que identifique a tu ser querido.",
   },
   {
     number: 2,
-    title: "Contactanos",
-    description: "Llamanos y te acompanaremos en todo el proceso.",
+    title: "Contáctanos",
+    description: "Llámanos y te acompañaremos en todo el proceso.",
   },
   {
     number: 3,
@@ -52,28 +52,28 @@ const causasNaturales = [
   },
   {
     number: 4,
-    title: "Identificacion del ser querido",
-    description: "En Los Olivos cumplimos con una serie de protocolos donde garantizamos que los requisitos se cumplan correctamente y corroboramos la informacion con un familiar.",
+    title: "Identificación del ser querido",
+    description: "En Los Olivos cumplimos con una serie de protocolos donde garantizamos que los requisitos se cumplan correctamente y corroboramos la información con un familiar.",
   },
 ]
 
-const documentacion = [
+const documentación = [
   {
     number: 1,
-    title: "Certificado medico de defuncion",
-    description: "Debe ser expedido por un medico adscrito al DADIS, con la respectiva papeleria. Deben aparecer nombres completos, numeros de cedula, fecha y hora de la defuncion. El medico responsable debe firmar con su numero de registro medico y sello.",
+    title: "Certificado médico de defunción",
+    description: "Debe ser expedido por un médico adscrito al DADIS, con la respectiva papelería. Deben aparecer nombres completos, números de cédula, fecha y hora de la defunción. El médico responsable debe firmar con su número de registro médico y sello.",
     icon: FileCheck,
   },
   {
     number: 2,
-    title: "Registro de la defuncion",
-    description: "Se realiza en la notaria de la ciudad o municipio donde ocurre la defuncion. Con este registro se procede a dar de baja al ser querido en las diferentes plataformas de informacion. Se necesita el acta medica de defuncion original y copia de la cedula del ser querido.",
+    title: "Registro de la defunción",
+    description: "Se realiza en la notaría de la ciudad o municipio donde ocurre la defunción. Con este registro se procede a dar de baja al ser querido en las diferentes plataformas de información. Se necesita el acta médica de defunción original y copia de la cédula del ser querido.",
     icon: FileText,
   },
   {
     number: 3,
-    title: "Licencia de inhumacion, cremacion, traslado",
-    description: "La licencia se realiza con el acta de defuncion expedida por el medico. Este documento es expedido por el ministerio de salud. En Cartagena es el DADIS quien se encarga. Con este documento podemos proceder a inhumar, cremar o trasladar.",
+    title: "Licencia de inhumación, cremación, traslado",
+    description: "La licencia se realiza con el acta de defunción expedida por el médico. Este documento es expedido por el ministerio de salud. En Cartagena es el DADIS quien se encarga. Con este documento podemos proceder a inhumar, cremar o trasladar.",
     icon: Shield,
   },
 ]
@@ -86,66 +86,66 @@ const causaViolenta = [
   },
   {
     number: 2,
-    title: "Fiscalia",
-    description: "Se encarga de la investigacion con el fin de esclarecer los hechos. Los cuerpos de medicina legal no pueden ser cremados sin una autorizacion del fiscal que lleve el caso.",
+    title: "Fiscalía",
+    description: "Se encarga de la investigación con el fin de esclarecer los hechos. Los cuerpos de medicina legal no pueden ser cremados sin una autorización del fiscal que lleve el caso.",
   },
   {
     number: 3,
     title: "Resultado de la necropsia",
-    description: "Despues de ingresar el fallecido para la necropsia dependemos del tiempo del funcionario de medicina legal. No hay un tiempo establecido para la entrega del cuerpo.",
+    description: "Después de ingresar el fallecido para la necropsia dependemos del tiempo del funcionario de medicina legal. No hay un tiempo establecido para la entrega del cuerpo.",
   },
   {
     number: 4,
     title: "Traslado a la funeraria",
-    description: "La fiscalia emite 2 documentos: uno de entrega de cuerpo y autorizacion de registro de muerte en la notaria. Una vez expedidos, medicina legal entregara el cuerpo a los familiares.",
+    description: "La fiscalía emite 2 documentos: uno de entrega de cuerpo y autorización de registro de muerte en la notaría. Una vez expedidos, medicina legal entregará el cuerpo a los familiares.",
   },
   {
     number: 5,
-    title: "Tramites por parte de familiares",
-    description: "Los familiares son los encargados de realizar los tramites ante medicina legal y fiscalia. Como funeraria brindamos asesorias pero estas diligencias requieren la presencia del familiar.",
+    title: "Trámites por parte de familiares",
+    description: "Los familiares son los encargados de realizar los trámites ante medicina legal y fiscalía. Como funeraria brindamos asesorías pero estas diligencias requieren la presencia del familiar.",
   },
 ]
 
-const despuesFuneral = [
+const despuésFuneral = [
   {
     number: 1,
     title: "Baja en la Seguridad Social",
-    description: "Se realiza en los Centros de Atencion e Informacion de la Seguridad Social y se realizan los tramites para obtener prestaciones para conyuge, hijos o familiares.",
+    description: "Se realiza en los Centros de Atención e Información de la Seguridad Social y se realizan los trámites para obtener prestaciones para cónyuge, hijos o familiares.",
   },
   {
     number: 2,
-    title: "Certificado de ultimas voluntades",
-    description: "Se obtiene 15 dias despues del fallecimiento. Con el se puede saber si hay testamento y el notario al que hay que acudir para conocerlo.",
+    title: "Certificado de últimas voluntades",
+    description: "Se obtiene 15 días después del fallecimiento. Con él se puede saber si hay testamento y el notario al que hay que acudir para conocerlo.",
   },
   {
     number: 3,
     title: "Certificado de contratos de seguros",
-    description: "Es imprescindible para saber si el difunto disponia de seguros de vida o accidentes. Se obtiene 15 dias despues del fallecimiento.",
+    description: "Es imprescindible para saber si el difunto disponía de seguros de vida o accidentes. Se obtiene 15 días después del fallecimiento.",
   },
   {
     number: 4,
-    title: "Testamento o declaracion de herederos",
-    description: "Se solicita al notario entregando el certificado de defuncion y de ultimas voluntades. Si no existe, debe realizarse un acta de declaracion de herederos.",
+    title: "Testamento o declaración de herederos",
+    description: "Se solicita al notario entregando el certificado de defunción y de últimas voluntades. Si no existe, debe realizarse un acta de declaración de herederos.",
   },
   {
     number: 5,
-    title: "Escritura publica de herencia",
+    title: "Escritura pública de herencia",
     description: "Se realiza ante notario y es imprescindible para inscribir los bienes inmuebles en el Registro de la Propiedad a nombre de los herederos.",
   },
   {
     number: 6,
-    title: "Liquidacion de impuestos",
+    title: "Liquidación de impuestos",
     description: "Seis meses tras el fallecimiento es necesario liquidar los impuestos sobre sucesiones y donaciones en la Agencia Tributaria.",
   },
   {
     number: 7,
     title: "Cambio de titularidad de bienes",
-    description: "Los inmuebles deben inscribirse a nombre de los herederos. Para vehiculos hay que informar a la Direccion General de Trafico.",
+    description: "Los inmuebles deben inscribirse a nombre de los herederos. Para vehículos hay que informar a la Dirección General de Tráfico.",
   },
   {
     number: 8,
     title: "Borrado de la huella digital",
-    description: "Es recomendable cancelar todas las cuentas del fallecido en redes sociales, correo electronico y otras aplicaciones o medios online.",
+    description: "Es recomendable cancelar todas las cuentas del fallecido en redes sociales, correo electrónico y otras aplicaciones o medios online.",
   },
 ]
 
@@ -198,9 +198,9 @@ export default function TramitesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div>
             <div className="text-center mb-8 md:mb-12">
-              <span className="text-sm font-medium text-duelo-main">Primeros pasos</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-                Que hacer?
+              <span className="text-3xl md:text-4xl text-duelo-main block">Primeros pasos</span>
+              <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+                ¿Qué hacer?
               </h2>
             </div>
 
@@ -228,11 +228,11 @@ export default function TramitesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div>
             <div className="mb-6 md:mb-10">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3 text-balance">
-                Que hacer en caso de fallecimiento por causas naturales?
+              <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+                ¿Qué hacer en caso de fallecimiento por causas naturales?
               </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Se considera fallecimiento natural el que ocurre sin violencia y en el que el medico puede certificar con certeza las causas sin que sea necesario realizar una autopsia.
+              <p className="text-muted-foreground mt-4 leading-relaxed">
+                Se considera fallecimiento natural el que ocurre sin violencia y en el que el médico puede certificar con certeza las causas sin que sea necesario realizar una autopsia.
               </p>
             </div>
 
@@ -258,14 +258,14 @@ export default function TramitesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div>
             <div className="text-center mb-8 md:mb-12">
-              <span className="text-sm font-medium text-duelo-main">Documentos importantes</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
-                Documentacion requerida antes y durante del funeral
+              <span className="text-3xl md:text-4xl text-duelo-main block">Documentos importantes</span>
+              <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+                Documentación requerida antes y durante del funeral
               </h2>
             </div>
 
             <div className="space-y-6">
-              {documentacion.map((doc) => (
+              {documentación.map((doc) => (
                 <div key={doc.number} className="bg-card rounded-2xl p-6 md:p-8">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center flex-shrink-0">
@@ -295,10 +295,10 @@ export default function TramitesPage() {
                 <AlertTriangle className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2 text-balance">
-                  Que sucede en caso de fallecimiento por causa violenta?
+                <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+                  ¿Qué sucede en caso de fallecimiento por causa violenta?
                 </h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground mt-4 leading-relaxed">
                   En estos casos se requieren procedimientos adicionales con las autoridades competentes.
                 </p>
               </div>
@@ -330,17 +330,17 @@ export default function TramitesPage() {
                 <Scale className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2 text-balance">
-                  Despues del funeral
+                <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+                  Después del funeral
                 </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Documentacion y tramites que hay que dejar resueltos tras un fallecimiento.
+                <p className="text-muted-foreground mt-4 leading-relaxed">
+                  Documentación y trámites que hay que dejar resueltos tras un fallecimiento.
                 </p>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
-              {despuesFuneral.map((paso) => (
+              {despuésFuneral.map((paso) => (
                 <div key={paso.number} className="bg-card rounded-xl p-5 transition-colors">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-duelo-main/10 text-duelo-main flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">

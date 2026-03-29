@@ -2,13 +2,29 @@
 
 import { PageBanner } from "@/components/los-olivos/page-banner"
 import { Button } from "@/components/ui/button"
-import { CheckCircle, Flame, MapPin, Users } from "lucide-react"
+import { CheckCircle, Heart, Handshake, Bus, Box, FileSignature, Car, Church, Scroll, Award, Flower2, BookOpen, Truck, MapPin, Truck as Hearse } from "lucide-react"
 import { useState } from "react"
 
 const tiposServicio = [
-  { id: "cremacion", label: "Cremación", icon: Flame },
-  { id: "inhumacion", label: "Inhumación", icon: MapPin },
-  { id: "traslado", label: "Traslado", icon: Users },
+  { id: "cremacion", label: "Cremación", icon: Heart },
+  { id: "inhumacion", label: "Inhumación", icon: Handshake },
+  { id: "traslado", label: "Traslado", icon: Bus },
+]
+
+const derechosAfiliado = [
+  { icon: Box, label: "Cofre" },
+  { icon: FileSignature, label: "Trámite de licencia" },
+  { icon: Car, label: "Traslado local" },
+  { icon: Heart, label: "Preservación del cuerpo" },
+  { icon: Church, label: "Sala de velación 24 horas" },
+  { icon: Scroll, label: "Serie de carteles" },
+  { icon: Award, label: "Cinta membretada" },
+  { icon: Flower2, label: "Arreglo floral" },
+  { icon: BookOpen, label: "Recordatorio y libro de oraciones" },
+  { icon: Church, label: "Exequias" },
+  { icon: Truck, label: "Transporte de acompañante" },
+  { icon: MapPin, label: "Destino final jardines los olivos" },
+  { icon: Hearse, label: "Carroza al campo santo" },
 ]
 
 export default function CotizarPage() {
@@ -20,7 +36,7 @@ export default function CotizarPage() {
   return (
     <>
       <PageBanner
-        title="Haz tu cotización en un minuto"
+        title="Haz tu cotización ágil y sencilla"
         description="Coordina el homenaje de tu ser querido o consulta el valor de nuestro servicio de necesidad inmediata según tus requerimientos."
         titleClassName="text-cotizar-dark"
       />
@@ -54,7 +70,7 @@ export default function CotizarPage() {
                   <div>
                     <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Servicio y localidad</h3>
                     <h2 className="font-display text-xl font-bold text-foreground">
-                      Quiero que la ceremonia sea...
+                      Quiero que el servicio sea...
                     </h2>
                   </div>
                 </div>
@@ -90,6 +106,23 @@ export default function CotizarPage() {
                   </button>
                 </div>
 
+                {/* Derechos del afiliado */}
+                {tipoUsuario === "afiliado" && (
+                  <div className="mb-6 p-5 bg-cotizar-main/5 rounded-xl border border-cotizar-main/20">
+                    <h3 className="font-display font-semibold text-cotizar-dark mb-4 text-sm uppercase tracking-wide">
+                      Usted como afiliado tiene derecho a:
+                    </h3>
+                    <div className="grid grid-cols-2 gap-3">
+                      {derechosAfiliado.map((derecho) => (
+                        <div key={derecho.label} className="flex items-start gap-2">
+                          <derecho.icon className="w-4 h-4 text-cotizar-main flex-shrink-0 mt-0.5" />
+                          <span className="text-xs text-foreground">{derecho.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <Button
                   onClick={() => tipoUsuario && setStep(2)}
                   disabled={!tipoUsuario}
@@ -108,7 +141,7 @@ export default function CotizarPage() {
                   <div>
                     <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Tipo de servicio</h3>
                     <h2 className="font-display text-xl font-bold text-foreground">
-                      Selecciona el tipo de ceremonia
+                      Selecciona el tipo de servicio
                     </h2>
                   </div>
                 </div>
@@ -164,7 +197,7 @@ export default function CotizarPage() {
                 </div>
 
                 <div className="flex gap-3">
-                  <Button variant="outline" onClick={() => setStep(1)}>
+                  <Button variant="outline" onClick={() => setStep(1)} className="hover:bg-muted hover:text-foreground">
                     Atrás
                   </Button>
                   <Button
@@ -211,7 +244,7 @@ export default function CotizarPage() {
                 </p>
 
                 <div className="flex gap-3">
-                  <Button variant="outline" onClick={() => setStep(2)}>
+                  <Button variant="outline" onClick={() => setStep(2)} className="hover:bg-muted hover:text-foreground">
                     Atrás
                   </Button>
                   <Button asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark">
