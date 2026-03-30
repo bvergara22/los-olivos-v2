@@ -1,7 +1,7 @@
 "use client"
 
-import { Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 const videos = [
   {
@@ -102,7 +102,7 @@ function VideoCard({ video, onExpand }: { video: Video; onExpand: () => void }) 
   return (
     <div className="group relative rounded-2xl overflow-hidden bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300">
       {/* Video area */}
-      <div className="relative aspect-video cursor-pointer" onClick={togglePlay}>
+      <div className="relative aspect-[4/3] sm:aspect-video cursor-pointer" onClick={togglePlay}>
         <video
           ref={videoRef}
           src={video.src}
@@ -153,9 +153,9 @@ function VideoCard({ video, onExpand }: { video: Video; onExpand: () => void }) 
       </div>
 
       {/* Text */}
-      <div className="p-5">
-        <h3 className="font-display text-lg text-foreground mb-1">{video.title}</h3>
-        <p className="text-muted-foreground text-sm leading-relaxed">{video.description}</p>
+      <div className="p-4 sm:p-5">
+        <h3 className="font-display text-base sm:text-lg text-foreground mb-1">{video.title}</h3>
+        <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed line-clamp-2">{video.description}</p>
       </div>
     </div>
   )
@@ -165,6 +165,47 @@ function VideoCard({ video, onExpand }: { video: Video; onExpand: () => void }) 
 
 export function Novedades() {
   const [modalVideo, setModalVideo] = useState<Video | null>(null)
+  const [current, setCurrent] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(1)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [itemWidth, setItemWidth] = useState(0)
+
+  const maxIndex = videos.length - visibleCount
+
+  useEffect(() => {
+    const measure = () => {
+      if (containerRef.current) {
+        setItemWidth(containerRef.current.offsetWidth / visibleCount)
+      }
+    }
+    const updateCount = () => {
+      const count = window.innerWidth < 768 ? 1 : 3
+      setVisibleCount(count)
+    }
+    updateCount()
+    measure()
+    window.addEventListener("resize", () => { updateCount(); measure() })
+    return () => window.removeEventListener("resize", () => { updateCount(); measure() })
+  }, [])
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setItemWidth(containerRef.current.offsetWidth / visibleCount)
+    }
+  }, [visibleCount])
+
+  const next = useCallback(() => {
+    setCurrent((c) => (c >= maxIndex ? 0 : c + 1))
+  }, [maxIndex])
+
+  const prev = useCallback(() => {
+    setCurrent((c) => (c <= 0 ? maxIndex : c - 1))
+  }, [maxIndex])
+
+  useEffect(() => {
+    const interval = setInterval(next, 5000)
+    return () => clearInterval(interval)
+  }, [next])
 
   return (
     <section className="py-12 md:py-20 bg-background">
@@ -180,15 +221,65 @@ export function Novedades() {
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {videos.map((video) => (
-            <VideoCard
-              key={video.src}
-              video={video}
-              onExpand={() => setModalVideo(video)}
-            />
-          ))}
+        {/* Carousel */}
+        <div className="relative">
+          {/* Arrows */}
+          <button
+            type="button"
+            onClick={prev}
+            className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
+            aria-label="Video anterior"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
+            aria-label="Siguiente video"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Track */}
+          <div ref={containerRef} className="overflow-hidden sm:px-12">
+            <div
+              className="flex transition-transform duration-500 ease-in-out gap-4 sm:gap-6"
+              style={{
+                transform: `translateX(calc(-${current} * (${itemWidth}px + ${current} * 16px)))`,
+              }}
+            >
+              {videos.map((video) => (
+                <div
+                  key={video.src}
+                  className="flex-shrink-0"
+                  style={{ width: itemWidth > 0 ? `${itemWidth}px` : `calc(${100 / visibleCount}%)` }}
+                >
+                  <VideoCard
+                    video={video}
+                    onExpand={() => setModalVideo(video)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
+              <button
+                key={`dot-${i}`}
+                type="button"
+                onClick={() => setCurrent(i)}
+                className={`h-2 rounded-full transition-all ${
+                  i === current
+                    ? "bg-primary w-6"
+                    : "bg-primary/30 hover:bg-primary/50 w-2"
+                }`}
+                aria-label={`Ir a posición ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
