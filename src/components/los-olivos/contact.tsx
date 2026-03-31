@@ -26,7 +26,7 @@ export function Contact() {
             {/* Contact Methods - Ley de Similitud */}
             <div className="space-y-4">
               <a 
-                href="tel:6930172" 
+                href="tel:3106171987"
                 className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
               >
                 <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
@@ -34,7 +34,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-medium text-foreground">Teléfono</p>
-                  <p className="text-sm text-muted-foreground">6930172</p>
+                  <p className="text-sm text-muted-foreground">310 6171987</p>
                 </div>
               </a>
 

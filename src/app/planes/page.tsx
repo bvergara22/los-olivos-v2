@@ -142,9 +142,11 @@ export default function PlanesPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2">
-                    Afiliarme ahora
-                    <ArrowRight className="w-4 h-4" />
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2" asChild>
+                    <a href="https://www.portal.losolivoscartagena.com/afiliacion-en-linea" target="_blank" rel="noopener noreferrer">
+                      Afiliarme ahora
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -193,9 +195,11 @@ export default function PlanesPage() {
               Nuestros asesores estan listos para ayudarte a elegir el plan perfecto para ti y los tuyos.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8">
-                Afiliarme ahora
-                <ArrowRight className="w-5 h-5" />
+              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
+                <a href="https://www.portal.losolivoscartagena.com/afiliacion-en-linea" target="_blank" rel="noopener noreferrer">
+                  Afiliarme ahora
+                  <ArrowRight className="w-5 h-5" />
+                </a>
               </Button>
               <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
                 <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
@@ -203,7 +207,7 @@ export default function PlanesPage() {
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
-                <a href="tel:6930172">
+                <a href="tel:3106171987">
                   Llamar
                 </a>
               </Button>

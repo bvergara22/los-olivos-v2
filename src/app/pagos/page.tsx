@@ -22,7 +22,7 @@ const metodosPago = [
     title: "Pago telefonico",
     description: "Llama a nuestra linea de atencion y un asesor te ayudara a realizar tu pago de manera asistida.",
     icon: Phone,
-    href: "tel:6930172",
+    href: "tel:3106171987",
     external: false,
     cta: "Llamar",
   },

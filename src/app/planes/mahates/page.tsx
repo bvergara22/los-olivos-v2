@@ -119,7 +119,7 @@ export default function MahatesPage() {
           </div>
           <div className="text-center mt-8">
             <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
-              <a href="https://wa.me/573138678771?text=Hola, quiero afiliarme en Mahates" target="_blank" rel="noopener noreferrer">Afiliarme ahora <ArrowRight className="w-5 h-5" /></a>
+              <a href="https://www.portal.losolivoscartagena.com/afiliacion-en-linea" target="_blank" rel="noopener noreferrer">Afiliarme ahora <ArrowRight className="w-5 h-5" /></a>
             </Button>
           </div>
         </div>

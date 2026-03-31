@@ -117,7 +117,7 @@ export function Footer() {
           <div>
             <h4 className="font-display font-bold mb-4">Contacto</h4>
             <div className="space-y-3 text-sm text-background/70">
-              <p>Tel: (5) 6930172</p>
+              <p>Tel: 310 6171987</p>
               <p>WhatsApp: 323 3093435</p>
               <p>Línea Nacional: 018000-180-150</p>
               <p>contacto@losolivoscartagena.com</p>

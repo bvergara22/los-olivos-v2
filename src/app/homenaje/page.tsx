@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Nuestro Homenaje al Amor - Los Olivos Cartagena",
-  description: "En Olivos Cartagena, rendimos un protocolo de 4 etapas en la que prometemos brindarte un respaldo total en la transcendencia de tu ser querido.",
+  description: "En Los Olivos Cartagena, rendimos un protocolo de 4 etapas en el que prometemos brindarte un respaldo total en la trascendencia de tu ser querido.",
 }
 
 const etapas = [
@@ -15,14 +15,14 @@ const etapas = [
     number: 1,
     title: "Desprendimiento",
     icon: Heart,
-    items: ["Cofre", "Tramites", "Traslado inicial y a nivel nacional"],
+    items: ["Cofre", "Trámites", "Traslado inicial y a nivel nacional"],
     color: "primary",
   },
   {
     number: 2,
     title: "Acogida",
     icon: Flower2,
-    items: ["Carteles", "Flores", "Velacion en sala o en casa"],
+    items: ["Carteles", "Flores", "Velación en sala o en casa"],
     color: "primary",
   },
   {
@@ -30,11 +30,11 @@ const etapas = [
     title: "Despedida",
     icon: Users,
     items: [
-      "Traslado terrestre o aereo",
-      "Cremacion",
-      "Inhumacion",
+      "Traslado terrestre o aéreo",
+      "Cremación",
+      "Inhumación",
       "Traslado a campo santo",
-      "Transporte para acompanantes",
+      "Transporte para acompañantes",
     ],
     color: "primary",
   },
@@ -45,7 +45,7 @@ const etapas = [
     items: [
       "Taller de manejo del duelo",
       "Entrega de cenizas",
-      "Misa de conmemoracion",
+      "Misa de conmemoración",
     ],
     color: "primary",
   },
@@ -54,17 +54,17 @@ const etapas = [
 
 const flores = [
   {
-    description: "Elaborado con pompones blancos, fullis blancos y amarrillos, rosas amarillas, solidago, yicsofilia, dracena.",
+    description: "Elaborado con pompones blancos, fullis blancos y amarillos, rosas amarillas, solidago, yesofila, dracena.",
     image: "https://portalapi.losolivoscartagena.com/uploads/images/PC%203corona%20ovala.jpg",
     link: "https://www.portal.losolivoscartagena.com/tienda/producto/FDD0003-corona-ovalada-en-atril",
   },
   {
-    description: "Elaborado con Rosas Blancas, Ruscus, Helecho Cuero, Dracenas y yicsofilia.",
+    description: "Elaborado con Rosas Blancas, Ruscus, Helecho Cuero, Dracenas y yesofila.",
     image: "https://portalapi.losolivoscartagena.com/uploads/images/PC%203TRIANG%20ARREG.jpg",
     link: "https://www.portal.losolivoscartagena.com/tienda/producto/FDD0001-arreglo-triangular",
   },
   {
-    description: "Elaborado en fullis amarrillos y blancos, claveles rojos, margaritas blancas, helecho cuero, aster blancos.",
+    description: "Elaborado en fullis amarillos y blancos, claveles rojos, margaritas blancas, helecho cuero, aster blancos.",
     image: "https://portalapi.losolivoscartagena.com/uploads/images/CORONA%20REDONDA%201.jpg",
     link: "https://www.portal.losolivoscartagena.com/tienda/producto/FFF010-corona-redonda",
   },
@@ -84,7 +84,7 @@ export default function HomenajePage() {
                 Nuestro homenaje al amor
               </h1>
               <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
-                En Olivos Cartagena, rendimos un protocolo de 4 etapas en la que prometemos brindarte un respaldo total en la transcendencia de tu ser querido.
+                En Los Olivos Cartagena, rendimos un protocolo de 4 etapas en el que prometemos brindarte un respaldo total en la trascendencia de tu ser querido.
               </p>
             </div>
             {/* Imagen */}
@@ -162,10 +162,10 @@ export default function HomenajePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="font-display text-2xl md:text-4xl text-duelo-dark mb-4 text-balance">
-              Coordina el homenaje de tu ser querido o haz tu cotizacion en un minuto
+              Coordina el homenaje de tu ser querido de forma ágil y sencilla
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Consulta el valor de nuestro servicio de necesidad inmediata segun tus requerimientos y condiciones.
+              Consulta el valor de nuestro servicio de necesidad inmediata según tus requerimientos y condiciones.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2 bg-duelo-main text-white hover:bg-duelo-dark px-8" asChild>
@@ -175,8 +175,8 @@ export default function HomenajePage() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-duelo-main/10 hover:border-duelo-main hover:text-duelo-main" asChild>
-                <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                  Contactar por WhatsApp
+                <a href="https://wa.me/573106171987" target="_blank" rel="noopener noreferrer">
+                  Contactar
                 </a>
               </Button>
             </div>
@@ -190,7 +190,7 @@ export default function HomenajePage() {
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-duelo-main block">Espacios de despedida</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
-              Nuestras salas de velacion
+              Nuestras salas de velación
             </h2>
           </div>
           <SalasGallery accent="var(--duelo-main)" />

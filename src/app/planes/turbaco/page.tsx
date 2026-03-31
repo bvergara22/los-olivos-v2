@@ -248,7 +248,7 @@ export default function TurbacoPage() {
           </div>
           <div className="text-center mt-10">
             <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
-              <a href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.portal.losolivoscartagena.com/afiliacion-en-linea" target="_blank" rel="noopener noreferrer">
                 Afiliarme ahora <ArrowRight className="w-5 h-5" />
               </a>
             </Button>
