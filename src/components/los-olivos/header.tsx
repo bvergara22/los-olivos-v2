@@ -5,7 +5,6 @@ import type { LucideIcon } from "lucide-react"
 import {
   BookOpen,
   Brain,
-  Building2,
   ChevronDown,
   ClipboardList,
   CreditCard,
@@ -87,6 +86,7 @@ export function Header() {
     },
     {
       title: "Servicios en Línea",
+      accent: "var(--duelo-main)",
       items: [
         { 
           label: "Pagos en línea",
@@ -295,7 +295,7 @@ export function Header() {
 
 
 
-          {/* Desktop Navigation */}
+           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => (
               <div key={item.label} className="relative">
@@ -308,6 +308,10 @@ export function Header() {
                         ? openDropdown === item.label
                           ? "text-vida-main"
                           : "text-muted-foreground hover:text-vida-main"
+                        : item.label === "Servicios"
+                          ? openDropdown === item.label
+                            ? "text-duelo-main"
+                            : "text-muted-foreground hover:text-duelo-main"
                         : openDropdown === item.label
                           ? "text-primary"
                           : "text-muted-foreground hover:text-primary"
@@ -604,7 +608,7 @@ export function Header() {
           </div>
         )}
 
-        {/* Mobile Menu */}
+                {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col gap-2">
@@ -617,8 +621,16 @@ export function Header() {
                         onClick={() => toggleDropdown(item.label)}
                         className={`flex items-center justify-between w-full text-sm font-medium py-3 px-2 ${
                           item.accent === "vida"
-                            ? openDropdown === item.label ? "text-vida-main" : "text-foreground hover:text-vida-main"
-                            : openDropdown === item.label ? "text-primary" : "text-foreground hover:text-primary"
+                            ? openDropdown === item.label
+                              ? "text-vida-main"
+                              : "text-foreground hover:text-vida-main"
+                            : item.label === "Servicios"
+                              ? openDropdown === item.label
+                                ? "text-duelo-main"
+                                : "text-foreground hover:text-duelo-main"
+                              : openDropdown === item.label
+                                ? "text-primary"
+                                : "text-foreground hover:text-primary"
                         }`}
                       >
                         {item.label}
@@ -628,18 +640,31 @@ export function Header() {
                           }`}
                         />
                       </button>
-                      {openDropdown === item.label && (
-                        <div className={`ml-2 border-l-2 pl-4 py-2 ${item.accent === "vida" ? "border-vida-main/20" : "border-primary/20"}`}>
 
+                      {openDropdown === item.label && (
+                        <div
+                          className={`ml-2 border-l-2 pl-4 py-2 ${
+                            item.accent === "vida"
+                              ? "border-vida-main/20"
+                              : item.label === "Servicios"
+                                ? "border-duelo-main/20"
+                                : "border-primary/20"
+                          }`}
+                        >
                           {/* Beneficios - colores Vida */}
                           {item.label === "Beneficios" && (
                             <div className="space-y-1">
-                              <p className="text-vida-main font-semibold text-xs mb-2 uppercase tracking-wide">{beneficiosColumns[0].title}</p>
+                              <p className="text-vida-main font-semibold text-xs mb-2 uppercase tracking-wide">
+                                {beneficiosColumns[0].title}
+                              </p>
                               {beneficiosColumns[0].items.map((subItem, itemIndex) => (
                                 <a
                                   key={itemIndex}
                                   href={subItem.href}
-                                  onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
+                                  onClick={() => {
+                                    setOpenDropdown(null)
+                                    setIsMenuOpen(false)
+                                  }}
                                   className="flex items-center gap-3 text-sm text-muted-foreground hover:text-vida-main py-2"
                                 >
                                   <div className="w-8 h-8 rounded-lg bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0">
@@ -654,14 +679,19 @@ export function Header() {
                           {/* Conócenos */}
                           {item.label === "Conócenos" && (
                             <div className="space-y-1">
-                              <p className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">Nuestra empresa</p>
+                              <p className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">
+                                Nuestra empresa
+                              </p>
                               {conocenosItems.map((subItem, itemIndex) => (
                                 <a
                                   key={itemIndex}
                                   href={subItem.href}
                                   target={subItem.isExternal ? "_blank" : undefined}
                                   rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                                  onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
+                                  onClick={() => {
+                                    setOpenDropdown(null)
+                                    setIsMenuOpen(false)
+                                  }}
                                   className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
                                 >
                                   <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
@@ -679,8 +709,10 @@ export function Header() {
                           {/* Sedes & Planes */}
                           {item.label === "Sedes & Planes" && !showSedesPanel && (
                             <div className="space-y-1">
-                              <p className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">{sedesColumns[0].title}</p>
-                              {sedesColumns[0].items.map((subItem, itemIndex) => (
+                              <p className="text-primary font-semibold text-xs mb-2 uppercase tracking-wide">
+                                {sedesColumns[0].title}
+                              </p>
+                              {sedesColumns[0].items.map((subItem, itemIndex) =>
                                 subItem.href === "#ver-sedes" ? (
                                   <button
                                     key={itemIndex}
@@ -698,7 +730,10 @@ export function Header() {
                                   <a
                                     key={itemIndex}
                                     href={subItem.href}
-                                    onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
+                                    onClick={() => {
+                                      setOpenDropdown(null)
+                                      setIsMenuOpen(false)
+                                    }}
                                     className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary py-2"
                                   >
                                     <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
@@ -707,9 +742,10 @@ export function Header() {
                                     <span>{subItem.label}</span>
                                   </a>
                                 )
-                              ))}
+                              )}
                             </div>
                           )}
+
                           {item.label === "Sedes & Planes" && showSedesPanel && (
                             <div>
                               <button
@@ -720,17 +756,25 @@ export function Header() {
                                 <ChevronDown className="w-3 h-3 rotate-90" />
                                 Volver
                               </button>
-                              <p className="text-primary font-semibold text-xs mb-3 uppercase tracking-wide">Selecciona una sede</p>
+                              <p className="text-primary font-semibold text-xs mb-3 uppercase tracking-wide">
+                                Selecciona una sede
+                              </p>
                               <div className="grid grid-cols-2 gap-2">
                                 {sedesItems.map((sede) => (
                                   <Link
                                     key={sede.href}
                                     href={sede.href}
-                                    onClick={() => { setOpenDropdown(null); setIsMenuOpen(false); setShowSedesPanel(false) }}
+                                    onClick={() => {
+                                      setOpenDropdown(null)
+                                      setIsMenuOpen(false)
+                                      setShowSedesPanel(false)
+                                    }}
                                     className="flex items-center gap-2 p-3 rounded-lg border border-border hover:border-primary/50 transition-all group text-sm"
                                   >
                                     <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-                                    <span className="text-foreground group-hover:text-primary transition-colors">{sede.label}</span>
+                                    <span className="text-foreground group-hover:text-primary transition-colors">
+                                      {sede.label}
+                                    </span>
                                   </Link>
                                 ))}
                               </div>
@@ -738,41 +782,63 @@ export function Header() {
                           )}
 
                           {/* Servicios y demás - respeta accent por columna */}
-                          {item.label !== "Beneficios" && item.label !== "Conócenos" && item.label !== "Sedes & Planes" && (
-                            <div className="space-y-4">
-                              {item.columns?.map((column, colIndex) => (
-                                <div key={colIndex}>
-                                  <p
-                                    className="font-semibold text-xs mb-2 uppercase tracking-wide"
-                                    style={{ color: column.accent ?? "var(--color-primary)" }}
-                                  >
-                                    {column.title}
-                                  </p>
-                                  <div className="space-y-1">
-                                    {column.items.map((subItem, itemIndex) => (
-                                      <a
-                                        key={itemIndex}
-                                        href={subItem.href}
-                                        target={subItem.isExternal ? "_blank" : undefined}
-                                        rel={subItem.isExternal ? "noopener noreferrer" : undefined}
-                                        onClick={() => { setOpenDropdown(null); setIsMenuOpen(false) }}
-                                        className="flex items-center gap-3 text-sm text-muted-foreground py-2 group"
-                                      >
-                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${column.accent || subItem.duelo ? "bg-duelo-main/10 text-duelo-main" : subItem.cotizar ? "bg-cotizar-main/10 text-cotizar-main" : "bg-primary/10 text-primary"}`}>
-                                          <subItem.icon className="w-4 h-4" />
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                          <span className={column.accent || subItem.duelo ? "group-hover:text-duelo-main" : subItem.cotizar ? "group-hover:text-cotizar-main" : "group-hover:text-primary"}>{subItem.label}</span>
-                                          {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
-                                        </div>
-                                      </a>
-                                    ))}
+                          {item.label !== "Beneficios" &&
+                            item.label !== "Conócenos" &&
+                            item.label !== "Sedes & Planes" && (
+                              <div className="space-y-4">
+                                {item.columns?.map((column, colIndex) => (
+                                  <div key={colIndex}>
+                                    <p
+                                      className="font-semibold text-xs mb-2 uppercase tracking-wide"
+                                      style={{ color: column.accent ?? "var(--color-primary)" }}
+                                    >
+                                      {column.title}
+                                    </p>
+                                    <div className="space-y-1">
+                                      {column.items.map((subItem, itemIndex) => (
+                                        <a
+                                          key={itemIndex}
+                                          href={subItem.href}
+                                          target={subItem.isExternal ? "_blank" : undefined}
+                                          rel={subItem.isExternal ? "noopener noreferrer" : undefined}
+                                          onClick={() => {
+                                            setOpenDropdown(null)
+                                            setIsMenuOpen(false)
+                                          }}
+                                          className="flex items-center gap-3 text-sm text-muted-foreground py-2 group"
+                                        >
+                                          <div
+                                            className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                              column.accent || subItem.duelo
+                                                ? "bg-duelo-main/10 text-duelo-main"
+                                                : subItem.cotizar
+                                                  ? "bg-cotizar-main/10 text-cotizar-main"
+                                                  : "bg-primary/10 text-primary"
+                                            }`}
+                                          >
+                                            <subItem.icon className="w-4 h-4" />
+                                          </div>
+                                          <div className="flex items-center gap-1">
+                                            <span
+                                              className={
+                                                column.accent || subItem.duelo
+                                                  ? "group-hover:text-duelo-main"
+                                                  : subItem.cotizar
+                                                    ? "group-hover:text-cotizar-main"
+                                                    : "group-hover:text-primary"
+                                              }
+                                            >
+                                              {subItem.label}
+                                            </span>
+                                            {subItem.isExternal && <ExternalLink className="w-3 h-3" />}
+                                          </div>
+                                        </a>
+                                      ))}
+                                    </div>
                                   </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
+                                ))}
+                              </div>
+                            )}
                         </div>
                       )}
                     </>
@@ -787,13 +853,19 @@ export function Header() {
                   )}
                 </div>
               ))}
+
               <div className="flex flex-col gap-2 pt-4 border-t border-border mt-2">
-                <Button asChild variant="outline" className="gap-2 w-full justify-center bg-transparent hover:bg-amber-500 hover:text-white hover:border-amber-500">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="gap-2 w-full justify-center bg-transparent hover:bg-amber-500 hover:text-white hover:border-amber-500"
+                >
                   <Link href="https://goldenoffer.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
                     <CreditCard className="w-4 h-4" />
                     <span>Golden Offers</span>
                   </Link>
                 </Button>
+
                 <Button asChild className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90">
                   <Link href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
                     <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />

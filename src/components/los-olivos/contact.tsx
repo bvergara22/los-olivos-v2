@@ -4,14 +4,27 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react"
+import Image from "next/image"
 
 export function Contact() {
   return (
-    <section id="contacto" className="py-20 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info - Ley de Proximidad */}
-          <div className="space-y-8">
+    <section id="contacto" className="relative py-20 overflow-hidden">
+      {/* Fondo con imagen */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/imagen-contactanos.png"
+          alt=""
+          fill
+          className="object-cover object-center lg:object-[right_top]"
+          priority
+        />
+        <div className="absolute inset-0 bg-white/80 lg:bg-white/70" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          {/* Contact Info */}
+          <div className="space-y-6">
             <div>
               <span className="text-3xl md:text-4xl text-primary block">¡Contáctanos!</span>
               <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
@@ -23,9 +36,9 @@ export function Contact() {
               </p>
             </div>
 
-            {/* Contact Methods - Ley de Similitud */}
+            {/* Contact Methods */}
             <div className="space-y-4">
-              <a 
+              <a
                 href="tel:3106171987"
                 className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
               >
@@ -38,8 +51,8 @@ export function Contact() {
                 </div>
               </a>
 
-              <a 
-                href="https://wa.me/573233093435" 
+              <a
+                href="https://wa.me/573233093435"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
@@ -53,8 +66,8 @@ export function Contact() {
                 </div>
               </a>
 
-              <a 
-                href="mailto:contacto@losolivoscartagena.com" 
+              <a
+                href="mailto:contacto@losolivoscartagena.com"
                 className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
               >
                 <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
@@ -78,52 +91,46 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Contact Form - Ley de Hick: Solo 3 campos */}
-          <div className="bg-card rounded-2xl p-8 border border-border shadow-sm">
-            <h3 className="font-display text-xl font-bold text-foreground mb-6">
-              Escríbenos un mensaje
-            </h3>
-            
-            <form className="flex flex-col gap-5">
-              {/* Ley de Fitt: Campos grandes */}
+          {/* Contact Form */}
+          <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-sm lg: mt-44">
+            <form className="flex flex-col gap-4">
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
+                <label className="text-xs font-medium text-foreground mb-1.5 block">
                   Nombre completo
                 </label>
                 <Input
                   type="text"
                   placeholder="Tu nombre"
-                  className="h-12 bg-muted/30"
+                  className="h-10 bg-muted/30"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
+                <label className="text-xs font-medium text-foreground mb-1.5 block">
                   Teléfono o WhatsApp
                 </label>
                 <Input
                   type="tel"
                   placeholder="Tu número de contacto"
-                  className="h-12 bg-muted/30"
+                  className="h-10 bg-muted/30"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
+                <label className="text-xs font-medium text-foreground mb-1.5 block">
                   Mensaje
                 </label>
                 <Textarea
                   placeholder="¿En qué podemos ayudarte?"
-                  rows={4}
+                  rows={3}
                   className="bg-muted/30"
                 />
               </div>
 
-              
               <Button
                 type="submit"
                 size="lg"
-                className="w-full mt-10 bg-primary text-primary-foreground hover:bg-primary/90"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 mt-1"
               >
                 Enviar mensaje
               </Button>

@@ -6,25 +6,18 @@
 :root {
 
   /* ── Colores de Duelo ───────────────────────────────────────── */
-  /* Cambia estos valores para actualizar los colores en todas las
-     páginas: Homenaje al Amor, Parque Cementerio y Unidad de Duelo */
   --duelo-main: #3e2455;   /* morado principal (botones, íconos, acentos) */
   --duelo-dark: #240e36;   /* morado oscuro (títulos) */
   --duelo-light: #a183b5;  /* morado claro (focus rings, fondos suaves)  */
   --duelo-mid: #77608b;    /* morado medio (uso secundario)              */
 
   /* ── Colores de Vida ────────────────────────────────────────── */
-  /* Cambia estos valores para actualizar los colores en la
-     sección y página de Beneficios                               */
   --vida-main: #f0c33d;    /* naranja dorado principal (íconos, acentos) */
   --vida-dark: #e65c36;    /* naranja oscuro (botones, fondo)            */
 
   /* ── Colores de Cotizar ─────────────────────────────────────── */
-  /* Cambia estos valores para actualizar los colores en la
-     sección y página de Cotizar Homenaje                         */
   --cotizar-main: #3e2455; /* morado principal (íconos, acentos) */
   --cotizar-dark: #240e36; /* morado oscuro (botones, hover)              */
-  /* ─────────────────────────────────────────────────────────── */
 
   --primary: #4caf50;
   --primary-foreground: #ffffff;
