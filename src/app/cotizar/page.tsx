@@ -52,7 +52,7 @@ export default function CotizarPage() {
             {/* Imagen */}
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
               <Image
-                src="/duelo-imagen.png"
+                src="/Duelo-imagen.png"
                 alt=""
                 aria-hidden
                 width={500}
