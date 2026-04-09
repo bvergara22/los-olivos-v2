@@ -60,7 +60,7 @@ export default function CotizarPage() {
                 className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-40 mix-blend-multiply"
               />
               <Image
-                src="/duelo-imagen.png"
+                src="/Duelo-imagen.png"
                 alt="Homenaje al amor"
                 width={500}
                 height={380}
