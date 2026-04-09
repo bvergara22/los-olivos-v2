@@ -15,10 +15,10 @@ export function Contact() {
           src="/imagen-contactanos.png"
           alt=""
           fill
-          className="object-cover object-center lg:object-[right_top]"
+          className="object-cover object-center lg:object-[center_90%]"
           priority
         />
-        <div className="absolute inset-0 bg-white/80 lg:bg-white/70" />
+        <div className="absolute inset-0 bg-white/30 lg:bg-white/20" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

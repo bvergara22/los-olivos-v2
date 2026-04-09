@@ -390,15 +390,12 @@ export default function BeneficiosPage() {
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto overflow-x-auto">
+          <div className="max-w-3xl mx-auto overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-vida-dark text-white">
                   <th className="text-left p-4 rounded-tl-xl font-display font-bold">Plan</th>
-                  <th className="text-left p-4 font-display font-bold">Valores Asegurados</th>
-                  <th className="text-center p-4 font-display font-bold">Opcion 1</th>
-                  <th className="text-center p-4 font-display font-bold">Opcion 2</th>
-                  <th className="text-center p-4 rounded-tr-xl font-display font-bold">Opcion 3</th>
+                  <th className="text-left p-4 rounded-tr-xl font-display font-bold">Valores Asegurados</th>
                 </tr>
               </thead>
               <tbody>
@@ -417,9 +414,6 @@ export default function BeneficiosPage() {
                         </td>
                       )}
                       <td className="p-4 text-sm text-foreground">{item.nombre}</td>
-                      <td className="p-4 text-sm text-center text-muted-foreground font-medium">{item.op1}</td>
-                      <td className="p-4 text-sm text-center text-muted-foreground font-medium">{item.op2}</td>
-                      <td className="p-4 text-sm text-center text-muted-foreground font-medium">{item.op3}</td>
                     </tr>
                   ))
                 )}
@@ -442,49 +436,19 @@ export default function BeneficiosPage() {
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto overflow-x-auto">
+          <div className="max-w-3xl mx-auto overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-vida-dark text-white">
                   <th className="text-left p-4 rounded-tl-xl font-display font-bold">Amparo</th>
-                  <th className="text-center p-4 font-display font-bold">Opcion 1</th>
-                  <th className="text-center p-4 font-display font-bold">Opcion 2</th>
-                  <th className="text-center p-4 font-display font-bold">Opcion 3</th>
-                  <th className="text-center p-4 rounded-tr-xl font-display font-bold">Opcion 4</th>
+                  <th className="text-left p-4 rounded-tr-xl font-display font-bold">Cobertura</th>
                 </tr>
               </thead>
               <tbody>
                 {solientevidaRows.map((row) => (
                   <tr key={row.nombre} className="border-b border-border hover:bg-vida-main/5 transition-colors">
                     <td className="p-4 text-sm text-foreground font-medium">{row.nombre}</td>
-                    <td className="p-4 text-sm text-center text-muted-foreground">
-                      {row.op1 === "SI" ? (
-                        <Check className="w-5 h-5 text-vida-main mx-auto" />
-                      ) : (
-                        <span className="font-medium">{row.op1}</span>
-                      )}
-                    </td>
-                    <td className="p-4 text-sm text-center text-muted-foreground">
-                      {row.op2 === "SI" ? (
-                        <Check className="w-5 h-5 text-vida-main mx-auto" />
-                      ) : (
-                        <span className="font-medium">{row.op2}</span>
-                      )}
-                    </td>
-                    <td className="p-4 text-sm text-center text-muted-foreground">
-                      {row.op3 === "SI" ? (
-                        <Check className="w-5 h-5 text-vida-main mx-auto" />
-                      ) : (
-                        <span className="font-medium">{row.op3}</span>
-                      )}
-                    </td>
-                    <td className="p-4 text-sm text-center text-muted-foreground">
-                      {row.op4 === "SI" ? (
-                        <Check className="w-5 h-5 text-vida-main mx-auto" />
-                      ) : (
-                        <span className="font-medium">{row.op4}</span>
-                      )}
-                    </td>
+                    <td className="p-4 text-sm text-muted-foreground">Disponible</td>
                   </tr>
                 ))}
               </tbody>
