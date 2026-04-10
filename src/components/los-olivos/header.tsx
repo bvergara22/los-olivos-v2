@@ -5,6 +5,7 @@ import type { LucideIcon } from "lucide-react"
 import {
   BookOpen,
   Brain,
+  Building2,
   ChevronDown,
   ClipboardList,
   CreditCard,
@@ -162,29 +163,17 @@ export function Header() {
     {
       title: "Beneficios Olivos",
       items: [
-        { 
-          label: "Asistencia Exequial", 
-          description: "Cobertura completa en servicios funerarios",
-          href: "/beneficios", 
-          icon: Shield 
+        {
+          label: "Empresariales",
+          description: "Asistencia premium y paquete Solienvida para empresas",
+          href: "/beneficios#empresariales",
+          icon: Building2,
         },
-        { 
-          label: "Asistencia en Vida", 
-          description: "Beneficios para disfrutar en vida",
-          href: "/beneficios", 
-          icon: HeartHandshake 
-        },
-        { 
-          label: "Asistencia Psicológica",
-          description: "Apoyo emocional profesional",
-          href: "/beneficios", 
-          icon: Brain 
-        },
-        { 
-          label: "Beneficios Adicionales", 
-          description: "Descuentos y alianzas exclusivas",
-          href: "/beneficios", 
-          icon: Gift 
+        {
+          label: "Independiente",
+          description: "Paquete Solientegral y Mascota Light para personas",
+          href: "/beneficios#independiente",
+          icon: Users,
         },
       ]
     }

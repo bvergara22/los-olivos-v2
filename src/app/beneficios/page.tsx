@@ -1,28 +1,9 @@
 import { Button } from "@/components/ui/button"
-import {
-  Apple,
-  ArrowRight,
-  Brain,
-  Car,
-  Check,
-  ChefHat,
-  Clock,
-  Dumbbell,
-  GraduationCap,
-  Heart,
-  Home,
-  MapPin,
-  Phone,
-  Scale,
-  Shield,
-  Sparkles,
-  Stethoscope,
-  Syringe,
-  Users
-} from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { BeneficiosTabs } from "./BeneficiosTabs"
 
 export const metadata: Metadata = {
   title: "Beneficios de Planes Exequiales - Los Olivos Cartagena",
@@ -30,232 +11,20 @@ export const metadata: Metadata = {
     "Conoce todos los beneficios exclusivos de nuestros planes exequiales: asistencias premium 24/7, paquetes de seguros y asistencia para mascotas.",
 }
 
-const asistenciasPremiumVirtuales = [
-  {
-    icon: Stethoscope,
-    title: "Orientacion medica telefonica y/o virtual",
-    monto: "Sin limite",
-    eventos: "12 eventos por año",
-  },
-  {
-    icon: Heart,
-    title: "Orientacion medica pediatrica telefonica y/o virtual",
-    monto: "Sin limite",
-    eventos: "6 eventos por año",
-  },
-  {
-    icon: Sparkles,
-    title: "Orientacion odontologica telefonica/virtual",
-    monto: "Sin limite",
-    eventos: "6 eventos por año",
-  },
-  {
-    icon: Brain,
-    title: "Orientacion psicologica telefonica/virtual",
-    monto: "Sin limite",
-    eventos: "6 eventos por año",
-  },
-  {
-    icon: Apple,
-    title: "Orientacion nutricional telefonica/virtual",
-    monto: "Sin limite",
-    eventos: "6 eventos por año",
-  },
-  {
-    icon: Sparkles,
-    title: "Orientacion dermatologica telefonica/virtual",
-    monto: "Sin limite",
-    eventos: "6 eventos por año",
-  },
-  {
-    icon: Dumbbell,
-    title: "Clase virtual entrenador personal",
-    monto: "Hasta 60 min por evento",
-    eventos: "6 eventos por año",
-  },
-  {
-    icon: GraduationCap,
-    title: "Tutor academico telefonico",
-    monto: "Hasta 90 min por evento",
-    eventos: "2 eventos por año",
-  },
-  {
-    icon: ChefHat,
-    title: "Orientacion con chef telefonica y/o virtual",
-    monto: "Hasta 45 min por evento",
-    eventos: "2 eventos por año",
-  },
-]
-
-const asistenciasDomicilio = [
-  {
-    icon: Stethoscope,
-    title: "Medico a domicilio en caso de accidente",
-    monto: "Hasta $120.000 por evento",
-    eventos: "1 evento por año",
-  },
-  {
-    icon: Syringe,
-    title: "Enfermera a domicilio en caso de accidente",
-    monto: "Hasta $120.000 por evento",
-    eventos: "1 evento por año",
-  },
-  {
-    icon: Heart,
-    title: "Examenes a domicilio de sangre u orina derivados de atencion de urgencia",
-    monto: "Hasta $120.000 por evento",
-    eventos: "1 evento por año",
-  },
-  {
-    icon: Car,
-    title: "Servicio de conductor elegido (Co-pago $10.000)",
-    monto: "Hasta $80.000 por evento",
-    eventos: "",
-  },
-  {
-    icon: Users,
-    title: "Acompanamiento para diligencias personales (adulto mayor)",
-    monto: "Hasta $120.000 por evento",
-    eventos: "1 evento por año (Max 4h)",
-  },
-]
-
-const solientegralRows = [
-  {
-    plan: "SOLICANASTA",
-    items: [
-      { nombre: "Vida", op1: "$1.000.000", op2: "$3.000.000", op3: "$5.000.000" },
-      { nombre: "Incapacidad total y permanente", op1: "$1.000.000", op2: "$3.000.000", op3: "$5.000.000" },
-    ],
-  },
-  {
-    plan: "SOLIRENTA",
-    items: [
-      { nombre: "Renta diaria por hospitalizacion", op1: "$10.000", op2: "$30.000", op3: "$50.000" },
-      { nombre: "Unidad de cuidados intensivos", op1: "$20.000", op2: "$60.000", op3: "$100.000" },
-      { nombre: "Cirugia ambulatoria", op1: "$10.000", op2: "$30.000", op3: "$50.000" },
-    ],
-  },
-  {
-    plan: "SOLIACCIDENTE",
-    items: [
-      { nombre: "Muerte accidental", op1: "$1.000.000", op2: "$3.000.000", op3: "$5.000.000" },
-      { nombre: "Invalidez o desmembracion accidental", op1: "$1.000.000", op2: "$3.000.000", op3: "$5.000.000" },
-    ],
-  },
-]
-
-const solientevidaRows = [
-  { nombre: "Muerte Accidental", op1: "$500.000", op2: "$1.000.000", op3: "$5.000.000", op4: "$10.000.000" },
-  { nombre: "Auxilio de muerte", op1: "$500.000", op2: "$500.000", op3: "$1.000.000", op4: "$1.000.000" },
-  {
-    nombre: "Renta por hospitalizacion; hasta 30 dias por accidente",
-    op1: "$30.000",
-    op2: "$50.000",
-    op3: "$50.000",
-    op4: "$80.000",
-  },
-  { nombre: "UCI por 15 dias de accidente", op1: "$60.000", op2: "$100.000", op3: "$100.000", op4: "$160.000" },
-  {
-    nombre: "Cirugia ambulatoria por accidente",
-    op1: "$30.000",
-    op2: "$50.000",
-    op3: "$50.000",
-    op4: "$80.000",
-  },
-  {
-    nombre: "Auxilio de enfermedades graves",
-    op1: "$500.000",
-    op2: "$500.000",
-    op3: "$1.000.000",
-    op4: "$1.500.000",
-  },
-  {
-    nombre: "Auxilio de desempleo (permanencia en el plan exequial x 3 meses)",
-    op1: "SI",
-    op2: "SI",
-    op3: "SI",
-    op4: "SI",
-  },
-  { nombre: "Asistencia gratuita al Hogar", op1: "SI", op2: "SI", op3: "SI", op4: "SI" },
-]
-
-const mascotaAsistencia = [
-  {
-    icon: Phone,
-    title: "Orientacion medica veterinaria telefonica o virtual",
-    monto: "Sin limite",
-    eventos: "6 eventos por año",
-  },
-  {
-    icon: Stethoscope,
-    title: "Envio de medico veterinario a domicilio o consulta en red veterinaria",
-    descripcion: "Ingesta de cuerpos extranos, accidente, enfermedad",
-    monto: "Hasta $250.000 por evento",
-    eventos: "2 eventos por año",
-  },
-  {
-    icon: Car,
-    title: "Traslado basico de la mascota en caso de emergencia por accidente",
-    monto: "Hasta $50.000 por evento",
-    eventos: "2 eventos por año",
-  },
-  {
-    icon: MapPin,
-    title: "Servicio de paseo canino en caso de hospitalizacion del afiliado",
-    monto: "Hasta 4 dias por evento - 1h por dia",
-    eventos: "2 eventos por año",
-  },
-  {
-    icon: Home,
-    title: "Servicio de guarderia para mascotas en caso de hospitalizacion del afiliado",
-    monto: "Hasta 4 dias por evento",
-    eventos: "2 eventos por año",
-  },
-]
-
-const mascotaLegal = [
-  {
-    icon: Scale,
-    title: "Asistencia legal telefonica",
-    descripcion:
-      "En procesos judiciales o conciliatorios por la reclamacion de danos y perjuicios sufridos por un tercero, con ocasion de danos o lesiones causadas por la mascota.",
-    monto: "Sin limite",
-    eventos: "2 eventos por año",
-  },
-  {
-    icon: Scale,
-    title: "Representacion legal telefonica",
-    descripcion:
-      "Asignacion de un abogado que guiara al afiliado en el proceso de responsabilidad en el campo penal o civil, en caso de que a la mascota le cause dano por conducta dolosa de un tercero.",
-    monto: "Sin limite",
-    eventos: "1 evento por año",
-  },
-]
-
-const mascotaReferencia = [
-  "Transmision de mensajes urgentes",
-  "Referencia y coordinacion de caminatas ecorecreativas caninas",
-  "Informacion sobre veterinarias, guarderias y demas servicios de mascotas",
-  "Referencia y coordinacion para cirugias, radiografias y ecografias",
-  "Referencia y coordinacion de adiestrador de perros y clinicas veterinarias",
-  "Referencia y coordinacion salon de bellezas, boutiques y clinicas veterinarias",
-]
-
 export default function BeneficiosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-12 md:pb-16 overflow-hidden">
+      <section className="relative pt-28 pb-8 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-vida-main/10 via-background to-vida-dark/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-center">
             {/* Texto */}
-            <div>
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-vida-dark leading-tight text-balance">
+            <div className="text-center lg:text-left">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-vida-dark leading-tight text-balance">
                 Beneficios de nuestros planes exequiales
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-3 md:mt-6 leading-relaxed max-w-md mx-auto lg:mx-0">
                 Descubre todos los beneficios exclusivos que obtienen nuestros afiliados. Asistencias premium 24/7, paquetes de seguros y mucho mas para ti y tu familia.
               </p>
             </div>
@@ -288,272 +57,8 @@ export default function BeneficiosPage() {
         </div>
       </section>
 
-      {/* Asistencias Premium - Virtuales/Telefonicas */}
-      <section className="py-12 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-vida-main block">Asistencias Premium</span>
-            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
-              Orientacion profesional 24/7
-            </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              Asistencia las 24 horas, los 365 dias del año. Orientacion virtual y telefonica con profesionales en
-              diversas areas.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {asistenciasPremiumVirtuales.map((asistencia) => (
-              <div
-                key={asistencia.title}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
-                    <asistencia.icon className="w-6 h-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-display font-bold text-foreground mb-2 leading-snug">{asistencia.title}</h3>
-                    <div className="space-y-1">
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                        {asistencia.monto}
-                      </p>
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                        {asistencia.eventos}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Asistencias Premium - Domicilio */}
-      <section className="py-12 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-vida-main block">Asistencia a domicilio</span>
-            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
-              Servicios presenciales en tu hogar
-            </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              Atencion medica, enfermeria, examenes y mas servicios directamente en tu domicilio cuando los necesites.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {asistenciasDomicilio.map((asistencia) => (
-              <div
-                key={asistencia.title}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
-                    <asistencia.icon className="w-6 h-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-display font-bold text-foreground mb-2 leading-snug">{asistencia.title}</h3>
-                    <div className="space-y-1">
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                        {asistencia.monto}
-                      </p>
-                      {asistencia.eventos && (
-                        <p className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                          {asistencia.eventos}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Paquete Solientegral - Sinergia */}
-      <section className="py-12 md:py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-vida-main block">Paquete Solientegral</span>
-            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
-              Sinergia - Valores asegurados
-            </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              Proteccion integral con tres niveles de cobertura que se adaptan a tus necesidades.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-vida-dark text-white">
-                  <th className="text-left p-4 rounded-tl-xl font-display font-bold">Plan</th>
-                  <th className="text-left p-4 rounded-tr-xl font-display font-bold">Valores Asegurados</th>
-                </tr>
-              </thead>
-              <tbody>
-                {solientegralRows.map((grupo) =>
-                  grupo.items.map((item, idx) => (
-                    <tr
-                      key={`${grupo.plan}-${item.nombre}`}
-                      className="border-b border-border hover:bg-vida-main/5 transition-colors"
-                    >
-                      {idx === 0 && (
-                        <td
-                          rowSpan={grupo.items.length}
-                          className="p-4 font-display font-bold text-vida-main bg-vida-main/5 align-middle"
-                        >
-                          {grupo.plan}
-                        </td>
-                      )}
-                      <td className="p-4 text-sm text-foreground">{item.nombre}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Paquete Solienvida */}
-      <section className="py-12 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-vida-main block">Paquete Solienvida</span>
-            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
-              Amparos y alternativas de cobertura
-            </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              Cuatro opciones de cobertura con proteccion ante accidentes, enfermedades graves, desempleo y mas.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-vida-dark text-white">
-                  <th className="text-left p-4 rounded-tl-xl font-display font-bold">Amparo</th>
-                  <th className="text-left p-4 rounded-tr-xl font-display font-bold">Cobertura</th>
-                </tr>
-              </thead>
-              <tbody>
-                {solientevidaRows.map((row) => (
-                  <tr key={row.nombre} className="border-b border-border hover:bg-vida-main/5 transition-colors">
-                    <td className="p-4 text-sm text-foreground font-medium">{row.nombre}</td>
-                    <td className="p-4 text-sm text-muted-foreground">Disponible</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Mascota Light - Asistencia */}
-      <section className="py-12 md:py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-vida-main block">Mascota Light</span>
-            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
-              Asistencia para tu mascota 24/7
-            </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              Porque ellos tambien son parte de la familia. Asistencia veterinaria, traslados, paseos y guarderia.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {mascotaAsistencia.map((asistencia) => (
-              <div
-                key={asistencia.title}
-                className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
-                    <asistencia.icon className="w-6 h-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-display font-bold text-foreground mb-2 leading-snug">{asistencia.title}</h3>
-                    {"descripcion" in asistencia && asistencia.descripcion && (
-                      <p className="text-xs text-muted-foreground mb-2">{asistencia.descripcion}</p>
-                    )}
-                    <div className="space-y-1">
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                        {asistencia.monto}
-                      </p>
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                        {asistencia.eventos}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Asistencia Legal Mascota */}
-          <div className="max-w-5xl mx-auto mt-12">
-            <h3 className="font-display text-2xl font-bold text-foreground text-center mb-8">Asistencia Legal Mascota</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {mascotaLegal.map((item) => (
-                <div
-                  key={item.title}
-                  className="group bg-card rounded-2xl border border-border p-6 hover:border-vida-main/50 hover:shadow-lg transition-all"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-display font-bold text-foreground mb-2">{item.title}</h4>
-                      <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{item.descripcion}</p>
-                      <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Shield className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                          {item.monto}
-                        </p>
-                        <p className="text-sm text-muted-foreground flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5 text-vida-main flex-shrink-0" />
-                          {item.eventos}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Referencia & Coordinacion */}
-          <div className="max-w-4xl mx-auto mt-12">
-            <h3 className="font-display text-2xl font-bold text-foreground text-center mb-2">
-              Referencia & Coordinacion
-            </h3>
-            <p className="text-center text-sm text-muted-foreground mb-8">Monto máximo y eventos: Sin limite</p>
-            <div className="grid md:grid-cols-2 gap-4">
-              {mascotaReferencia.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3 p-4 bg-card rounded-xl border border-border hover:border-vida-main/50 transition-colors"
-                >
-                  <Check className="w-5 h-5 text-vida-main flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-foreground">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Tabs interactivos */}
+      <BeneficiosTabs />
 
       {/* CTA Final */}
       <section className="py-12 md:py-20 bg-vida-main/5">
@@ -563,17 +68,16 @@ export default function BeneficiosPage() {
               Accede a todos estos beneficios hoy
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
-              Nuestros asesores estan listos para ayudarte a elegir el plan perfecto para ti, tu familia y tus
-              mascotas.
+              Nuestros asesores estan listos para ayudarte a elegir el plan perfecto para ti, tu familia y tus mascotas.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
               <Button size="lg" className="gap-2 bg-vida-dark text-white hover:bg-vida-dark/90 px-8" asChild>
                 <Link href="https://www.portal.losolivoscartagena.com/afiliacion-en-linea">
                   ¡Afiliarme ahora!
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-vida-main/10 hover:border-vida-main hover:text-vida-main" asChild>
+              <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-vida-dark/10 hover:border-vida-dark hover:text-vida-dark" asChild>
                 <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
                   Contactar por WhatsApp
                 </a>
