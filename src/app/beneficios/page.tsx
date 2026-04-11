@@ -25,7 +25,7 @@ export default function BeneficiosPage() {
                 Beneficios de nuestros planes exequiales
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-3 md:mt-6 leading-relaxed max-w-md mx-auto lg:mx-0">
-                Descubre todos los beneficios exclusivos que obtienen nuestros afiliados. Asistencias premium 24/7, paquetes de seguros y mucho mas para ti y tu familia.
+                Descubre todos los beneficios exclusivos que obtienen nuestros afiliados. Asistencias premium 24/7, paquetes de seguros y mucho más para ti y tu familia.
               </p>
             </div>
             {/* Imagen */}
@@ -68,7 +68,7 @@ export default function BeneficiosPage() {
               Accede a todos estos beneficios hoy
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
-              Nuestros asesores estan listos para ayudarte a elegir el plan perfecto para ti, tu familia y tus mascotas.
+              Nuestros asesores están listos para ayudarte a elegir el plan perfecto para ti, tu familia y tus mascotas.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Button size="lg" className="gap-2 bg-vida-dark text-white hover:bg-vida-dark/90 px-8" asChild>

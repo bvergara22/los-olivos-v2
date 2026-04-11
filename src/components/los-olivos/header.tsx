@@ -295,8 +295,8 @@ export function Header() {
                     className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${
                       item.accent === "vida"
                         ? openDropdown === item.label
-                          ? "text-vida-main"
-                          : "text-muted-foreground hover:text-vida-main"
+                          ? "text-vida-dark"
+                          : "text-muted-foreground hover:text-vida-dark"
                         : item.label === "Servicios"
                           ? openDropdown === item.label
                             ? "text-duelo-main"
@@ -414,13 +414,12 @@ export function Header() {
                 </div>
               )}
 
-              {/* Beneficios - grid 2x2 con colores Vida */}
               {openDropdown === "Beneficios" && (
-                <div className="max-w-2xl mx-auto">
-                  <h3 className="text-vida-main font-semibold text-sm mb-4 uppercase tracking-wide">
+                <div>
+                  <h3 className="text-vida-dark font-semibold text-sm mb-4 uppercase tracking-wide">
                     {beneficiosColumns[0].title}
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     {beneficiosColumns[0].items.map((subItem, itemIndex) => (
                       <a
                         key={itemIndex}
@@ -428,12 +427,12 @@ export function Header() {
                         onClick={() => setOpenDropdown(null)}
                         className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
                       >
-                        <div className="w-10 h-10 rounded-lg bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
+                        <div className="w-10 h-10 rounded-lg bg-vida-dark/10 text-vida-dark flex items-center justify-center flex-shrink-0 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                           <subItem.icon className="w-5 h-5" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1">
-                            <span className="font-medium text-foreground text-sm group-hover:text-vida-main transition-colors">
+                            <span className="font-medium text-foreground text-sm group-hover:text-vida-dark transition-colors">
                               {subItem.label}
                             </span>
                           </div>

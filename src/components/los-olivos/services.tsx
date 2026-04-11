@@ -68,7 +68,7 @@ export function Services() {
                 </div>
               )}
               
-              <CardHeader className="space-y-4">
+              <CardHeader className="space-y-4 flex flex-col items-center text-center">
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-colors ${
                   service.highlight
                     ? "bg-primary text-primary-foreground"
@@ -80,7 +80,7 @@ export function Services() {
                 }`}>
                   <service.icon className="w-7 h-7" />
                 </div>
-                <CardTitle className="font-display text-xl">{service.title}</CardTitle>
+                <CardTitle className={`font-display text-xl ${service.duelo ? "text-duelo-main" : service.cotizar ? "text-cotizar-main" : "text-primary"}`}>{service.title}</CardTitle>
               </CardHeader>
               
               <CardContent className="space-y-4">

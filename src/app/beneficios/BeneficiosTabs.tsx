@@ -33,15 +33,15 @@ type Tab = "empresariales" | "personas"
 /* ─────────────────────────── DATA ─────────────────────────── */
 
 const orientacionProfesional = [
-  { icon: Stethoscope,   title: "Orientacion medica telefonica y/o virtual",          eventos: "12 eventos por año" },
-  { icon: Heart,         title: "Orientacion medica pediatrica telefonica y/o virtual", eventos: "6 eventos por año" },
-  { icon: Sparkles,      title: "Orientacion odontologica telefonica/virtual",          eventos: "6 eventos por año" },
-  { icon: Brain,         title: "Orientacion psicologica telefonica/virtual",           eventos: "6 eventos por año" },
-  { icon: Apple,         title: "Orientacion nutricional telefonica/virtual",           eventos: "6 eventos por año" },
-  { icon: Activity,      title: "Orientacion dermatologica telefonica/virtual",         eventos: "6 eventos por año" },
+  { icon: Stethoscope,   title: "Orientación médica telefónica y/o virtual",          eventos: "12 eventos por año" },
+  { icon: Heart,         title: "Orientación médica pediátrica telefónica y/o virtual", eventos: "6 eventos por año" },
+  { icon: Sparkles,      title: "Orientación odontológica telefónica/virtual",          eventos: "6 eventos por año" },
+  { icon: Brain,         title: "Orientación psicológica telefónica/virtual",           eventos: "6 eventos por año" },
+  { icon: Apple,         title: "Orientación nutricional telefónica/virtual",           eventos: "6 eventos por año" },
+  { icon: Activity,      title: "Orientación dermatológica telefónica/virtual",         eventos: "6 eventos por año" },
   { icon: Dumbbell,      title: "Clase virtual entrenador personal",                   eventos: "6 eventos por año" },
-  { icon: GraduationCap, title: "Tutor academico telefonico",                          eventos: "2 eventos por año" },
-  { icon: ChefHat,       title: "Orientacion con chef telefonica y/o virtual",         eventos: "2 eventos por año" },
+  { icon: GraduationCap, title: "Tutor académico telefónico",                          eventos: "2 eventos por año" },
+  { icon: ChefHat,       title: "Orientación con chef telefónica y/o virtual",         eventos: "2 eventos por año" },
 ]
 
 const solientevidaItems = [
@@ -49,7 +49,7 @@ const solientevidaItems = [
   { icon: Heart,       title: "Auxilio de muerte" },
   { icon: AlertCircle, title: "Auxilio de enfermedades graves" },
   { icon: Briefcase,   title: "Auxilio de desempleo" },
-  { icon: Activity,    title: "Renta por hospitalizacion (hasta 30 dias)" },
+  { icon: Activity,    title: "Renta por hospitalización (hasta 30 días)" },
   { icon: HeartPulse,  title: "Unidad de cuidados intensivos (15 dias)" },
   { icon: Scissors,    title: "Cirugia ambulatoria por accidente" },
   { icon: Home,        title: "Asistencia gratuita al Hogar" },
@@ -66,7 +66,7 @@ const solientegralPlanes = [
   {
     plan: "SOLIRENTA",
     items: [
-      { nombre: "Renta diaria por hospitalizacion" },
+      { nombre: "Renta diaria por hospitalización" },
       { nombre: "Unidad de cuidados intensivos" },
       { nombre: "Cirugia ambulatoria" },
     ],
@@ -81,11 +81,11 @@ const solientegralPlanes = [
   {
     plan: "ASIST. AL HOGAR",
     items: [
-      { nombre: "Vidrieria" },
-      { nombre: "Cerrajeria" },
+      { nombre: "Vidrería" },
+      { nombre: "Cerrajería" },
       { nombre: "Electricidad" },
       { nombre: "Inhabitabilidad de la vivienda" },
-      { nombre: "Celaduria" },
+      { nombre: "Celaduría" },
       { nombre: "Bodegaje" },
       { nombre: "Acarreo de enseres" },
     ],
@@ -95,28 +95,28 @@ const solientegralPlanes = [
 const mascotaAsistencia = [
   {
     icon: Phone,
-    title: "Orientacion medica veterinaria telefonica o virtual",
+    title: "Orientación médica veterinaria telefónica o virtual",
     eventos: "6 eventos por año",
   },
   {
     icon: Stethoscope,
-    title: "Envio de medico veterinario a domicilio o consulta en red veterinaria",
-    descripcion: "Ingesta de cuerpos extranos, accidente, enfermedad",
+    title: "Envío de médico veterinario a domicilio o consulta en red veterinaria",
+    descripcion: "Ingesta de cuerpos extraños, accidente, enfermedad",
     eventos: "2 eventos por año",
   },
   {
     icon: Car,
-    title: "Traslado basico de la mascota en caso de emergencia por accidente",
+    title: "Traslado básico de la mascota en caso de emergencia por accidente",
     eventos: "2 eventos por año",
   },
   {
     icon: MapPin,
-    title: "Servicio de paseo canino en caso de hospitalizacion del afiliado",
+    title: "Servicio de paseo canino en caso de hospitalización del afiliado",
     eventos: "2 eventos por año",
   },
   {
     icon: Home,
-    title: "Servicio de guarderia para mascotas en caso de hospitalizacion del afiliado",
+    title: "Servicio de guardería para mascotas en caso de hospitalización del afiliado",
     eventos: "2 eventos por año",
   },
 ]
@@ -185,10 +185,10 @@ export function BeneficiosTabs() {
             <div className="text-center max-w-2xl mx-auto mb-6 md:mb-12">
               <span className="text-2xl md:text-3xl lg:text-4xl text-vida-dark block">Asistencia Premium</span>
               <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
-                Orientacion profesional 24/7
+                Orientación profesional 24/7
               </h2>
               <p className="text-sm md:text-base text-muted-foreground mt-3 leading-relaxed">
-                Asistencia las 24 horas, los 365 dias del año. Orientacion virtual y telefonica con profesionales en diversas areas.
+                Asistencia las 24 horas, los 365 días del año. Orientación virtual y telefónica con profesionales en diversas áreas.
               </p>
             </div>
 
@@ -225,7 +225,7 @@ export function BeneficiosTabs() {
                 Amparos y alternativas de cobertura
               </h2>
               <p className="text-sm md:text-base text-muted-foreground mt-3 leading-relaxed">
-                Cuatro opciones de cobertura con proteccion ante accidentes, enfermedades graves, desempleo y mas.
+                Cuatro opciones de cobertura con protección ante accidentes, enfermedades graves, desempleo y más.
               </p>
             </div>
 
@@ -257,7 +257,7 @@ export function BeneficiosTabs() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-vida-dark text-white px-8 py-3 rounded-full font-semibold text-sm hover:bg-vida-dark/90 transition-colors shadow-sm"
           >
-            Conocer mas informacion
+            Conocer más información
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -275,7 +275,7 @@ export function BeneficiosTabs() {
                 Sinergia - Valores asegurados
               </h2>
               <p className="text-sm md:text-base text-muted-foreground mt-3 leading-relaxed">
-                Proteccion integral con tres niveles de cobertura y asistencias al hogar incluidas.
+                Protección integral con tres niveles de cobertura y asistencias al hogar incluidas.
               </p>
             </div>
 
@@ -312,7 +312,7 @@ export function BeneficiosTabs() {
                 Asistencia para tu mascota 24/7
               </h2>
               <p className="text-sm md:text-base text-muted-foreground mt-3 leading-relaxed">
-                Porque ellos tambien son parte de la familia. Asistencia veterinaria, traslados, paseos y guarderia.
+                Porque ellos también son parte de la familia. Asistencia veterinaria, traslados, paseos y guardería.
               </p>
             </div>
 
@@ -352,7 +352,7 @@ export function BeneficiosTabs() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-vida-dark text-white px-8 py-3 rounded-full font-semibold text-sm hover:bg-vida-dark/90 transition-colors shadow-sm"
           >
-            Conocer mas informacion
+            Conocer más información
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
