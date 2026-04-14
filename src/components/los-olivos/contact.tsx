@@ -15,7 +15,7 @@ export function Contact() {
           src="/imagen-contactanos.png"
           alt=""
           fill
-          className="object-cover object-center lg:object-[center_90%]"
+          className="object-cover object-[center_20%] lg:object-[center_90%]"
           priority
         />
         <div className="absolute inset-0 bg-white/30 lg:bg-white/20" />
@@ -30,7 +30,7 @@ export function Contact() {
               <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
                 ¿Listo para proteger a tu familia?
               </h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed">
+              <p className="text-muted-foreground mt-4 leading-relaxed [text-shadow:0_0_8px_rgba(255,255,255,1),0_0_16px_rgba(255,255,255,1),0_2px_20px_rgba(255,255,255,1)]">
                 Comunícate con nosotros de manera directa, rápida y sencilla.
                 Nuestros asesores te atenderán de manera inmediata.
               </p>
@@ -92,7 +92,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-sm lg: mt-44">
+          <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-sm lg:mt-44">
             <form className="flex flex-col gap-4">
               <div>
                 <label className="text-xs font-medium text-foreground mb-1.5 block">

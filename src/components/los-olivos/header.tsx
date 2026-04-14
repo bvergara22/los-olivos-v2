@@ -164,13 +164,13 @@ export function Header() {
       title: "Beneficios Olivos",
       items: [
         {
-          label: "Empresariales",
+          label: "Planes Empresas",
           description: "Asistencia premium y paquete Solienvida para empresas",
           href: "/beneficios#empresariales",
           icon: Building2,
         },
         {
-          label: "Independiente",
+          label: "Planes Personas",
           description: "Paquete Solientegral y Mascota Light para personas",
           href: "/beneficios#independiente",
           icon: Users,

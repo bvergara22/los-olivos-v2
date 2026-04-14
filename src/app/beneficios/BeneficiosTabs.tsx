@@ -148,7 +148,7 @@ export function BeneficiosTabs() {
                 }`}
               >
                 <Building2 className="w-4 h-4 flex-shrink-0" />
-                <span>Empresariales</span>
+                <span>Empresas</span>
               </button>
               <button
                 onClick={() => setActive("personas")}
@@ -159,7 +159,7 @@ export function BeneficiosTabs() {
                 }`}
               >
                 <Users className="w-4 h-4 flex-shrink-0" />
-                <span>Independiente</span>
+                <span>Personas</span>
               </button>
             </div>
           </div>
