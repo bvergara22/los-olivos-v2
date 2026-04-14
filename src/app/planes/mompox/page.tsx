@@ -50,19 +50,6 @@ export default function MompoxPage() {
               />
             </div>
           </div>
-
-          {/* Video */}
-          <div className="max-w-4xl mx-auto mt-16">
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0"
-                className="w-full h-full"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Los Olivos - Sede Mompox"
-              />
-            </div>
-          </div>
         </div>
       </section>
     </>

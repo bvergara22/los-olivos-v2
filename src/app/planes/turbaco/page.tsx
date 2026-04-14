@@ -1,4 +1,3 @@
-import { AliadosSection } from "@/components/los-olivos/aliados-section"
 import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
@@ -131,19 +130,6 @@ export default function TurbacoPage() {
               <Image src="/turbaco-vector.png" alt="Familia protegida con Los Olivos" width={600} height={500} priority className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
             </div>
           </div>
-
-          {/* Video */}
-          <div className="max-w-4xl mx-auto mt-16">
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0"
-                className="w-full h-full"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Los Olivos Turbaco"
-              />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -257,8 +243,6 @@ export default function TurbacoPage() {
       </section>
 
       <TarjetaBeneficios />
-
-      <AliadosSection />
 
       {/* CTA Final */}
       <section className="py-12 md:py-20 bg-primary/5">

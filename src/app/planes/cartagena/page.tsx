@@ -1,4 +1,3 @@
-import { AliadosSection } from "@/components/los-olivos/aliados-section"
 import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import { PageBanner } from "@/components/los-olivos/page-banner"
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
@@ -328,8 +327,6 @@ export default function CartagenaPage() {
 
       <TarjetaBeneficios />
 
-      {/* Aliados */}
-      <AliadosSection />
 
       {/* CTA Final */}
       <section className="py-12 md:py-20 bg-primary/5">

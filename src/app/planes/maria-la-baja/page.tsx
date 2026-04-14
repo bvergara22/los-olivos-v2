@@ -89,17 +89,6 @@ export default function MariaLaBajaPage() {
               <Image src="/maria-vector.png" alt="Familia protegida con Los Olivos" width={600} height={500} priority className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
             </div>
           </div>
-          <div className="max-w-4xl mx-auto mt-16">
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0"
-                className="w-full h-full"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Los Olivos Maria la Baja"
-              />
-            </div>
-          </div>
         </div>
       </section>
 
