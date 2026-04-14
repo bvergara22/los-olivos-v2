@@ -78,7 +78,7 @@ export default function HomenajePage() {
           <div className="grid lg:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-center">
             <div>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-duelo-dark leading-tight text-balance">
-                Lorem ipsum dolor sit amet consectetur
+                Nuestro homenaje al amor
               </h1>
               <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
@@ -117,11 +117,10 @@ export default function HomenajePage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-duelo-dark/5 translate-x-1/2 translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-duelo-main block">Nuestro homenaje al amor</span>
-            <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
+            <h2 className="font-display text-xl md:text-2xl text-duelo-dark text-balance">
               Protocolo de 4 etapas
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground mt-4 leading-relaxed">
+            <p className="text-xs md:text-sm text-muted-foreground mt-2 leading-relaxed line-clamp-2">
               En Los Olivos Cartagena, rendimos un protocolo de 4 etapas en el que prometemos brindarte un respaldo total en la trascendencia de tu ser querido.
             </p>
           </div>
