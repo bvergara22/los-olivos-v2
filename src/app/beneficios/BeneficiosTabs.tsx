@@ -27,7 +27,7 @@ import {
   Wrench,
 } from "lucide-react"
 import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 type Tab = "empresariales" | "personas"
 
@@ -130,12 +130,6 @@ export function BeneficiosTabs() {
     searchParams.get("tab") === "personas" ? "personas" : "empresariales"
   )
 
-  useEffect(() => {
-    const tab = searchParams.get("tab")
-    if (tab === "personas") setActive("personas")
-    else if (tab === "empresariales") setActive("empresariales")
-  }, [searchParams])
-
   return (
     <div>
       {/* ── Sticky tab switcher ── */}
@@ -176,8 +170,8 @@ export function BeneficiosTabs() {
            translateX(-50%) → muestra Independiente                  */}
       <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-300 ease-in-out will-change-transform"
-          style={{ width: "200%", transform: active === "empresariales" ? "translateX(0%)" : "translateX(-50%)" }}
+          className="flex"
+          style={{ width: "200%", transform: active === "empresariales" ? "translateX(0%)" : "translateX(-50%)", transition: "transform 300ms ease-in-out" }}
         >
 
       {/* ── Panel Empresariales ── */}
