@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { Suspense } from "react"
 import { BeneficiosTabs } from "./BeneficiosTabs"
 
 export const metadata: Metadata = {
@@ -58,7 +59,9 @@ export default function BeneficiosPage() {
       </section>
 
       {/* Tabs interactivos */}
-      <BeneficiosTabs />
+      <Suspense fallback={null}>
+        <BeneficiosTabs />
+      </Suspense>
 
       {/* CTA Final */}
       <section className="py-12 md:py-20 bg-vida-main/5">

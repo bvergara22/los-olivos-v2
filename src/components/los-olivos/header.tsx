@@ -166,13 +166,13 @@ export function Header() {
         {
           label: "Planes Empresas",
           description: "Asistencia premium y paquete Solienvida para empresas",
-          href: "/beneficios#empresariales",
+          href: "/beneficios?tab=empresariales",
           icon: Building2,
         },
         {
           label: "Planes Personas",
           description: "Paquete Solientegral y Mascota Light para personas",
-          href: "/beneficios#independiente",
+          href: "/beneficios?tab=personas",
           icon: Users,
         },
       ]

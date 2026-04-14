@@ -26,6 +26,7 @@ import {
   Users,
   Wrench,
 } from "lucide-react"
+import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
 type Tab = "empresariales" | "personas"
@@ -124,13 +125,16 @@ const mascotaAsistencia = [
 /* ─────────────────────────── COMPONENT ─────────────────────────── */
 
 export function BeneficiosTabs() {
-  const [active, setActive] = useState<Tab>("empresariales")
+  const searchParams = useSearchParams()
+  const [active, setActive] = useState<Tab>(
+    searchParams.get("tab") === "personas" ? "personas" : "empresariales"
+  )
 
   useEffect(() => {
-    const hash = window.location.hash
-    if (hash === "#independiente") setActive("personas")
-    else if (hash === "#empresariales") setActive("empresariales")
-  }, [])
+    const tab = searchParams.get("tab")
+    if (tab === "personas") setActive("personas")
+    else if (tab === "empresariales") setActive("empresariales")
+  }, [searchParams])
 
   return (
     <div>
