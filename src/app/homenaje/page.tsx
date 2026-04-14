@@ -38,16 +38,16 @@ const etapas = [
 ]
 
 const momentosSede = [
-  "Brindamos un servicio de atencion inmediata a ninos, que consiste en orientar y acompanar de manera inmediata a los infantes ante la perdida de su ser querido.",
-  "Realizamos el acercamiento con el contratante o la familia doliente, colocandonos a sus servicios conforme a nuestras habilidades psicologicas.",
-  "Realizamos el acompanamiento inicial al recibir el homenaje en la sede.",
+  "Brindamos un servicio de atención inmediata a niños, que consiste en orientar y acompañar de manera inmediata a los infantes ante la pérdida de su ser querido.",
+  "Realizamos el acercamiento con el contratante o la familia doliente, colocándonos a sus servicios conforme a nuestras habilidades psicológicas.",
+  "Realizamos el acompañamiento inicial al recibir el homenaje en la sede.",
 ]
 
 const momentosParque = [
-  "Acompanamiento en procesos de inhumacion (asesoria y acompanamiento).",
-  "Acompanamiento en procesos de exhumacion (asesoria y acompanamiento).",
-  "Acompanamiento en procesos de cremacion (asesoria y acompanamiento).",
-  "Acompanamiento en la entrega de cenizas.",
+  "Acompañamiento en procesos de inhumación (asesoría y acompañamiento).",
+  "Acompañamiento en procesos de exhumación (asesoría y acompañamiento).",
+  "Acompañamiento en procesos de cremación (asesoría y acompañamiento).",
+  "Acompañamiento en la entrega de cenizas.",
 ]
 
 const flores = [
