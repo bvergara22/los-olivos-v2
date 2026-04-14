@@ -18,7 +18,7 @@ export function Contact() {
           className="object-cover object-[center_20%] lg:object-[center_90%]"
           priority
         />
-        <div className="absolute inset-0 bg-white/30 lg:bg-white/20" />
+        <div className="absolute inset-0 bg-white/50 lg:bg-white/40" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -30,7 +30,7 @@ export function Contact() {
               <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
                 ¿Listo para proteger a tu familia?
               </h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed [text-shadow:0_0_8px_rgba(255,255,255,1),0_0_16px_rgba(255,255,255,1),0_2px_20px_rgba(255,255,255,1)]">
+              <p className="text-muted-foreground mt-4 leading-relaxed ">
                 Comunícate con nosotros de manera directa, rápida y sencilla.
                 Nuestros asesores te atenderán de manera inmediata.
               </p>
