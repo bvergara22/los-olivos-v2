@@ -81,7 +81,7 @@ export default function HomenajePage() {
                 Nuestro homenaje al amor
               </h1>
               <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                Honramos lo esencial: lo que permanece. Cada detalle es cuidado con respeto y dignidad, para acompañarte como realmente lo necesitas.
               </p>
             </div>
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
