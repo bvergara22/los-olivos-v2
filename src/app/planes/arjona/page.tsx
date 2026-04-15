@@ -8,32 +8,32 @@ import Image from "next/image"
 export const metadata: Metadata = {
   title: "Planes Arjona - Los Olivos Cartagena",
   description:
-    "Planes de prevision exequial en Arjona. Cobertura flexible con ingreso de mayores hasta 80 anos e hijos sin limite de edad.",
+    "Planes de previsión exequial en Arjona. Cobertura flexible con ingreso de mayores hasta 80 años e hijos sin límite de edad.",
 }
 
 const planes = [
   {
     title: "Plan 6+1",
     price: "",
-    description: "Incluye 7 afiliados. Carencias: 3 meses por muerte natural. Accidental o violenta inmediatamente las 24 horas despues de haber tomado la afiliacion. 6 meses por enfermedades persistentes (cancer, sida, leucemia).",
+    description: "Incluye 7 afiliados. Carencias: 3 meses por muerte natural. Accidental o violenta inmediatamente las 24 horas después de haber tomado la afiliación. 6 meses por enfermedades persistentes (cáncer, sida, leucemia).",
     popular: false,
   },
   {
-    title: "Plan Basico (Sin boveda)",
+    title: "Plan Básico (Sin bóveda)",
     price: "Valor de $14.000 pesos",
-    description: "Incluye titular con edad de ingreso hasta 65 anos y sin limite de edad de permanencia, puede incluir a su grupo familiar basico: Conyuge con edad de ingreso hasta 65 anos, hijos hasta los 35 anos para ingreso, padres y/o suegros con edad de ingreso hasta 75 anos; si el titular es soltero puede incluir a hermanos menores de 35 anos para ingreso y sus padres hasta 75 anos para ingreso, a falta de padres, puede incluir sus suegros.",
+    description: "Incluye titular con edad de ingreso hasta 65 años y sin límite de edad de permanencia, puede incluir a su grupo familiar básico: Cónyuge con edad de ingreso hasta 65 años, hijos hasta los 35 años para ingreso, padres y/o suegros con edad de ingreso hasta 75 años; si el titular es soltero puede incluir a hermanos menores de 35 años para ingreso y sus padres hasta 75 años para ingreso, a falta de padres, puede incluir sus suegros.",
     popular: false,
   },
   {
     title: "Plan Integral Con Sinergia",
     price: "Valor de $25.000 pesos",
-    description: "Incluye titular con edad de ingreso hasta 65 anos y sin limite de edad de permanencia, ademas puede incluir a su grupo familiar basico: Conyuge, hijos hasta los 35 anos, padres y/o suegros, si el titular es soltero puede incluir a hermanos menores de 30 anos y sus padres hasta 75 anos con edad de ingreso y sin limite de permanencia. Beneficios sinergia: SINERGIA opcion 2.",
+    description: "Incluye titular con edad de ingreso hasta 65 años y sin límite de edad de permanencia, además puede incluir a su grupo familiar básico: Cónyuge, hijos hasta los 35 años, padres y/o suegros, si el titular es soltero puede incluir a hermanos menores de 30 años y sus padres hasta 75 años con edad de ingreso y sin límite de permanencia. Beneficios sinergia: SINERGIA opción 2.",
     popular: true,
   },
   {
     title: "Plan Amor",
     price: "Valor de $30.000 pesos",
-    description: "Este plan es ideal para tu nucleo familiar basico, si te conviertes en titular debes ser menor a 65 anos. Podras incluir a 2 adultos mayores hasta una edad de 80 anos (Padres, a falta de padres, suegros), Hijos sin limite de edad y conyuge. Si eres soltero, podras incluir a tu nucleo basico como padres y hermanos 30 anos de edad para ingreso y sin limite de permanencia.",
+    description: "Este plan es ideal para tu núcleo familiar básico, si te conviertes en titular debes ser menor a 65 años. Podrás incluir a 2 adultos mayores hasta una edad de 80 años (Padres, a falta de padres, suegros), Hijos sin límite de edad y cónyuge. Si eres soltero, podrás incluir a tu núcleo básico como padres y hermanos 30 años de edad para ingreso y sin límite de permanencia.",
     popular: false,
   },
 ]
@@ -53,13 +53,13 @@ export default function ArjonaPage() {
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Contar con un seguro de prevision integral es cuidar a los que mas quieres y asi brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una proteccion integral te brindara tranquilidad en aquellos momentos dificiles.
+                  Contar con un seguro de previsión integral es cuidar a los que más quieres y así brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una protección integral te brindará tranquilidad en aquellos momentos difíciles.
                 </p>
                 <p>
-                  Afiliandote podras adquirir tu plan de prevision en cuotas mensuales muy comodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
+                  Afiliándote podrás adquirir tu plan de previsión en cuotas mensuales muy cómodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
                 </p>
                 <p className="font-display font-bold text-foreground text-lg">
-                  ¡Es momento de demostrarle a tu familia cuanto la amas!
+                  ¡Es momento de demostrarle a tu familia cuánto la amas!
                 </p>
               </div>
             </div>

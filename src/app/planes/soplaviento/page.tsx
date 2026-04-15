@@ -7,28 +7,28 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Planes Soplaviento - Los Olivos Cartagena",
-  description: "Planes de prevision exequial en Soplaviento. Plan Basico e Integral con cobertura completa y atencion 24/7.",
+  description: "Planes de previsión exequial en Soplaviento. Plan Básico e Integral con cobertura completa y atención 24/7.",
 }
 
 const planes = [
   {
-    title: "Plan Basico",
+    title: "Plan Básico",
     price: "Valor de $14.000 pesos",
-    description: "Ideal para tu nucleo familiar basico. El titular debe ser menor a 65 anos y podra incluir a 5 personas hasta una edad de 65 anos. Si es casado(a): conyuge, hijos o hijastros. Si es soltero(a): hermanos sin limite de edad.",
+    description: "Ideal para tu núcleo familiar básico. El titular debe ser menor a 65 años y podrá incluir a 5 personas hasta una edad de 65 años. Si es casado(a): cónyuge, hijos o hijastros. Si es soltero(a): hermanos sin límite de edad.",
     popular: false,
     sinergia: false,
   },
   {
     title: "Plan Integral",
     price: "Valor de $18.000 pesos",
-    description: "Titular con edad de ingreso de 65 anos mas 6 beneficiarios. De los cuales 2 pueden ser sin limite de edad, el resto hasta 50 anos con edad para ingreso y sin limite de edad para permanencia.",
+    description: "Titular con edad de ingreso de 65 años más 6 beneficiarios. De los cuales 2 pueden ser sin límite de edad, el resto hasta 50 años con edad para ingreso y sin límite de edad para permanencia.",
     popular: false,
     sinergia: false,
   },
   {
     title: "Plan Integral Con Sinergia",
     price: "Valor de $21.000 pesos",
-    description: "Titular con edad de ingreso de 65 anos mas 6 beneficiarios. De los cuales 2 pueden ser sin limite de edad, el resto hasta 50 anos con edad para ingreso y sin limite de edad para permanencia. Incluye beneficios Sinergia.",
+    description: "Titular con edad de ingreso de 65 años más 6 beneficiarios. De los cuales 2 pueden ser sin límite de edad, el resto hasta 50 años con edad para ingreso y sin límite de edad para permanencia. Incluye beneficios Sinergia.",
     popular: true,
     sinergia: true,
   },
@@ -48,13 +48,13 @@ export default function SoplavientoPage() {
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Contar con un seguro de prevision integral es cuidar a los que mas quieres y asi brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una proteccion integral te brindara tranquilidad en aquellos momentos dificiles.
+                  Contar con un seguro de previsión integral es cuidar a los que más quieres y así brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una protección integral te brindará tranquilidad en aquellos momentos difíciles.
                 </p>
                 <p>
-                  Afiliandote podras adquirir tu plan de prevision en cuotas mensuales muy comodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
+                  Afiliándote podrás adquirir tu plan de previsión en cuotas mensuales muy cómodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
                 </p>
                 <p className="font-display font-bold text-foreground text-lg">
-                  ¡Es momento de demostrarle a tu familia cuanto la amas!
+                  ¡Es momento de demostrarle a tu familia cuánto la amas!
                 </p>
               </div>
             </div>
@@ -77,11 +77,11 @@ export default function SoplavientoPage() {
               </h2>
               <div className="bg-card rounded-2xl border border-border p-6 text-center">
                 <Brain className="w-10 h-10 text-primary mx-auto mb-3" />
-                <h3 className="font-display font-bold text-lg text-primary mb-3">Asistencia Psicologica:</h3>
+                <h3 className="font-display font-bold text-lg text-primary mb-3">Asistencia Psicológica:</h3>
                 <ul className="space-y-2 text-left">
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1.5 text-xs">●</span>
-                    <span className="text-sm text-muted-foreground">Mens Sana: Centro de ayuda psicologica personalizada (Sesiones a consideracion del psicologo).</span>
+                    <span className="text-sm text-muted-foreground">Mens Sana: Centro de ayuda psicológica personalizada (Sesiones a consideración del psicólogo).</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1.5 text-xs">●</span>
@@ -97,8 +97,8 @@ export default function SoplavientoPage() {
               </h2>
               <div className="flex flex-col gap-4">
                 {[
-                  { icon: Banknote, title: "SoliRenta", description: "Renta diaria por hospitalizacion que cubre al afiliado titular." },
-                  { icon: ShieldAlert, title: "SoliAccidente", description: "Indemnizacion en caso de fallecimiento que cubre al grupo familiar en caso de fallecimiento del titular." },
+                  { icon: Banknote, title: "SoliRenta", description: "Renta diaria por hospitalización que cubre al afiliado titular." },
+                  { icon: ShieldAlert, title: "SoliAccidente", description: "Indemnización en caso de fallecimiento que cubre al grupo familiar en caso de fallecimiento del titular." },
                 ].map((s) => (
                   <div key={s.title} className="group relative bg-card rounded-2xl border border-border p-8 text-center hover:border-primary/50 hover:shadow-lg transition-all">
                     <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">

@@ -15,7 +15,7 @@ import Image from "next/image"
 export const metadata: Metadata = {
   title: "Planes Turbaco - Los Olivos Cartagena",
   description:
-    "Planes de prevision exequial en Turbaco. Parque Cementerio Jardin Los Olivos. Proteccion integral para tu familia.",
+    "Planes de previsión exequial en Turbaco. Parque Cementerio Jardín Los Olivos. Protección integral para tu familia.",
 }
 
 const planes = [
@@ -24,12 +24,12 @@ const planes = [
     price: "Valor de $18.000 pesos",
     description: "Cobertura exequial para hasta 7 integrantes. No incluye destino final.",
     features: [
-      "Titular con ingreso hasta 65 anos",
-      "2 beneficiarios con ingreso hasta 75 anos",
-      "4 beneficiarios menores a 60 anos sin importar parentesco",
+      "Titular con ingreso hasta 65 años",
+      "2 beneficiarios con ingreso hasta 75 años",
+      "4 beneficiarios menores a 60 años sin importar parentesco",
       "No incluye destino final",
       "Cobertura exequial completa",
-      "Atencion 24/7, cobertura nacional",
+      "Atención 24/7, cobertura nacional",
     ],
     popular: false,
     sinergia: false,
@@ -37,42 +37,42 @@ const planes = [
   {
     title: "Plan 6+1 Integral",
     price: "Valor de $26.000 pesos",
-    description: "Plan completo con destino final y nicho a perpetuidad en el Parque Cementerio Jardin los Olivos.",
+    description: "Plan completo con destino final y nicho a perpetuidad en el Parque Cementerio Jardín los Olivos.",
     features: [
-      "Titular con ingreso hasta 65 anos",
-      "2 beneficiarios hasta 75 anos y 4 hasta 60 anos",
+      "Titular con ingreso hasta 65 años",
+      "2 beneficiarios hasta 75 años y 4 hasta 60 años",
       "Sin importar lazos de consanguinidad o afinidad",
       "Incluye todo lo relacionado con el homenaje",
       "Destino final incluido",
-      "Nicho a perpetuidad en Parque Cementerio Jardin los Olivos",
+      "Nicho a perpetuidad en Parque Cementerio Jardín los Olivos",
     ],
     popular: true,
     sinergia: false,
   },
   {
-    title: "Sinergia Opcion 2 - Plan Fraternal",
+    title: "Sinergia Opción 2 - Plan Fraternal",
     price: "Valor de $23.000 pesos",
-    description: "Plan con beneficios Sinergia para el nucleo familiar primario con destino final incluido.",
+    description: "Plan con beneficios Sinergia para el núcleo familiar primario con destino final incluido.",
     features: [
-      "Titular con ingreso hasta 65 anos",
-      "Conyuge, cualquier numero de hijos y padres (primer lazo de consanguinidad)",
+      "Titular con ingreso hasta 65 años",
+      "Cónyuge, cualquier número de hijos y padres (primer lazo de consanguinidad)",
       "Incluye todo lo relacionado con el homenaje",
-      "Destino final y nicho a perpetuidad en Parque Cementerio Jardin los Olivos",
+      "Destino final y nicho a perpetuidad en Parque Cementerio Jardín los Olivos",
       "Beneficios Sinergia incluidos",
     ],
     popular: false,
     sinergia: true,
   },
   {
-    title: "Sinergia Opcion 2 - Plan Basico",
+    title: "Sinergia Opción 2 - Plan Básico",
     price: "Valor de $14.000 pesos",
-    description: "Plan accesible para solteros o casados con cobertura del nucleo familiar y beneficios Sinergia.",
+    description: "Plan accesible para solteros o casados con cobertura del núcleo familiar y beneficios Sinergia.",
     features: [
-      "Titular con ingreso hasta 65 anos, sin limite de permanencia",
-      "Soltero: padres hasta 75 anos e hijos/hermanos hasta 30 anos de ingreso",
-      "Casado: conyuge hasta 65 anos, hijos hasta 30 anos y padres hasta 75 anos",
+      "Titular con ingreso hasta 65 años, sin límite de permanencia",
+      "Soltero: padres hasta 75 años e hijos/hermanos hasta 30 años de ingreso",
+      "Casado: cónyuge hasta 65 años, hijos hasta 30 años y padres hasta 75 años",
       "A falta de padres puede incluir suegros",
-      "Sin limite de edad para permanencia al dia en pagos",
+      "Sin límite de edad para permanencia al día en pagos",
       "Beneficios Sinergia incluidos",
     ],
     popular: false,
@@ -83,9 +83,9 @@ const planes = [
 const asistencias = [
   {
     icon: Brain,
-    title: "Asistencia Psicologica",
+    title: "Asistencia Psicológica",
     items: [
-      "Mens Sana: Centro de ayuda psicologica personalizada (Sesiones a consideracion del psicologo)",
+      "Mens Sana: Centro de ayuda psicológica personalizada (Sesiones a consideración del psicólogo)",
       "Unidad de apoyo al duelo",
     ],
   },
@@ -95,7 +95,7 @@ const seguros = [
   {
     icon: ShoppingBasket,
     title: "SoliCanasta",
-    description: "Seguro de alimentacion que cubre la canasta familiar por un ano para el grupo familiar en caso de fallecimiento del titular.",
+    description: "Seguro de alimentación que cubre la canasta familiar por un año para el grupo familiar en caso de fallecimiento del titular.",
   },
 ]
 
@@ -113,13 +113,13 @@ export default function TurbacoPage() {
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Contar con un seguro de prevision integral es cuidar a los que mas quieres y asi brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una proteccion integral te brindara tranquilidad en aquellos momentos dificiles.
+                  Contar con un seguro de previsión integral es cuidar a los que más quieres y así brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas. Una protección integral te brindará tranquilidad en aquellos momentos difíciles.
                 </p>
                 <p>
-                  Afiliandote podras adquirir tu plan de prevision en cuotas mensuales muy comodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
+                  Afiliándote podrás adquirir tu plan de previsión en cuotas mensuales muy cómodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
                 </p>
                 <p className="font-display font-bold text-foreground text-lg">
-                  ¡Es momento de demostrarle a tu familia cuanto la amas!
+                  ¡Es momento de demostrarle a tu familia cuánto la amas!
                 </p>
               </div>
             </div>
@@ -192,7 +192,7 @@ export default function TurbacoPage() {
               Planes disponibles en Turbaco
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
-              Adquiere tu plan de prevision en comodas cuotas mensuales, trimestrales, semestrales o anuales.
+              Adquiere tu plan de previsión en cómodas cuotas mensuales, trimestrales, semestrales o anuales.
             </p>
           </div>
 
