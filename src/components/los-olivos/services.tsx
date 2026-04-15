@@ -12,7 +12,8 @@ export function Services() {
       title: "Pagos en línea",
       description: "Paga todo lo que necesites desde la comodidad de tu hogar de forma rápida y segura.",
       cta: "Pagar ahora",
-      href: "/pagos",
+      href: "https://pagos.losolivoscartagena.com/",
+      isExternal: true,
       highlight: false,
     },
     {
@@ -101,10 +102,17 @@ export function Services() {
                   variant={service.highlight ? "default" : "outline"}
                   asChild
                 >
-                  <Link href={service.href}>
-                    {service.cta}
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  {"isExternal" in service && service.isExternal ? (
+                    <a href={service.href} target="_blank" rel="noopener noreferrer">
+                      {service.cta}
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <Link href={service.href}>
+                      {service.cta}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  )}
                 </Button>
               </CardContent>
             </Card>

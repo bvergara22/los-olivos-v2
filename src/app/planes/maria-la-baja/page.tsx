@@ -183,10 +183,9 @@ export default function MariaLaBajaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 text-balance">Protege a tu familia en Maria la Baja</h2>
-            <p className="text-muted-foreground leading-relaxed mb-8">Visitanos en la Calle del Puerto # 41-11 o contactanos.</p>
+            <p className="text-muted-foreground leading-relaxed mb-8">Nuestros asesores están listos para ayudarte.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild><Link href="/cotizar">Cotizar mi plan <ArrowRight className="w-5 h-5" /></Link></Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8" asChild><a href="https://wa.me/573008131803" target="_blank" rel="noopener noreferrer"><MessageCircle className="w-5 h-5" /> WhatsApp</a></Button>
+              <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-primary/10 hover:border-primary hover:text-primary" asChild><a href="https://wa.me/573008131803" target="_blank" rel="noopener noreferrer"><MessageCircle className="w-5 h-5" /> Contáctanos</a></Button>
             </div>
             <div className="mt-8"><VerSedesButton /></div>
           </div>

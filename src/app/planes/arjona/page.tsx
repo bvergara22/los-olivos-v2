@@ -1,14 +1,9 @@
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import {
-  ArrowRight,
-  Phone,
-  MessageCircle,
-} from "lucide-react"
+import { ArrowRight, MessageCircle } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Planes Arjona - Los Olivos Cartagena",
@@ -125,19 +120,13 @@ export default function ArjonaPage() {
               Protege a tu familia en Arjona
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
-              Visitanos en la Cra 56A # 54 A-109 o contactanos para recibir asesoria personalizada.
+              Nuestros asesores están listos para ayudarte.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
-                <Link href="/cotizar">Cotizar mi plan <ArrowRight className="w-5 h-5" /></Link>
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
+              <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-primary/10 hover:border-primary hover:text-primary" asChild>
                 <a href="https://wa.me/573106427557" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5" /> WhatsApp Arjona
+                  <MessageCircle className="w-5 h-5" /> Contáctanos
                 </a>
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
-                <a href="tel:6056293667"><Phone className="w-5 h-5" /> Llamar</a>
               </Button>
             </div>
             <div className="mt-8">

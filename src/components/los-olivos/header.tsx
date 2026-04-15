@@ -92,7 +92,8 @@ export function Header() {
         { 
           label: "Pagos en línea",
           description: "Realiza tus pagos de forma segura y rápida",
-          href: "/pagos", 
+          href: "https://pagos.losolivoscartagena.com/",
+          isExternal: true,
           icon: CreditCard,
           
         },

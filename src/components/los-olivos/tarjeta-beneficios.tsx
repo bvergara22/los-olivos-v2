@@ -7,7 +7,7 @@ import { useState } from "react"
 const tarjeta = {
   title: "Tarjeta Golden Offers",
   image: "/tarjeta-golden-offers.png",
-  description: "",
+  description: "Te brindamos un mundo de beneficios para asegurarnos no sólo de tu protección exequial sino también de contribuir en momentos únicos junto a toda tu familia.",
 }
 
 export function TarjetaBeneficios() {
@@ -37,7 +37,7 @@ export function TarjetaBeneficios() {
               alt={tarjeta.title}
               width={480}
               height={300}
-              className="object-contain w-full max-w-md h-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_0_16px_rgba(76,175,80,0.5)]"
+              className="object-contain w-full max-w-md h-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_0_16px_rgba(240,165,0,0.6)]"
             />
           </button>
         </div>
@@ -74,15 +74,23 @@ export function TarjetaBeneficios() {
               {tarjeta.title}
             </h3>
 
-            {tarjeta.description ? (
-              <p className="text-sm text-muted-foreground leading-relaxed text-center">
-                {tarjeta.description}
-              </p>
-            ) : (
-              <p className="text-sm text-muted-foreground leading-relaxed text-center italic">
-                Informacion proximamente.
-              </p>
-            )}
+            <p className="text-sm text-muted-foreground leading-relaxed text-center mb-6">
+              {tarjeta.description}
+            </p>
+
+            <div className="flex justify-center">
+              <a
+                href="https://goldenoffer.losolivoscartagena.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg border-2 font-medium text-sm transition-colors"
+                style={{ borderColor: "#F0A500", color: "#F0A500", backgroundColor: "transparent" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#F0A500"; (e.currentTarget as HTMLAnchorElement).style.color = "#fff" }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent"; (e.currentTarget as HTMLAnchorElement).style.color = "#F0A500" }}
+              >
+                Conoce más
+              </a>
+            </div>
           </div>
         </div>
       )}

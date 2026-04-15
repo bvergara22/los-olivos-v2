@@ -7,12 +7,10 @@ import {
   Brain,
   Check,
   MessageCircle,
-  Phone,
   ShoppingBasket,
 } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Planes Turbaco - Los Olivos Cartagena",
@@ -252,25 +250,13 @@ export default function TurbacoPage() {
               Protege a tu familia en Turbaco hoy
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
-              Nuestros asesores te esperan en la Via Turbaco Km 4.
+              Nuestros asesores están listos para ayudarte.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
-                <Link href="/cotizar">
-                  Cotizar mi plan
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
+              <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-primary/10 hover:border-primary hover:text-primary" asChild>
                 <a href="https://wa.me/573008142820" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5" />
-                  WhatsApp Turbaco
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2 px-8" asChild>
-                <a href="tel:6056524502">
-                  <Phone className="w-5 h-5" />
-                  Llamar
+                  Contáctanos
                 </a>
               </Button>
             </div>

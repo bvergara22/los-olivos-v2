@@ -160,7 +160,13 @@ export default function CotizarPage() {
                   </div>
                 )}
 
-                {tipoUsuario !== "afiliado" && (
+                {tipoUsuario === "afiliado" ? (
+                  <Button asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark">
+                    <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
+                      Comunicarme con homenajes
+                    </a>
+                  </Button>
+                ) : (
                   <Button
                     onClick={() => tipoUsuario && setStep(2)}
                     disabled={!tipoUsuario}
