@@ -1,14 +1,14 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Award, BookOpen, Box, Bus, Car, CheckCircle, Church, FileSignature, Flower2, Handshake, Truck as Hearse, Heart, MapPin, Scroll, Truck } from "lucide-react"
+import { Award, BookOpen, Box, Bus, Car, CheckCircle, Church, FileSignature, Flower2, Handshake, Truck as Hearse, Heart, MapPin, MapPinOff, Scroll, Truck } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
 const tiposServicio = [
   { id: "cremacion", label: "Cremación", icon: Heart },
   { id: "inhumacion", label: "Inhumación", icon: Handshake },
-  { id: "traslado", label: "Traslado", icon: Bus },
+  { id: "sin-destino-final", label: "Sin destino final", icon: MapPinOff },
 ]
 
 const derechosAfiliado = [
@@ -27,11 +27,49 @@ const derechosAfiliado = [
   { icon: Hearse, label: "Carroza al campo santo" },
 ]
 
+const itemsComunes = [
+  "Cofre",
+  "Trámites de licencia",
+  "Traslado local",
+  "Preservación del cuerpo",
+  "Sala de velación",
+  "Serie de carteles",
+  "Arreglo floral",
+  "Cinta membreteada",
+  "Recordatorio y libro de oración",
+  "Exequias",
+  "Carroza al campo santo",
+  "Transporte de acompañantes",
+]
+
+const planesParticular: Record<string, { titulo: string; items: string[]; total: string; color: string }> = {
+  inhumacion: {
+    titulo: "Homenaje Particular Integral con Inhumación",
+    items: [...itemsComunes, "Destino final inhumación arriendo por 4 años sin nicho Jardín Los Olivos"],
+    total: "$6.000.000",
+    color: "cotizar-main",
+  },
+  cremacion: {
+    titulo: "Homenaje Particular Integral con Cremación",
+    items: [...itemsComunes, "Destino final cremación Jardín Los Olivos"],
+    total: "$5.000.000",
+    color: "cotizar-main",
+  },
+  "sin-destino-final": {
+    titulo: "Homenaje Particular Básico / Sin Destino Final",
+    items: [...itemsComunes],
+    total: "$3.500.000",
+    color: "cotizar-main",
+  },
+}
+
 export default function CotizarPage() {
   const [tipoUsuario, setTipoUsuario] = useState<"afiliado" | "particular" | null>(null)
   const [servicioSeleccionado, setServicioSeleccionado] = useState<string | null>(null)
   const [deseaSala, setDeseaSala] = useState<boolean | null>(null)
   const [step, setStep] = useState(1)
+
+  const esParticular = tipoUsuario === "particular"
 
   return (
     <>
@@ -86,8 +124,8 @@ export default function CotizarPage() {
               {[1, 2, 3].map((s) => (
                 <div key={s} className="flex items-center gap-2 flex-1">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                    step >= s 
-                      ? "bg-cotizar-main text-white" 
+                    step >= s
+                      ? "bg-cotizar-main text-white"
                       : "bg-muted text-muted-foreground"
                   }`}>
                     {step > s ? <CheckCircle className="w-5 h-5" /> : s}
@@ -211,43 +249,49 @@ export default function CotizarPage() {
                   ))}
                 </div>
 
-                <div className="mb-6">
-                  <h3 className="font-display font-semibold text-foreground mb-3">
-                    ¿Deseas sala de homenaje?
-                  </h3>
-                  <div className="flex gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setDeseaSala(true)}
-                      className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
-                        deseaSala === true
-                          ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
-                          : "border-border text-muted-foreground hover:border-cotizar-main/50"
-                      }`}
-                    >
-                      Sí
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setDeseaSala(false)}
-                      className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
-                        deseaSala === false
-                          ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
-                          : "border-border text-muted-foreground hover:border-cotizar-main/50"
-                      }`}
-                    >
-                      No
-                    </button>
+                {/* Sala solo para afiliados */}
+                {!esParticular && (
+                  <div className="mb-6">
+                    <h3 className="font-display font-semibold text-foreground mb-3">
+                      ¿Deseas sala de homenaje?
+                    </h3>
+                    <div className="flex gap-4">
+                      <button
+                        type="button"
+                        onClick={() => setDeseaSala(true)}
+                        className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
+                          deseaSala === true
+                            ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
+                            : "border-border text-muted-foreground hover:border-cotizar-main/50"
+                        }`}
+                      >
+                        Sí
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDeseaSala(false)}
+                        className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
+                          deseaSala === false
+                            ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
+                            : "border-border text-muted-foreground hover:border-cotizar-main/50"
+                        }`}
+                      >
+                        No
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="flex gap-3">
                   <Button variant="outline" onClick={() => setStep(1)} className="hover:bg-muted hover:text-foreground">
                     Atrás
                   </Button>
                   <Button
-                    onClick={() => servicioSeleccionado && deseaSala !== null && setStep(3)}
-                    disabled={!servicioSeleccionado || deseaSala === null}
+                    onClick={() => {
+                      const puedeAvanzar = servicioSeleccionado && (esParticular || deseaSala !== null)
+                      if (puedeAvanzar) setStep(3)
+                    }}
+                    disabled={!servicioSeleccionado || (!esParticular && deseaSala === null)}
                     className="bg-cotizar-main text-white hover:bg-cotizar-dark"
                   >
                     Siguiente
@@ -256,49 +300,126 @@ export default function CotizarPage() {
               </div>
             )}
 
-            {/* Step 3: Resumen */}
+            {/* Step 3: Resultado */}
             {step === 3 && (
-              <div className="bg-cotizar-main/5 rounded-2xl border border-border p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">3</div>
+              <>
+                {/* Particular: tabla de precios detallada */}
+                {esParticular && servicioSeleccionado && planesParticular[servicioSeleccionado] ? (
                   <div>
-                    <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Confirmación</h3>
-                    <h2 className="font-display text-xl font-bold text-foreground">
-                      Resumen de tu cotización
-                    </h2>
-                  </div>
-                </div>
+                    {/* Card del plan */}
+                    <div className="rounded-2xl border border-border overflow-hidden shadow-lg">
+                      {/* Header del plan */}
+                      <div className="bg-cotizar-main px-6 py-4 text-center">
+                        <h2 className="font-display font-bold text-white text-base md:text-lg uppercase tracking-wide leading-snug">
+                          {planesParticular[servicioSeleccionado].titulo}
+                        </h2>
+                      </div>
 
-                <div className="bg-muted/30 rounded-xl p-5 mb-6 space-y-3">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Tipo de usuario:</span>
-                    <span className="font-medium text-foreground capitalize">{tipoUsuario}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Servicio:</span>
-                    <span className="font-medium text-foreground capitalize">{servicioSeleccionado}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Sala de homenaje:</span>
-                    <span className="font-medium text-foreground">{deseaSala ? "Sí" : "No"}</span>
-                  </div>
-                </div>
+                      {/* Tabla */}
+                      <div className="bg-card">
+                        {/* Encabezado de columnas */}
+                        <div className="grid grid-cols-[1fr_auto] border-b border-border bg-cotizar-main/8">
+                          <div className="px-5 py-3 font-display font-bold text-sm text-cotizar-dark uppercase tracking-wide">
+                            Homenajes
+                          </div>
+                          <div className="px-5 py-3 font-display font-bold text-sm text-cotizar-dark uppercase tracking-wide text-center w-36 border-l border-border leading-tight">
+                            Tarifas de<br />contado
+                          </div>
+                        </div>
 
-                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                  Un asesor de Los Olivos Cartagena se comunicará contigo para brindarte una cotización personalizada basada en tus requerimientos. Puedes contactarnos directamente al WhatsApp 323 3093435.
-                </p>
+                        {/* Items */}
+                        {planesParticular[servicioSeleccionado].items.map((item, i) => (
+                          <div
+                            key={i}
+                            className={`grid grid-cols-[1fr_auto] border-b border-border last:border-b-0 ${
+                              i % 2 === 0 ? "bg-white" : "bg-muted/20"
+                            }`}
+                          >
+                            <div className="px-5 py-3 text-sm text-foreground font-medium">
+                              {item}
+                            </div>
+                            <div className="px-5 py-3 w-36 border-l border-border" />
+                          </div>
+                        ))}
 
-                <div className="flex gap-3">
-                  <Button variant="outline" onClick={() => setStep(2)} className="hover:bg-muted hover:text-foreground">
-                    Atrás
-                  </Button>
-                  <Button asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark">
-                    <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                      Contactar por WhatsApp
-                    </a>
-                  </Button>
-                </div>
-              </div>
+                        {/* Total */}
+                        <div className="grid grid-cols-[1fr_auto] bg-cotizar-main/5 border-t-2 border-cotizar-main">
+                          <div className="px-5 py-4">
+                            <span className="font-display font-bold text-cotizar-main uppercase tracking-wide text-sm">
+                              Total homenajes
+                            </span>
+                          </div>
+                          <div className="px-5 py-4 w-36 border-l border-cotizar-main/30 flex items-center justify-center">
+                            <span className="font-display font-bold text-cotizar-dark text-base">
+                              {planesParticular[servicioSeleccionado].total}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Nota informativa */}
+                    <p className="text-xs text-muted-foreground mt-4 leading-relaxed text-center">
+                      * Tarifa de contado. Para mayor información comunícate con nuestros asesores.
+                    </p>
+
+                    {/* Acciones */}
+                    <div className="flex gap-3 mt-6">
+                      <Button variant="outline" onClick={() => setStep(2)} className="hover:bg-muted hover:text-foreground">
+                        Atrás
+                      </Button>
+                      <Button size="lg" asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark flex-1 px-8">
+                        <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
+                          Contactar por WhatsApp
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  /* Afiliado: resumen genérico */
+                  <div className="bg-cotizar-main/5 rounded-2xl border border-border p-6 md:p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">3</div>
+                      <div>
+                        <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Confirmación</h3>
+                        <h2 className="font-display text-xl font-bold text-foreground">
+                          Resumen de tu cotización
+                        </h2>
+                      </div>
+                    </div>
+
+                    <div className="bg-muted/30 rounded-xl p-5 mb-6 space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Tipo de usuario:</span>
+                        <span className="font-medium text-foreground capitalize">{tipoUsuario}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Servicio:</span>
+                        <span className="font-medium text-foreground capitalize">{servicioSeleccionado}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Sala de homenaje:</span>
+                        <span className="font-medium text-foreground">{deseaSala ? "Sí" : "No"}</span>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                      Un asesor de Los Olivos Cartagena se comunicará contigo para brindarte una cotización personalizada basada en tus requerimientos. Puedes contactarnos directamente al WhatsApp 323 3093435.
+                    </p>
+
+                    <div className="flex gap-3">
+                      <Button variant="outline" onClick={() => setStep(2)} className="hover:bg-muted hover:text-foreground">
+                        Atrás
+                      </Button>
+                      <Button asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark">
+                        <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
+                          Contactar por WhatsApp
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>

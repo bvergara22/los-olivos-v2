@@ -19,9 +19,9 @@
   --cotizar-main: #477a7b; /* morado principal (íconos, acentos) */
   --cotizar-dark: #477a7b; /* morado oscuro (botones, hover)              */
 
-  --primary: #4caf50;
+  --primary: #018c58;
   --primary-foreground: #ffffff;
-  --secondary: #81c784;
+  --secondary: #018c58;
   --secondary-foreground: #010101;
   --background: #fafafa;
   --foreground: #010101;
@@ -31,27 +31,27 @@
   --popover-foreground: #1a1a1a;
   --muted: #f5f5f5;
   --muted-foreground: #605c5c;
-  --accent: #4caf50;
+  --accent: #018c58;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #e5e5e5;
   --input: #f0f0f0;
-  --ring: #4caf50;
-  --chart-1: #6CD490;
-  --chart-2: #81c784;
+  --ring: #018c58;
+  --chart-1: #018c58;
+  --chart-2: #018c58;
   --chart-3: #B4E379;
   --chart-4: #F0A33D;
   --chart-5: #59AB9B;
   --radius: 0.5rem;
   --sidebar: #fafafa;
   --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #6CD490;
+  --sidebar-primary: #018c58;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #B4E379;
   --sidebar-accent-foreground: #1a1a1a;
   --sidebar-border: #e5e5e5;
-  --sidebar-ring: #6CD490;
+  --sidebar-ring: #018c58;
 }
 
 .dark {

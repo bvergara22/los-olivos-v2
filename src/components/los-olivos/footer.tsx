@@ -25,21 +25,21 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-foreground text-background py-16">
+    <footer className="bg-primary text-primary-foreground pt-16 pb-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-10 mb-8 md:mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-[1.5fr_1.5fr_2fr_2.5fr] gap-6 md:gap-10 mb-8 md:mb-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div>
             <Link href="/" className="flex items-center mb-4">
               <Image
-                src="/logo-olivos.png"
+                src="/logo_blanco.png"
                 alt="Los Olivos Cartagena"
                 width={160}
                 height={70}
                 className="object-contain"
               />
             </Link>
-            <p className="text-sm text-background/70 leading-relaxed">
+            <p className="text-sm text-primary-foreground/70 leading-relaxed">
               Más de 30 años protegiendo familias con servicios exequiales integrales.
             </p>
           </div>
@@ -51,41 +51,16 @@ export function Footer() {
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   {link.external ? (
-                    <a 
-                      href={link.href} 
+                    <a
+                      href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-background/70 hover:text-primary transition-colors"
+                      className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                     >
                       {link.label}
                     </a>
                   ) : (
-                    <Link href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
-                      {link.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Service Links */}
-          <div>
-            <h4 className="font-display font-bold mb-4">Servicios</h4>
-            <ul className="space-y-3">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  {link.external ? (
-                    <a 
-                      href={link.href} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-background/70 hover:text-primary transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link href={link.href} className="text-sm text-background/70 hover:text-primary transition-colors">
+                    <Link href={link.href} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                       {link.label}
                     </Link>
                   )}
@@ -100,11 +75,11 @@ export function Footer() {
             <ul className="space-y-3">
               {legalLinks.map((link) => (
                 <li key={link.label}>
-                  <a 
-                    href={link.href} 
+                  <a
+                    href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="text-sm text-background/70 hover:text-primary transition-colors"
+                    className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                   >
                     {link.label}
                   </a>
@@ -116,20 +91,20 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-display font-bold mb-4">Contacto</h4>
-            <div className="space-y-3 text-sm text-background/70">
-              <p>Tel: 310 6171987</p>
+            <div className="space-y-3 text-sm text-primary-foreground/70">
               <p>WhatsApp: 323 3093435</p>
+              <p>Homenaje: 310 6171987</p>
               <p>Línea Nacional: 018000-180-150</p>
               <p>contacto@losolivoscartagena.com</p>
-              <p className="text-background/50 text-xs leading-relaxed">Carretera la Cordialidad Trv 54 #31-J27, Cartagena, Bolívar</p>
+              <p className="text-primary-foreground/50 text-xs leading-relaxed">Carretera la Cordialidad Trv 54 #31-J27, Cartagena, Bolívar</p>
             </div>
-            
+
             <div className="flex gap-3 mt-4">
               <a
-                href="https://www.facebook.com/olivos.cartagena"
+                href="https://www.facebook.com/Olivos.Ctg/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-background/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -138,7 +113,7 @@ export function Footer() {
                 href="https://www.instagram.com/olivos.ctg/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-background/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -147,7 +122,7 @@ export function Footer() {
                 href="https://www.tiktok.com/@olivos.ctg"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-background/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="TikTok"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -158,7 +133,7 @@ export function Footer() {
                 href="https://wa.me/573233093435"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-background/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="WhatsApp"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -170,9 +145,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-background/10 text-center text-sm text-background/50">
-          <p>2026 Los Olivos Cartagena. Todos los derechos reservados.</p>
-          <p className="mt-1">CENTRAL COOPERATIVA DE SERVICIOS FUNERARIOS DE CARTAGENA - CARTAFUN</p>
+        <div className="pt-8 border-t border-primary-foreground/10 text-center text-sm text-primary-foreground/50">
+          <p>© 2026 Los Olivos Cartagena. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 "use client"
 
-import { X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Eye, X } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
@@ -22,16 +23,21 @@ export function TarjetaBeneficios() {
             Tarjeta Golden Offers
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
-            Descuentos exclusivos, sorteos, atencion preferencial y mucho mas para nuestros afiliados y sus familias.
+            Te brindamos un mundo de beneficios para asegurarnos no sólo de tu protección exequial sino también de contribuir en momentos únicos junto a toda tu familia.
           </p>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center gap-4">
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="group flex items-center justify-center p-4 cursor-pointer"
+            className="group relative flex items-center justify-center p-4 cursor-pointer"
           >
+            {/* Pulso en la esquina */}
+            <span className="absolute top-5 right-5 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ backgroundColor: "#F0A500" }} />
+              <span className="relative inline-flex rounded-full h-3 w-3" style={{ backgroundColor: "#F0A500" }} />
+            </span>
             <Image
               src={tarjeta.image}
               alt={tarjeta.title}
@@ -40,6 +46,18 @@ export function TarjetaBeneficios() {
               className="object-contain w-full max-w-md h-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_0_16px_rgba(240,165,0,0.6)]"
             />
           </button>
+          {/* Hint de interacción */}
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={() => setOpen(true)}
+            className="gap-2 px-8"
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#F0A500"; (e.currentTarget as HTMLButtonElement).style.borderColor = "#F0A500"; (e.currentTarget as HTMLButtonElement).style.color = "#fff" }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = ""; (e.currentTarget as HTMLButtonElement).style.borderColor = ""; (e.currentTarget as HTMLButtonElement).style.color = "" }}
+          >
+            <Eye className="w-5 h-5" />
+            Conoce tus beneficios
+          </Button>
         </div>
       </div>
 
@@ -71,25 +89,26 @@ export function TarjetaBeneficios() {
             </div>
 
             <h3 className="font-display font-bold text-xl text-foreground text-center mb-3">
-              {tarjeta.title}
+              ¿Qué es la tarjeta Golden Offers?
             </h3>
 
             <p className="text-sm text-muted-foreground leading-relaxed text-center mb-6">
-              {tarjeta.description}
+              Es una tarjeta exclusiva para afiliados de Los Olivos, que te brinda descuentos, experiencias y beneficios especiales con nuestros aliados comerciales.
             </p>
 
             <div className="flex justify-center">
-              <a
-                href="https://goldenoffer.losolivoscartagena.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg border-2 font-medium text-sm transition-colors"
-                style={{ borderColor: "#F0A500", color: "#F0A500", backgroundColor: "transparent" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#F0A500"; (e.currentTarget as HTMLAnchorElement).style.color = "#fff" }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent"; (e.currentTarget as HTMLAnchorElement).style.color = "#F0A500" }}
+              <Button
+                size="lg"
+                variant="outline"
+                className="gap-2 px-8"
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#F0A500"; (e.currentTarget as HTMLButtonElement).style.borderColor = "#F0A500"; (e.currentTarget as HTMLButtonElement).style.color = "#fff" }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = ""; (e.currentTarget as HTMLButtonElement).style.borderColor = ""; (e.currentTarget as HTMLButtonElement).style.color = "" }}
+                asChild
               >
-                Conoce más
-              </a>
+                <a href="https://goldenoffer.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                  Conoce más
+                </a>
+              </Button>
             </div>
           </div>
         </div>

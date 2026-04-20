@@ -1,6 +1,6 @@
 import { SalasGallery } from "@/components/los-olivos/salas-gallery"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Flower2, Heart, Sparkles, Users } from "lucide-react"
+import { ArrowRight, Check, Flower2, Heart, Sparkles, Users } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -38,16 +38,16 @@ const etapas = [
 ]
 
 const momentosSede = [
-  "Brindamos un servicio de atención inmediata a niños, que consiste en orientar y acompañar de manera inmediata a los infantes ante la pérdida de su ser querido.",
-  "Realizamos el acercamiento con el contratante o la familia doliente, colocándonos a sus servicios conforme a nuestras habilidades psicológicas.",
-  "Realizamos el acompañamiento inicial al recibir el homenaje en la sede.",
+  { title: "Atención a niños", description: "Orientación inmediata para ayudar a los niños a comprender y afrontar la pérdida." },
+  { title: "Orientación a la familia", description: "Apoyo y guía al contratante o familiares según sus necesidades." },
+  { title: "Durante el homenaje", description: "Acompañamiento al inicio del servicio en nuestras sedes." },
 ]
 
 const momentosParque = [
-  "Acompañamiento en procesos de inhumación (asesoría y acompañamiento).",
-  "Acompañamiento en procesos de exhumación (asesoría y acompañamiento).",
-  "Acompañamiento en procesos de cremación (asesoría y acompañamiento).",
-  "Acompañamiento en la entrega de cenizas.",
+  "Inhumación",
+  "Exhumación",
+  "Cremación",
+  "Entrega de cenizas",
 ]
 
 const flores = [
@@ -78,10 +78,11 @@ export default function HomenajePage() {
           <div className="grid lg:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-center">
             <div>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-duelo-dark leading-tight text-balance">
-                Nuestro homenaje al amor
+                Nuestro homenaje<br />al amor
               </h1>
               <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
-                Honramos lo esencial: lo que permanece. Cada detalle es cuidado con respeto y dignidad, para acompañarte como realmente lo necesitas.
+                Honramos lo esencial: <strong>lo que permanece.</strong><br />
+                Cada detalle es cuidado con respeto y dignidad, para acompañarte como realmente lo necesitas.
               </p>
             </div>
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
@@ -118,7 +119,7 @@ export default function HomenajePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark text-balance">
-              Protocolo de 4 etapas
+              Protocolo de homenaje
             </h2>
             <p className="text-xs md:text-sm text-muted-foreground mt-2 leading-relaxed line-clamp-2">
               En Los Olivos Cartagena, rendimos un protocolo de 4 etapas en el que prometemos brindarte un respaldo total en la trascendencia de tu ser querido.
@@ -159,15 +160,18 @@ export default function HomenajePage() {
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-duelo-main block">Acompañamiento integral</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">
-              Momentos
+              Apoyo en cada momento del proceso
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
-              Brindamos acompañamiento psicológico a la comunidad doliente a través de herramientas que les faciliten sobrellevar su proceso de duelo, promoviendo la sensibilización de la sociedad.
+              Brindamos acompañamiento emocional a las familias, ofreciendo orientación oportuna para afrontar cada etapa del proceso.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-card rounded-2xl p-6 md:p-8">
-              <h3 className="font-display font-bold text-xl text-duelo-dark mb-4">En sede</h3>
+              <div className="mb-5">
+                <h3 className="font-display font-bold text-xl text-duelo-dark">En sede</h3>
+                <p className="text-sm text-duelo-main font-medium mt-0.5">Sede Los Olivos</p>
+              </div>
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/fachada-olivos.png"
@@ -179,17 +183,23 @@ export default function HomenajePage() {
               </div>
               <ol className="space-y-4">
                 {momentosSede.map((momento, index) => (
-                  <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                    <div className="w-6 h-6 rounded-full bg-duelo-main text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                      {index + 1}
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-duelo-main text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5" />
                     </div>
-                    {momento}
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{momento.title}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed mt-0.5">{momento.description}</p>
+                    </div>
                   </li>
                 ))}
               </ol>
             </div>
             <div className="bg-card rounded-2xl p-6 md:p-8">
-              <h3 className="font-display font-bold text-xl text-duelo-dark mb-4">En parque</h3>
+              <div className="mb-5">
+                <h3 className="font-display font-bold text-xl text-duelo-dark">En parque</h3>
+                <p className="text-sm text-duelo-main font-medium mt-0.5">Parque Cementerio Los Olivos</p>
+              </div>
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/parque-cementerio.png"
@@ -200,18 +210,19 @@ export default function HomenajePage() {
                 />
               </div>
               <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                Al llegar a destino final, el profesional en salud mental acompañará en cada uno de estos procesos:
+                El profesional en salud mental acompaña en momentos clave:
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-4">
                 {momentosParque.map((momento, index) => (
-                  <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
-                    <div className="w-6 h-6 rounded-full bg-duelo-main text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                      {index + 1}
+                  <li key={index} className="flex items-center gap-3 text-sm font-medium text-foreground">
+                    <div className="w-6 h-6 rounded-full bg-duelo-main text-white flex items-center justify-center flex-shrink-0">
+                      <Check className="w-3.5 h-3.5" />
                     </div>
                     {momento}
                   </li>
                 ))}
               </ul>
+              <p className="text-sm text-muted-foreground italic">Con orientación y apoyo en cada proceso.</p>
             </div>
           </div>
         </div>
