@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import type { LucideIcon } from "lucide-react"
 import {
   BookOpen,
-  Brain,
   Building2,
   ChevronDown,
   ClipboardList,
@@ -13,17 +12,13 @@ import {
   FileCheck,
   FileText,
   Flower2,
-  Gift,
   Heart,
-  HeartHandshake,
   Info,
   MapPin,
-  Menu,
   PawPrint,
   Shield,
   TreePine,
-  Users,
-  X
+  Users
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -56,10 +51,15 @@ interface NavItem {
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuClosing, setIsMenuClosing] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+
+  const openMenu = () => setIsMenuOpen(true)
+  const closeMenu = () => setIsMenuClosing(true)
+  const toggleMenu = () => isMenuOpen ? closeMenu() : openMenu()
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  // Servicios dropdown - estilo Nequi con columnas
+  // Servicios dropdown
   const serviciosColumns: DropdownColumn[] = [
     {
       title: "Nuestros Servicios",
@@ -365,11 +365,24 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 flex items-center justify-center w-10 h-10"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <div className="relative w-6 h-[18px]">
+              <span
+                className="absolute top-0 left-0 w-full h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
+                style={isMenuOpen ? { transform: "translateY(8px) rotateZ(-45deg)" } : {}}
+              />
+              <span
+                className="absolute top-1/2 -translate-y-1/2 left-0 h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
+                style={{ width: isMenuOpen ? "0%" : "100%" }}
+              />
+              <span
+                className="absolute bottom-0 left-0 w-full h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
+                style={isMenuOpen ? { transform: "translateY(-8px) rotateZ(45deg)" } : {}}
+              />
+            </div>
           </button>
         </div>
 
@@ -599,7 +612,8 @@ export function Header() {
 
                 {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
+          <div className="lg:hidden overflow-hidden">
+            <div className="mobile-menu-slide py-4 border-t border-border">
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <div key={item.label}>
@@ -863,6 +877,7 @@ export function Header() {
                 </Button>
               </div>
             </nav>
+            </div>
           </div>
         )}
       </div>

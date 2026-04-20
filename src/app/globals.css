@@ -1,6 +1,24 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100%); }
+}
+
+.mobile-menu-slide {
+  animation: slideDown 0.35s ease-out;
+}
+
+.mobile-menu-slide-out {
+  animation: slideUp 0.35s ease-out;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
