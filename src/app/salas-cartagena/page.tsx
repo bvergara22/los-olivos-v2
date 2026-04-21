@@ -10,7 +10,7 @@ export default function SalasCartagenaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-12 md:pt-32 md:pb-20 overflow-hidden">
+      <section className="relative pt-8 pb-12 md:pt-12 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-4 md:space-y-6">

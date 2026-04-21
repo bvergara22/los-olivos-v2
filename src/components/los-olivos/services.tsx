@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Calculator, CreditCard, FileText } from "lucide-react"
 import Link from "next/link"
 
@@ -37,7 +36,7 @@ export function Services() {
   ]
 
   return (
-    <section id="servicios" className="py-12 md:py-20 bg-muted/30">
+    <section id="servicios" className="pt-8 md:pt-10 pb-12 md:pb-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
           <span className="text-3xl md:text-4xl text-primary block">Servicios en línea</span>
@@ -51,9 +50,9 @@ export function Services() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((service) => (
-            <Card
+            <div
               key={service.title}
-              className={`group relative overflow-hidden transition-all duration-300 hover:shadow-lg ${
+              className={`group relative flex flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-lg p-4 md:p-6 ${
                 service.highlight
                   ? "border-primary bg-primary/5 ring-2 ring-primary/20"
                   : service.duelo
@@ -68,8 +67,8 @@ export function Services() {
                   Popular
                 </div>
               )}
-              
-              <CardHeader className="space-y-4 flex flex-col items-center text-center">
+
+              <div className="flex flex-col items-center text-center space-y-4 flex-1">
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-colors ${
                   service.highlight
                     ? "bg-primary text-primary-foreground"
@@ -81,14 +80,16 @@ export function Services() {
                 }`}>
                   <service.icon className="w-7 h-7" />
                 </div>
-                <CardTitle className={`font-display text-xl ${service.duelo ? "text-duelo-main" : service.cotizar ? "text-cotizar-main" : "text-primary"}`}>{service.title}</CardTitle>
-              </CardHeader>
-              
-              <CardContent className="space-y-4">
+                <p className={`font-display text-xl font-semibold leading-none ${service.duelo ? "text-duelo-main" : service.cotizar ? "text-cotizar-main" : "text-primary"}`}>
+                  {service.title}
+                </p>
+              </div>
+
+              <div className="space-y-4 mt-4">
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {service.description}
                 </p>
-                
+
                 <Button
                   className={`w-full gap-2 ${
                     service.highlight
@@ -114,8 +115,8 @@ export function Services() {
                     </Link>
                   )}
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>

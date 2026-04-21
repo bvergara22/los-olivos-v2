@@ -120,15 +120,8 @@ export default function PlanesPage() {
             {tiposPlanes.map((plan) => (
               <Card
                 key={plan.title}
-                className={`relative ${
-                  plan.popular ? "border-primary shadow-lg ring-2 ring-primary/20" : ""
-                }`}
+                className="relative"
               >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-bold px-4 py-1 rounded-full">
-                    Mas Popular
-                  </div>
-                )}
                 <CardHeader>
                   <CardTitle className="font-display text-2xl">{plan.title}</CardTitle>
                   <p className="text-muted-foreground text-sm mt-2">{plan.description}</p>

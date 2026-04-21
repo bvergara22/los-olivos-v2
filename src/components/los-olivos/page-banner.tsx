@@ -6,7 +6,7 @@ interface PageBannerProps {
 
 export function PageBanner({ title, description, titleClassName }: PageBannerProps) {
   return (
-    <section className="relative pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+    <section className="relative pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
       <div 
         className="absolute inset-0 opacity-5"

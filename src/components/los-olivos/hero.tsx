@@ -45,7 +45,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center pt-16 lg:pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
 

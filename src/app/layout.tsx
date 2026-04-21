@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${_raleway.variable} ${_comfortaa.variable} font-sans antialiased`}>
         <Header />
-        <main className="min-h-screen">
+        <main className="min-h-screen pt-20">
           {children}
         </main>
         <Footer />

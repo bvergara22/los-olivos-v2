@@ -59,7 +59,7 @@ export function Benefits() {
             {benefits.map((benefit) => (
               <div 
                 key={benefit.title}
-                className="group p-6 rounded-2xl bg-card border border-border hover:border-vida-dark/50 hover:shadow-lg transition-all duration-300"
+                className="group p-4 md:p-6 rounded-2xl bg-card border border-border hover:border-vida-dark/50 hover:shadow-lg transition-all duration-300"
               >
                 {/* Ley de Pregnancia: Iconos simples */}
                 <div className="w-12 h-12 rounded-xl bg-vida-dark/10 text-vida-dark flex items-center justify-center mb-4 group-hover:bg-vida-dark group-hover:text-white transition-colors">

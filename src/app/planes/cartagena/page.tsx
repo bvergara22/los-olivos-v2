@@ -168,14 +168,14 @@ export default function CartagenaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+      <section className="relative pt-8 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         {/* Círculos decorativos */}
-        <div className="absolute top-20 right-0 w-96 h-96 rounded-full bg-primary/5 translate-x-1/2 -translate-y-1/4 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-secondary/5 -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-primary/5 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-secondary/5 translate-x-1/2 translate-y-1/2 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-5 text-center md:text-left">
               {/* Sedes badge */}
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
@@ -187,11 +187,11 @@ export default function CartagenaPage() {
                 </span>
               </div>
 
-              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight">
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
                 Sede Cartagena
               </h1>
 
-              <div className="space-y-3 text-muted-foreground leading-relaxed">
+              <div className="space-y-3 text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
                   Contar con un seguro de previsión integral es cuidar a los que más quieres y así brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas.
                 </p>
@@ -217,7 +217,7 @@ export default function CartagenaPage() {
               </div>
             </div>
 
-            <div className="relative w-3/4 md:w-full max-w-lg mx-auto">
+            <div className="relative w-3/4 md:w-full mx-auto">
               <Image src="/cartagena-vector.png" alt="" aria-hidden width={600} height={500} className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]" />
               <Image src="/cartagena-vector.png" alt="Familia protegida con Los Olivos Cartagena" width={600} height={500} priority className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
             </div>
@@ -252,10 +252,10 @@ export default function CartagenaPage() {
       </section>
 
       {/* Asistencias */}
-      <section className="py-16 md:py-24 bg-background relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-background relative overflow-hidden">
         <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-primary/5 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-primary block">Más que un plan</span>
             <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
               3 asistencias incluidas en tu afiliación
@@ -265,11 +265,11 @@ export default function CartagenaPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
             {asistencias.map((a, i) => (
               <div
                 key={a.title}
-                className="group relative bg-card rounded-2xl border border-border p-8 hover:border-primary/40 hover:shadow-xl transition-all overflow-hidden"
+                className="group relative bg-card rounded-2xl border border-border p-4 md:p-6 hover:border-primary/40 hover:shadow-xl transition-all overflow-hidden"
               >
                 {/* Número decorativo */}
                 <span className="absolute top-4 right-5 text-6xl font-display font-bold text-primary/5 select-none">
@@ -294,20 +294,20 @@ export default function CartagenaPage() {
       </section>
 
       {/* Seguros */}
-      <section className="py-16 md:py-24 bg-primary relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 80%, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
             <span className="text-3xl md:text-4xl text-primary-foreground/80 block">Respaldo financiero</span>
             <h2 className="font-display text-xl md:text-2xl text-primary-foreground mt-2 text-balance">
               Seguros incluidos en tu plan
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
             {seguros.map((s) => (
               <div
                 key={s.title}
-                className="group bg-primary-foreground/10 backdrop-blur-sm rounded-2xl border border-primary-foreground/20 p-8 text-center hover:bg-primary-foreground/20 transition-all"
+                className="group bg-primary-foreground/10 backdrop-blur-sm rounded-2xl border border-primary-foreground/20 p-4 md:p-6 text-center hover:bg-primary-foreground/20 transition-all"
               >
                 <div className="w-14 h-14 rounded-full bg-primary-foreground/20 text-primary-foreground flex items-center justify-center mx-auto mb-5 group-hover:bg-primary-foreground/30 transition-colors">
                   <s.icon className="w-7 h-7" />
@@ -321,12 +321,10 @@ export default function CartagenaPage() {
       </section>
 
       {/* Planes Personas */}
-      <section className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-primary/5 -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+      <section className="py-12 md:py-20 bg-muted/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          {/* Header con imagen */}
-          <div className="flex flex-col md:flex-row md:items-center gap-8 mb-12">
+          <div className="flex flex-col md:flex-row md:items-center gap-8 mb-8 md:mb-12">
             <div className="flex-1">
               <span className="text-3xl md:text-4xl text-primary block">Planes Personas</span>
               <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
@@ -335,13 +333,6 @@ export default function CartagenaPage() {
               <p className="text-muted-foreground mt-4 leading-relaxed max-w-lg">
                 Elige el plan ideal para proteger a los tuyos con cuotas mensuales, trimestrales, semestrales o anuales.
               </p>
-              <div className="flex flex-wrap gap-3 mt-5">
-                {["Cuotas cómodas", "Desde el primer día"].map((tag) => (
-                  <span key={tag} className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary/10 text-primary px-3 py-1.5 rounded-full">
-                    <Star className="w-3 h-3" /> {tag}
-                  </span>
-                ))}
-              </div>
             </div>
             <div className="hidden md:block flex-shrink-0">
               <Image src="/family-planes.png" alt="Planes para personas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
@@ -349,22 +340,13 @@ export default function CartagenaPage() {
           </div>
 
           {/* Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {planesPersonas.map((plan) => (
               <div
                 key={plan.title}
-                className={`relative flex flex-col bg-card rounded-2xl border overflow-hidden transition-all hover:shadow-lg ${
-                  plan.popular
-                    ? "border-primary shadow-lg ring-2 ring-primary/20"
-                    : "border-border hover:border-primary/40"
-                }`}
+                className="relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden transition-all hover:shadow-lg hover:border-primary/40"
               >
-                {plan.popular && (
-                  <div className="bg-primary text-primary-foreground text-xs font-bold px-4 py-2 text-center tracking-wide uppercase">
-                    ★ Recomendado
-                  </div>
-                )}
-                <div className="p-6 flex flex-col flex-1">
+                <div className="p-4 md:p-6 flex flex-col flex-1">
                   {/* Precio destacado */}
                   <div className="mb-4">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1">Valor mensual</p>
@@ -390,12 +372,11 @@ export default function CartagenaPage() {
       </section>
 
       {/* Planes Empresas */}
-      <section className="py-16 md:py-24 bg-background relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-background relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/5 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          {/* Header con imagen */}
-          <div className="flex flex-col md:flex-row md:items-center gap-8 mb-12">
+          <div className="flex flex-col md:flex-row md:items-center gap-8 mb-8 md:mb-12">
             <div className="flex-1">
               <span className="text-3xl md:text-4xl text-primary block">Planes Empresas</span>
               <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
@@ -411,7 +392,7 @@ export default function CartagenaPage() {
           </div>
 
           {/* Cards con borde izquierdo */}
-          <div className="grid md:grid-cols-2 gap-5 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-5">
             {planesEmpresas.map((plan) => (
               <div
                 key={plan.title}
@@ -439,10 +420,10 @@ export default function CartagenaPage() {
       <TarjetaBeneficios />
 
       {/* CTA Final */}
-      <section className="py-16 md:py-24 bg-primary/5">
+      <section className="py-12 md:py-20 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-2xl md:text-3xl text-foreground mb-4 text-balance font-bold">
+            <h2 className="font-display text-2xl md:text-4xl text-foreground mb-4 text-balance font-bold">
               Protege a tu familia en Cartagena hoy
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">

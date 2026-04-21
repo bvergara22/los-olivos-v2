@@ -51,12 +51,7 @@ interface NavItem {
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isMenuClosing, setIsMenuClosing] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-
-  const openMenu = () => setIsMenuOpen(true)
-  const closeMenu = () => setIsMenuClosing(true)
-  const toggleMenu = () => isMenuOpen ? closeMenu() : openMenu()
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   // Servicios dropdown
@@ -366,21 +361,21 @@ export function Header() {
           <button
             type="button"
             className="lg:hidden p-2 flex items-center justify-center w-10 h-10"
-            onClick={toggleMenu}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
             <div className="relative w-6 h-[18px]">
               <span
                 className="absolute top-0 left-0 w-full h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
-                style={isMenuOpen && !isMenuClosing ? { transform: "translateY(8px) rotateZ(-45deg)" } : {}}
+                style={isMenuOpen ? { transform: "translateY(8px) rotateZ(-45deg)" } : {}}
               />
               <span
                 className="absolute top-1/2 -translate-y-1/2 left-0 h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
-                style={{ width: isMenuOpen && !isMenuClosing ? "0%" : "100%" }}
+                style={{ width: isMenuOpen ? "0%" : "100%" }}
               />
               <span
                 className="absolute bottom-0 left-0 w-full h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
-                style={isMenuOpen && !isMenuClosing ? { transform: "translateY(-8px) rotateZ(45deg)" } : {}}
+                style={isMenuOpen ? { transform: "translateY(-8px) rotateZ(45deg)" } : {}}
               />
             </div>
           </button>
@@ -611,17 +606,12 @@ export function Header() {
         )}
 
                 {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden overflow-hidden">
-            <div
-              className={`${isMenuClosing ? "mobile-menu-slide-out" : "mobile-menu-slide"} py-4 border-t border-border`}
-              onAnimationEnd={() => {
-                if (isMenuClosing) {
-                  setIsMenuClosing(false)
-                  setIsMenuOpen(false)
-                }
-              }}
-            >
+        <div
+          className="lg:hidden grid transition-[grid-template-rows] duration-300 ease-in-out"
+          style={{ gridTemplateRows: isMenuOpen ? "1fr" : "0fr" }}
+        >
+          <div className="overflow-hidden">
+            <div className="py-4 border-t border-border">
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <div key={item.label}>
@@ -887,7 +877,7 @@ export function Header() {
             </nav>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </header>
   )
