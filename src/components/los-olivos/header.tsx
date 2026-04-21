@@ -366,21 +366,21 @@ export function Header() {
           <button
             type="button"
             className="lg:hidden p-2 flex items-center justify-center w-10 h-10"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
             aria-label="Toggle menu"
           >
             <div className="relative w-6 h-[18px]">
               <span
                 className="absolute top-0 left-0 w-full h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
-                style={isMenuOpen ? { transform: "translateY(8px) rotateZ(-45deg)" } : {}}
+                style={isMenuOpen && !isMenuClosing ? { transform: "translateY(8px) rotateZ(-45deg)" } : {}}
               />
               <span
                 className="absolute top-1/2 -translate-y-1/2 left-0 h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
-                style={{ width: isMenuOpen ? "0%" : "100%" }}
+                style={{ width: isMenuOpen && !isMenuClosing ? "0%" : "100%" }}
               />
               <span
                 className="absolute bottom-0 left-0 w-full h-0.5 bg-foreground transition-all duration-300 ease-in-out origin-center"
-                style={isMenuOpen ? { transform: "translateY(-8px) rotateZ(45deg)" } : {}}
+                style={isMenuOpen && !isMenuClosing ? { transform: "translateY(-8px) rotateZ(45deg)" } : {}}
               />
             </div>
           </button>
@@ -613,7 +613,15 @@ export function Header() {
                 {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden overflow-hidden">
-            <div className="mobile-menu-slide py-4 border-t border-border">
+            <div
+              className={`${isMenuClosing ? "mobile-menu-slide-out" : "mobile-menu-slide"} py-4 border-t border-border`}
+              onAnimationEnd={() => {
+                if (isMenuClosing) {
+                  setIsMenuClosing(false)
+                  setIsMenuOpen(false)
+                }
+              }}
+            >
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <div key={item.label}>
