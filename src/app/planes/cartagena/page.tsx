@@ -1,20 +1,12 @@
-import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight,
-  Banknote,
   Building2,
   Clock,
-  HeartHandshake,
-  Home,
   MapPin,
   MessageCircle,
-  PawPrint,
   ShieldCheck,
-  ShoppingBasket,
-  ShieldAlert,
-  Star,
   Users,
 } from "lucide-react"
 import type { Metadata } from "next"
@@ -114,54 +106,11 @@ const planesEmpresas = [
   },
 ]
 
-const asistencias = [
-  {
-    icon: Home,
-    title: "Asistencia domiciliaria gratuita",
-    items: ["Vidrería", "Electricidad", "Cerrajería", "Cedularia", "Inhabitabilidad de la vivienda"],
-  },
-  {
-    icon: PawPrint,
-    title: "Asistencia mascotas",
-    items: [
-      "Consulta veterinaria telefónica",
-      "Traslado de la mascota en caso de enfermedad o accidente",
-      "Medicamentos a domicilio por accidente o enfermedad",
-    ],
-  },
-  {
-    icon: HeartHandshake,
-    title: "Asistencia psicológica",
-    items: [
-      "Mens Sana: Centro de ayuda psicológica personalizada (Sesiones a consideración del psicólogo)",
-      "Unidad de apoyo al duelo",
-    ],
-  },
-]
-
-const seguros = [
-  {
-    icon: ShoppingBasket,
-    title: "SoliCanasta",
-    description: "Seguro de alimentación que cubre la canasta familiar por un año para el grupo familiar en caso de fallecimiento del titular.",
-  },
-  {
-    icon: Banknote,
-    title: "SoliRenta",
-    description: "Renta diaria por hospitalización que cubre al afiliado titular.",
-  },
-  {
-    icon: ShieldAlert,
-    title: "SoliAccidente",
-    description: "Indemnización en caso de fallecimiento que cubre al grupo familiar en caso de fallecimiento del titular.",
-  },
-]
-
 const stats = [
   { icon: Clock, label: "Atención 24/7", value: "Siempre disponibles" },
   { icon: ShieldCheck, label: "Cobertura nacional", value: "Todo Colombia" },
   { icon: Building2, label: "Dos sedes", value: "Alcibia · Cordialidad" },
-  { icon: Users, label: "Años de experiencia", value: "Más de 30 años" },
+  { icon: Users, label: "experiencia", value: "Más de 30 años" },
 ]
 
 export default function CartagenaPage() {
@@ -175,10 +124,10 @@ export default function CartagenaPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-secondary/5 translate-x-1/2 translate-y-1/2 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-5 text-center md:text-left">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+            <div className="space-y-4 text-center lg:text-left">
               {/* Sedes badge */}
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                 <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
                   <MapPin className="w-3 h-3" /> Sede Alcibia
                 </span>
@@ -187,37 +136,25 @@ export default function CartagenaPage() {
                 </span>
               </div>
 
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight text-balance">
                 Sede Cartagena
               </h1>
 
-              <div className="space-y-3 text-base md:text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-3 text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
                   Contar con un seguro de previsión integral es cuidar a los que más quieres y así brindarles una cobertura completa desde que inicias el servicio hasta que lo finalizas.
                 </p>
                 <p>
                   Afiliándote podrás adquirir tu plan de previsión en cuotas mensuales muy cómodas y estar preparado ante cualquier eventualidad, convirtiendo este seguro en un sublime acto de amor.
                 </p>
-                <p className="font-display font-bold text-foreground text-lg">
+                <p className="font-display font-bold text-foreground text-base md:text-lg">
                   ¡Es momento de demostrarle a tu familia cuánto la amas!
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start pt-2">
-                <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
-                  <a href="https://www.portal.losolivoscartagena.com/afiliacion-en-linea" target="_blank" rel="noopener noreferrer">
-                    Afiliarme ahora <ArrowRight className="w-5 h-5" />
-                  </a>
-                </Button>
-                <Button size="lg" variant="outline" className="gap-2 px-8 hover:bg-primary/10 hover:border-primary hover:text-primary" asChild>
-                  <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="w-5 h-5" /> Contáctanos
-                  </a>
-                </Button>
-              </div>
             </div>
 
-            <div className="relative w-3/4 md:w-full mx-auto">
+            <div className="relative w-2/3 sm:w-1/2 lg:w-full mx-auto">
               <Image src="/cartagena-vector.png" alt="" aria-hidden width={600} height={500} className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]" />
               <Image src="/cartagena-vector.png" alt="Familia protegida con Los Olivos Cartagena" width={600} height={500} priority className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
             </div>
@@ -251,86 +188,17 @@ export default function CartagenaPage() {
         </div>
       </section>
 
-      {/* Asistencias */}
-      <section className="py-12 md:py-20 bg-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-primary/5 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-primary block">Más que un plan</span>
-            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
-              3 asistencias incluidas en tu afiliación
-            </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              Tu plan no solo te protege ante el fallecimiento — también te acompaña en vida con servicios de asistencia inmediata.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {asistencias.map((a, i) => (
-              <div
-                key={a.title}
-                className="group relative bg-card rounded-2xl border border-border p-4 md:p-6 hover:border-primary/40 hover:shadow-xl transition-all overflow-hidden"
-              >
-                {/* Número decorativo */}
-                <span className="absolute top-4 right-5 text-6xl font-display font-bold text-primary/5 select-none">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition-colors relative z-10">
-                  <a.icon className="w-7 h-7" />
-                </div>
-                <h3 className="font-display font-bold text-lg text-foreground mb-4 relative z-10">{a.title}</h3>
-                <ul className="space-y-2.5 relative z-10">
-                  {a.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5">
-                      <span className="text-primary mt-1.5 text-xs flex-shrink-0">●</span>
-                      <span className="text-sm text-muted-foreground leading-snug">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Seguros */}
-      <section className="py-12 md:py-20 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 80%, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-primary-foreground/80 block">Respaldo financiero</span>
-            <h2 className="font-display text-xl md:text-2xl text-primary-foreground mt-2 text-balance">
-              Seguros incluidos en tu plan
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {seguros.map((s) => (
-              <div
-                key={s.title}
-                className="group bg-primary-foreground/10 backdrop-blur-sm rounded-2xl border border-primary-foreground/20 p-4 md:p-6 text-center hover:bg-primary-foreground/20 transition-all"
-              >
-                <div className="w-14 h-14 rounded-full bg-primary-foreground/20 text-primary-foreground flex items-center justify-center mx-auto mb-5 group-hover:bg-primary-foreground/30 transition-colors">
-                  <s.icon className="w-7 h-7" />
-                </div>
-                <h3 className="font-display font-bold text-xl text-primary-foreground mb-3">{s.title}</h3>
-                <p className="text-sm text-primary-foreground/75 leading-relaxed">{s.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Planes Personas */}
+      {/* Planes personas */}
       <section className="py-12 md:py-20 bg-muted/30 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div className="flex flex-col md:flex-row md:items-center gap-8 mb-8 md:mb-12">
             <div className="flex-1">
-              <span className="text-3xl md:text-4xl text-primary block">Planes Personas</span>
-              <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+              <span className="text-2xl sm:text-3xl md:text-4xl text-primary block">Planes personas</span>
+              <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
                 Protección familiar a tu medida
               </h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed max-w-lg">
+              <p className="text-sm md:text-base text-muted-foreground mt-3 md:mt-4 leading-relaxed max-w-lg">
                 Elige el plan ideal para proteger a los tuyos con cuotas mensuales, trimestrales, semestrales o anuales.
               </p>
             </div>
@@ -371,18 +239,17 @@ export default function CartagenaPage() {
         </div>
       </section>
 
-      {/* Planes Empresas */}
+      {/* Planes empresas */}
       <section className="py-12 md:py-20 bg-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/5 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div className="flex flex-col md:flex-row md:items-center gap-8 mb-8 md:mb-12">
             <div className="flex-1">
-              <span className="text-3xl md:text-4xl text-primary block">Planes Empresas</span>
-              <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+              <span className="text-2xl sm:text-3xl md:text-4xl text-primary block">Planes empresas</span>
+              <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
                 Protege a tus colaboradores
               </h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed max-w-lg">
+              <p className="text-sm md:text-base text-muted-foreground mt-3 md:mt-4 leading-relaxed max-w-lg">
                 Una alternativa especial para líderes organizacionales que desean proteger el núcleo familiar de sus empleados.
               </p>
             </div>
@@ -417,8 +284,6 @@ export default function CartagenaPage() {
         </div>
       </section>
 
-      <TarjetaBeneficios />
-
       {/* CTA Final */}
       <section className="py-12 md:py-20 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -429,7 +294,7 @@ export default function CartagenaPage() {
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
               Nuestros asesores están listos para ayudarte.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
               <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
                 <a href="https://www.portal.losolivoscartagena.com/afiliacion-en-linea" target="_blank" rel="noopener noreferrer">
                   Afiliarme ahora <ArrowRight className="w-5 h-5" />

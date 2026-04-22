@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Los Olivos Cartagena - Protección Familiar Integral',
+    title: 'Los Olivos Cartagena',
     description: 'Trascendimos de la protección exequial a la protección familiar integral. Más de 30 años al servicio solidario.',
     images: ['/logo-olivos.png'],
   },

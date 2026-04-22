@@ -4,6 +4,7 @@ import {
   Activity,
   AlertCircle,
   Apple,
+  Banknote,
   Brain,
   Briefcase,
   Building2,
@@ -14,6 +15,7 @@ import {
   ArrowRight,
   GraduationCap,
   Heart,
+  HeartHandshake,
   HeartPulse,
   Home,
   MapPin,
@@ -21,13 +23,16 @@ import {
   Phone,
   Scissors,
   Shield,
+  ShieldAlert,
+  ShoppingBasket,
   Sparkles,
   Stethoscope,
   Users,
   Wrench,
 } from "lucide-react"
+import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import { useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 type Tab = "empresariales" | "personas"
 
@@ -46,8 +51,8 @@ const orientacionProfesional = [
 ]
 
 const solientevidaItems = [
-  { icon: Shield,      title: "Muerte Accidental" },
-  { icon: Heart,       title: "Auxilio de muerte" },
+  { icon: Shield,      title: "Fallecimiento Accidental" },
+  { icon: Heart,       title: "Auxilio de fallecimiento" },
   { icon: AlertCircle, title: "Auxilio de enfermedades graves" },
   { icon: Briefcase,   title: "Auxilio de desempleo" },
   { icon: Activity,    title: "Renta por hospitalización (hasta 30 días)" },
@@ -75,7 +80,7 @@ const solientegralPlanes = [
   {
     plan: "SOLIACCIDENTE",
     items: [
-      { nombre: "Muerte accidental" },
+      { nombre: "Fallecimiento accidental" },
       { nombre: "Invalidez o desmembracion accidental" },
     ],
   },
@@ -90,6 +95,49 @@ const solientegralPlanes = [
       { nombre: "Bodegaje" },
       { nombre: "Acarreo de enseres" },
     ],
+  },
+]
+
+const asistenciasPersonas = [
+  {
+    icon: Home,
+    title: "Asistencia domiciliaria gratuita",
+    items: ["Vidrería", "Electricidad", "Cerrajería", "Cedularia", "Inhabitabilidad de la vivienda"],
+  },
+  {
+    icon: PawPrint,
+    title: "Asistencia mascotas",
+    items: [
+      "Consulta veterinaria telefónica",
+      "Traslado de la mascota en caso de enfermedad o accidente",
+      "Medicamentos a domicilio por accidente o enfermedad",
+    ],
+  },
+  {
+    icon: HeartHandshake,
+    title: "Asistencia psicológica",
+    items: [
+      "Mens Sana: Centro de ayuda psicológica personalizada (Sesiones a consideración del psicólogo)",
+      "Unidad de apoyo al duelo",
+    ],
+  },
+]
+
+const segurosPersonas = [
+  {
+    icon: ShoppingBasket,
+    title: "SoliCanasta",
+    description: "Seguro de alimentación que cubre la canasta familiar por un año para el grupo familiar en caso de fallecimiento del titular.",
+  },
+  {
+    icon: Banknote,
+    title: "SoliRenta",
+    description: "Renta diaria por hospitalización que cubre al afiliado titular.",
+  },
+  {
+    icon: ShieldAlert,
+    title: "SoliAccidente",
+    description: "Indemnización en caso de fallecimiento que cubre al grupo familiar en caso de fallecimiento del titular.",
   },
 ]
 
@@ -129,16 +177,25 @@ export function BeneficiosTabs() {
   const [active, setActive] = useState<Tab>(
     searchParams.get("tab") === "personas" ? "personas" : "empresariales"
   )
+  const topRef = useRef<HTMLDivElement>(null)
+
+  const switchTab = (tab: Tab) => {
+    setActive(tab)
+    if (topRef.current) {
+      const top = topRef.current.getBoundingClientRect().top + window.scrollY - 80
+      window.scrollTo({ top, behavior: "instant" as ScrollBehavior })
+    }
+  }
 
   return (
-    <div>
+    <div ref={topRef}>
       {/* ── Sticky tab switcher ── */}
       <div className="sticky top-20 z-40 bg-card/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex justify-center">
             <div className="flex w-full sm:w-auto items-center gap-1 bg-muted rounded-full p-1">
               <button
-                onClick={() => setActive("empresariales")}
+                onClick={() => switchTab("empresariales")}
                 className={`flex flex-1 sm:flex-none items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                   active === "empresariales"
                     ? "bg-vida-dark text-white shadow-sm"
@@ -149,7 +206,7 @@ export function BeneficiosTabs() {
                 <span>Empresas</span>
               </button>
               <button
-                onClick={() => setActive("personas")}
+                onClick={() => switchTab("personas")}
                 className={`flex flex-1 sm:flex-none items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                   active === "personas"
                     ? "bg-vida-dark text-white shadow-sm"
@@ -164,18 +221,15 @@ export function BeneficiosTabs() {
         </div>
       </div>
 
-      {/* ══════════════ SLIDER ══════════════
-           Ambos paneles viven lado a lado (200% de ancho).
-           translateX(0%)   → muestra Empresariales
-           translateX(-50%) → muestra Independiente                  */}
-      <div className="overflow-hidden">
-        <div
-          className="flex"
-          style={{ width: "200%", transform: active === "empresariales" ? "translateX(0%)" : "translateX(-50%)", transition: "transform 300ms ease-in-out" }}
-        >
-
-      {/* ── Panel Empresariales ── */}
-      <div style={{ width: "50%" }}>
+      <div className="relative overflow-hidden">
+        {/* ── Panel Empresariales ── */}
+        <div style={{
+          position: active === "empresariales" ? "relative" : "absolute",
+          top: 0, left: 0, width: "100%",
+          transform: active === "empresariales" ? "translateX(0)" : "translateX(-100%)",
+          transition: "transform 300ms ease-in-out",
+          pointerEvents: active === "empresariales" ? "auto" : "none",
+        }}>
 
         {/* Asistencia Premium */}
         <section className="py-8 md:py-16 bg-white">
@@ -259,10 +313,82 @@ export function BeneficiosTabs() {
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
-      </div>{/* fin panel Empresariales */}
+        </div>{/* fin panel Empresariales */}
 
-      {/* ── Panel Independiente ── */}
-      <div style={{ width: "50%" }}>
+        {/* ── Panel Personas ── */}
+        <div style={{
+          position: active === "personas" ? "relative" : "absolute",
+          top: 0, left: 0, width: "100%",
+          transform: active === "personas" ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 300ms ease-in-out",
+          pointerEvents: active === "personas" ? "auto" : "none",
+        }}>
+
+        {/* Asistencias */}
+        <section className="py-8 md:py-16 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-6 md:mb-12">
+              <span className="text-2xl md:text-3xl lg:text-4xl text-vida-dark block">Más que un plan</span>
+              <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
+                3 asistencias incluidas en tu afiliación
+              </h2>
+              <p className="text-sm md:text-base text-muted-foreground mt-3 leading-relaxed">
+                Tu plan no solo te protege ante el fallecimiento — también te acompaña en vida con servicios de asistencia inmediata.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+              {asistenciasPersonas.map((a, i) => (
+                <div
+                  key={a.title}
+                  className="group relative bg-card rounded-2xl border border-border p-4 md:p-6 hover:border-vida-dark/40 hover:shadow-xl transition-all overflow-hidden"
+                >
+                  <span className="absolute top-4 right-5 text-6xl font-display font-bold text-vida-dark/5 select-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-vida-dark/10 text-vida-dark flex items-center justify-center mb-4 md:mb-5 group-hover:bg-vida-dark group-hover:text-white transition-colors relative z-10">
+                    <a.icon className="w-6 h-6 md:w-7 md:h-7" />
+                  </div>
+                  <h3 className="font-display font-bold text-sm md:text-lg text-foreground mb-3 md:mb-4 relative z-10">{a.title}</h3>
+                  <ul className="space-y-2 md:space-y-2.5 relative z-10">
+                    {a.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 md:gap-2.5">
+                        <span className="text-vida-dark mt-1.5 text-xs flex-shrink-0">●</span>
+                        <span className="text-xs md:text-sm text-muted-foreground leading-snug">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Seguros */}
+        <section className="py-8 md:py-16 bg-vida-dark relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 80%, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-2xl mx-auto mb-6 md:mb-12">
+              <span className="text-2xl md:text-3xl lg:text-4xl text-white/80 block">Respaldo financiero</span>
+              <h2 className="font-display text-lg md:text-xl lg:text-2xl text-white mt-2 text-balance">
+                Seguros incluidos en tu plan
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+              {segurosPersonas.map((s) => (
+                <div
+                  key={s.title}
+                  className="group bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-4 md:p-6 text-center hover:bg-white/20 transition-all"
+                >
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/20 text-white flex items-center justify-center mx-auto mb-4 md:mb-5 group-hover:bg-white/30 transition-colors">
+                    <s.icon className="w-6 h-6 md:w-7 md:h-7" />
+                  </div>
+                  <h3 className="font-display font-bold text-base md:text-xl text-white mb-2 md:mb-3">{s.title}</h3>
+                  <p className="text-xs md:text-sm text-white/75 leading-relaxed">{s.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Solientegral */}
         <section className="py-8 md:py-16 bg-muted/30">
@@ -354,10 +480,11 @@ export function BeneficiosTabs() {
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
-      </div>{/* fin panel Independiente */}
+        <TarjetaBeneficios />
 
-        </div>{/* fin flex slider */}
-      </div>{/* fin overflow-hidden */}
+        </div>{/* fin panel Personas */}
+
+      </div>{/* fin wrapper */}
     </div>
   )
 }
