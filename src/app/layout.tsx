@@ -9,7 +9,7 @@ import './globals.css'
 const _raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
 const _comfortaa = Comfortaa({ subsets: ["latin"], variable: "--font-display" });
 
-const siteUrl = 'https://losolivoscartagena.com'
+const siteUrl = 'https://v2.losolivoscartagena.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
