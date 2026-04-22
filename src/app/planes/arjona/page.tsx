@@ -58,8 +58,8 @@ export default function ArjonaPage() {
     <>
       <section className="relative pt-8 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
-        <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-primary/5 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-secondary/5 translate-x-1/2 translate-y-1/2 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-32 h-32 sm:w-64 sm:h-64 rounded-full bg-primary/5 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-96 sm:h-96 rounded-full bg-secondary/5 translate-x-1/2 translate-y-1/2 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             <div className="space-y-4 text-center lg:text-left">
