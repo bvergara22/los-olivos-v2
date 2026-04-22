@@ -9,26 +9,40 @@ import './globals.css'
 const _raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
 const _comfortaa = Comfortaa({ subsets: ["latin"], variable: "--font-display" });
 
+const siteUrl = 'https://losolivoscartagena.com'
+
 export const metadata: Metadata = {
-  title: 'Los Olivos Cartagena - Proteccion Familiar Integral',
-  description: 'Transcendimos de la proteccion exequial a la proteccion familiar integral. Mas de 30 anos al servicio solidario.',
-  generator: 'v0.app',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Los Olivos Cartagena',
+    template: '%s | Los Olivos Cartagena',
+  },
+  description: 'Trascendimos de la protección exequial a la protección familiar integral. Más de 30 años al servicio solidario en Cartagena y la región.',
   icons: {
-    icon: [
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_CO',
+    url: siteUrl,
+    siteName: 'Los Olivos Cartagena',
+    title: 'Los Olivos Cartagena',
+    description: 'Trascendimos de la protección exequial a la protección familiar integral. Más de 30 años al servicio solidario en Cartagena y la región.',
+    images: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/logo-olivos.png',
+        width: 1200,
+        height: 630,
+        alt: 'Los Olivos Cartagena',
       },
     ],
-    apple: '/apple-icon.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Los Olivos Cartagena - Protección Familiar Integral',
+    description: 'Trascendimos de la protección exequial a la protección familiar integral. Más de 30 años al servicio solidario.',
+    images: ['/logo-olivos.png'],
   },
 }
 
