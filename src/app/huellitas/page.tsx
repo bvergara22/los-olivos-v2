@@ -6,7 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Plan Olihuellitas - Los Olivos Cartagena",
+  title: "Plan Huellitas - Los Olivos Cartagena",
   description: "Protección especial para tus mascotas. Un plan pensado para darles el mejor cuidado en vida y un homenaje digno cuando partan.",
 }
 
@@ -34,7 +34,7 @@ export default function HuellitasPage() {
                 <span className="text-sm font-medium text-primary">Protección para mascotas</span>
               </div>
               <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
-                Plan Olihuellitas
+                Plan Huellitas
               </h1>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
@@ -90,7 +90,7 @@ export default function HuellitasPage() {
                 ¿Qué le ofrecemos a tu mascota?
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Con el Plan Olihuellitas tu mascota tendrá cobertura nacional con los mejores aliados veterinarios. Un plan pensado para acompañarte en cada etapa de la vida de tu compañero fiel, desde la asistencia en vida hasta el homenaje póstumo que merece.
+                Con el Plan Huellitas tu mascota tendrá cobertura nacional con los mejores aliados veterinarios. Un plan pensado para acompañarte en cada etapa de la vida de tu compañero fiel, desde la asistencia en vida hasta el homenaje póstumo que merece.
               </p>
               <div className="bg-card rounded-2xl border border-border p-6">
                 <h3 className="font-display font-bold text-lg text-foreground mb-5">

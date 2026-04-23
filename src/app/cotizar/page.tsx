@@ -335,9 +335,7 @@ export default function CotizarPage() {
                               i % 2 === 0 ? "bg-white" : "bg-muted/20"
                             }`}
                           >
-                            <div className="px-5 py-3 text-sm text-foreground font-medium">
-                              {item}
-                            </div>
+                            <div className="px-5 py-3 text-sm text-foreground font-medium">{item}</div>
                             <div className="px-5 py-3 w-36 border-l border-border" />
                           </div>
                         ))}
@@ -360,7 +358,7 @@ export default function CotizarPage() {
 
                     {/* Nota informativa */}
                     <p className="text-xs text-muted-foreground mt-4 leading-relaxed text-center">
-                      * Tarifa de contado. Para mayor información comunícate con nuestros asesores.
+                      * Para mayor información sobre tarifas comunícate con nuestros asesores.
                     </p>
 
                     {/* Acciones */}
