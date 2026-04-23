@@ -19,49 +19,48 @@ const sedes = [
 
 export function SedesPlanes() {
   const [current, setCurrent] = useState(0)
-  const [visibleCount, setVisibleCount] = useState(4)
+  const [visibleCount, setVisibleCount] = useState(1)
+  const [gapPx, setGapPx] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const [itemWidth, setItemWidth] = useState(0)
+  const touchStartX = useRef(0)
 
   const maxIndex = sedes.length - visibleCount
 
-  // Measure container to get pixel-accurate item width
+  const measure = useCallback(() => {
+    if (!containerRef.current) return
+    const w = window.innerWidth
+    const count = w < 640 ? 1 : w < 1024 ? 2 : w < 1280 ? 3 : 4
+    const gap = w < 640 ? 0 : 16
+    const containerW = containerRef.current.offsetWidth
+    const paddingX = w >= 640 ? 96 : 0 // sm:px-12 = 48*2
+    const innerW = containerW - paddingX
+    setVisibleCount(count)
+    setGapPx(gap)
+    setItemWidth((innerW - (count - 1) * gap) / count)
+  }, [])
+
   useEffect(() => {
-    const measure = () => {
-      if (containerRef.current) {
-        setItemWidth(containerRef.current.offsetWidth / visibleCount)
-      }
-    }
-    const updateCount = () => {
-      const count = window.innerWidth < 768 ? 1 : 4
-      setVisibleCount(count)
-    }
-    updateCount()
     measure()
-    window.addEventListener("resize", () => { updateCount(); measure() })
-    return () => window.removeEventListener("resize", () => { updateCount(); measure() })
-  }, [visibleCount])
+    window.addEventListener("resize", measure)
+    return () => window.removeEventListener("resize", measure)
+  }, [measure])
 
-  // Re-measure when visibleCount changes
-  useEffect(() => {
-    if (containerRef.current) {
-      setItemWidth(containerRef.current.offsetWidth / visibleCount)
-    }
-  }, [visibleCount])
+  const next = useCallback(() => setCurrent((c) => (c >= maxIndex ? 0 : c + 1)), [maxIndex])
+  const prev = useCallback(() => setCurrent((c) => (c <= 0 ? maxIndex : c - 1)), [maxIndex])
 
-  const next = useCallback(() => {
-    setCurrent((c) => (c >= maxIndex ? 0 : c + 1))
-  }, [maxIndex])
-
-  const prev = useCallback(() => {
-    setCurrent((c) => (c <= 0 ? maxIndex : c - 1))
-  }, [maxIndex])
-
-  // Auto-rotate
   useEffect(() => {
     const interval = setInterval(next, 3000)
     return () => clearInterval(interval)
   }, [next])
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 40) diff > 0 ? next() : prev()
+  }
 
   return (
     <section id="sedes-planes" className="py-12 md:py-20 bg-muted/30">
@@ -76,33 +75,30 @@ export function SedesPlanes() {
           </p>
         </div>
 
-        {/* Carousel */}
         <div className="mb-16">
           <div className="relative">
-            {/* Arrows — solo en sm+ */}
-            <button
-              type="button"
-              onClick={prev}
-              className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
-              aria-label="Sede anterior"
-            >
+            <button type="button" onClick={prev}
+              className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 items-center justify-center transition-colors text-white"
+              aria-label="Sede anterior">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button
-              type="button"
-              onClick={next}
-              className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-card shadow-lg border border-border items-center justify-center hover:bg-muted transition-colors"
-              aria-label="Siguiente sede"
-            >
+            <button type="button" onClick={next}
+              className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 items-center justify-center transition-colors text-white"
+              aria-label="Siguiente sede">
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Track */}
-            <div ref={containerRef} className="overflow-hidden sm:px-12">
+            <div
+              ref={containerRef}
+              className="overflow-hidden sm:px-12"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div
-                className="flex transition-transform duration-500 ease-in-out gap-0 sm:gap-4"
+                className="flex transition-transform duration-500 ease-in-out"
                 style={{
-                  transform: `translateX(calc(-${current} * (${itemWidth}px)))`,
+                  gap: `${gapPx}px`,
+                  transform: `translateX(${-(current * (itemWidth + gapPx))}px)`,
                 }}
               >
                 {sedes.map((sede) => (
@@ -110,7 +106,7 @@ export function SedesPlanes() {
                     key={sede.slug}
                     href={`/planes/${sede.slug}`}
                     className="group flex-shrink-0 overflow-hidden rounded-2xl hover:shadow-lg transition-all block"
-                    style={{ width: itemWidth > 0 ? `${itemWidth - (visibleCount > 1 ? 16 : 0)}px` : `calc(${100 / visibleCount}%)` }}
+                    style={{ width: itemWidth > 0 ? `${itemWidth}px` : `calc(${100 / visibleCount}%)` }}
                   >
                     <div className="aspect-video overflow-hidden">
                       <img
@@ -125,20 +121,11 @@ export function SedesPlanes() {
               </div>
             </div>
 
-            {/* Dots */}
             <div className="flex justify-center gap-2 mt-6">
               {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
-                <button
-                  key={`dot-${i}`}
-                  type="button"
-                  onClick={() => setCurrent(i)}
-                  className={`h-2 rounded-full transition-all ${
-                    i === current
-                      ? "bg-primary w-6"
-                      : "bg-primary/30 hover:bg-primary/50 w-2"
-                  }`}
-                  aria-label={`Ir a posición ${i + 1}`}
-                />
+                <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}
+                  className={`h-2 rounded-full transition-all ${i === current ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50 w-2"}`}
+                  aria-label={`Ir a posición ${i + 1}`} />
               ))}
             </div>
           </div>
