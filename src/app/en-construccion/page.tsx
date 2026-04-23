@@ -2,9 +2,9 @@ import { EnConstruccion } from "@/components/los-olivos/en-construccion"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Planes – En construcción",
+  title: "En construcción",
 }
 
-export default function PlanesPage() {
+export default function EnConstruccionPage() {
   return <EnConstruccion />
 }

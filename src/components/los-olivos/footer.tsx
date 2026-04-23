@@ -5,7 +5,7 @@ import Link from "next/link"
 export function Footer() {
   const quickLinks = [
     { label: "Previsión exequial", href: "/planes", external: false },
-    { label: "Pagos en linea", href: "/pagos", external: false },
+    { label: "Pagos en linea", href: "https://pagos.losolivoscartagena.com/", external: true },
     { label: "Cotizar homenaje", href: "/cotizar", external: false },
     { label: "Trámites", href: "/tramites", external: false },
   ]
@@ -20,8 +20,7 @@ export function Footer() {
 
   const legalLinks = [
     { label: "Tratamiento de datos", href: "/tratamiento-de-datos", external: false },
-    { label: "Protocolo COVID-19", href: "#", external: false },
-    { label: "Directorio", href: "#", external: false },
+    { label: "Directorio", href: "/en-construccion", external: false },
   ]
 
   return (
