@@ -65,43 +65,18 @@ export function Hero() {
                         : "opacity-0 translate-y-4 pointer-events-none"
                     }`}
                   >
-                    {mounted && (
-                      <Image
-                        src={image.src}
-                        alt=""
-                        aria-hidden
-                        width={1200}
-                        height={900}
-                        className={`absolute scale-[1.08] opacity-50 ${image.sizeClass}`}
-                        style={{ filter: "blur(32px) saturate(1.8) hue-rotate(10deg)" }}
-                      />
-                    )}
                     <Image
                       src={image.src}
                       alt={image.alt}
                       width={1200}
                       height={900}
                       priority={index === 0}
-                      className={`relative drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] ${image.sizeClass}`}
+                      className={image.sizeClass}
                     />
                   </div>
                 ))}
               </div>
 
-              {/* Indicators */}
-              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 hidden lg:flex gap-2">
-                {carouselImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`h-1.5 rounded-full transition-all ${
-                      index === currentImageIndex
-                        ? "bg-primary w-6"
-                        : "bg-primary/40 hover:bg-primary/60 w-1.5"
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
 

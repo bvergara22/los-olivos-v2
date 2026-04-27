@@ -52,15 +52,6 @@ export default function HuellitasPage() {
             <div className="relative w-3/4 md:w-full max-w-lg mx-auto order-2 md:col-start-2 md:row-start-1 md:row-span-2">
               <Image
                 src="/huellitas-main.png"
-                alt=""
-                aria-hidden
-                width={600}
-                height={500}
-                className="absolute w-full h-auto object-contain scale-[1.08] opacity-50"
-                style={{ filter: "blur(32px) saturate(1.8) hue-rotate(10deg)" }}
-              />
-              <Image
-                src="/huellitas-main.png"
                 alt="Plan Huellitas Los Olivos"
                 width={600}
                 height={500}

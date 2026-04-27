@@ -65,18 +65,10 @@ export default function ParqueCementerioPage() {
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
               <Image
                 src="/parque-cementerio.png"
-                alt=""
-                aria-hidden
-                width={500}
-                height={380}
-                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-40 mix-blend-multiply"
-              />
-              <Image
-                src="/parque-cementerio.png"
                 alt="Parque Cementerio Jardín Los Olivos"
                 width={500}
                 height={380}
-                className="relative w-full h-auto object-contain mix-blend-multiply drop-shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
+                className="w-full h-auto object-contain"
                 priority
               />
             </div>

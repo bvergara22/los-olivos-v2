@@ -74,10 +74,10 @@ export default function NosotrosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-8 pb-12 md:pt-12 md:pb-20 overflow-hidden">
+      <section className="relative py-12 md:py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-4 md:space-y-6 text-center md:text-left">
               <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
                 Nuestra historia
@@ -86,22 +86,14 @@ export default function NosotrosPage() {
                 Más de 30 años al servicio solidario de las familias de Cartagena y la región. Conoce quiénes somos y por qué nos eligen.
               </p>
             </div>
-            <div className="relative w-3/4 md:w-full max-w-lg mx-auto">
+            <div className="relative w-3/4 md:w-full mx-auto">
               <Image
-                src="/nosotros.png"
-                alt="Nosotros Los Olivos"
-                aria-hidden
-                width={600}
-                height={500}
-                className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]"
-              />
-              <Image
-                src="/nosotros.png"
-                alt="Nosotros Los Olivos"
+                src="/vector-historia.png"
+                alt="Nuestra historia Los Olivos"
                 width={600}
                 height={500}
                 priority
-                className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -111,10 +103,10 @@ export default function NosotrosPage() {
       {/* Quien somos */}
       <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="text-center mb-8 md:mb-12">
-              <span className="text-sm font-medium text-primary">Quiénes somos</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+              <span className="text-2xl sm:text-3xl md:text-4xl text-primary block">Quiénes somos</span>
+              <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
                 Central Cooperativa de Servicios Funerarios de Cartagena
               </h2>
             </div>
@@ -146,7 +138,7 @@ export default function NosotrosPage() {
       {/* Cifras */}
       <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {cifras.map((cifra) => (
               <div key={cifra.label} className="text-center">
                 <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-3 md:mb-4">
@@ -163,7 +155,7 @@ export default function NosotrosPage() {
       {/* Mision y Vision */}
       <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             <div className="bg-card rounded-2xl border border-border p-5 md:p-8">
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
@@ -208,13 +200,13 @@ export default function NosotrosPage() {
       <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-sm font-medium text-primary">Nuestros principios</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-2xl sm:text-3xl md:text-4xl text-primary block">Nuestros principios</span>
+            <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
               Valores que nos guían
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {valores.map((valor) => (
               <div
                 key={valor.title}
@@ -235,13 +227,13 @@ export default function NosotrosPage() {
       <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
-            <span className="text-sm font-medium text-primary">Nuestra trayectoria</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 text-balance">
+            <span className="text-2xl sm:text-3xl md:text-4xl text-primary block">Nuestra trayectoria</span>
+            <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
               Más de 30 años de historia
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="space-y-8">
               {hitos.map((hito, index) => (
                 <div key={hito.year} className="flex gap-6">
@@ -274,17 +266,17 @@ export default function NosotrosPage() {
             <p className="text-muted-foreground leading-relaxed mb-6 md:mb-8 max-w-xl mx-auto">
               Más de 50,000 familias ya confían en nosotros. Sé parte de esta gran familia solidaria.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
               <a
                 href="/#sedes-planes"
-                className="inline-flex items-center justify-center gap-2 h-9 px-4 md:h-10 md:px-6 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Ver planes
                 <Award className="w-4 h-4" />
               </a>
               <a
                 href="/#contacto"
-                className="inline-flex items-center justify-center gap-2 h-9 px-4 md:h-10 md:px-6 rounded-md text-sm font-medium border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground transition-colors"
+                className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md text-sm font-medium border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
               >
                 Contáctanos
               </a>

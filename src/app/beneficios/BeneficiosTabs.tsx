@@ -1,9 +1,11 @@
 "use client"
 
+import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import {
   Activity,
   AlertCircle,
   Apple,
+  ArrowRight,
   Banknote,
   Brain,
   Briefcase,
@@ -12,7 +14,6 @@ import {
   ChefHat,
   Clock,
   Dumbbell,
-  ArrowRight,
   GraduationCap,
   Heart,
   HeartHandshake,
@@ -27,10 +28,8 @@ import {
   ShoppingBasket,
   Sparkles,
   Stethoscope,
-  Users,
-  Wrench,
+  Users
 } from "lucide-react"
-import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import { useSearchParams } from "next/navigation"
 import { useRef, useState } from "react"
 
@@ -61,42 +60,6 @@ const solientevidaItems = [
   { icon: Home,        title: "Asistencia gratuita al Hogar" },
 ]
 
-const solientegralPlanes = [
-  {
-    plan: "SOLICANASTA",
-    items: [
-      { nombre: "Vida" },
-      { nombre: "Incapacidad total y permanente" },
-    ],
-  },
-  {
-    plan: "SOLIRENTA",
-    items: [
-      { nombre: "Renta diaria por hospitalización" },
-      { nombre: "Unidad de cuidados intensivos" },
-      { nombre: "Cirugia ambulatoria" },
-    ],
-  },
-  {
-    plan: "SOLIACCIDENTE",
-    items: [
-      { nombre: "Fallecimiento accidental" },
-      { nombre: "Invalidez o desmembracion accidental" },
-    ],
-  },
-  {
-    plan: "ASIST. AL HOGAR",
-    items: [
-      { nombre: "Vidrería" },
-      { nombre: "Cerrajería" },
-      { nombre: "Electricidad" },
-      { nombre: "Inhabitabilidad de la vivienda" },
-      { nombre: "Celaduría" },
-      { nombre: "Bodegaje" },
-      { nombre: "Acarreo de enseres" },
-    ],
-  },
-]
 
 const asistenciasPersonas = [
   {
@@ -138,6 +101,11 @@ const segurosPersonas = [
     icon: ShieldAlert,
     title: "SoliAccidente",
     description: "Indemnización en caso de fallecimiento que cubre al grupo familiar en caso de fallecimiento del titular.",
+  },
+  {
+    icon: Home,
+    title: "Asistencia al hogar",
+    description: "Cubrimos eventos que representan emergencias en la vivienda del titular. La asistencia al hogar solo se prestará en las ciudades capitales.",
   },
 ]
 
@@ -373,7 +341,7 @@ export function BeneficiosTabs() {
                 Seguros incluidos en tu plan
               </h2>
             </div>
-            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {segurosPersonas.map((s) => (
                 <div
                   key={s.title}
@@ -390,39 +358,47 @@ export function BeneficiosTabs() {
           </div>
         </section>
 
-        {/* Solientegral */}
+        {/* Plan Raíces */}
         <section className="py-8 md:py-16 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-6 md:mb-12">
-              <span className="text-2xl md:text-3xl lg:text-4xl text-vida-dark block">Paquete Solientegral</span>
-              <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
-                Sinergia - Valores asegurados
-              </h2>
-              <p className="text-sm md:text-base text-muted-foreground mt-3 leading-relaxed">
-                Protección integral con tres niveles de cobertura y asistencias al hogar incluidas.
-              </p>
-            </div>
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
+              {/* Texto introductorio */}
+              <div>
+                <span className="text-2xl md:text-3xl lg:text-4xl text-vida-dark block">Plan Raíces</span>
+                <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 mb-6 text-balance">
+                  Los Olivos · Equidad Seguros
+                </h2>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                  Ser parte del Plan Raíces de Los Olivos es contar con una protección integral que acompaña a tu familia en los momentos más importantes.
+                </p>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                  Entre Los Olivos y Equidad Seguros, este plan te brinda acceso a una serie de beneficios pensados para ofrecer respaldo, tranquilidad y bienestar, fortaleciendo el cuidado de tu núcleo familiar.
+                </p>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                  Cada uno de estos beneficios hace parte de una solución construida en alianza, que integra la experiencia y el compromiso de Los Olivos con el respaldo asegurador de Equidad Seguros, para brindarte acompañamiento real en los momentos que más lo necesitas.
+                </p>
+              </div>
 
-            {/* Plan cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto">
-              {solientegralPlanes.map((plan) => (
-                <div
-                  key={plan.plan}
-                  className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-vida-dark/50 hover:shadow-lg transition-all"
-                >
-                  <div className="bg-vida-dark px-4 md:px-6 py-3 md:py-4">
-                    <h3 className="font-display font-bold text-white text-xs md:text-sm tracking-wide">{plan.plan}</h3>
-                  </div>
-                  <div className="p-4 md:p-6 space-y-3 md:space-y-4">
-                    {plan.items.map((item) => (
-                      <div key={item.nombre} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-1.5 block" />
-                        <p className="text-xs md:text-sm font-display font-bold text-foreground leading-snug">{item.nombre}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+              {/* Lista de beneficios */}
+              <div className="bg-card rounded-2xl border border-border p-5 md:p-8">
+                <p className="text-xs font-semibold uppercase tracking-widest text-vida-dark mb-5">Como afiliado, tienes derecho a:</p>
+                <ul className="space-y-4">
+                  {[
+                    "Protección económica para tu familia en caso de fallecimiento por cualquier causa.",
+                    "Cobertura en caso de invalidez, como apoyo ante situaciones que afecten tu capacidad laboral.",
+                    "Indemnización adicional por muerte accidental y beneficios en caso de desmembración derivada de un accidente.",
+                    "Apoyo económico ante el diagnóstico de enfermedades graves, contribuyendo a sobrellevar momentos de salud complejos.",
+                    "Renta diaria por hospitalización, incluyendo estancias en unidad de cuidados intensivos (UCI) y periodos de recuperación posteriores.",
+                    "Auxilio económico destinado a cubrir gastos del hogar en situaciones que impacten la estabilidad familiar.",
+                    "Apoyo económico por maternidad o paternidad, acompañando la llegada de nuevos integrantes a la familia.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-vida-dark/10 text-vida-dark text-xs font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+                      <p className="text-sm text-foreground leading-relaxed">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>

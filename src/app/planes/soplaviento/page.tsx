@@ -68,8 +68,7 @@ export default function SoplavientoPage() {
               </div>
             </div>
             <div className="relative w-2/3 sm:w-1/2 lg:w-full mx-auto">
-              <Image src="/soplavientos-vector.png" alt="" aria-hidden width={600} height={500} className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]" />
-              <Image src="/soplavientos-vector.png" alt="Familia protegida con Los Olivos Soplaviento" width={600} height={500} priority className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
+              <Image src="/soplavientos-vector.png" alt="Familia protegida con Los Olivos Soplaviento" width={600} height={500} priority className="w-full h-auto object-contain" />
             </div>
           </div>
         </div>

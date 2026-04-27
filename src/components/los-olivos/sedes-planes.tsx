@@ -50,7 +50,7 @@ export function SedesPlanes() {
   const prev = useCallback(() => setCurrent((c) => (c <= 0 ? maxIndex : c - 1)), [maxIndex])
 
   useEffect(() => {
-    const interval = setInterval(next, 3000)
+    const interval = setInterval(next, 8000)
     return () => clearInterval(interval)
   }, [next])
 

@@ -20,11 +20,18 @@ export const metadata: Metadata = {
 
 const planesPersonas = [
   {
+    title: "PLAN RAÍCES",
+    price: "$25.000",
+    description:
+      "Este plan es ideal para tu núcleo familiar primario. Si te conviertes en titular, podrás incluir a tu cónyuge hasta los 65 años, hijos hasta los 25 años, y padres sin límite de edad o, en su ausencia, suegros. Cuenta con cobertura integral y una mensualidad accesible, además de un respaldo adicional gracias a la alianza con Equidad Seguros.",
+    popular: true,
+  },
+  {
     title: "Plan Amor Fraternal",
     price: "$42.400",
     description:
       "Este plan es ideal para tu núcleo familiar básico, si te conviertes en titular debes ser menor de 65 años. Podrás incluir a cónyuge hasta los 65 años, 2 adultos mayores hasta una edad de 80 años (Padres, a falta de padres, suegros), Hijos sin límite de edad. Si eres soltero, podrás incluir a tu núcleo básico como padres y hermanos.",
-    popular: true,
+    popular: false,
   },
   {
     title: "Plan Fraternal",
@@ -45,13 +52,6 @@ const planesPersonas = [
     price: "$33.000",
     description:
       "Este plan es ideal para todos los integrantes de tu familia, si te conviertes en titular debes ser menor de 65 años. Podrás incluir a 2 adultos mayores hasta una edad de 75 años, y a 4 personas menores a 65 años, sin importar lazos de consanguinidad o afinidad.",
-    popular: false,
-  },
-  {
-    title: "Plan Huellitas Único",
-    price: "$17.000",
-    description:
-      "Este plan unipersonal es ideal para ti y tu mejor amigo de cuatro patas (gato o perro). Si te conviertes en el titular debes ser menor de 65 años y tu mascotita debe ser mayor a 3 meses y menor a 12 años.",
     popular: false,
   },
   {
@@ -155,8 +155,7 @@ export default function CartagenaPage() {
             </div>
 
             <div className="relative w-2/3 sm:w-1/2 lg:w-full mx-auto">
-              <Image src="/cartagena-vector.png" alt="" aria-hidden width={600} height={500} className="absolute w-full h-auto object-contain scale-[1.03] blur-2xl opacity-60 drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]" />
-              <Image src="/cartagena-vector.png" alt="Familia protegida con Los Olivos Cartagena" width={600} height={500} priority className="relative w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]" />
+              <Image src="/cartagena-vector.png" alt="Familia protegida con Los Olivos Cartagena" width={600} height={500} priority className="w-full h-auto object-contain" />
             </div>
           </div>
         </div>
@@ -212,8 +211,13 @@ export default function CartagenaPage() {
             {planesPersonas.map((plan) => (
               <div
                 key={plan.title}
-                className="relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden transition-all hover:shadow-lg hover:border-primary/40"
+                className={`relative flex flex-col bg-card rounded-2xl border overflow-hidden transition-all hover:shadow-lg ${plan.popular ? "border-primary shadow-md" : "border-border hover:border-primary/40"}`}
               >
+                {plan.popular && (
+                  <div className="bg-primary text-primary-foreground text-xs font-semibold text-center py-1.5 tracking-wide">
+                    Más recomendado
+                  </div>
+                )}
                 <div className="p-4 md:p-6 flex flex-col flex-1">
                   {/* Precio destacado */}
                   <div className="mb-4">

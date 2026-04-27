@@ -200,12 +200,11 @@ function BannerCard({ item, onExpand }: { item: BannerItem; onExpand: () => void
         <Image src={item.src} alt={item.alt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
         {item.overlayButton && (
-          <a href={item.overlayButton.href} target="_blank" rel="noopener noreferrer" className="absolute z-10 cursor-pointer"
-            style={{ top: item.overlayButton.top, left: item.overlayButton.left, width: item.overlayButton.width, height: item.overlayButton.height }}
-            aria-label={item.title} />
+          <a href={item.overlayButton.href} target="_blank" rel="noopener noreferrer"
+            className="absolute inset-0 z-10 cursor-pointer" aria-label={item.title} />
         )}
         <div className="absolute top-3 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 z-20">
-          <button type="button" onClick={onExpand} className="w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-black/70 transition-colors" aria-label="Ver imagen completa">
+          <button type="button" onClick={(e) => { e.stopPropagation(); onExpand() }} className="w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-black/70 transition-colors" aria-label="Ver imagen completa">
             <Maximize2 className="w-4 h-4 text-white" />
           </button>
         </div>
@@ -255,7 +254,7 @@ export function Novedades() {
   const prev = useCallback(() => setCurrent((c) => (c <= 0 ? maxIndex : c - 1)), [maxIndex])
 
   useEffect(() => {
-    const interval = setInterval(next, 5000)
+    const interval = setInterval(next, 8000)
     return () => clearInterval(interval)
   }, [next])
 

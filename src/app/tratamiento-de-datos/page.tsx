@@ -10,7 +10,7 @@ export default function TratamientoDatosPage() {
     <div className="bg-background">
       {/* Encabezado */}
       <div className="border-b border-border bg-muted/40">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
             Documento legal
           </p>
@@ -27,7 +27,7 @@ export default function TratamientoDatosPage() {
       </div>
 
       {/* Cuerpo del documento */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 space-y-12">
 
         {/* Introducción */}
         <section>
