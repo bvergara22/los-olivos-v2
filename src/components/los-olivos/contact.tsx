@@ -3,85 +3,97 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react"
 import Image from "next/image"
 
+const items = [
+  {
+    href: "https://wa.me/573233093435",
+    external: true,
+    icon: MessageCircle,
+    label: "WhatsApp · Atención 24/7",
+    value: "+57 323 3093435",
+    cta: "Escribir ahora",
+  },
+  {
+    href: "tel:3106171987",
+    external: false,
+    icon: Phone,
+    label: "Teléfono de homenajes",
+    value: "310 6171987",
+    cta: "Llamar",
+  },
+  {
+    href: "mailto:contacto@losolivoscartagena.com",
+    external: false,
+    icon: Mail,
+    label: "Correo electrónico",
+    value: "contacto@losolivoscartagena.com",
+    cta: "Enviar correo",
+  },
+  {
+    href: "https://maps.google.com/?q=Cordialidad+Transversal+54+%2331-J27+Cartagena+Colombia",
+    external: true,
+    icon: MapPin,
+    label: "Dirección",
+    value: "Carretera la Cordialidad Trv 54 #31-J27",
+    cta: "Ver en el mapa",
+  },
+]
+
 export function Contact() {
   return (
     <section id="contacto" className="relative py-20 overflow-hidden">
-      {/* Fondo con imagen */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/imagen-contactanos.png"
           alt=""
           fill
-          className="object-cover object-[center_20%] lg:object-[center_90%]"
+          className="object-cover object-[center_30%] lg:object-[center_50%]"
           priority
         />
-        <div className="absolute inset-0 bg-white/50 lg:bg-white/40" />
+        <div className="absolute inset-0 bg-white/60 lg:bg-white/50" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="mb-8 text-center">
+        <div className="mb-10">
           <span className="text-3xl md:text-4xl text-primary block">¡Contáctanos!</span>
-          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2">
             ¿Listo para proteger a tu familia?
           </h2>
-          <p className="text-muted-foreground mt-4 leading-relaxed font-bold">
+          <p className="text-muted-foreground mt-4 leading-relaxed font-medium">
             Comunícate con nosotros de manera directa, rápida y sencilla.<br />
             Nuestros asesores te atenderán de manera inmediata.
           </p>
         </div>
 
-        <div className="flex flex-col gap-4 max-w-lg mx-auto">
-          <a
-            href="https://wa.me/573233093435"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
-          >
-            <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-              <MessageCircle className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="font-medium text-foreground">WhatsApp · Atención 24/7</p>
-              <p className="text-sm text-muted-foreground">+57 323 3093435</p>
-            </div>
-          </a>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {items.map((item) => {
+            const Icon = item.icon
+            const inner = (
+              <div className="flex flex-col items-start text-left gap-3 p-5 md:p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-white hover:border-primary/30 hover:shadow-lg transition-all group h-full">
+                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-foreground text-sm leading-snug">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.value}</p>
+                </div>
+                <span className="text-xs font-semibold text-primary border border-primary/30 rounded-full px-3 py-1 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
+                  {item.cta}
+                </span>
+              </div>
+            )
 
-          <a
-            href="tel:3106171987"
-            className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
-          >
-            <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-              <Phone className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="font-medium text-foreground">Teléfono de homenajes</p>
-              <p className="text-sm text-muted-foreground">310 6171987</p>
-            </div>
-          </a>
-
-          <a
-            href="mailto:contacto@losolivoscartagena.com"
-            className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
-          >
-            <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-              <Mail className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="font-medium text-foreground">Correo</p>
-              <p className="text-sm text-muted-foreground">contacto@losolivoscartagena.com</p>
-            </div>
-          </a>
-
-          <div className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group">
-            <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-              <MapPin className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="font-medium text-foreground">Dirección</p>
-              <p className="text-sm text-muted-foreground">Carretera la Cordialidad Trv 54 #31-J27</p>
-            </div>
-          </div>
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                className="flex"
+              >
+                {inner}
+              </a>
+            )
+          })}
         </div>
       </div>
     </section>
