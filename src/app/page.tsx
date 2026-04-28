@@ -2,6 +2,7 @@ import { Benefits } from "@/components/los-olivos/benefits"
 import { Contact } from "@/components/los-olivos/contact"
 import { Hero } from "@/components/los-olivos/hero"
 import { Novedades } from "@/components/los-olivos/novedades"
+import { PreguntasFrecuentes } from "@/components/los-olivos/preguntas-frecuentes"
 import { SedesPlanes } from "@/components/los-olivos/sedes-planes"
 import { Services } from "@/components/los-olivos/services"
 import { Steps } from "@/components/los-olivos/steps"
@@ -18,6 +19,7 @@ export default function LosOlivosPage() {
       <Steps />
       <WhyUs />
       <Contact />
+      <PreguntasFrecuentes />
     </>
   )
 }
