@@ -64,19 +64,19 @@ export function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {items.map((item) => {
             const Icon = item.icon
             const inner = (
-              <div className="flex flex-col items-start text-left gap-3 p-5 md:p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-white hover:border-primary/30 hover:shadow-lg transition-all group h-full">
-                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
+              <div className="flex flex-row lg:flex-col items-center lg:items-start gap-4 p-4 md:p-5 rounded-2xl bg-white/80 backdrop-blur-sm border border-white hover:border-primary/30 hover:shadow-lg transition-all group h-full w-full">
+                <div className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
                   <Icon className="w-5 h-5" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="font-semibold text-foreground text-sm leading-snug">{item.label}</p>
-                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.value}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed truncate">{item.value}</p>
                 </div>
-                <span className="text-xs font-semibold text-primary border border-primary/30 rounded-full px-3 py-1 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
+                <span className="hidden lg:inline-flex text-xs font-semibold text-primary border border-primary/30 rounded-full px-3 py-1 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors mt-auto flex-shrink-0">
                   {item.cta}
                 </span>
               </div>
