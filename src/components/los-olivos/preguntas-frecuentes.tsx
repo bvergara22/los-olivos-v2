@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronDown } from "lucide-react"
+import { Minus, Plus } from "lucide-react"
 import { useRef, useState } from "react"
 
 const faqs = [
@@ -42,36 +42,29 @@ const faqs = [
   },
 ]
 
-function FaqItem({
-  q, a, index, open, onToggle,
-}: {
-  q: string; a: string; index: number; open: boolean; onToggle: () => void
-}) {
+function FaqItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
   const contentRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div className={`rounded-xl border transition-all duration-200 ${open ? "border-primary/40 bg-white shadow-md" : "border-border bg-card hover:border-primary/20"}`}>
+    <div className={`border-b border-border transition-colors duration-200 ${open ? "border-primary/30" : ""}`}>
       <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+        className="flex w-full items-center justify-between gap-4 py-5 text-left group"
       >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className={`flex-shrink-0 w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${open ? "bg-primary text-primary-foreground" : "bg-primary/10 text-primary"}`}>
-            {index + 1}
-          </span>
-          <span className="text-sm sm:text-base font-medium text-foreground leading-snug">{q}</span>
-        </div>
-        <ChevronDown
-          className={`flex-shrink-0 w-5 h-5 text-primary transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        />
+        <span className={`text-sm sm:text-base font-medium leading-snug transition-colors ${open ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
+          {q}
+        </span>
+        <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all ${open ? "bg-primary text-white" : "bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"}`}>
+          {open ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+        </span>
       </button>
       <div
         ref={contentRef}
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ maxHeight: open ? `${contentRef.current?.scrollHeight ?? 400}px` : "0px" }}
       >
-        <p className="px-5 pb-5 text-sm sm:text-base text-muted-foreground leading-relaxed pl-16">
+        <p className="pb-5 text-sm sm:text-base text-muted-foreground leading-relaxed">
           {a}
         </p>
       </div>
@@ -83,38 +76,42 @@ export function PreguntasFrecuentes() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="relative py-12 md:py-20 overflow-hidden" style={{ background: "linear-gradient(160deg, #e8f5ef 0%, #d0ede0 50%, #e4f4ec 100%)" }}>
-      {/* Onda superior */}
-      <svg className="absolute top-0 left-0 w-full h-10 md:h-auto pointer-events-none" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,0 L0,0 Z" fill="#52b788" fillOpacity="0.30" />
-      </svg>
+    <section className="py-12 md:py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-[2fr_3fr] gap-10 lg:gap-20 items-start">
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-          <span className="text-3xl md:text-4xl text-primary block">Preguntas frecuentes</span>
-          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2">
-            Resolvemos tus dudas
-          </h2>
-          <p className="text-muted-foreground mt-4 leading-relaxed">
-            Encuentra respuesta a las consultas más comunes de nuestros afiliados. Si no encuentras lo que buscas, escríbenos al{" "}
-            <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer" className="text-primary font-medium hover:underline">
-              323 309 3435
+          {/* Izquierda */}
+          <div className="lg:sticky lg:top-28">
+            <span className="text-3xl md:text-4xl text-primary block">Preguntas frecuentes</span>
+            <h2 className="font-display text-xl md:text-2xl text-foreground mt-2">
+              Resolvemos tus dudas
+            </h2>
+            <p className="text-muted-foreground mt-4 leading-relaxed text-sm sm:text-base">
+              Encuentra respuesta a las consultas más comunes de nuestros afiliados.
+            </p>
+            <a
+              href="https://wa.me/573233093435"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors"
+            >
+              ¿Tienes más dudas? Escríbenos
             </a>
-            .
-          </p>
-        </div>
+          </div>
 
-        <div className="max-w-3xl mx-auto flex flex-col gap-3">
-          {faqs.map((faq, i) => (
-            <FaqItem
-              key={faq.q}
-              q={faq.q}
-              a={faq.a}
-              index={i}
-              open={openIndex === i}
-              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-            />
-          ))}
+          {/* Derecha */}
+          <div className="divide-y-0 border-t border-border">
+            {faqs.map((faq, i) => (
+              <FaqItem
+                key={faq.q}
+                q={faq.q}
+                a={faq.a}
+                open={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              />
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
