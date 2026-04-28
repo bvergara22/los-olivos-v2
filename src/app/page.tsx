@@ -18,8 +18,8 @@ export default function LosOlivosPage() {
       <Novedades />
       <Steps />
       <WhyUs />
-      <Contact />
       <PreguntasFrecuentes />
+      <Contact />
     </>
   )
 }

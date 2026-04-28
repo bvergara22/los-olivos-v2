@@ -623,8 +623,8 @@ export function Header() {
                         className={`flex items-center justify-between w-full text-sm font-medium py-3 px-2 ${
                           item.accent === "vida"
                             ? openDropdown === item.label
-                              ? "text-vida-main"
-                              : "text-foreground hover:text-vida-main"
+                              ? "text-vida-dark"
+                              : "text-foreground hover:text-vida-dark"
                             : item.label === "Servicios"
                               ? openDropdown === item.label
                                 ? "text-duelo-main"
@@ -646,7 +646,7 @@ export function Header() {
                         <div
                           className={`ml-2 border-l-2 pl-4 py-2 ${
                             item.accent === "vida"
-                              ? "border-vida-main/20"
+                              ? "border-vida-dark/20"
                               : item.label === "Servicios"
                                 ? "border-duelo-main/20"
                                 : "border-primary/20"
@@ -655,7 +655,7 @@ export function Header() {
                           {/* Beneficios - colores Vida */}
                           {item.label === "Beneficios" && (
                             <div className="space-y-1">
-                              <p className="text-vida-main font-semibold text-xs mb-2 uppercase tracking-wide">
+                              <p className="text-vida-dark font-semibold text-xs mb-2 uppercase tracking-wide">
                                 {beneficiosColumns[0].title}
                               </p>
                               {beneficiosColumns[0].items.map((subItem, itemIndex) => (
@@ -666,9 +666,9 @@ export function Header() {
                                     setOpenDropdown(null)
                                     setIsMenuOpen(false)
                                   }}
-                                  className="flex items-center gap-3 text-sm text-muted-foreground hover:text-vida-main py-2"
+                                  className="flex items-center gap-3 text-sm text-muted-foreground hover:text-vida-dark py-2"
                                 >
-                                  <div className="w-8 h-8 rounded-lg bg-vida-main/10 text-vida-main flex items-center justify-center flex-shrink-0">
+                                  <div className="w-8 h-8 rounded-lg bg-vida-dark/10 text-vida-dark flex items-center justify-center flex-shrink-0">
                                     <subItem.icon className="w-4 h-4" />
                                   </div>
                                   <span>{subItem.label}</span>

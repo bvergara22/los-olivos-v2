@@ -164,15 +164,15 @@ export default function ParqueCementerioPage() {
 
       {/* Tramites Section */}
       <section className="py-12 md:py-20 bg-card relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-duelo-main/5 -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-duelo-dark/5 translate-x-1/2 translate-y-1/2" />
+        <div className="absolute top-0 left-0 w-32 h-32 md:w-64 md:h-64 rounded-full bg-duelo-main/5 -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-full bg-duelo-dark/5 translate-x-1/2 translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           {/* Header */}
           <div className="mb-6 md:mb-10">
             <span className="text-3xl md:text-4xl text-duelo-main block">Trámites</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2">
-              Exhumación, Traslado y Cremación de Restos
+              Exhumación, traslado y cremación de restos
             </h2>
             <p className="text-muted-foreground mt-3 leading-relaxed max-w-3xl">
               Para realizar procesos de exhumación, traslado o cremación de restos, es necesario gestionar previamente los permisos ante las autoridades competentes y posteriormente presentarlos en el Parque Cementerio para la programación del servicio.

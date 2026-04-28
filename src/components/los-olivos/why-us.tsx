@@ -45,8 +45,8 @@ export function WhyUs() {
   return (
     <section className="py-12 md:py-20 bg-card relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-primary/5 -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-secondary/5 translate-x-1/2 translate-y-1/2" />
+      <div className="absolute top-0 left-0 w-32 h-32 md:w-64 md:h-64 rounded-full bg-primary/5 -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-full bg-secondary/5 translate-x-1/2 translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}

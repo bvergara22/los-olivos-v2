@@ -83,13 +83,17 @@ export function PreguntasFrecuentes() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="relative py-12 md:py-20 overflow-hidden bg-primary/5">
+    <section className="relative py-12 md:py-20 overflow-hidden" style={{ background: "linear-gradient(160deg, #e8f5ef 0%, #d0ede0 50%, #e4f4ec 100%)" }}>
+      {/* Onda superior */}
+      <svg className="absolute top-0 left-0 w-full h-10 md:h-auto pointer-events-none" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,0 L0,0 Z" fill="#52b788" fillOpacity="0.30" />
+      </svg>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-          <span className="text-3xl md:text-4xl text-primary block">Resolvemos tus dudas</span>
+          <span className="text-3xl md:text-4xl text-primary block">Preguntas frecuentes</span>
           <h2 className="font-display text-xl md:text-2xl text-foreground mt-2">
-            Preguntas frecuentes
+            Resolvemos tus dudas
           </h2>
           <p className="text-muted-foreground mt-4 leading-relaxed">
             Encuentra respuesta a las consultas más comunes de nuestros afiliados. Si no encuentras lo que buscas, escríbenos al{" "}
