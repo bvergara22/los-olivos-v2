@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
 import Image from "next/image"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 
 type VideoItem = {
   type: "video"
@@ -244,7 +244,7 @@ export function Novedades() {
     setItemWidth((innerW - (count - 1) * gap) / count)
   }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     measure()
     window.addEventListener("resize", measure)
     return () => window.removeEventListener("resize", measure)
@@ -292,14 +292,14 @@ export function Novedades() {
             onTouchEnd={handleTouchEnd}
           >
             <div
-              className="flex items-stretch transition-transform duration-500 ease-in-out"
+              className="flex items-stretch gap-4 sm:gap-6 transition-transform duration-500 ease-in-out"
               style={{
-                gap: `${gapPx}px`,
+                gap: itemWidth > 0 ? `${gapPx}px` : undefined,
                 transform: `translateX(${-(current * (itemWidth + gapPx))}px)`,
               }}
             >
               {items.map((item, i) => (
-                <div key={i} className="flex-shrink-0" style={{ width: itemWidth > 0 ? `${itemWidth}px` : `calc(${100 / visibleCount}%)` }}>
+                <div key={i} className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]" style={{ width: itemWidth > 0 ? `${itemWidth}px` : undefined }}>
                   {item.type === "video"
                     ? <VideoCard item={item} onExpand={() => setModalVideo(item)} />
                     : <BannerCard item={item} onExpand={() => setModalBanner(item)} />
@@ -309,13 +309,15 @@ export function Novedades() {
             </div>
           </div>
 
-          <div className="flex justify-center gap-2 mt-6">
-            {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
-              <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}
-                className={`h-2 rounded-full transition-all ${i === current ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50 w-2"}`}
-                aria-label={`Ir a posición ${i + 1}`} />
-            ))}
-          </div>
+          {itemWidth > 0 && (
+            <div className="flex justify-center gap-2 mt-6">
+              {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
+                <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}
+                  className={`h-2 rounded-full transition-all ${i === current ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50 w-2"}`}
+                  aria-label={`Ir a posición ${i + 1}`} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

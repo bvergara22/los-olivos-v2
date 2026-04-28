@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 
 const sedes = [
   { name: "Sede Cartagena", slug: "cartagena", src: "/cartagena.jpg" },
@@ -40,7 +40,7 @@ export function SedesPlanes() {
     setItemWidth((innerW - (count - 1) * gap) / count)
   }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     measure()
     window.addEventListener("resize", measure)
     return () => window.removeEventListener("resize", measure)
@@ -95,9 +95,9 @@ export function SedesPlanes() {
               onTouchEnd={handleTouchEnd}
             >
               <div
-                className="flex transition-transform duration-500 ease-in-out"
+                className="flex gap-0 sm:gap-4 transition-transform duration-500 ease-in-out"
                 style={{
-                  gap: `${gapPx}px`,
+                  gap: itemWidth > 0 ? `${gapPx}px` : undefined,
                   transform: `translateX(${-(current * (itemWidth + gapPx))}px)`,
                 }}
               >
@@ -105,14 +105,14 @@ export function SedesPlanes() {
                   <Link
                     key={sede.slug}
                     href={`/planes/${sede.slug}`}
-                    className="group flex-shrink-0 overflow-hidden rounded-2xl hover:shadow-lg transition-all block"
-                    style={{ width: itemWidth > 0 ? `${itemWidth}px` : `calc(${100 / visibleCount}%)` }}
+                    className="group flex-shrink-0 overflow-hidden rounded-2xl hover:shadow-lg transition-all block w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] xl:w-[calc(25%-12px)]"
+                    style={{ width: itemWidth > 0 ? `${itemWidth}px` : undefined }}
                   >
                     <div className="aspect-video overflow-hidden">
                       <img
                         src={sede.src}
                         alt={sede.name}
-                        loading="lazy"
+                        loading="eager"
                         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
@@ -121,13 +121,15 @@ export function SedesPlanes() {
               </div>
             </div>
 
-            <div className="flex justify-center gap-2 mt-6">
-              {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
-                <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}
-                  className={`h-2 rounded-full transition-all ${i === current ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50 w-2"}`}
-                  aria-label={`Ir a posición ${i + 1}`} />
-              ))}
-            </div>
+            {itemWidth > 0 && (
+              <div className="flex justify-center gap-2 mt-6">
+                {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
+                  <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}
+                    className={`h-2 rounded-full transition-all ${i === current ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50 w-2"}`}
+                    aria-label={`Ir a posición ${i + 1}`} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
