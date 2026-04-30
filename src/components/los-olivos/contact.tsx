@@ -29,11 +29,11 @@ const items = [
     cta: "Enviar correo",
   },
   {
-    href: "https://maps.google.com/?q=Cordialidad+Transversal+54+%2331-J27+Cartagena+Colombia",
+    href: "https://maps.google.com/?q=Los+Olivos+Cartagena+Transversal+53+%2331J-27+Cartagena+de+Indias+Bol%C3%ADvar",
     external: true,
     icon: MapPin,
     label: "Dirección",
-    value: "Carretera la Cordialidad Trv 54 #31-J27",
+    value: "Transversal 53 # 31J-27",
     cta: "Ver en el mapa",
   },
 ]
