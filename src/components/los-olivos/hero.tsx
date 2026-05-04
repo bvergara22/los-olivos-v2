@@ -9,17 +9,17 @@ const carouselImages = [
   {
     src: "/promocional.png",
     alt: "Promocional Los Olivos",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] lg:w-full lg:max-h-[500px] h-auto object-contain",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] min-[1140px]:w-full min-[1140px]:max-h-[500px] h-auto object-contain",
   },
   {
     src: "/mesa-trabajo1-2.png",
     alt: "Mesa de Trabajo",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] lg:w-full lg:max-h-[500px] h-auto object-contain",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] min-[1140px]:w-full min-[1140px]:max-h-[500px] h-auto object-contain",
   },
   {
     src: "/Linea-de-atención.png",
     alt: "Linea de Atencion",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] lg:w-full lg:max-h-[500px] h-auto object-contain",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] min-[1140px]:w-full min-[1140px]:max-h-[500px] h-auto object-contain",
   },
 ]
 
@@ -42,17 +42,17 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative lg:min-h-screen flex items-center overflow-hidden"
+      className="relative min-[1140px]:min-h-screen flex items-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 sm:py-12 md:py-16 lg:py-0">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 sm:py-12 md:py-16 min-[1140px]:py-0">
+        <div className="flex flex-col min-[1140px]:grid min-[1140px]:grid-cols-2 gap-6 min-[1140px]:gap-12 items-center">
 
           {/* Carrusel */}
-          <div className="relative w-full order-1 lg:order-2">
-            <div className="relative w-full max-w-md mx-auto md:max-w-lg lg:max-w-2xl">
-              <div className="relative min-h-[260px] sm:min-h-[340px] md:min-h-[470px] lg:min-h-[650px] flex items-center justify-center">
+          <div className="relative w-full order-1 min-[1140px]:order-2">
+            <div className="relative w-full max-w-md mx-auto md:max-w-lg min-[1140px]:max-w-2xl">
+              <div className="relative min-h-[260px] sm:min-h-[340px] md:min-h-[470px] min-[1140px]:min-h-[650px] flex items-center justify-center">
                 {carouselImages.map((image, index) => (
                   <div
                     key={image.alt}
@@ -77,7 +77,7 @@ export function Hero() {
           </div>
 
           {/* Contenido */}
-          <div className="order-2 lg:order-1 text-left space-y-6 lg:space-y-8">
+          <div className="order-2 min-[1140px]:order-1 text-left space-y-6 lg:space-y-8">
 
             <span className="inline-block px-3 py-1.5 bg-primary/10 text-primary text-xs lg:text-sm font-medium rounded-full">
               Más de 30 años protegiendo familias
