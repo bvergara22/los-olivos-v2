@@ -1,7 +1,6 @@
-import { AsistenciasPopup } from "@/components/los-olivos/asistencias-popup"
 import { Benefits } from "@/components/los-olivos/benefits"
 import { Contact } from "@/components/los-olivos/contact"
-import { FeedbackPopup } from "@/components/los-olivos/feedback-popup"
+import { PopupsWrapper } from "@/components/los-olivos/popups-wrapper"
 import { Hero } from "@/components/los-olivos/hero"
 import { Novedades } from "@/components/los-olivos/novedades"
 import { PreguntasFrecuentes } from "@/components/los-olivos/preguntas-frecuentes"
@@ -13,13 +12,12 @@ import { WhyUs } from "@/components/los-olivos/why-us"
 export default function LosOlivosPage() {
   return (
     <>
-      <AsistenciasPopup />
-      <FeedbackPopup />
+      <PopupsWrapper />
       <Hero />
+      <Novedades />
       <Services />
       <SedesPlanes />
       <Benefits />
-      <Novedades />
       <Steps />
       <WhyUs />
       <PreguntasFrecuentes />

@@ -1,5 +1,6 @@
 import { Footer } from "@/components/los-olivos/footer"
 import { Header } from "@/components/los-olivos/header"
+import { ScrollReset } from "@/components/los-olivos/scroll-reset"
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Comfortaa, Raleway } from 'next/font/google'
@@ -54,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${_raleway.variable} ${_comfortaa.variable} font-sans antialiased`}>
+        <ScrollReset />
         <Header />
         <main className="min-h-screen pt-20">
           {children}

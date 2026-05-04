@@ -9,20 +9,17 @@ const carouselImages = [
   {
     src: "/promocional.png",
     alt: "Promocional Los Olivos",
-    edgeShadow: "drop-shadow-[0_0_40px_rgba(206,78,88,0.4)]",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] lg:w-full lg:max-h-[500px] h-auto object-contain",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] lg:w-full lg:max-h-[500px] h-auto object-contain",
   },
   {
     src: "/mesa-trabajo1-2.png",
     alt: "Mesa de Trabajo",
-    edgeShadow: "drop-shadow-[0_0_40px_rgba(234,124,92,0.4)]",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] lg:w-full lg:max-h-[500px] h-auto object-contain",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] lg:w-full lg:max-h-[500px] h-auto object-contain",
   },
   {
     src: "/Linea-de-atención.png",
     alt: "Linea de Atencion",
-    edgeShadow: "drop-shadow-[0_0_40px_rgba(189,89,122,0.4)]",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] lg:w-full lg:max-h-[500px] h-auto object-contain",
+    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] lg:w-full lg:max-h-[500px] h-auto object-contain",
   },
 ]
 
@@ -45,17 +42,17 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative lg:min-h-screen flex items-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 lg:py-0">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 sm:py-12 md:py-16 lg:py-0">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
 
           {/* Carrusel */}
           <div className="relative w-full order-1 lg:order-2">
-            <div className="relative w-full max-w-md mx-auto lg:max-w-2xl">
-              <div className="relative min-h-[260px] sm:min-h-[340px] lg:min-h-[650px] flex items-center justify-center">
+            <div className="relative w-full max-w-md mx-auto md:max-w-lg lg:max-w-2xl">
+              <div className="relative min-h-[260px] sm:min-h-[340px] md:min-h-[470px] lg:min-h-[650px] flex items-center justify-center">
                 {carouselImages.map((image, index) => (
                   <div
                     key={image.alt}
@@ -76,7 +73,6 @@ export function Hero() {
                   </div>
                 ))}
               </div>
-
             </div>
           </div>
 
