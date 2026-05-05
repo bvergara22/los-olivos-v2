@@ -1,4 +1,4 @@
-import { Award, Building2, Heart, Shield, Users } from "lucide-react"
+import { Award, Building2, CheckCircle2, Heart, Shield, Users } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 
@@ -103,54 +103,78 @@ export default function NosotrosPage() {
       {/* Quien somos */}
       <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div>
-            <div className="text-center mb-8 md:mb-12">
-              <span className="text-2xl sm:text-3xl md:text-4xl text-primary block">Quiénes somos</span>
-              <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 text-balance">
-                Central Cooperativa de Servicios Funerarios de Cartagena
-              </h2>
-            </div>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-            <div className="prose prose-lg max-w-none">
-              <p className="text-muted-foreground leading-relaxed text-center mb-6">
-                Los Olivos Cartagena, conocida legalmente como <strong>CARTAFUN</strong> (Central Cooperativa de Servicios Funerarios de Cartagena),
-                es una organización solidaria que desde 1993 ha trabajado incansablemente para brindar protección exequial integral
-                a las familias de Cartagena y la región Caribe.
-              </p>
-
-              <p className="text-muted-foreground leading-relaxed text-center mb-6">
-                Nacimos con el propósito de ofrecer servicios funerarios dignos y accesibles, basados en principios
-                cooperativos de solidaridad, ayuda mutua y responsabilidad social. A lo largo de más de tres décadas,
-                hemos evolucionado de ser una simple cooperativa exequial a convertirnos en un verdadero apoyo integral
-                para las familias, ofreciendo servicios que van más allá de lo funerario.
-              </p>
-
-              <p className="text-muted-foreground leading-relaxed text-center">
-                Hoy, con más de 50,000 familias protegidas, 8 sedes en la región y cobertura nacional, nos enorgullece
-                ser la opción de confianza de miles de cartageneros que han encontrado en nosotros no solo un proveedor
-                de servicios, sino una verdadera familia que los acompaña en los momentos más difíciles.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Cifras */}
-      <section className="py-12 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {cifras.map((cifra) => (
-              <div key={cifra.label} className="text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-3 md:mb-4">
-                  <cifra.icon className="w-6 h-6 md:w-8 md:h-8" />
-                </div>
-                <div className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">{cifra.numero}</div>
-                <p className="text-sm text-muted-foreground">{cifra.label}</p>
+            {/* Columna izquierda — texto */}
+            <div className="space-y-6">
+              <div>
+                <span className="text-2xl sm:text-3xl md:text-4xl text-primary block">Quiénes somos</span>
+                <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2">
+                  Central Cooperativa de Servicios Funerarios de Cartagena
+                </h2>
               </div>
-            ))}
+
+              <p className="text-muted-foreground leading-relaxed">
+                Los Olivos Cartagena, conocida legalmente como{" "}
+                <span className="font-semibold text-foreground">CARTAFUN</span>, es una organización
+                solidaria que desde <span className="font-semibold text-primary">1993</span> ha trabajado
+                incansablemente para brindar protección exequial integral a las familias de Cartagena
+                y la región Caribe.
+              </p>
+
+              <p className="text-muted-foreground leading-relaxed">
+                Nacimos con el propósito de ofrecer servicios funerarios dignos y accesibles, basados en
+                principios cooperativos de solidaridad, ayuda mutua y responsabilidad social. A lo largo
+                de más de tres décadas, hemos evolucionado hacia un verdadero apoyo integral para las
+                familias, ofreciendo servicios que van mucho más allá de lo funerario.
+              </p>
+
+              <p className="text-muted-foreground leading-relaxed">
+                Hoy somos la opción de confianza de miles de cartageneros que han encontrado en nosotros
+                no solo un proveedor de servicios, sino una verdadera familia que los acompaña en los
+                momentos más difíciles.
+              </p>
+
+              <ul className="space-y-3 pt-2">
+                {[
+                  "Organización solidaria sin ánimo de lucro",
+                  "Principios cooperativos de ayuda mutua",
+                  "Cobertura nacional con presencia regional",
+                  "Servicios integrales más allá de lo exequial",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Columna derecha — tarjetas de cifras */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { icon: Award,     valor: "1993",   label: "Año de fundación",      desc: "Más de 30 años al servicio de las familias" },
+                { icon: Users,     valor: "+50K",   label: "Familias protegidas",   desc: "Confianza consolidada en la región Caribe" },
+                { icon: Building2, valor: "8",      label: "Sedes en la región",    desc: "Presencia en Cartagena y municipios de Bolívar" },
+                { icon: Shield,    valor: "24/7",   label: "Atención disponible",   desc: "Siempre disponibles cuando más nos necesitas" },
+              ].map(({ icon: Icon, valor, label, desc }) => (
+                <div key={label} className="bg-card border border-border rounded-2xl p-5 hover:border-primary/40 hover:shadow-md transition-all flex flex-col gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="font-display text-2xl md:text-3xl font-bold text-foreground">{valor}</div>
+                    <div className="text-sm font-medium text-foreground mt-0.5">{label}</div>
+                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
+
 
       {/* Mision y Vision */}
       <section className="py-12 md:py-20 bg-muted/30">

@@ -7,15 +7,10 @@ import { FeedbackPopup } from "./feedback-popup"
 
 export function PopupsWrapper() {
   const [asistenciasOpen, setAsistenciasOpen] = useState(true)
-  const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const [feedbackOpen, setFeedbackOpen] = useState(true)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => { setMounted(true) }, [])
-
-  useEffect(() => {
-    const t = setTimeout(() => setFeedbackOpen(true), 2000)
-    return () => clearTimeout(t)
-  }, [])
 
   useEffect(() => {
     document.body.style.overflow = (asistenciasOpen || feedbackOpen) ? "hidden" : ""

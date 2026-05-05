@@ -33,11 +33,9 @@ export function SedesPlanes() {
     const count = w < 640 ? 1 : w < 1024 ? 2 : w < 1280 ? 3 : 4
     const gap = w < 640 ? 0 : 16
     const containerW = containerRef.current.offsetWidth
-    const paddingX = w >= 640 ? 96 : 0 // sm:px-12 = 48*2
-    const innerW = containerW - paddingX
     setVisibleCount(count)
     setGapPx(gap)
-    setItemWidth((innerW - (count - 1) * gap) / count)
+    setItemWidth((containerW - (count - 1) * gap) / count)
   }, [])
 
   useLayoutEffect(() => {
@@ -50,9 +48,10 @@ export function SedesPlanes() {
   const prev = useCallback(() => setCurrent((c) => (c <= 0 ? maxIndex : c - 1)), [maxIndex])
 
   useEffect(() => {
+    if (maxIndex <= 0) return
     const interval = setInterval(next, 8000)
     return () => clearInterval(interval)
-  }, [next])
+  }, [next, maxIndex])
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
@@ -77,20 +76,24 @@ export function SedesPlanes() {
 
         <div className="mb-16">
           <div className="relative">
-            <button type="button" onClick={prev}
-              className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 items-center justify-center transition-colors text-white"
-              aria-label="Sede anterior">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button type="button" onClick={next}
-              className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 items-center justify-center transition-colors text-white"
-              aria-label="Siguiente sede">
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            {maxIndex > 0 && (
+              <>
+                <button type="button" onClick={prev}
+                  className="flex absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white"
+                  aria-label="Sede anterior">
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+                <button type="button" onClick={next}
+                  className="flex absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white"
+                  aria-label="Siguiente sede">
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              </>
+            )}
 
             <div
               ref={containerRef}
-              className="overflow-hidden sm:px-12"
+              className="overflow-hidden"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
@@ -121,7 +124,7 @@ export function SedesPlanes() {
               </div>
             </div>
 
-            {itemWidth > 0 && (
+            {itemWidth > 0 && maxIndex > 0 && (
               <div className="flex justify-center gap-2 mt-6">
                 {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
                   <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}

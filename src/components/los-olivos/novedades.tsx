@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
 import Image from "next/image"
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 
 type VideoItem = {
   type: "video"
@@ -85,6 +86,10 @@ const items: CarouselItem[] = [
 // ─── Video Modal ───────────────────────────────────────────────────────────────
 
 function VideoModal({ item, onClose }: { item: VideoItem; onClose: () => void }) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
     document.addEventListener("keydown", onKey)
@@ -92,8 +97,10 @@ function VideoModal({ item, onClose }: { item: VideoItem; onClose: () => void })
     return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = "" }
   }, [onClose])
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-sm" onClick={onClose}>
+  if (!mounted) return null
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-sm" onClick={onClose}>
       <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
         <button type="button" onClick={onClose} className="absolute -top-11 right-0 flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
           <X className="w-5 h-5" /><span>Cerrar</span>
@@ -106,13 +113,18 @@ function VideoModal({ item, onClose }: { item: VideoItem; onClose: () => void })
           <p className="text-white/55 text-sm mt-1 leading-relaxed">{item.description}</p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
 // ─── Banner Modal ──────────────────────────────────────────────────────────────
 
 function BannerModal({ item, onClose }: { item: BannerItem; onClose: () => void }) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
     document.addEventListener("keydown", onKey)
@@ -120,8 +132,10 @@ function BannerModal({ item, onClose }: { item: BannerItem; onClose: () => void 
     return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = "" }
   }, [onClose])
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-sm" onClick={onClose}>
+  if (!mounted) return null
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-sm" onClick={onClose}>
       <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
         <button type="button" onClick={onClose} className="absolute -top-11 right-0 flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
           <X className="w-5 h-5" /><span>Cerrar</span>
@@ -135,39 +149,82 @@ function BannerModal({ item, onClose }: { item: BannerItem; onClose: () => void 
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
 // ─── Video Card ────────────────────────────────────────────────────────────────
 
-function VideoCard({ item, onExpand }: { item: VideoItem; onExpand: () => void }) {
+function VideoCard({
+  item,
+  onExpand,
+  isActive,
+  onPlay,
+  onPause,
+}: {
+  item: VideoItem
+  onExpand: () => void
+  isActive: boolean
+  onPlay: () => void
+  onPause: () => void
+}) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
   const [muted, setMuted] = useState(true)
 
+  useEffect(() => {
+    if (!isActive && playing && videoRef.current) {
+      videoRef.current.pause()
+      setPlaying(false)
+    }
+  }, [isActive, playing])
+
   const togglePlay = () => {
     if (!videoRef.current) return
-    if (playing) { videoRef.current.pause() } else { videoRef.current.play() }
-    setPlaying(!playing)
+    if (playing) {
+      videoRef.current.pause()
+      setPlaying(false)
+      onPause()
+    } else {
+      videoRef.current.play()
+      setPlaying(true)
+      onPlay()
+    }
   }
+
   const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation()
     if (!videoRef.current) return
     videoRef.current.muted = !muted
     setMuted(!muted)
   }
+
   const handleExpand = (e: React.MouseEvent) => {
     e.stopPropagation()
     if (videoRef.current) videoRef.current.pause()
     setPlaying(false)
+    onPause()
     onExpand()
+  }
+
+  const handleEnded = () => {
+    setPlaying(false)
+    onPause()
   }
 
   return (
     <div className="group relative rounded-2xl overflow-hidden bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
       <div className="relative aspect-[4/3] sm:aspect-video cursor-pointer flex-shrink-0" onClick={togglePlay}>
-        <video ref={videoRef} src={item.src} muted={muted} loop playsInline className="w-full h-full object-cover" onEnded={() => setPlaying(false)} />
+        <video
+          ref={videoRef}
+          src={item.src}
+          muted={muted}
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+          onEnded={handleEnded}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
           <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center hover:bg-white/30 transition-colors">
@@ -228,6 +285,7 @@ export function Novedades() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [itemWidth, setItemWidth] = useState(0)
   const touchStartX = useRef(0)
+  const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null)
 
   const maxIndex = items.length - visibleCount
 
@@ -237,11 +295,9 @@ export function Novedades() {
     const gap = w < 640 ? 16 : 24
     const count = w < 640 ? 1 : w < 1024 ? 2 : 3
     const containerW = containerRef.current.offsetWidth
-    const paddingX = w >= 640 ? 96 : 0 // sm:px-12 = 48*2
-    const innerW = containerW - paddingX
     setGapPx(gap)
     setVisibleCount(count)
-    setItemWidth((innerW - (count - 1) * gap) / count)
+    setItemWidth((containerW - (count - 1) * gap) / count)
   }, [])
 
   useLayoutEffect(() => {
@@ -254,9 +310,10 @@ export function Novedades() {
   const prev = useCallback(() => setCurrent((c) => (c <= 0 ? maxIndex : c - 1)), [maxIndex])
 
   useEffect(() => {
+    if (maxIndex <= 0 || playingVideoIndex !== null) return
     const interval = setInterval(next, 8000)
     return () => clearInterval(interval)
-  }, [next])
+  }, [next, maxIndex, playingVideoIndex])
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
@@ -278,16 +335,20 @@ export function Novedades() {
         </div>
 
         <div className="relative">
-          <button type="button" onClick={prev} className="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 items-center justify-center transition-colors text-white" aria-label="Anterior">
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button type="button" onClick={next} className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 items-center justify-center transition-colors text-white" aria-label="Siguiente">
-            <ChevronRight className="w-5 h-5" />
-          </button>
+          {maxIndex > 0 && (
+            <>
+              <button type="button" onClick={prev} className="flex absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white" aria-label="Anterior">
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+              <button type="button" onClick={next} className="flex absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white" aria-label="Siguiente">
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            </>
+          )}
 
           <div
             ref={containerRef}
-            className="overflow-hidden sm:px-12"
+            className="overflow-hidden"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -301,7 +362,13 @@ export function Novedades() {
               {items.map((item, i) => (
                 <div key={i} className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]" style={{ width: itemWidth > 0 ? `${itemWidth}px` : undefined }}>
                   {item.type === "video"
-                    ? <VideoCard item={item} onExpand={() => setModalVideo(item)} />
+                    ? <VideoCard
+                        item={item}
+                        onExpand={() => { setPlayingVideoIndex(null); setModalVideo(item) }}
+                        isActive={playingVideoIndex === i}
+                        onPlay={() => setPlayingVideoIndex(i)}
+                        onPause={() => setPlayingVideoIndex(null)}
+                      />
                     : <BannerCard item={item} onExpand={() => setModalBanner(item)} />
                   }
                 </div>
@@ -309,7 +376,7 @@ export function Novedades() {
             </div>
           </div>
 
-          {itemWidth > 0 && (
+          {itemWidth > 0 && maxIndex > 0 && (
             <div className="flex justify-center gap-2 mt-6">
               {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
                 <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}

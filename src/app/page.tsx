@@ -1,5 +1,6 @@
 import { Benefits } from "@/components/los-olivos/benefits"
 import { Contact } from "@/components/los-olivos/contact"
+import { Obituarios } from "@/components/los-olivos/obituarios"
 import { PopupsWrapper } from "@/components/los-olivos/popups-wrapper"
 import { Hero } from "@/components/los-olivos/hero"
 import { Novedades } from "@/components/los-olivos/novedades"
@@ -20,6 +21,7 @@ export default function LosOlivosPage() {
       <Benefits />
       <Steps />
       <WhyUs />
+      <Obituarios />
       <PreguntasFrecuentes />
       <Contact />
     </>
