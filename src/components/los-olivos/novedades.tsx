@@ -1,8 +1,8 @@
 "use client"
 
-import { ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
+import { Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
 import Image from "next/image"
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 type VideoItem = {
@@ -279,49 +279,38 @@ function BannerCard({ item, onExpand }: { item: BannerItem; onExpand: () => void
 export function Novedades() {
   const [modalVideo, setModalVideo] = useState<VideoItem | null>(null)
   const [modalBanner, setModalBanner] = useState<BannerItem | null>(null)
-  const [current, setCurrent] = useState(0)
-  const [visibleCount, setVisibleCount] = useState(1)
-  const [gapPx, setGapPx] = useState(16)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [itemWidth, setItemWidth] = useState(0)
-  const touchStartX = useRef(0)
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null)
-
-  const maxIndex = items.length - visibleCount
-
-  const measure = useCallback(() => {
-    if (!containerRef.current) return
-    const w = window.innerWidth
-    const gap = w < 640 ? 16 : 24
-    const count = w < 640 ? 1 : w < 1024 ? 2 : 3
-    const containerW = containerRef.current.offsetWidth
-    setGapPx(gap)
-    setVisibleCount(count)
-    setItemWidth((containerW - (count - 1) * gap) / count)
-  }, [])
-
-  useLayoutEffect(() => {
-    measure()
-    window.addEventListener("resize", measure)
-    return () => window.removeEventListener("resize", measure)
-  }, [measure])
-
-  const next = useCallback(() => setCurrent((c) => (c >= maxIndex ? 0 : c + 1)), [maxIndex])
-  const prev = useCallback(() => setCurrent((c) => (c <= 0 ? maxIndex : c - 1)), [maxIndex])
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const autoIndexRef = useRef(0)
+  const isDragging = useRef(false)
+  const dragStartX = useRef(0)
+  const dragScrollLeft = useRef(0)
 
   useEffect(() => {
-    if (maxIndex <= 0 || playingVideoIndex !== null) return
-    const interval = setInterval(next, 8000)
-    return () => clearInterval(interval)
-  }, [next, maxIndex, playingVideoIndex])
+    if (playingVideoIndex !== null) return
+    const t = setInterval(() => {
+      if (isDragging.current || !scrollRef.current) return
+      autoIndexRef.current = (autoIndexRef.current + 1) % items.length
+      const card = cardRefs.current[autoIndexRef.current]
+      const left = card ? card.offsetLeft : 0
+      scrollRef.current.scrollTo({ left, behavior: "smooth" })
+    }, 8000)
+    return () => clearInterval(t)
+  }, [playingVideoIndex])
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return
+    isDragging.current = true
+    dragStartX.current = e.pageX
+    dragScrollLeft.current = scrollRef.current.scrollLeft
+    e.preventDefault()
   }
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const diff = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 40) diff > 0 ? next() : prev()
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollRef.current) return
+    scrollRef.current.scrollLeft = dragScrollLeft.current - (e.pageX - dragStartX.current)
   }
+  const onMouseUp = () => { isDragging.current = false }
 
   return (
     <section className="py-12 md:py-20 bg-background">
@@ -334,57 +323,32 @@ export function Novedades() {
           </p>
         </div>
 
-        <div className="relative">
-          {maxIndex > 0 && (
-            <>
-              <button type="button" onClick={prev} className="flex absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white" aria-label="Anterior">
-                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              <button type="button" onClick={next} className="flex absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white" aria-label="Siguiente">
-                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-            </>
-          )}
-
-          <div
-            ref={containerRef}
-            className="overflow-hidden"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
+        <div
+          ref={scrollRef}
+          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory cursor-grab select-none pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onMouseLeave={onMouseUp}
+        >
+          {items.map((item, i) => (
             <div
-              className="flex items-stretch gap-4 sm:gap-6 transition-transform duration-500 ease-in-out"
-              style={{
-                gap: itemWidth > 0 ? `${gapPx}px` : undefined,
-                transform: `translateX(${-(current * (itemWidth + gapPx))}px)`,
-              }}
+              key={i}
+              ref={el => { cardRefs.current[i] = el }}
+              className="flex-shrink-0 snap-start w-[300px] sm:w-[340px] lg:w-[380px]"
             >
-              {items.map((item, i) => (
-                <div key={i} className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]" style={{ width: itemWidth > 0 ? `${itemWidth}px` : undefined }}>
-                  {item.type === "video"
-                    ? <VideoCard
-                        item={item}
-                        onExpand={() => { setPlayingVideoIndex(null); setModalVideo(item) }}
-                        isActive={playingVideoIndex === i}
-                        onPlay={() => setPlayingVideoIndex(i)}
-                        onPause={() => setPlayingVideoIndex(null)}
-                      />
-                    : <BannerCard item={item} onExpand={() => setModalBanner(item)} />
-                  }
-                </div>
-              ))}
+              {item.type === "video"
+                ? <VideoCard
+                    item={item}
+                    onExpand={() => { setPlayingVideoIndex(null); setModalVideo(item) }}
+                    isActive={playingVideoIndex === i}
+                    onPlay={() => setPlayingVideoIndex(i)}
+                    onPause={() => setPlayingVideoIndex(null)}
+                  />
+                : <BannerCard item={item} onExpand={() => setModalBanner(item)} />
+              }
             </div>
-          </div>
-
-          {itemWidth > 0 && maxIndex > 0 && (
-            <div className="flex justify-center gap-2 mt-6">
-              {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
-                <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}
-                  className={`h-2 rounded-full transition-all ${i === current ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50 w-2"}`}
-                  aria-label={`Ir a posición ${i + 1}`} />
-              ))}
-            </div>
-          )}
+          ))}
         </div>
       </div>
 

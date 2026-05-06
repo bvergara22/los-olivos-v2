@@ -1,7 +1,7 @@
 "use client"
 
-import { Calendar, ChevronLeft, ChevronRight, Download, Eye, Loader2, Send } from "lucide-react"
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { Calendar, Download, Eye, Loader2, Send } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 interface Obituario {
@@ -225,7 +225,7 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
       <div className="relative px-6 py-6 text-center" style={{ background: "linear-gradient(135deg, #3e2455 0%, #240e36 100%)" }}>
         <div className="w-8 h-px bg-white/30 mx-auto mb-3" />
         <p className="text-white/50 text-[10px] uppercase tracking-[0.2em] mb-2">Q.E.P.D.</p>
-        <h3 className="font-display text-white text-base font-bold leading-snug">
+        <h3 className="font-display text-white text-base font-bold leading-snug min-h-[2.75rem] flex items-center justify-center line-clamp-2">
           {o.nombre_ser_querido}
         </h3>
         <div className="flex items-center justify-center gap-1.5 mt-3">
@@ -240,11 +240,11 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
           <Send className="w-3.5 h-3.5" /> Enviar condolencia
         </button>
         <div className="grid grid-cols-2 gap-2">
-          <button onClick={onVerCondolencias} className="py-2 rounded-xl border border-border text-xs font-semibold text-foreground flex items-center justify-center gap-1.5 hover:bg-muted transition-colors">
-            <Eye className="w-3.5 h-3.5" /> Ver condolencias
+          <button onClick={onVerCondolencias} className="py-2.5 rounded-xl bg-duelo-main text-white text-[11px] font-semibold flex items-center justify-center gap-1 hover:bg-duelo-dark transition-colors whitespace-nowrap overflow-hidden">
+            <Eye className="w-3 h-3 flex-shrink-0" /> Condolencias
           </button>
-          <button onClick={() => downloadObituario(o)} className="py-2 rounded-xl border border-border text-xs font-semibold text-foreground flex items-center justify-center gap-1.5 hover:bg-muted transition-colors">
-            <Download className="w-3.5 h-3.5" /> Descargar
+          <button onClick={() => downloadObituario(o)} className="py-2.5 rounded-xl bg-duelo-main text-white text-[11px] font-semibold flex items-center justify-center gap-1 hover:bg-duelo-dark transition-colors whitespace-nowrap overflow-hidden">
+            <Download className="w-3 h-3 flex-shrink-0" /> Descargar
           </button>
         </div>
       </div>
@@ -257,14 +257,14 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
 export function Obituarios() {
   const [obituarios, setObituarios] = useState<Obituario[]>([])
   const [loading, setLoading] = useState(true)
-  const [current, setCurrent] = useState(0)
-  const [visibleCount, setVisibleCount] = useState(1)
-  const [gapPx, setGapPx] = useState(16)
-  const [itemWidth, setItemWidth] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const touchStartX = useRef(0)
   const [condolenciaFor, setCondolenciaFor] = useState<Obituario | null>(null)
   const [condolenciasFor, setCondolenciasFor] = useState<Obituario | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const autoIndexRef = useRef(0)
+  const isDragging = useRef(false)
+  const dragStartX = useRef(0)
+  const dragScrollLeft = useRef(0)
 
   useEffect(() => {
     fetch("https://www.api.losolivoscartagena.com/api/obituarios")
@@ -273,46 +273,37 @@ export function Obituarios() {
       .catch(() => setLoading(false))
   }, [])
 
-  const maxIndex = Math.max(0, obituarios.length - visibleCount)
-
-  const measure = useCallback(() => {
-    if (!containerRef.current) return
-    const w = window.innerWidth
-    const gap = w < 640 ? 16 : 24
-    const count = w < 640 ? 1 : w < 768 ? 2 : w < 1280 ? 3 : 4
-    const containerW = containerRef.current.offsetWidth
-    setGapPx(gap)
-    setVisibleCount(count)
-    setItemWidth((containerW - (count - 1) * gap) / count)
-  }, [])
-
-  useLayoutEffect(() => {
-    measure()
-    window.addEventListener("resize", measure)
-    return () => window.removeEventListener("resize", measure)
-  }, [measure])
-
-  useEffect(() => { setCurrent(c => Math.min(c, maxIndex)) }, [maxIndex])
-
-  const next = useCallback(() => setCurrent(c => c >= maxIndex ? 0 : c + 1), [maxIndex])
-  const prev = useCallback(() => setCurrent(c => c <= 0 ? maxIndex : c - 1), [maxIndex])
-
   useEffect(() => {
-    if (maxIndex <= 0) return
-    const t = setInterval(next, 8000)
+    if (obituarios.length <= 1) return
+    const t = setInterval(() => {
+      if (isDragging.current || !scrollRef.current) return
+      autoIndexRef.current = (autoIndexRef.current + 1) % obituarios.length
+      const card = cardRefs.current[autoIndexRef.current]
+      if (card) scrollRef.current.scrollTo({ left: card.offsetLeft, behavior: "smooth" })
+    }, 4000)
     return () => clearInterval(t)
-  }, [next, maxIndex])
+  }, [obituarios.length])
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return
+    isDragging.current = true
+    dragStartX.current = e.pageX
+    dragScrollLeft.current = scrollRef.current.scrollLeft
+    e.preventDefault()
+  }
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollRef.current) return
+    scrollRef.current.scrollLeft = dragScrollLeft.current - (e.pageX - dragStartX.current)
+  }
+  const onMouseUp = () => { isDragging.current = false }
 
   return (
     <section id="obituarios" className="py-12 md:py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-          <span className="text-3xl md:text-4xl block" style={{ color: "#3e2455" }}>En su memoria</span>
-          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2">Obituarios</h2>
-          <p className="text-muted-foreground mt-4 leading-relaxed">
-            Acompañamos a las familias en los momentos más difíciles, honrando la vida de sus seres queridos.
-          </p>
+          <span className="text-3xl md:text-4xl block" style={{ color: "#3e2455" }}>Obituarios</span>
+          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2">En su memoria</h2>
         </div>
 
         {loading ? (
@@ -328,50 +319,30 @@ export function Obituarios() {
             <p className="text-muted-foreground text-sm mt-1">En estos momentos no hay obituarios registrados.</p>
           </div>
         ) : (
-          <div className="relative">
-            {maxIndex > 0 && (
-              <>
-                <button type="button" onClick={prev} className="flex absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/50 hover:bg-white/90 backdrop-blur-sm border border-border/40 shadow-sm items-center justify-center transition-colors text-foreground" aria-label="Anterior">
-                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-                <button type="button" onClick={next} className="flex absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/50 hover:bg-white/90 backdrop-blur-sm border border-border/40 shadow-sm items-center justify-center transition-colors text-foreground" aria-label="Siguiente">
-                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-              </>
-            )}
-
+          <div className="flex justify-center">
             <div
-              ref={containerRef}
-              className="overflow-hidden"
-              onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
-              onTouchEnd={e => { const d = touchStartX.current - e.changedTouches[0].clientX; if (Math.abs(d) > 40) d > 0 ? next() : prev() }}
+              ref={scrollRef}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 cursor-grab select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] max-w-full"
+              style={{ scrollBehavior: "auto" }}
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
             >
-              <div
-                className="flex items-stretch transition-transform duration-500 ease-in-out"
-                style={{ gap: `${gapPx}px`, transform: `translateX(${-(current * (itemWidth + gapPx))}px)` }}
-              >
-                {obituarios.map((o) => (
-                  <div key={o.id} className="flex-shrink-0 w-full sm:w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] xl:w-[calc(25%-9px)]" style={{ width: itemWidth > 0 ? `${itemWidth}px` : undefined }}>
-                    <ObituarioCard
-                      o={o}
-                      onCondolencia={() => setCondolenciaFor(o)}
-                      onVerCondolencias={() => setCondolenciasFor(o)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {itemWidth > 0 && maxIndex > 0 && (
-              <div className="flex justify-center gap-2 mt-6">
-                {Array.from({ length: maxIndex + 1 }, (_, i) => (
-                  <button key={i} type="button" onClick={() => setCurrent(i)}
-                    className={`h-2 rounded-full transition-all ${i === current ? "bg-duelo-main w-6" : "bg-duelo-light/40 hover:bg-duelo-light/70 w-2"}`}
-                    aria-label={`Ir a posición ${i + 1}`}
+              {obituarios.map((o, i) => (
+                <div
+                  key={o.id}
+                  ref={el => { cardRefs.current[i] = el }}
+                  className="flex-shrink-0 snap-start w-[272px] sm:w-[300px]"
+                >
+                  <ObituarioCard
+                    o={o}
+                    onCondolencia={() => setCondolenciaFor(o)}
+                    onVerCondolencias={() => setCondolenciasFor(o)}
                   />
-                ))}
-              </div>
-            )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

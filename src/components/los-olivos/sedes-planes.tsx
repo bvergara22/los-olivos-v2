@@ -1,8 +1,7 @@
 "use client"
 
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 
 const sedes = [
   { name: "Sede Cartagena", slug: "cartagena", src: "/cartagena.jpg" },
@@ -18,48 +17,36 @@ const sedes = [
 ]
 
 export function SedesPlanes() {
-  const [current, setCurrent] = useState(0)
-  const [visibleCount, setVisibleCount] = useState(1)
-  const [gapPx, setGapPx] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [itemWidth, setItemWidth] = useState(0)
-  const touchStartX = useRef(0)
-
-  const maxIndex = sedes.length - visibleCount
-
-  const measure = useCallback(() => {
-    if (!containerRef.current) return
-    const w = window.innerWidth
-    const count = w < 640 ? 1 : w < 1024 ? 2 : w < 1280 ? 3 : 4
-    const gap = w < 640 ? 0 : 16
-    const containerW = containerRef.current.offsetWidth
-    setVisibleCount(count)
-    setGapPx(gap)
-    setItemWidth((containerW - (count - 1) * gap) / count)
-  }, [])
-
-  useLayoutEffect(() => {
-    measure()
-    window.addEventListener("resize", measure)
-    return () => window.removeEventListener("resize", measure)
-  }, [measure])
-
-  const next = useCallback(() => setCurrent((c) => (c >= maxIndex ? 0 : c + 1)), [maxIndex])
-  const prev = useCallback(() => setCurrent((c) => (c <= 0 ? maxIndex : c - 1)), [maxIndex])
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const autoIndexRef = useRef(0)
+  const isDragging = useRef(false)
+  const dragStartX = useRef(0)
+  const dragScrollLeft = useRef(0)
 
   useEffect(() => {
-    if (maxIndex <= 0) return
-    const interval = setInterval(next, 8000)
-    return () => clearInterval(interval)
-  }, [next, maxIndex])
+    const t = setInterval(() => {
+      if (isDragging.current || !scrollRef.current) return
+      autoIndexRef.current = (autoIndexRef.current + 1) % sedes.length
+      const card = cardRefs.current[autoIndexRef.current]
+      const left = card ? card.offsetLeft : 0
+      scrollRef.current.scrollTo({ left, behavior: "smooth" })
+    }, 4000)
+    return () => clearInterval(t)
+  }, [])
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return
+    isDragging.current = true
+    dragStartX.current = e.pageX
+    dragScrollLeft.current = scrollRef.current.scrollLeft
+    e.preventDefault()
   }
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const diff = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 40) diff > 0 ? next() : prev()
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollRef.current) return
+    scrollRef.current.scrollLeft = dragScrollLeft.current - (e.pageX - dragStartX.current)
   }
+  const onMouseUp = () => { isDragging.current = false }
 
   return (
     <section id="sedes-planes" className="py-12 md:py-20 bg-muted/30">
@@ -75,64 +62,37 @@ export function SedesPlanes() {
         </div>
 
         <div className="mb-16">
-          <div className="relative">
-            {maxIndex > 0 && (
-              <>
-                <button type="button" onClick={prev}
-                  className="flex absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white"
-                  aria-label="Sede anterior">
-                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-                <button type="button" onClick={next}
-                  className="flex absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/50 backdrop-blur-sm border border-white/10 items-center justify-center transition-colors text-white"
-                  aria-label="Siguiente sede">
-                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-              </>
-            )}
-
-            <div
-              ref={containerRef}
-              className="overflow-hidden"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
+          <div
+            ref={scrollRef}
+            className="flex gap-3 sm:gap-4 overflow-x-auto snap-x snap-mandatory cursor-grab select-none pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+          >
+            {sedes.map((sede, i) => (
               <div
-                className="flex gap-0 sm:gap-4 transition-transform duration-500 ease-in-out"
-                style={{
-                  gap: itemWidth > 0 ? `${gapPx}px` : undefined,
-                  transform: `translateX(${-(current * (itemWidth + gapPx))}px)`,
-                }}
+                key={sede.slug}
+                ref={el => { cardRefs.current[i] = el }}
+                className="flex-shrink-0 snap-start w-48 sm:w-56 md:w-64"
               >
-                {sedes.map((sede) => (
-                  <Link
-                    key={sede.slug}
-                    href={`/planes/${sede.slug}`}
-                    className="group flex-shrink-0 overflow-hidden rounded-2xl hover:shadow-lg transition-all block w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] xl:w-[calc(25%-12px)]"
-                    style={{ width: itemWidth > 0 ? `${itemWidth}px` : undefined }}
-                  >
-                    <div className="aspect-video overflow-hidden">
-                      <img
-                        src={sede.src}
-                        alt={sede.name}
-                        loading="eager"
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  </Link>
-                ))}
+                <Link
+                  href={`/planes/${sede.slug}`}
+                  className="group block overflow-hidden rounded-2xl hover:shadow-lg transition-all"
+                  draggable={false}
+                >
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={sede.src}
+                      alt={sede.name}
+                      loading="eager"
+                      draggable={false}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
               </div>
-            </div>
-
-            {itemWidth > 0 && maxIndex > 0 && (
-              <div className="flex justify-center gap-2 mt-6">
-                {Array.from({ length: maxIndex + 1 }, (_, i) => i).map((i) => (
-                  <button key={`dot-${i}`} type="button" onClick={() => setCurrent(i)}
-                    className={`h-2 rounded-full transition-all ${i === current ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50 w-2"}`}
-                    aria-label={`Ir a posición ${i + 1}`} />
-                ))}
-              </div>
-            )}
+            ))}
           </div>
         </div>
       </div>
