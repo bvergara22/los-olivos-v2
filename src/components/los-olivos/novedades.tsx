@@ -1,6 +1,6 @@
 "use client"
 
-import { Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
@@ -292,12 +292,32 @@ export function Novedades() {
     const t = setInterval(() => {
       if (isDragging.current || !scrollRef.current) return
       autoIndexRef.current = (autoIndexRef.current + 1) % items.length
-      const card = cardRefs.current[autoIndexRef.current]
-      const left = card ? card.offsetLeft : 0
-      scrollRef.current.scrollTo({ left, behavior: "smooth" })
+      scrollToCard(autoIndexRef.current)
     }, 8000)
     return () => clearInterval(t)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playingVideoIndex])
+
+  const scrollToCard = (index: number) => {
+    const el = scrollRef.current
+    const card = cardRefs.current[index]
+    if (!el || !card) return
+    const dx = card.getBoundingClientRect().left - el.getBoundingClientRect().left
+    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" })
+  }
+
+  const syncAutoIndex = () => {
+    isDragging.current = false
+    if (!scrollRef.current) return
+    const elLeft = scrollRef.current.getBoundingClientRect().left
+    let nearest = 0, minDist = Infinity
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return
+      const dist = Math.abs(card.getBoundingClientRect().left - elLeft)
+      if (dist < minDist) { minDist = dist; nearest = i }
+    })
+    autoIndexRef.current = nearest
+  }
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return
@@ -310,7 +330,30 @@ export function Novedades() {
     if (!isDragging.current || !scrollRef.current) return
     scrollRef.current.scrollLeft = dragScrollLeft.current - (e.pageX - dragStartX.current)
   }
-  const onMouseUp = () => { isDragging.current = false }
+  const onMouseUp = syncAutoIndex
+
+  const scrollPrev = () => {
+    const el = scrollRef.current
+    if (!el) return
+    if (el.scrollLeft <= 1) {
+      autoIndexRef.current = items.length - 1
+      el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" })
+    } else {
+      autoIndexRef.current = (autoIndexRef.current - 1 + items.length) % items.length
+      scrollToCard(autoIndexRef.current)
+    }
+  }
+  const scrollNext = () => {
+    const el = scrollRef.current
+    if (!el) return
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
+      autoIndexRef.current = 0
+      el.scrollTo({ left: 0, behavior: "smooth" })
+    } else {
+      autoIndexRef.current = (autoIndexRef.current + 1) % items.length
+      scrollToCard(autoIndexRef.current)
+    }
+  }
 
   return (
     <section className="py-12 md:py-20 bg-background">
@@ -323,32 +366,51 @@ export function Novedades() {
           </p>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory cursor-grab select-none pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-          onMouseDown={onMouseDown}
-          onMouseMove={onMouseMove}
-          onMouseUp={onMouseUp}
-          onMouseLeave={onMouseUp}
-        >
-          {items.map((item, i) => (
-            <div
-              key={i}
-              ref={el => { cardRefs.current[i] = el }}
-              className="flex-shrink-0 snap-start w-[300px] sm:w-[340px] lg:w-[380px]"
-            >
-              {item.type === "video"
-                ? <VideoCard
-                    item={item}
-                    onExpand={() => { setPlayingVideoIndex(null); setModalVideo(item) }}
-                    isActive={playingVideoIndex === i}
-                    onPlay={() => setPlayingVideoIndex(i)}
-                    onPause={() => setPlayingVideoIndex(null)}
-                  />
-                : <BannerCard item={item} onExpand={() => setModalBanner(item)} />
-              }
-            </div>
-          ))}
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory cursor-grab select-none pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+          >
+            {items.map((item, i) => (
+              <div
+                key={i}
+                ref={el => { cardRefs.current[i] = el }}
+                className="flex-shrink-0 snap-start [scroll-snap-stop:always] w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+              >
+                {item.type === "video"
+                  ? <VideoCard
+                      item={item}
+                      onExpand={() => { setPlayingVideoIndex(null); setModalVideo(item) }}
+                      isActive={playingVideoIndex === i}
+                      onPlay={() => setPlayingVideoIndex(i)}
+                      onPause={() => setPlayingVideoIndex(null)}
+                    />
+                  : <BannerCard item={item} onExpand={() => setModalBanner(item)} />
+                }
+              </div>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={scrollPrev}
+            className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
+            aria-label="Anterior"
+          >
+            <ChevronLeft className="w-6 h-6 text-foreground drop-shadow" />
+          </button>
+          <button
+            type="button"
+            onClick={scrollNext}
+            className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
+            aria-label="Siguiente"
+          >
+            <ChevronRight className="w-6 h-6 text-foreground drop-shadow" />
+          </button>
         </div>
       </div>
 

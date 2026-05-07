@@ -1,6 +1,6 @@
 "use client"
 
-import { Calendar, Download, Eye, Loader2, Send } from "lucide-react"
+import { Calendar, ChevronLeft, ChevronRight, Download, Eye, Loader2, Send } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
@@ -234,6 +234,26 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
         </div>
       </div>
 
+      {/* Details */}
+      <div className="px-5 py-4 space-y-1.5 border-b border-border text-sm flex-1">
+        <div className="flex justify-between gap-2">
+          <span className="text-muted-foreground font-medium">Exequias:</span>
+          <span className="text-foreground text-right">{o.exequias}</span>
+        </div>
+        <div className="flex justify-between gap-2">
+          <span className="text-muted-foreground font-medium">Hora exequias:</span>
+          <span className="text-foreground text-right">{o.hora_exequias}</span>
+        </div>
+        <div className="flex justify-between gap-2">
+          <span className="text-muted-foreground font-medium">Inhumación:</span>
+          <span className="text-foreground text-right">{o.inhumacion}</span>
+        </div>
+        <div className="flex justify-between gap-2">
+          <span className="text-muted-foreground font-medium">Hora inhumación:</span>
+          <span className="text-foreground text-right">{o.hora_inhumacion}</span>
+        </div>
+      </div>
+
       {/* Actions */}
       <div className="px-5 py-5 space-y-2">
         <button onClick={onCondolencia} className="w-full py-2.5 rounded-xl bg-duelo-main text-white text-xs font-semibold flex items-center justify-center gap-2 hover:bg-duelo-dark transition-colors">
@@ -278,11 +298,55 @@ export function Obituarios() {
     const t = setInterval(() => {
       if (isDragging.current || !scrollRef.current) return
       autoIndexRef.current = (autoIndexRef.current + 1) % obituarios.length
-      const card = cardRefs.current[autoIndexRef.current]
-      if (card) scrollRef.current.scrollTo({ left: card.offsetLeft, behavior: "smooth" })
-    }, 4000)
+      scrollToCard(autoIndexRef.current)
+    }, 8000)
     return () => clearInterval(t)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obituarios.length])
+
+  const scrollToCard = (index: number) => {
+    const el = scrollRef.current
+    const card = cardRefs.current[index]
+    if (!el || !card) return
+    const dx = card.getBoundingClientRect().left - el.getBoundingClientRect().left
+    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" })
+  }
+
+  const scrollPrev = () => {
+    const el = scrollRef.current
+    if (!el) return
+    if (el.scrollLeft <= 1) {
+      autoIndexRef.current = obituarios.length - 1
+      el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" })
+    } else {
+      autoIndexRef.current = (autoIndexRef.current - 1 + obituarios.length) % obituarios.length
+      scrollToCard(autoIndexRef.current)
+    }
+  }
+  const scrollNext = () => {
+    const el = scrollRef.current
+    if (!el) return
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
+      autoIndexRef.current = 0
+      el.scrollTo({ left: 0, behavior: "smooth" })
+    } else {
+      autoIndexRef.current = (autoIndexRef.current + 1) % obituarios.length
+      scrollToCard(autoIndexRef.current)
+    }
+  }
+
+  const syncAutoIndex = () => {
+    isDragging.current = false
+    if (!scrollRef.current) return
+    const elLeft = scrollRef.current.getBoundingClientRect().left
+    let nearest = 0, minDist = Infinity
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return
+      const dist = Math.abs(card.getBoundingClientRect().left - elLeft)
+      if (dist < minDist) { minDist = dist; nearest = i }
+    })
+    autoIndexRef.current = nearest
+  }
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return
@@ -295,7 +359,7 @@ export function Obituarios() {
     if (!isDragging.current || !scrollRef.current) return
     scrollRef.current.scrollLeft = dragScrollLeft.current - (e.pageX - dragStartX.current)
   }
-  const onMouseUp = () => { isDragging.current = false }
+  const onMouseUp = syncAutoIndex
 
   return (
     <section id="obituarios" className="py-12 md:py-20 bg-background">
@@ -319,11 +383,10 @@ export function Obituarios() {
             <p className="text-muted-foreground text-sm mt-1">En estos momentos no hay obituarios registrados.</p>
           </div>
         ) : (
-          <div className="flex justify-center">
+          <div className="relative">
             <div
               ref={scrollRef}
-              className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 cursor-grab select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] max-w-full"
-              style={{ scrollBehavior: "auto" }}
+              className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory cursor-grab select-none pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
               onMouseDown={onMouseDown}
               onMouseMove={onMouseMove}
               onMouseUp={onMouseUp}
@@ -333,7 +396,7 @@ export function Obituarios() {
                 <div
                   key={o.id}
                   ref={el => { cardRefs.current[i] = el }}
-                  className="flex-shrink-0 snap-start w-[272px] sm:w-[300px]"
+                  className="flex-shrink-0 snap-start [scroll-snap-stop:always] w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
                 >
                   <ObituarioCard
                     o={o}
@@ -343,6 +406,23 @@ export function Obituarios() {
                 </div>
               ))}
             </div>
+
+            <button
+              type="button"
+              onClick={scrollPrev}
+              className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="w-6 h-6 text-foreground drop-shadow" />
+            </button>
+            <button
+              type="button"
+              onClick={scrollNext}
+              className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
+              aria-label="Siguiente"
+            >
+              <ChevronRight className="w-6 h-6 text-foreground drop-shadow" />
+            </button>
           </div>
         )}
       </div>
