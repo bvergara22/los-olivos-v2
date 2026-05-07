@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 
 const horarios = [
   "8:00 AM - 9:00 AM",
@@ -15,7 +16,10 @@ const horarios = [
 
 export function AgendaModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [form, setForm] = useState({ nombre: "", documento: "", correo: "", telefono: "", horario: "", observaciones: "" })
+  const [mounted, setMounted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden"
@@ -23,14 +27,19 @@ export function AgendaModal({ open, onClose }: { open: boolean; onClose: () => v
     return () => { document.body.style.overflow = "" }
   }, [open])
 
-  if (!open) return null
+  useEffect(() => {
+    const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
+    document.addEventListener("keydown", fn)
+    return () => document.removeEventListener("keydown", fn)
+  }, [onClose])
+
+  if (!mounted || !open) return null
 
   const field = "w-full border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-duelo-main focus:ring-2 focus:ring-duelo-main/15 transition-all bg-background"
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div ref={ref} className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <div ref={ref} className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between p-5 border-b border-border">
           <div>
             <h3 className="font-display font-bold text-lg text-duelo-dark">¡Agenda tu cita con nosotros!</h3>
@@ -73,6 +82,7 @@ export function AgendaModal({ open, onClose }: { open: boolean; onClose: () => v
           </button>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
