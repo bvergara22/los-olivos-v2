@@ -41,7 +41,7 @@ export function Hero() {
     <section
       id="inicio"
       className="relative flex flex-col [overflow-x:clip] min-[1140px]:min-h-[750px]"
-      style={{ background: "#eaf6f0" }}
+      style={{ background: "#f2faf6" }}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 sm:py-12 md:py-16 min-[1140px]:py-20">
         <div className="flex flex-col min-[1140px]:grid min-[1140px]:grid-cols-2 gap-6 min-[1140px]:gap-12 items-center min-[1140px]:items-start">

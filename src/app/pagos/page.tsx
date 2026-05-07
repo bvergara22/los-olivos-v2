@@ -5,22 +5,22 @@ import { ArrowRight, CreditCard, ExternalLink, Lock, Phone, Shield } from "lucid
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Pagos en Linea - Los Olivos Cartagena",
-  description: "Realiza tus pagos de forma segura y rapida desde la comodidad de tu hogar. Pasarela de pagos Los Olivos Cartagena.",
+  title: "Pagos en Línea - Los Olivos Cartagena",
+  description: "Realiza tus pagos de forma segura y rápida desde la comodidad de tu hogar. Pasarela de pagos Los Olivos Cartagena.",
 }
 
 const metodosPago = [
   {
-    title: "Pago en linea",
-    description: "Paga con tu tarjeta de credito o debito de forma segura a traves de nuestra pasarela de pagos.",
+    title: "Pago en línea",
+    description: "Paga con tu tarjeta de crédito o débito de forma segura a través de nuestra pasarela de pagos.",
     icon: CreditCard,
     href: "https://pagos.losolivoscartagena.com/",
     external: true,
     cta: "Ir a pasarela de pagos",
   },
   {
-    title: "Pago telefonico",
-    description: "Llama a nuestra linea de atencion y un asesor te ayudara a realizar tu pago de manera asistida.",
+    title: "Pago telefónico",
+    description: "Llama a nuestra línea de atención y un asesor te ayudará a realizar tu pago de manera asistida.",
     icon: Phone,
     href: "tel:3106171987",
     external: false,
@@ -32,17 +32,17 @@ const ventajas = [
   {
     icon: Shield,
     title: "Pago seguro",
-    description: "Tus datos estan protegidos con encriptacion de nivel bancario.",
+    description: "Tus datos están protegidos con encriptación de nivel bancario.",
   },
   {
     icon: CreditCard,
-    title: "Multiples metodos",
-    description: "Acepta tarjetas de credito, debito y transferencias bancarias.",
+    title: "Múltiples métodos",
+    description: "Acepta tarjetas de crédito, débito y transferencias bancarias.",
   },
   {
     icon: Lock,
     title: "Privacidad garantizada",
-    description: "Tu informacion personal esta protegida bajo nuestra politica de datos.",
+    description: "Tu información personal está protegida bajo nuestra política de datos.",
   },
 ]
 
@@ -51,10 +51,10 @@ export default function PagosPage() {
     <>
       <PageBanner
         title="Pasarela de pagos"
-        description="Paga todo lo que necesites desde la comodidad de tu hogar. Rapido, seguro y sencillo."
+        description="Paga todo lo que necesites desde la comodidad de tu hogar. Rápido, seguro y sencillo."
       />
 
-      {/* Metodos de pago */}
+      {/* Métodos de pago */}
       <section className="py-12 md:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
@@ -70,8 +70,8 @@ export default function PagosPage() {
                   <h3 className="font-display font-bold text-xl text-foreground mb-2">{metodo.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-6">{metodo.description}</p>
                   <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                    <a 
-                      href={metodo.href} 
+                    <a
+                      href={metodo.href}
                       target={metodo.external ? "_blank" : undefined}
                       rel={metodo.external ? "noopener noreferrer" : undefined}
                     >
@@ -89,12 +89,12 @@ export default function PagosPage() {
                 Consulta tu estado de cuenta
               </h2>
               <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                Ingresa tu numero de documento para consultar tu saldo y estado de cuenta actual.
+                Ingresa tu número de documento para consultar tu saldo y estado de cuenta actual.
               </p>
               <form className="flex flex-col sm:flex-row gap-3">
-                <Input 
-                  type="text" 
-                  placeholder="Numero de documento" 
+                <Input
+                  type="text"
+                  placeholder="Número de documento"
                   className="h-12 flex-1 bg-muted/30"
                 />
                 <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8">

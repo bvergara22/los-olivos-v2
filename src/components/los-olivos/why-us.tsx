@@ -6,37 +6,37 @@ export function WhyUs() {
   const reasons = [
     {
       icon: Shield,
-      title: "Cobertura Total",
+      title: "Cobertura total",
       description: "Protección en el presente y el futuro para toda tu familia con planes integrales.",
       color: "primary",
     },
     {
       icon: Clock,
-      title: "+30 Años de Experiencia",
+      title: "+30 años de experiencia",
       description: "Más de tres décadas al servicio solidario exequial en Cartagena y la región.",
       color: "primary",
     },
     {
       icon: MapPin,
-      title: "Cobertura Nacional",
+      title: "Cobertura nacional",
       description: "Presencia en todo el territorio colombiano con múltiples sedes y aliados.",
       color: "primary",
     },
     {
       icon: Heart,
-      title: "Homenaje al Amor",
+      title: "Homenaje al amor",
       description: "Rendimos un verdadero tributo en la trascendencia de tu ser querido.",
       color: "primary",
     },
     {
       icon: Award,
-      title: "Respetamos tu Antigüedad",
+      title: "Respetamos tu antigüedad",
       description: "Reconocemos el tiempo que tengas con otra entidad sin costos adicionales.",
       color: "primary",
     },
     {
       icon: Users,
-      title: "+50,000 Familias",
+      title: "+50,000 familias",
       description: "Miles de familias confían en nosotros para su protección integral.",
       color: "primary",
     },

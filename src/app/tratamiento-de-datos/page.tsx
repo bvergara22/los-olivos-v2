@@ -15,7 +15,7 @@ export default function TratamientoDatosPage() {
             Documento legal
           </p>
           <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight">
-            Tratamiento de Datos Personales
+            Tratamiento de datos personales
           </h1>
           <p className="mt-2 text-base text-muted-foreground font-medium">
             Cartafun · Los Olivos Cartagena · NIT 800149226-0
@@ -50,7 +50,7 @@ export default function TratamientoDatosPage() {
         {/* Usos autorizados */}
         <section>
           <h2 className="text-lg sm:text-xl font-bold text-foreground pb-3 border-b border-border mb-6">
-            Usos Autorizados de Datos Personales
+            Usos autorizados de datos personales
           </h2>
           <p className="text-sm sm:text-base text-foreground leading-relaxed mb-6">
             Al aceptar de manera voluntaria, explícita, informada e inequívoca en los registros o formularios
@@ -82,7 +82,7 @@ export default function TratamientoDatosPage() {
         {/* Sin autorización previa */}
         <section>
           <h2 className="text-lg sm:text-xl font-bold text-foreground pb-3 border-b border-border mb-6">
-            Tratamiento de Datos Personales Sin Autorización Previa
+            Tratamiento de datos personales sin autorización previa
           </h2>
           <p className="text-sm sm:text-base text-foreground leading-relaxed mb-6">
             De acuerdo con el <strong>artículo 10 de la Ley 1581 de 2012</strong>, la autorización del Titular
@@ -119,7 +119,7 @@ export default function TratamientoDatosPage() {
         {/* Canal de atención */}
         <section>
           <h2 className="text-lg sm:text-xl font-bold text-foreground pb-3 border-b border-border mb-6">
-            Canal de Atención al Usuario
+            Canal de atención al usuario
           </h2>
           <p className="text-sm sm:text-base text-foreground leading-relaxed mb-6">
             Para requerimientos relacionados con el tratamiento de sus datos personales, puede comunicarse

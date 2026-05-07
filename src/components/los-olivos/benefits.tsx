@@ -6,22 +6,22 @@ export function Benefits() {
   const benefits = [
     {
       icon: Heart,
-      title: "Asistencia Exequial",
+      title: "Asistencia exequial",
       description: "Más de 3 protocolos para rendir el mejor homenaje: Desprendimiento, Acogida, Despedida, Renacimiento y Nicho a perpetuidad.",
     },
     {
       icon: Home,
-      title: "Asistencia en Vida",
+      title: "Asistencia en vida",
       description: "Servicios domiciliarios gratuitos: vidriería, electricidad, cerrajería, plomería y la exclusiva Tarjeta Beneficios Olivos.",
     },
     {
       icon: Brain,
-      title: "Asistencia Psicologica",
+      title: "Asistencia psicológica",
       description: "Equipo de psicólogos especializados brindando acompañamiento óptimo y ayuda psicológica personalizada.",
     },
     {
       icon: Gift,
-      title: "Beneficios Adicionales",
+      title: "Beneficios adicionales",
       description: "Descuentos exclusivos, eventos familiares, sorteos, rifas y muchos más beneficios para nuestra familia Olivos.",
     },
   ]
@@ -40,11 +40,10 @@ export function Benefits() {
               Más que un servicio exequial, somos una familia que te acompaña
               en cada momento de tu vida con beneficios integrales.
             </p>
-            
-            {/* CTA - Ley de Von Restorff */}
-            <Button 
+
+            <Button
             asChild
-              size="lg" 
+              size="lg"
               className="gap-2 bg-vida-dark text-white hover:bg-vida-dark/90 mt-4"
             >
               <Link href="/beneficios">
@@ -54,19 +53,16 @@ export function Benefits() {
             </Button>
           </div>
 
-          {/* Benefits Grid - Ley de Similitud y Proximidad */}
+          {/* Benefits Grid */}
           <div className="grid sm:grid-cols-2 gap-6">
             {benefits.map((benefit) => (
-              <div 
+              <div
                 key={benefit.title}
                 className="group p-4 md:p-6 rounded-2xl bg-card border border-border hover:border-vida-dark/50 hover:shadow-lg transition-all duration-300"
               >
-                {/* Ley de Pregnancia: Iconos simples */}
                 <div className="w-12 h-12 rounded-xl bg-vida-dark/10 text-vida-dark flex items-center justify-center mb-4 group-hover:bg-vida-dark group-hover:text-white transition-colors">
                   <benefit.icon className="w-6 h-6" />
                 </div>
-                
-                {/* Ley de Proximidad: Titulo y descripcion juntos */}
                 <h3 className="font-display font-bold text-lg text-foreground mb-2">
                   {benefit.title}
                 </h3>

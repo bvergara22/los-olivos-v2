@@ -123,7 +123,7 @@ export default function HuellitasPage() {
               Demuéstrale a tu mascota cuánto la amas
             </h2>
             <p className="text-primary font-display font-bold text-xl mb-4">
-              ¡Afilialа ahora!
+              ¡Afíliate ahora!
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto">
               Conoce todos los detalles del Plan Huellitas y empieza a proteger a tu compañero fiel hoy mismo.
