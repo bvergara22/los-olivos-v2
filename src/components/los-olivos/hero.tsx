@@ -46,10 +46,35 @@ export function Hero() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 sm:py-12 md:py-16 min-[1140px]:py-20">
         <div className="flex flex-col min-[1140px]:grid min-[1140px]:grid-cols-2 gap-6 min-[1140px]:gap-12 items-center min-[1140px]:items-start">
 
-          {/* Carrusel */}
-          <div className="relative w-full order-1 min-[1140px]:order-2 min-[1140px]:self-stretch">
-            <div className="relative w-full max-w-md mx-auto md:max-w-lg min-[1140px]:max-w-2xl min-[1140px]:h-full">
-              <div className="relative min-h-[260px] sm:min-h-[340px] md:min-h-[470px] min-[1140px]:absolute min-[1140px]:inset-x-0 min-[1140px]:top-12 min-[1140px]:bottom-0 flex items-start justify-start min-[1140px]:translate-x-16">
+          {/* Carrusel — móvil */}
+          <div className="relative w-full order-1 min-[1140px]:hidden">
+            <div className="relative min-h-[260px] sm:min-h-[340px] md:min-h-[470px]">
+              {carouselImages.map((image, index) => (
+                <div
+                  key={image.alt}
+                  className={`absolute inset-0 flex items-start justify-center transition-all duration-700 ${
+                    index === currentImageIndex
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-4 pointer-events-none"
+                  }`}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1200}
+                    height={900}
+                    priority={index === 0}
+                    className="w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] h-auto object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Carrusel — desktop */}
+          <div className="hidden min-[1140px]:block relative w-full order-1 min-[1140px]:order-2 min-[1140px]:self-stretch">
+            <div className="relative w-full max-w-2xl h-full">
+              <div className="absolute inset-x-0 top-12 bottom-0 flex items-start justify-start translate-x-16">
                 {carouselImages.map((image, index) => (
                   <div
                     key={image.alt}
@@ -65,7 +90,7 @@ export function Hero() {
                       width={1200}
                       height={900}
                       priority={index === 0}
-                      className={image.sizeClass}
+                      className="w-[320%] max-h-[700px] h-auto object-contain"
                     />
                   </div>
                 ))}
