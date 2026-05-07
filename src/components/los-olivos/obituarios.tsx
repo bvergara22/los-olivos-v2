@@ -26,53 +26,109 @@ interface Condolencia {
 
 // ─── Descargar ─────────────────────────────────────────────────────────────────
 
-function downloadObituario(o: Obituario) {
+async function downloadObituario(o: Obituario) {
+  const { jsPDF } = await import("jspdf")
+  const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" })
+  const W = 210, H = 297
+
+  // ── Fondo ───────────────────────────────────────────────────────────────────
+  pdf.setFillColor(189, 215, 236) // #bdd7ec
+  pdf.rect(0, 0, W, H, "F")
+
+  // ── Cabecera ─────────────────────────────────────────────────────────────────
+  pdf.setFont("helvetica", "bold")
+  pdf.setFontSize(14)
+  pdf.setTextColor(42, 68, 68)
+  pdf.text("Un homenaje al amor,", W / 2, 40, { align: "center" })
+  pdf.text("la vida y el legado de:", W / 2, 48, { align: "center" })
+
+  // Nombre: primera palabra en weight normal (más claro), resto en bold (oscuro)
   const parts = o.nombre_ser_querido.trim().split(" ")
-  const firstName = parts[0] ?? ""
+  const first = parts[0]
   const rest = parts.slice(1).join(" ")
 
-  const html = `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Obituario – ${o.nombre_ser_querido}</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;700;900&family=Comfortaa:wght@700&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:#bdd7ec;font-family:'Comfortaa',sans-serif;min-height:100vh;display:flex;flex-direction:column}
-    header{padding:60px 40px 20px;text-align:center}
-    header h1{font-size:17px;color:#2a4444;font-weight:700;line-height:1.6;margin-bottom:20px}
-    .name{font-family:'Raleway',sans-serif;font-size:48px;color:#240e36;font-weight:900;letter-spacing:-0.5px}
-    .name span{font-weight:200;color:#2a4444}
-    .info-grid{display:flex;justify-content:center;margin:40px auto;background:#97c0e2;padding:24px;max-width:580px;border-radius:8px}
-    .info-col{flex:1;text-align:center;font-size:15px;color:#2a4444;font-weight:700;padding:10px;border-right:1px solid #7aabcf}
-    .info-col:last-child{border-right:none}
-    .info-col small{display:block;font-weight:400;font-size:12px;margin-bottom:6px;opacity:.7}
-    .destino{text-align:center;font-size:16px;color:#2a4444;font-weight:700;margin:20px auto}
-    footer{margin-top:auto;padding:32px;text-align:center;font-size:12px;color:#2a4444;opacity:.6}
-    @media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Un homenaje al amor, la vida y el legado de:</h1>
-    <p class="name"><span>${firstName} </span>${rest}</p>
-  </header>
-  <p style="text-align:center;font-size:15px;color:#2a4444;opacity:.6;font-weight:bold;margin:16px 0">Agradecemos a familiares y amigos acompañarnos en este momento.<br>Dios los bendiga.</p>
-  <div class="info-grid">
-    <div class="info-col"><small>Fecha</small>${o.fecha}</div>
-    <div class="info-col"><small>Exequias</small>${o.exequias}<br><small style="margin-top:4px">${o.hora_exequias}</small></div>
-    <div class="info-col"><small>Inhumación</small>${o.inhumacion}<br><small style="margin-top:4px">${o.hora_inhumacion}</small></div>
-  </div>
-  <p class="destino">Destino final: ${o.inhumacion}</p>
-  <footer>Los Olivos Cartagena &mdash; CARTAFUN &mdash; losolivoscartagena.com</footer>
-  <script>window.onload=()=>window.print()</script>
-</body></html>`
+  pdf.setFontSize(30)
+  pdf.setFont("helvetica", "normal")
+  const fw = pdf.getTextWidth(first + (rest ? " " : ""))
+  pdf.setFont("helvetica", "bold")
+  const rw = rest ? pdf.getTextWidth(rest) : 0
+  const totalNameW = fw + rw
+  // Escalar si el nombre es muy largo
+  if (totalNameW > 170) {
+    pdf.setFontSize(Math.floor(30 * 170 / totalNameW))
+  }
+  const startX = (W - Math.min(totalNameW, 170)) / 2
 
-  const blob = new Blob([html], { type: "text/html" })
-  const url = URL.createObjectURL(blob)
-  window.open(url, "_blank")
-  setTimeout(() => URL.revokeObjectURL(url), 3000)
+  pdf.setFont("helvetica", "normal")
+  pdf.setTextColor(42, 68, 68)
+  pdf.text(first + (rest ? " " : ""), startX, 67)
+
+  if (rest) {
+    pdf.setFont("helvetica", "bold")
+    pdf.setTextColor(36, 14, 54) // #240e36
+    pdf.text(rest, startX + fw, 67)
+  }
+
+  // ── Agradecimiento ───────────────────────────────────────────────────────────
+  pdf.setFont("helvetica", "italic")
+  pdf.setFontSize(10)
+  pdf.setTextColor(42, 68, 68)
+  pdf.text(
+    "Agradecemos a los familiares y amigos nos acompañen en este momento, Dios los bendiga:",
+    W / 2, 84, { align: "center", maxWidth: 160 }
+  )
+
+  // ── Cuadro de info (3 columnas: Fecha / Iglesia / Hora) ─────────────────────
+  const bx = 20, bw = 170, by = 98, bh = 50
+  pdf.setFillColor(151, 192, 226) // #97c0e2
+  pdf.roundedRect(bx, by, bw, bh, 5, 5, "F")
+
+  // Separadores verticales
+  pdf.setDrawColor(122, 171, 207)
+  pdf.setLineWidth(0.4)
+  pdf.line(bx + bw / 3, by + 8, bx + bw / 3, by + bh - 8)
+  pdf.line(bx + bw * 2 / 3, by + 8, bx + bw * 2 / 3, by + bh - 8)
+
+  const cols = [
+    { label: "Fecha", value: o.fecha, x: bx + bw / 6 },
+    { label: "Iglesia", value: o.exequias, x: bx + bw / 2 },
+    { label: "Hora", value: o.hora_exequias, x: bx + bw * 5 / 6 },
+  ]
+  const colW = bw / 3 - 8
+
+  for (const col of cols) {
+    pdf.setFont("helvetica", "normal")
+    pdf.setFontSize(9)
+    pdf.setTextColor(42, 68, 68)
+    pdf.text(col.label + ":", col.x, by + 15, { align: "center" })
+
+    pdf.setFont("helvetica", "bold")
+    pdf.setFontSize(11)
+    const lines = pdf.splitTextToSize(col.value || "-", colW) as string[]
+    pdf.text(lines, col.x, by + 28, { align: "center" })
+  }
+
+  // ── Destino final ────────────────────────────────────────────────────────────
+  pdf.setFont("helvetica", "bold")
+  pdf.setFontSize(12)
+  pdf.setTextColor(42, 68, 68)
+  pdf.text(`Destino final: ${o.inhumacion}`, W / 2, by + bh + 18, { align: "center" })
+
+  // ── Footer: obituario_descarga.png ───────────────────────────────────────────
+  try {
+    const resp = await fetch("/obituario_descarga.png")
+    const blob = await resp.blob()
+    const b64 = await new Promise<string>((resolve) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result as string)
+      reader.readAsDataURL(blob)
+    })
+    // imagen 2048×554px → ratio 3.7:1 → en A4: 210mm × ~57mm
+    const imgH = Math.round(W * 554 / 2048)
+    pdf.addImage(b64, "PNG", 0, H - imgH, W, imgH)
+  } catch { /* omit footer on error */ }
+
+  pdf.save(`Obituario de ${o.nombre_ser_querido}.pdf`)
 }
 
 // ─── Modal base ────────────────────────────────────────────────────────────────
@@ -222,15 +278,19 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
     <div className="flex flex-col h-full rounded-2xl overflow-hidden border border-border bg-card shadow-md hover:shadow-lg transition-shadow duration-300">
 
       {/* Header */}
-      <div className="relative px-6 py-6 text-center" style={{ background: "linear-gradient(135deg, #3e2455 0%, #240e36 100%)" }}>
-        <div className="w-8 h-px bg-white/30 mx-auto mb-3" />
-        <p className="text-white/50 text-[10px] uppercase tracking-[0.2em] mb-2">Q.E.P.D.</p>
-        <h3 className="font-display text-white text-base font-bold leading-snug min-h-[2.75rem] flex items-center justify-center line-clamp-2">
-          {o.nombre_ser_querido}
-        </h3>
-        <div className="flex items-center justify-center gap-1.5 mt-3">
-          <Calendar className="w-3 h-3 text-white/50" />
-          <span className="text-white/60 text-xs">{o.fecha}</span>
+      <div className="relative px-6 py-6 text-center overflow-hidden">
+        <div className="absolute inset-0" style={{ backgroundImage: "url('/obituario_fondo.jpg')", backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div className="absolute inset-0 bg-[#240e36]/72" />
+        <div className="relative z-10">
+          <div className="w-8 h-px bg-white/30 mx-auto mb-3" />
+          <p className="text-white/50 text-[10px] uppercase tracking-[0.2em] mb-2">Q.E.P.D.</p>
+          <h3 className="font-display text-white text-base font-bold leading-snug min-h-[2.75rem] flex items-center justify-center line-clamp-2">
+            {o.nombre_ser_querido}
+          </h3>
+          <div className="flex items-center justify-center gap-1.5 mt-3">
+            <Calendar className="w-3 h-3 text-white/50" />
+            <span className="text-white/60 text-xs">{o.fecha}</span>
+          </div>
         </div>
       </div>
 
