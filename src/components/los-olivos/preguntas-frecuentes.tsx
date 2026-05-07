@@ -6,11 +6,11 @@ import { useRef, useState } from "react"
 const faqs = [
   {
     q: "¿Cómo hago para conocer mi estado de cuenta?",
-    a: "Para conocer el estado de tu cuenta, puedes comunicarte al número oficial de Los Olivos Cartagena 323 309 3435. Nuestra asistente virtual Olivia te guiará paso a paso para acceder a la información de tu plan, afiliados y estado de cuenta. En caso de requerir atención más específica, un asesor especializado acompañará tu proceso.",
+    a: "Para conocer el estado de tu cuenta, puedes comunicarte al número oficial de Los Olivos Cartagena 323 309 3435. Nuestra asistente virtual LIA te guiará paso a paso para acceder a la información de tu plan, afiliados y estado de cuenta. En caso de requerir atención más específica, un asesor especializado acompañará tu proceso.",
   },
   {
     q: "¿Cuáles son mis beneficiarios?",
-    a: "Puedes consultar tu lista de beneficiarios escribiendo al número oficial 323 309 3435. Por medio del chat, Olivia te orientará para acceder a los datos de tu plan y afiliados. Si necesitas mayor acompañamiento, un asesor estará disponible para ayudarte.",
+    a: "Puedes consultar tu lista de beneficiarios escribiendo al número oficial 323 309 3435. Por medio del chat, LIA te orientará para acceder a los datos de tu plan y afiliados. Si necesitas mayor acompañamiento, un asesor estará disponible para ayudarte.",
   },
   {
     q: "¿Qué me cubre el plan?",
@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "¿Dónde se encuentra el registro de defunción de mi ser querido?",
-    a: "El contratante debe dirigirse a la notaría donde se registró el servicio. Si no tienes esta información, comunícate a la línea oficial 323 309 3435 y Olivia te ayudará a ubicar los datos necesarios.",
+    a: "El contratante debe dirigirse a la notaría donde se registró el servicio. Si no tienes esta información, comunícate a la línea oficial 323 309 3435 y LIA te ayudará a ubicar los datos necesarios.",
   },
   {
     q: "¿Cómo es el proceso para exhumar a mi ser querido?",
