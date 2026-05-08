@@ -449,22 +449,26 @@ export function Obituarios() {
               ))}
             </div>
 
-            <button
-              type="button"
-              onClick={scrollPrev}
-              className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
-              aria-label="Anterior"
-            >
-              <ChevronLeft className="w-6 h-6 text-foreground drop-shadow" />
-            </button>
-            <button
-              type="button"
-              onClick={scrollNext}
-              className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
-              aria-label="Siguiente"
-            >
-              <ChevronRight className="w-6 h-6 text-foreground drop-shadow" />
-            </button>
+            {obituarios.length > 3 && (
+              <>
+                <button
+                  type="button"
+                  onClick={scrollPrev}
+                  className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
+                  aria-label="Anterior"
+                >
+                  <ChevronLeft className="w-6 h-6 text-foreground drop-shadow" />
+                </button>
+                <button
+                  type="button"
+                  onClick={scrollNext}
+                  className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 items-center justify-center hover:opacity-60 transition-opacity"
+                  aria-label="Siguiente"
+                >
+                  <ChevronRight className="w-6 h-6 text-foreground drop-shadow" />
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>

@@ -48,7 +48,7 @@ export function Hero() {
 
           {/* Carrusel — móvil */}
           <div className="relative w-full order-1 min-[1140px]:hidden">
-            <div className="relative min-h-[200px] sm:min-h-[260px] md:min-h-[380px]">
+            <div className="relative min-h-[240px] sm:min-h-[300px] md:min-h-[380px]">
               {carouselImages.map((image, index) => (
                 <div
                   key={image.alt}
@@ -64,7 +64,7 @@ export function Hero() {
                     width={1200}
                     height={900}
                     priority={index === 0}
-                    className="w-[55%] max-h-[170px] sm:max-h-[215px] md:w-[62%] md:max-h-[340px] h-auto object-contain"
+                    className="w-[78%] max-h-[210px] sm:w-[72%] sm:max-h-[265px] md:w-[62%] md:max-h-[340px] h-auto object-contain"
                   />
                 </div>
               ))}
