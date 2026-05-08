@@ -26,109 +26,72 @@ interface Condolencia {
 
 // ─── Descargar ─────────────────────────────────────────────────────────────────
 
+function esc(s: string) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+
 async function downloadObituario(o: Obituario) {
-  const { jsPDF } = await import("jspdf")
+  const [{ jsPDF }, { default: html2canvas }] = await Promise.all([
+    import("jspdf"),
+    import("html2canvas"),
+  ])
+
+  const parts = o.nombre_ser_querido.toUpperCase().trim().split(/\s+/)
+  const firstName = parts[0] || ""
+  const firstLastName = parts[1] || ""
+  const nameChars = firstName.length + (firstLastName ? firstLastName.length + 1 : 0)
+  const fontSize = Math.min(60, Math.max(32, Math.floor(400 / Math.max(nameChars * 0.5, 1))))
+
+  const el = document.createElement("div")
+  el.style.cssText = "width:794px;height:1123px;background:#bdd7ec;position:fixed;top:-9999px;left:-9999px;font-family:var(--font-display),cursive;box-sizing:border-box;overflow:hidden;"
+
+  el.innerHTML = `
+    <div style="padding-top:108px;text-align:center;color:#557070;font-size:28px;font-weight:900;line-height:1.8;">
+      Un homenaje al amor,<br>la vida y el legado de:
+    </div>
+    <div style="margin-top:52px;text-align:center;line-height:1.1;padding:0 20px;">
+      <span style="font-family:var(--font-sans),sans-serif;font-weight:400;font-size:${fontSize}px;color:#2a4444;display:inline;">${esc(firstName)}</span>${firstLastName ? `<span style="font-family:var(--font-sans),sans-serif;font-weight:700;font-size:${fontSize}px;color:#2a4444;display:inline;"> ${esc(firstLastName)}</span>` : ""}
+    </div>
+    <div style="margin-top:68px;text-align:center;color:#557070;font-size:21px;font-weight:600;line-height:1.6;padding:0 95px;">
+      Agradecemos a los familiares y amigos nos acompañen en este momento, Dios los bendiga:
+    </div>
+    <div style="margin:42px 38px 0;background:#97c0e2;border-radius:10px;padding:22px 28px 38px;display:flex;font-family:var(--font-display),cursive;">
+      <div style="flex:1;">
+        <p style="margin:0;font-size:19px;font-weight:800;color:#557070;">Fecha:</p>
+        <p style="margin:10px 0 0;font-size:19px;font-weight:800;color:#2a4444;">${esc(o.fecha || "-")}</p>
+      </div>
+      <div style="flex:1;">
+        <p style="margin:0;font-size:19px;font-weight:800;color:#557070;">Iglesia:</p>
+        <p style="margin:10px 0 0;font-size:19px;font-weight:800;color:#2a4444;">${esc(o.exequias || "-")}</p>
+      </div>
+      <div style="flex:1;">
+        <p style="margin:0;font-size:19px;font-weight:800;color:#557070;">Hora:</p>
+        <p style="margin:10px 0 0;font-size:19px;font-weight:800;color:#2a4444;">${esc(o.hora_exequias || "-")}</p>
+      </div>
+    </div>
+    <div style="margin:26px 38px 0;font-size:19px;font-weight:800;color:#2a4444;font-family:var(--font-display),cursive;">
+      Destino final: ${esc(o.inhumacion || "-")}
+    </div>
+    <img src="/obituario_descarga.png" style="position:absolute;bottom:0;left:0;width:794px;display:block;" crossorigin="anonymous">
+  `
+
+  document.body.appendChild(el)
+  await document.fonts.ready
+
+  const canvas = await html2canvas(el, {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: "#bdd7ec",
+    width: 794,
+    height: 1123,
+    logging: false,
+  })
+
+  document.body.removeChild(el)
+
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" })
-  const W = 210, H = 297
-
-  // ── Fondo ───────────────────────────────────────────────────────────────────
-  pdf.setFillColor(189, 215, 236) // #bdd7ec
-  pdf.rect(0, 0, W, H, "F")
-
-  // ── Cabecera ─────────────────────────────────────────────────────────────────
-  pdf.setFont("helvetica", "bold")
-  pdf.setFontSize(14)
-  pdf.setTextColor(42, 68, 68)
-  pdf.text("Un homenaje al amor,", W / 2, 40, { align: "center" })
-  pdf.text("la vida y el legado de:", W / 2, 48, { align: "center" })
-
-  // Nombre: primera palabra en weight normal (más claro), resto en bold (oscuro)
-  const parts = o.nombre_ser_querido.trim().split(" ")
-  const first = parts[0]
-  const rest = parts.slice(1).join(" ")
-
-  pdf.setFontSize(30)
-  pdf.setFont("helvetica", "normal")
-  const fw = pdf.getTextWidth(first + (rest ? " " : ""))
-  pdf.setFont("helvetica", "bold")
-  const rw = rest ? pdf.getTextWidth(rest) : 0
-  const totalNameW = fw + rw
-  // Escalar si el nombre es muy largo
-  if (totalNameW > 170) {
-    pdf.setFontSize(Math.floor(30 * 170 / totalNameW))
-  }
-  const startX = (W - Math.min(totalNameW, 170)) / 2
-
-  pdf.setFont("helvetica", "normal")
-  pdf.setTextColor(42, 68, 68)
-  pdf.text(first + (rest ? " " : ""), startX, 67)
-
-  if (rest) {
-    pdf.setFont("helvetica", "bold")
-    pdf.setTextColor(36, 14, 54) // #240e36
-    pdf.text(rest, startX + fw, 67)
-  }
-
-  // ── Agradecimiento ───────────────────────────────────────────────────────────
-  pdf.setFont("helvetica", "italic")
-  pdf.setFontSize(10)
-  pdf.setTextColor(42, 68, 68)
-  pdf.text(
-    "Agradecemos a los familiares y amigos nos acompañen en este momento, Dios los bendiga:",
-    W / 2, 84, { align: "center", maxWidth: 160 }
-  )
-
-  // ── Cuadro de info (3 columnas: Fecha / Iglesia / Hora) ─────────────────────
-  const bx = 20, bw = 170, by = 98, bh = 50
-  pdf.setFillColor(151, 192, 226) // #97c0e2
-  pdf.roundedRect(bx, by, bw, bh, 5, 5, "F")
-
-  // Separadores verticales
-  pdf.setDrawColor(122, 171, 207)
-  pdf.setLineWidth(0.4)
-  pdf.line(bx + bw / 3, by + 8, bx + bw / 3, by + bh - 8)
-  pdf.line(bx + bw * 2 / 3, by + 8, bx + bw * 2 / 3, by + bh - 8)
-
-  const cols = [
-    { label: "Fecha", value: o.fecha, x: bx + bw / 6 },
-    { label: "Iglesia", value: o.exequias, x: bx + bw / 2 },
-    { label: "Hora", value: o.hora_exequias, x: bx + bw * 5 / 6 },
-  ]
-  const colW = bw / 3 - 8
-
-  for (const col of cols) {
-    pdf.setFont("helvetica", "normal")
-    pdf.setFontSize(9)
-    pdf.setTextColor(42, 68, 68)
-    pdf.text(col.label + ":", col.x, by + 15, { align: "center" })
-
-    pdf.setFont("helvetica", "bold")
-    pdf.setFontSize(11)
-    const lines = pdf.splitTextToSize(col.value || "-", colW) as string[]
-    pdf.text(lines, col.x, by + 28, { align: "center" })
-  }
-
-  // ── Destino final ────────────────────────────────────────────────────────────
-  pdf.setFont("helvetica", "bold")
-  pdf.setFontSize(12)
-  pdf.setTextColor(42, 68, 68)
-  pdf.text(`Destino final: ${o.inhumacion}`, W / 2, by + bh + 18, { align: "center" })
-
-  // ── Footer: obituario_descarga.png ───────────────────────────────────────────
-  try {
-    const resp = await fetch("/obituario_descarga.png")
-    const blob = await resp.blob()
-    const b64 = await new Promise<string>((resolve) => {
-      const reader = new FileReader()
-      reader.onload = () => resolve(reader.result as string)
-      reader.readAsDataURL(blob)
-    })
-    // imagen 2048×554px → ratio 3.7:1 → en A4: 210mm × ~57mm
-    const imgH = Math.round(W * 554 / 2048)
-    pdf.addImage(b64, "PNG", 0, H - imgH, W, imgH)
-  } catch { /* omit footer on error */ }
-
-  pdf.save(`Obituario de ${o.nombre_ser_querido}.pdf`)
+  pdf.addImage(canvas.toDataURL("image/jpeg", 0.95), "JPEG", 0, 0, 210, 297)
+  pdf.save(`Obituario de ${o.nombre_ser_querido.toUpperCase()}.pdf`)
 }
 
 // ─── Modal base ────────────────────────────────────────────────────────────────
@@ -185,7 +148,7 @@ function CondolenciaModal({ obituario, onClose }: { obituario: Obituario; onClos
   }
 
   return (
-    <Modal title={obituario.nombre_ser_querido} subtitle="Enviar condolencia" onClose={onClose}>
+    <Modal title={obituario.nombre_ser_querido.toUpperCase()} subtitle="Enviar condolencia" onClose={onClose}>
       {done ? (
         <div className="p-8 text-center">
           <div className="w-14 h-14 rounded-full bg-duelo-main/10 flex items-center justify-center mx-auto mb-4">
@@ -235,7 +198,7 @@ function CondolenciasModal({ obituario, onClose }: { obituario: Obituario; onClo
   }, [obituario.id])
 
   return (
-    <Modal title={obituario.nombre_ser_querido} subtitle="Condolencias" onClose={onClose}>
+    <Modal title={obituario.nombre_ser_querido.toUpperCase()} subtitle="Condolencias" onClose={onClose}>
       <div className="overflow-y-auto flex-1 p-6">
         {loading ? (
           <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-duelo-main" /></div>
@@ -284,7 +247,7 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
         <div className="relative z-10">
           <div className="w-8 h-px bg-white/30 mx-auto mb-3" />
           <p className="text-white/50 text-[10px] uppercase tracking-[0.2em] mb-2">Q.E.P.D.</p>
-          <h3 className="font-display text-white text-base font-bold leading-snug min-h-[2.75rem] flex items-center justify-center line-clamp-2">
+          <h3 className="font-display text-white text-base font-bold leading-snug min-h-[2.75rem] flex items-center justify-center line-clamp-2 uppercase">
             {o.nombre_ser_querido}
           </h3>
           <div className="flex items-center justify-center gap-1.5 mt-3">
@@ -441,6 +404,25 @@ export function Obituarios() {
             </div>
             <p className="text-foreground font-medium">Sin obituarios activos</p>
             <p className="text-muted-foreground text-sm mt-1">En estos momentos no hay obituarios registrados.</p>
+          </div>
+        ) : obituarios.length === 1 ? (
+          <div className="max-w-sm mx-auto">
+            <ObituarioCard
+              o={obituarios[0]}
+              onCondolencia={() => setCondolenciaFor(obituarios[0])}
+              onVerCondolencias={() => setCondolenciasFor(obituarios[0])}
+            />
+          </div>
+        ) : obituarios.length === 2 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            {obituarios.map((o) => (
+              <ObituarioCard
+                key={o.id}
+                o={o}
+                onCondolencia={() => setCondolenciaFor(o)}
+                onVerCondolencias={() => setCondolenciasFor(o)}
+              />
+            ))}
           </div>
         ) : (
           <div className="relative">

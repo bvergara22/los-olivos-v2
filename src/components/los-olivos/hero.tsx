@@ -48,7 +48,7 @@ export function Hero() {
 
           {/* Carrusel — móvil */}
           <div className="relative w-full order-1 min-[1140px]:hidden">
-            <div className="relative min-h-[260px] sm:min-h-[340px] md:min-h-[470px]">
+            <div className="relative min-h-[200px] sm:min-h-[260px] md:min-h-[380px]">
               {carouselImages.map((image, index) => (
                 <div
                   key={image.alt}
@@ -64,7 +64,7 @@ export function Hero() {
                     width={1200}
                     height={900}
                     priority={index === 0}
-                    className="w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] h-auto object-contain"
+                    className="w-[55%] max-h-[170px] sm:max-h-[215px] md:w-[62%] md:max-h-[340px] h-auto object-contain"
                   />
                 </div>
               ))}
@@ -72,29 +72,27 @@ export function Hero() {
           </div>
 
           {/* Carrusel — desktop */}
-          <div className="hidden min-[1140px]:block relative w-full order-1 min-[1140px]:order-2 min-[1140px]:self-stretch">
-            <div className="relative w-full max-w-2xl h-full">
-              <div className="absolute inset-x-0 top-12 bottom-0 flex items-start justify-start translate-x-16">
-                {carouselImages.map((image, index) => (
-                  <div
-                    key={image.alt}
-                    className={`absolute inset-0 flex items-start justify-start transition-all duration-700 ${
-                      index === currentImageIndex
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-4 pointer-events-none"
-                    }`}
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={1200}
-                      height={900}
-                      priority={index === 0}
-                      className="w-[320%] max-h-[700px] h-auto object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
+          <div className="hidden min-[1140px]:flex relative w-full order-1 min-[1140px]:order-2 min-[1140px]:self-stretch items-start justify-center pt-6">
+            <div className="relative w-full min-h-[460px]">
+              {carouselImages.map((image, index) => (
+                <div
+                  key={image.alt}
+                  className={`absolute inset-0 flex items-start justify-center transition-all duration-700 ${
+                    index === currentImageIndex
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-4 pointer-events-none"
+                  }`}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1200}
+                    height={900}
+                    priority={index === 0}
+                    className="w-[88%] max-h-[460px] h-auto object-contain"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 

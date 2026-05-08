@@ -11,6 +11,7 @@ type VideoItem = {
   src: string
   title: string
   description: string
+  seekTo?: number
 }
 
 type BannerItem = {
@@ -73,6 +74,7 @@ const items: CarouselItem[] = [
     src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/video/SANANDO%20JUNTOS.mp4",
     title: "Sanando Juntos",
     description: "Acompañamos a las familias en su proceso de duelo con programas de apoyo emocional.",
+    seekTo: 3,
   },
 ]
 
@@ -214,7 +216,7 @@ function VideoCard({ item, onExpand }: { item: VideoItem; onExpand: () => void }
   return (
     <div className="group relative rounded-xl overflow-hidden bg-black flex flex-col h-full">
       <div className="relative aspect-video cursor-pointer flex-shrink-0" onClick={togglePlay}>
-        <video ref={videoRef} src={item.src} muted={muted} loop playsInline className="w-full h-full object-cover" onEnded={() => setPlaying(false)} />
+        <video ref={videoRef} src={item.src} muted={muted} loop playsInline preload="metadata" className="w-full h-full object-cover" onEnded={() => setPlaying(false)} onLoadedMetadata={() => { if (videoRef.current) videoRef.current.currentTime = item.seekTo ?? 0.001 }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center hover:bg-white/30 transition-colors">
