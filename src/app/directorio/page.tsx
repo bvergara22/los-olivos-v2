@@ -59,6 +59,14 @@ function IconMap() {
     </svg>
   )
 }
+function IconAdvisor() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+      <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+    </svg>
+  )
+}
 function IconArrow() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -80,17 +88,12 @@ export default function DirectorioPage() {
 
       {/* Header */}
       <div style={{ background: `linear-gradient(160deg, ${PRIMARY_DARK} 0%, ${PRIMARY} 60%, #01a86b 100%)` }} className="px-5 pt-10 pb-8 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 30% 70%, #fff 0%, transparent 60%), radial-gradient(circle at 80% 20%, #a8d5b5 0%, transparent 50%)" }} />
-        <div className="relative z-10">
-          <div className="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <Image src="/logo-olivos.png" alt="Los Olivos" width={52} height={52} className="object-contain" />
-          </div>
-          <h1 className="text-white font-bold text-xl tracking-tight mb-1" style={{ fontFamily: "var(--font-display, cursive)" }}>Los Olivos Cartagena</h1>
-          <p className="text-white/70 text-sm">Protección familiar integral</p>
+        <div className="relative z-10 max-w-lg mx-auto px-4 flex items-center justify-center">
+          <Image src="/logo_blanco.png" alt="Los Olivos Cartagena" width={400} height={400} className="object-contain opacity-100 pointer-events-none select-none w-full" />
         </div>
       </div>
 
-      <div className="max-w-lg mx-auto px-4 py-6 space-y-5">
+      <div className="max-w-lg mx-auto px-4 pt-5 pb-6 space-y-3">
 
         {/* Portal destacado */}
         <a href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer"
@@ -106,34 +109,35 @@ export default function DirectorioPage() {
         </a>
 
         {/* Enlaces principales */}
-        <div>
-          <p className="text-xs font-bold uppercase tracking-widest mb-3 px-1" style={{ color: PRIMARY }}>Enlaces</p>
-          <div className="rounded-2xl overflow-hidden shadow-sm divide-y" style={{ background: "#fff", borderColor: PRIMARY_MID }}>
-            {[
-              { href: "/", label: "Nuestro sitio web", external: false },
-              { href: "https://pagos.losolivoscartagena.com/", label: "Pagos online", external: true },
-              { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea", label: "Afiliaciones virtuales", external: true },
-              { href: "https://goldenoffer.losolivoscartagena.com/", label: "Tienda", external: true },
-              { href: "/planes", label: "Planes exequiales", external: false },
-              { href: "/#obituarios", label: "Obituarios", external: false },
-              { href: "/tramites", label: "Trámites personas fallecidas", external: false },
-              { href: "/cotizar", label: "Cotizar homenaje", external: false },
-              { href: "/#contacto", label: "Contáctanos", external: false },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-                className="flex items-center justify-between gap-3 px-4 py-4 transition-colors group hover:bg-[#e6f7f1]"
-              >
-                <p className="text-sm font-semibold text-[#1a2e22]">{item.label}</p>
-                <span className="flex-shrink-0 opacity-30 group-hover:opacity-100 transition-opacity text-[#018c58]">
-                  <IconArrow />
-                </span>
-              </a>
-            ))}
-          </div>
+        <div className="space-y-2.5">
+          {[
+            { href: "/",                                                              label: "Nuestro sitio web",           sub: "Conoce todo sobre Los Olivos",         external: false },
+            { href: "https://pagos.losolivoscartagena.com/",                         label: "Pagos online",                sub: "Paga tu cuota de forma rápida",        external: true  },
+            { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea", label: "Afiliaciones virtuales",      sub: "Afíliate desde donde estés",           external: true  },
+            { href: "https://goldenoffer.losolivoscartagena.com/",                   label: "Tienda",                      sub: "Descuentos y beneficios exclusivos",   external: true  },
+            { href: "/planes",                                                        label: "Planes exequiales",           sub: "Protección para toda tu familia",      external: false },
+            { href: "/#obituarios",                                                   label: "Obituarios",                  sub: "Condolencias y homenajes activos",     external: false },
+            { href: "/tramites",                                                      label: "Trámites personas fallecidas",sub: "Documentos y procedimientos",          external: false },
+            { href: "/cotizar",                                                       label: "Cotizar homenaje",            sub: "Solicita una cotización ahora",        external: false },
+            { href: "/#contacto",                                                     label: "Contáctanos",                 sub: "Estamos aquí para ayudarte",           external: false },
+          ].map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
+              className="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-white shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-1 self-stretch rounded-full flex-shrink-0" style={{ background: PRIMARY }} />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-[#1a2e22] leading-snug">{item.label}</p>
+                <p className="text-xs mt-0.5 leading-snug" style={{ color: PRIMARY + "99" }}>{item.sub}</p>
+              </div>
+              <span className="flex-shrink-0 opacity-20 group-hover:opacity-100 transition-opacity" style={{ color: PRIMARY }}>
+                <IconArrow />
+              </span>
+            </a>
+          ))}
         </div>
 
         {/* Contacto */}
@@ -141,13 +145,13 @@ export default function DirectorioPage() {
           <p className="text-xs font-bold uppercase tracking-widest mb-3 px-1" style={{ color: PRIMARY }}>Contacto directo</p>
           <div className="space-y-2.5">
 
-            <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/573233093435?text=Hola%20Lia" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl shadow-sm transition-all hover:scale-[1.01] hover:shadow-md"
-              style={{ background: "#25D366", color: "#fff" }}>
-              <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0"><IconWhatsApp /></div>
+              style={{ background: "#fff" }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: PRIMARY_LIGHT, color: PRIMARY }}><IconAdvisor /></div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium opacity-80">WhatsApp · Atención 24 horas</p>
-                <p className="text-sm font-bold">+57 323 309 3435</p>
+                <p className="text-xs font-medium" style={{ color: "#6b8f74" }}>Asistente Lia · Atención 24 horas</p>
+                <p className="text-sm font-bold" style={{ color: "#1a2e22" }}>Chatea con Lia</p>
               </div>
             </a>
 
