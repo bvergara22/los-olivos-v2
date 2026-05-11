@@ -20,7 +20,7 @@ export function Footer() {
 
   const legalLinks = [
     { label: "Tratamiento de datos", href: "/tratamiento-de-datos", external: false },
-    { label: "Directorio", href: "/en-construccion", external: false },
+    { label: "Directorio", href: "/directorio", external: false },
   ]
 
   return (

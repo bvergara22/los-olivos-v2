@@ -87,9 +87,29 @@ export default function DirectorioPage() {
     <div className="min-h-screen" style={{ background: "#f0f7f4", fontFamily: "var(--font-sans, sans-serif)" }}>
 
       {/* Header */}
-      <div style={{ background: `linear-gradient(160deg, ${PRIMARY_DARK} 0%, ${PRIMARY} 60%, #01a86b 100%)` }} className="px-5 pt-10 pb-8 text-center relative overflow-hidden">
+      <div style={{ background: `linear-gradient(160deg, ${PRIMARY_DARK} 0%, ${PRIMARY} 60%, #01a86b 100%)` }} className="px-4 sm:px-8 pt-8 sm:pt-12 pb-10 sm:pb-14 text-center relative overflow-hidden">
+
+        {/* Círculos decorativos — escalan con vw */}
+        <div className="absolute rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.06)", width: "clamp(120px,35vw,340px)", height: "clamp(120px,35vw,340px)", top: "clamp(-60px,-18vw,-40px)", left: "clamp(-60px,-18vw,-40px)" }} />
+        <div className="absolute rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.07)", width: "clamp(70px,20vw,200px)", height: "clamp(70px,20vw,200px)", top: "clamp(-30px,-8vw,-10px)", left: "clamp(-30px,-8vw,-10px)" }} />
+        <div className="absolute rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.06)", width: "clamp(140px,40vw,380px)", height: "clamp(140px,40vw,380px)", bottom: "clamp(-80px,-22vw,-50px)", right: "clamp(-80px,-22vw,-50px)" }} />
+        <div className="absolute rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.07)", width: "clamp(80px,22vw,220px)", height: "clamp(80px,22vw,220px)", bottom: "clamp(-40px,-10vw,-15px)", right: "clamp(-40px,-10vw,-15px)" }} />
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 65%)" }} />
+
+        {/* Ola inferior */}
+        <div className="absolute bottom-0 left-0 right-0 pointer-events-none" aria-hidden>
+          <svg viewBox="0 0 500 40" preserveAspectRatio="none" className="w-full h-6 sm:h-8 md:h-10" style={{ fill: "#f0f7f4" }}>
+            <path d="M0 40 C125 10 375 10 500 40 L500 40 L0 40 Z" />
+          </svg>
+        </div>
+
         <div className="relative z-10 max-w-lg mx-auto px-4 flex items-center justify-center">
-          <Image src="/logo_blanco.png" alt="Los Olivos Cartagena" width={400} height={400} className="object-contain opacity-100 pointer-events-none select-none w-full" />
+          <Image src="/logo_blanco.png" alt="Los Olivos Cartagena" width={400} height={400} className="object-contain opacity-100 pointer-events-none select-none w-full max-w-xs sm:max-w-sm md:max-w-md" />
         </div>
       </div>
 
@@ -97,15 +117,16 @@ export default function DirectorioPage() {
 
         {/* Portal destacado */}
         <a href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer"
-          className="flex items-center justify-between gap-3 px-5 py-4 rounded-2xl shadow-sm transition-all hover:scale-[1.01] hover:shadow-md"
+          className="flex items-center gap-4 px-4 py-3.5 rounded-2xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group"
           style={{ background: `linear-gradient(135deg, ${PRIMARY_DARK}, ${PRIMARY})`, color: "#fff" }}>
-          <div>
-            <p className="text-xs font-medium opacity-70 mb-0.5">Gestiona tu plan y trámites</p>
-            <p className="text-base font-bold">Portal del afiliado</p>
+          <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-white/40" />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold leading-snug">Portal del afiliado</p>
+            <p className="text-xs mt-0.5 leading-snug opacity-70">Gestiona tu plan y trámites</p>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
+          <span className="flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">
             <IconArrow />
-          </div>
+          </span>
         </a>
 
         {/* Enlaces principales */}
@@ -144,56 +165,30 @@ export default function DirectorioPage() {
         <div>
           <p className="text-xs font-bold uppercase tracking-widest mb-3 px-1" style={{ color: PRIMARY }}>Contacto directo</p>
           <div className="space-y-2.5">
-
-            <a href="https://wa.me/573233093435?text=Hola%20Lia" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl shadow-sm transition-all hover:scale-[1.01] hover:shadow-md"
-              style={{ background: "#fff" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: PRIMARY_LIGHT, color: PRIMARY }}><IconAdvisor /></div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium" style={{ color: "#6b8f74" }}>Asistente Lia · Atención 24 horas</p>
-                <p className="text-sm font-bold" style={{ color: "#1a2e22" }}>Chatea con Lia</p>
-              </div>
-            </a>
-
-            <a href="tel:3106171987"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl shadow-sm transition-all hover:scale-[1.01] hover:shadow-md"
-              style={{ background: "#fff" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: PRIMARY_LIGHT, color: PRIMARY }}><IconPhone /></div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium" style={{ color: "#6b8f74" }}>Teléfono de homenajes</p>
-                <p className="text-sm font-bold" style={{ color: "#1a2e22" }}>310 617 1987</p>
-              </div>
-            </a>
-
-            <a href="tel:018000180150"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl shadow-sm transition-all hover:scale-[1.01] hover:shadow-md"
-              style={{ background: "#fff" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: PRIMARY_LIGHT, color: PRIMARY }}><IconPhone /></div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium" style={{ color: "#6b8f74" }}>Línea nacional gratuita</p>
-                <p className="text-sm font-bold" style={{ color: "#1a2e22" }}>018000-180-150</p>
-              </div>
-            </a>
-
-            <a href="mailto:contacto@losolivoscartagena.com"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl shadow-sm transition-all hover:scale-[1.01] hover:shadow-md"
-              style={{ background: "#fff" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: PRIMARY_LIGHT, color: PRIMARY }}><IconMail /></div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium" style={{ color: "#6b8f74" }}>Correo electrónico</p>
-                <p className="text-sm font-bold truncate" style={{ color: "#1a2e22" }}>contacto@losolivoscartagena.com</p>
-              </div>
-            </a>
-
-            <a href="https://maps.google.com/?q=Los+Olivos+Cartagena+Transversal+53+%2331J-27" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl shadow-sm transition-all hover:scale-[1.01] hover:shadow-md"
-              style={{ background: "#fff" }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: PRIMARY_LIGHT, color: PRIMARY }}><IconMap /></div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium" style={{ color: "#6b8f74" }}>Sede principal</p>
-                <p className="text-sm font-bold" style={{ color: "#1a2e22" }}>Transversal 53 # 31J-27, Cartagena</p>
-              </div>
-            </a>
+            {[
+              { href: "https://wa.me/573233093435?text=Hola%20Lia", label: "Chatea con Lia",                        sub: "Asistente Lia · Atención 24 horas",  external: true,  icon: <IconAdvisor /> },
+              { href: "tel:3106171987",                              label: "310 617 1987",                         sub: "Teléfono de homenajes",              external: false, icon: <IconPhone /> },
+              { href: "tel:018000180150",                            label: "018000-180-150",                       sub: "Línea nacional gratuita",            external: false, icon: <IconPhone /> },
+              { href: "mailto:contacto@losolivoscartagena.com",      label: "contacto@losolivoscartagena.com",      sub: "Correo electrónico",                 external: false, icon: <IconMail /> },
+              { href: "https://maps.google.com/?q=Los+Olivos+Cartagena+Transversal+53+%2331J-27", label: "Transversal 53 # 31J-27, Cartagena", sub: "Sede principal", external: true, icon: <IconMap /> },
+            ].map((item) => (
+              <a key={item.href} href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                className="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-white shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group"
+              >
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: PRIMARY_LIGHT, color: PRIMARY }}>
+                  {item.icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold text-[#1a2e22] leading-snug truncate">{item.label}</p>
+                  <p className="text-xs mt-0.5 leading-snug" style={{ color: PRIMARY + "99" }}>{item.sub}</p>
+                </div>
+                <span className="flex-shrink-0 opacity-20 group-hover:opacity-100 transition-opacity" style={{ color: PRIMARY }}>
+                  <IconArrow />
+                </span>
+              </a>
+            ))}
 
           </div>
         </div>
@@ -235,9 +230,8 @@ export default function DirectorioPage() {
         </div>
 
         {/* Footer mínimo */}
-        <div className="text-center pt-2 pb-6">
-          <Image src="/logo-olivos.png" alt="Los Olivos" width={64} height={27} className="mx-auto mb-2 object-contain opacity-40" />
-          <p className="text-[11px]" style={{ color: "#8aab94" }}>© Cartafun · Los Olivos Cartagena · NIT 800149226-0</p>
+        <div className="pt-2 pb-6">
+          <p className="text-sm font-medium w-full" style={{ color: "#8aab94" }}>© Cartafun · Los Olivos Cartagena · NIT 800149226-0</p>
         </div>
 
       </div>
