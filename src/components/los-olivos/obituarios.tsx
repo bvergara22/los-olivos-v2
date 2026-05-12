@@ -30,17 +30,38 @@ function esc(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
 }
 
+// Partículas de apellidos compuestos en español
+const PARTICLES = new Set(["DE", "DEL", "LA", "LOS", "LAS", "SAN", "SANTA"])
+
+function parseName(fullName: string): { nombre: string; apellido: string } {
+  const parts = fullName.toUpperCase().trim().split(/\s+/)
+  if (parts.length === 0) return { nombre: "", apellido: "" }
+  if (parts.length === 1) return { nombre: parts[0], apellido: "" }
+
+  let i = 0
+
+  // 1. Primer nombre: primera palabra no-partícula
+  while (i < parts.length && PARTICLES.has(parts[i])) i++
+  const nombre = parts[i] ?? ""
+  i++
+
+  // 2. Primer apellido: partículas seguidas de la siguiente palabra significativa
+  const apellidoParts: string[] = []
+  while (i < parts.length && PARTICLES.has(parts[i])) { apellidoParts.push(parts[i]); i++ }
+  if (i < parts.length) apellidoParts.push(parts[i])
+
+  return { nombre, apellido: apellidoParts.join(" ") }
+}
+
 async function downloadObituario(o: Obituario) {
   const [{ jsPDF }, { default: html2canvas }] = await Promise.all([
     import("jspdf"),
     import("html2canvas"),
   ])
 
-  const parts = o.nombre_ser_querido.toUpperCase().trim().split(/\s+/)
-  const firstName = parts[0] || ""
-  const firstLastName = parts[1] || ""
-  const nameChars = firstName.length + (firstLastName ? firstLastName.length + 1 : 0)
-  const fontSize = Math.min(60, Math.max(32, Math.floor(400 / Math.max(nameChars * 0.5, 1))))
+  const { nombre, apellido } = parseName(o.nombre_ser_querido)
+  const nameChars = nombre.length + (apellido ? apellido.length + 1 : 0)
+  const fontSize = Math.min(60, Math.max(28, Math.floor(480 / Math.max(nameChars * 0.52, 1))))
 
   const el = document.createElement("div")
   el.style.cssText = "width:794px;height:1123px;background:#bdd7ec;position:fixed;top:-9999px;left:-9999px;font-family:var(--font-display),cursive;box-sizing:border-box;overflow:hidden;"
@@ -50,7 +71,7 @@ async function downloadObituario(o: Obituario) {
       Un homenaje al amor,<br>la vida y el legado de:
     </div>
     <div style="margin-top:52px;text-align:center;line-height:1.1;padding:0 20px;">
-      <span style="font-family:var(--font-sans),sans-serif;font-weight:400;font-size:${fontSize}px;color:#2a4444;display:inline;">${esc(firstName)}</span>${firstLastName ? `<span style="font-family:var(--font-sans),sans-serif;font-weight:700;font-size:${fontSize}px;color:#2a4444;display:inline;"> ${esc(firstLastName)}</span>` : ""}
+      <span style="font-family:var(--font-sans),sans-serif;font-weight:400;font-size:${fontSize}px;color:#2a4444;display:inline;">${esc(nombre)}</span>${apellido ? `<span style="font-family:var(--font-sans),sans-serif;font-weight:700;font-size:${fontSize}px;color:#2a4444;display:inline;"> ${esc(apellido)}</span>` : ""}
     </div>
     <div style="margin-top:68px;text-align:center;color:#557070;font-size:21px;font-weight:600;line-height:1.6;padding:0 95px;">
       Agradecemos a los familiares y amigos nos acompañen en este momento, Dios los bendiga:

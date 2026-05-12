@@ -102,9 +102,10 @@ const STYLES = `
 `
 
 export function AsistenteVirtual() {
-  const [mounted, setMounted] = useState(false)
-  const [visible, setVisible] = useState(false)
-  const [isOpen, setIsOpen]   = useState(false)
+  const [mounted, setMounted]   = useState(false)
+  const [visible, setVisible]   = useState(false)
+  const [isOpen, setIsOpen]     = useState(false)
+  const [hasOpened, setHasOpened] = useState(false)
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -131,7 +132,7 @@ export function AsistenteVirtual() {
     }
   }, [mounted])
 
-  const open  = () => setIsOpen(true)
+  const open  = () => { setIsOpen(true); setHasOpened(true) }
   const close = () => setIsOpen(false)
 
   if (!mounted) return null
@@ -252,6 +253,7 @@ export function AsistenteVirtual() {
         </div>
       )}
 
+
       {/* FAB */}
       {visible && (
         <button
@@ -268,6 +270,17 @@ export function AsistenteVirtual() {
             </svg>
           ) : (
             <img src="/lia.png" alt="LIA" style={{ width: 36, height: 36, objectFit: "cover", borderRadius: "50%" }} />
+          )}
+          {/* Badge rojo — solo mientras no haya abierto el chat */}
+          {!isOpen && !hasOpened && visible && (
+            <span style={{
+              position: "absolute", top: -4, right: -4,
+              width: 18, height: 18, borderRadius: "50%",
+              background: "#ef4444", border: "2.5px solid white",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 10, color: "white", fontWeight: 800,
+              fontFamily: "var(--font-display)",
+            }}>1</span>
           )}
         </button>
       )}
