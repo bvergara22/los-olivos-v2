@@ -132,8 +132,40 @@ export function AsistenteVirtual() {
     }
   }, [mounted])
 
-  const open  = () => { setIsOpen(true); setHasOpened(true) }
-  const close = () => setIsOpen(false)
+  const playOpen = () => {
+    try {
+      const ctx = new AudioContext()
+      const o = ctx.createOscillator(); const g = ctx.createGain()
+      o.connect(g); g.connect(ctx.destination)
+      o.type = "sine"
+      o.frequency.setValueAtTime(600, ctx.currentTime)
+      o.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.08)
+      g.gain.setValueAtTime(0.18, ctx.currentTime)
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22)
+      o.start(); o.stop(ctx.currentTime + 0.22)
+      o.onended = () => ctx.close()
+    } catch { /* sin Web Audio */ }
+  }
+
+  const playClose = () => {
+    try {
+      const ctx = new AudioContext()
+      const o = ctx.createOscillator(); const g = ctx.createGain()
+      o.connect(g); g.connect(ctx.destination)
+      o.type = "sine"
+      o.type = "sine"
+      o.frequency.setValueAtTime(900, ctx.currentTime)
+      o.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.08)
+      g.gain.setValueAtTime(0.18, ctx.currentTime)
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22)
+      o.start(); o.stop(ctx.currentTime + 0.22)
+      o.onended = () => ctx.close()
+      o.onended = () => ctx.close()
+    } catch { /* sin Web Audio */ }
+  }
+
+  const open  = () => { playOpen();  setIsOpen(true); setHasOpened(true) }
+  const close = () => { playClose(); setIsOpen(false) }
 
   if (!mounted) return null
 

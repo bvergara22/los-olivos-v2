@@ -1,75 +1,35 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Award, BookOpen, Box, Bus, Car, CheckCircle, Church, FileSignature, Flower2, Handshake, Truck as Hearse, Heart, MapPin, MapPinOff, Scroll, Truck } from "lucide-react"
+import { Award, BookOpen, Box, Bus, Car, CheckCircle2, ChevronRight, Church, ExternalLink, FileSignature, Flower2, MapPin, Scroll, ShieldCheck, Truck, User } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
-const tiposServicio = [
-  { id: "cremacion", label: "Cremación", icon: Heart },
-  { id: "inhumacion", label: "Inhumación", icon: Handshake },
-  { id: "sin-destino-final", label: "Sin destino final", icon: MapPinOff },
-]
-
 const derechosAfiliado = [
-  { icon: Box, label: "Cofre" },
+  { icon: Box,           label: "Cofre" },
   { icon: FileSignature, label: "Trámite de licencia" },
-  { icon: Car, label: "Traslado local" },
-  { icon: Heart, label: "Preservación del cuerpo" },
-  { icon: Church, label: "Sala de velación 24 horas" },
-  { icon: Scroll, label: "Serie de carteles" },
-  { icon: Award, label: "Cinta membretada" },
-  { icon: Flower2, label: "Arreglo floral" },
-  { icon: BookOpen, label: "Recordatorio y libro de oraciones" },
-  { icon: Church, label: "Exequias" },
-  { icon: Truck, label: "Transporte de acompañante" },
-  { icon: MapPin, label: "Destino final jardines los olivos" },
-  { icon: Hearse, label: "Carroza al campo santo" },
+  { icon: Car,           label: "Traslado local" },
+  { icon: CheckCircle2,  label: "Preservación del cuerpo" },
+  { icon: Church,        label: "Sala de velación 24 horas" },
+  { icon: Scroll,        label: "Serie de carteles" },
+  { icon: Award,         label: "Cinta membretada" },
+  { icon: Flower2,       label: "Arreglo floral" },
+  { icon: BookOpen,      label: "Recordatorio y libro de oraciones" },
+  { icon: Church,        label: "Exequias" },
+  { icon: Bus,           label: "Transporte de acompañante" },
+  { icon: MapPin,        label: "Destino final jardines los olivos" },
+  { icon: Truck,         label: "Carroza al campo santo" },
 ]
 
-const itemsComunes = [
-  "Cofre",
-  "Trámites de licencia",
-  "Traslado local",
-  "Preservación del cuerpo",
-  "Sala de velación",
-  "Serie de carteles",
-  "Arreglo floral",
-  "Cinta membreteada",
-  "Recordatorio y libro de oración",
-  "Exequias",
-  "Carroza al campo santo",
-  "Transporte de acompañantes",
-]
-
-const planesParticular: Record<string, { titulo: string; items: string[]; total: string; color: string }> = {
-  inhumacion: {
-    titulo: "Homenaje Particular Integral con Inhumación",
-    items: [...itemsComunes, "Destino final inhumación arriendo por 4 años sin nicho Jardín Los Olivos"],
-    total: "$6.000.000",
-    color: "cotizar-main",
-  },
-  cremacion: {
-    titulo: "Homenaje Particular Integral con Cremación",
-    items: [...itemsComunes, "Destino final cremación Jardín Los Olivos"],
-    total: "$5.000.000",
-    color: "cotizar-main",
-  },
-  "sin-destino-final": {
-    titulo: "Homenaje Particular Básico / Sin Destino Final",
-    items: [...itemsComunes],
-    total: "$3.500.000",
-    color: "cotizar-main",
-  },
+function IconWhatsApp() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+  )
 }
 
 export default function CotizarPage() {
-  const [tipoUsuario, setTipoUsuario] = useState<"afiliado" | "particular" | null>(null)
-  const [servicioSeleccionado, setServicioSeleccionado] = useState<string | null>(null)
-  const [deseaSala, setDeseaSala] = useState<boolean | null>(null)
-  const [step, setStep] = useState(1)
-
-  const esParticular = tipoUsuario === "particular"
+  const [tipo, setTipo] = useState<"afiliado" | "particular" | null>(null)
 
   return (
     <>
@@ -78,7 +38,6 @@ export default function CotizarPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-cotizar-main/10 via-background to-cotizar-dark/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-center">
-            {/* Texto */}
             <div>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-cotizar-dark leading-tight text-balance">
                 Haz tu cotización ágil y sencilla
@@ -87,7 +46,6 @@ export default function CotizarPage() {
                 Consulta el valor de nuestro servicio de necesidad inmediata según tus requerimientos y condiciones.
               </p>
             </div>
-            {/* Imagen */}
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
               <Image
                 src="/Duelo-imagen.png"
@@ -100,7 +58,6 @@ export default function CotizarPage() {
             </div>
           </div>
         </div>
-        {/* Wave separator */}
         <div className="absolute -bottom-px left-0 right-0 z-20 text-card" aria-hidden>
           <svg viewBox="0 0 1920 81" xmlns="http://www.w3.org/2000/svg" className="w-full block h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 2xl:h-20" preserveAspectRatio="none">
             <path fill="currentColor" d="M0 50.7364L80 59.1924C160 67.6485 320 84.5606 480 80.3326C640 76.1045 800 50.7364 960 46.5083C1120 42.2803 1280 59.1924 1440 63.4205C1600 67.6485 1760 59.1924 1840 54.9644L1920 50.7364L1920 81L0 81Z" />
@@ -108,309 +65,179 @@ export default function CotizarPage() {
         </div>
       </section>
 
+      {/* Main */}
       <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto">
-            {/* Progress indicator */}
-            <div className="flex items-center gap-2 mb-8">
-              {[1, 2, 3].map((s) => (
-                <div key={s} className="flex items-center gap-2 flex-1">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                    step >= s
-                      ? "bg-cotizar-main text-white"
-                      : "bg-muted text-muted-foreground"
-                  }`}>
-                    {step > s ? <CheckCircle className="w-5 h-5" /> : s}
-                  </div>
-                  {s < 3 && (
-                    <div className={`flex-1 h-0.5 ${step > s ? "bg-cotizar-main" : "bg-border"}`} />
-                  )}
-                </div>
-              ))}
+          <div className="max-w-3xl mx-auto">
+
+            {/* Intro label */}
+            <div className="text-center mb-8">
+              <h2 className="font-display text-2xl md:text-3xl font-bold" style={{ color: "#477a7b" }}>
+                ¿Tienes plan exequial con Los Olivos?
+              </h2>
+              <p className="text-sm text-muted-foreground mt-2">
+                Selecciona una opción para ver la información correspondiente.
+              </p>
             </div>
 
-            {/* Step 1: Tipo de usuario */}
-            {step === 1 && (
-              <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">1</div>
-                  <div>
-                    <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Servicio y localidad</h3>
-                    <h2 className="font-display text-xl font-bold text-foreground">
-                      Quiero que el servicio sea...
-                    </h2>
-                  </div>
-                </div>
+            {/* Selector cards */}
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
 
-                <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                  <button
-                    type="button"
-                    onClick={() => setTipoUsuario("afiliado")}
-                    className={`p-6 rounded-xl border-2 text-left transition-all ${
-                      tipoUsuario === "afiliado"
-                        ? "border-cotizar-main bg-cotizar-main/5"
-                        : "border-border hover:border-cotizar-main/50"
-                    }`}
-                  >
-                    <h4 className="font-display font-bold text-foreground mb-1">Soy afiliado</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Ya cuento con un plan exequial activo con Los Olivos.
-                    </p>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setTipoUsuario("particular")}
-                    className={`p-6 rounded-xl border-2 text-left transition-all ${
-                      tipoUsuario === "particular"
-                        ? "border-cotizar-main bg-cotizar-main/5"
-                        : "border-border hover:border-cotizar-main/50"
-                    }`}
-                  >
-                    <h4 className="font-display font-bold text-foreground mb-1">Soy particular</h4>
-                    <p className="text-sm text-muted-foreground">
-                      No tengo afiliación, deseo contratar el servicio.
-                    </p>
-                  </button>
+              {/* Afiliado */}
+              <button
+                type="button"
+                onClick={() => setTipo("afiliado")}
+                className={`group relative p-6 rounded-2xl border-2 text-left transition-all duration-200 ${
+                  tipo === "afiliado"
+                    ? "border-cotizar-main bg-cotizar-main/5 shadow-lg shadow-cotizar-main/10"
+                    : "border-border bg-white hover:border-cotizar-main/50 hover:shadow-md"
+                }`}
+              >
+                {tipo === "afiliado" && (
+                  <span className="absolute top-3.5 right-3.5 w-6 h-6 bg-cotizar-main rounded-full flex items-center justify-center shadow-sm">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                  </span>
+                )}
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-200 ${
+                  tipo === "afiliado" ? "bg-cotizar-main" : "bg-cotizar-main/10 group-hover:bg-cotizar-main/20"
+                }`}>
+                  <ShieldCheck className={`w-6 h-6 transition-colors duration-200 ${tipo === "afiliado" ? "text-white" : "text-cotizar-main"}`} />
                 </div>
+                <h4 className="font-display font-bold text-foreground text-lg mb-1">Soy afiliado</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Ya cuento con un plan exequial activo con Los Olivos.
+                </p>
+              </button>
 
-                {/* Derechos del afiliado */}
-                {tipoUsuario === "afiliado" && (
-                  <div className="mb-6 p-5 bg-muted/30 rounded-xl border border-cotizar-main/20">
-                    <h3 className="font-display font-semibold text-cotizar-dark mb-4 text-sm uppercase tracking-wide">
-                      Usted como afiliado tiene derecho a:
-                    </h3>
-                    <div className="grid grid-cols-2 gap-3">
-                      {derechosAfiliado.map((derecho) => (
-                        <div key={derecho.label} className="flex items-start gap-2">
-                          <derecho.icon className="w-4 h-4 text-cotizar-main flex-shrink-0 mt-0.5" />
-                          <span className="text-xs text-foreground">{derecho.label}</span>
-                        </div>
-                      ))}
+              {/* Particular */}
+              <button
+                type="button"
+                onClick={() => setTipo("particular")}
+                className={`group relative p-6 rounded-2xl border-2 text-left transition-all duration-200 ${
+                  tipo === "particular"
+                    ? "border-cotizar-main bg-cotizar-main/5 shadow-lg shadow-cotizar-main/10"
+                    : "border-border bg-white hover:border-cotizar-main/50 hover:shadow-md"
+                }`}
+              >
+                {tipo === "particular" && (
+                  <span className="absolute top-3.5 right-3.5 w-6 h-6 bg-cotizar-main rounded-full flex items-center justify-center shadow-sm">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                  </span>
+                )}
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-200 ${
+                  tipo === "particular" ? "bg-cotizar-main" : "bg-cotizar-main/10 group-hover:bg-cotizar-main/20"
+                }`}>
+                  <User className={`w-6 h-6 transition-colors duration-200 ${tipo === "particular" ? "text-white" : "text-cotizar-main"}`} />
+                </div>
+                <h4 className="font-display font-bold text-foreground text-lg mb-1">Soy particular</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  No tengo afiliación, deseo contratar el servicio.
+                </p>
+              </button>
+
+            </div>
+
+            {/* ── Resultado afiliado ── */}
+            {tipo === "afiliado" && (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl overflow-hidden border border-border shadow-xl">
+
+                {/* Header verde */}
+                <div className="relative bg-gradient-to-r from-cotizar-main to-cotizar-dark px-6 py-5 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/4" />
+                  <div className="absolute bottom-0 left-1/3 w-24 h-24 rounded-full bg-white/5 translate-y-1/2" />
+                  <div className="relative flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-0.5">Su plan activo</p>
+                      <h3 className="font-display font-bold text-white text-xl">Usted como afiliado tiene derecho a:</h3>
                     </div>
+                    <span className="shrink-0 ml-4 bg-white/15 backdrop-blur-sm border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-bold text-white">
+                      {derechosAfiliado.length} servicios
+                    </span>
                   </div>
-                )}
+                </div>
 
-                {tipoUsuario === "afiliado" ? (
-                  <Button asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark">
-                    <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                      Comunicarme con homenajes
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => tipoUsuario && setStep(2)}
-                    disabled={!tipoUsuario}
-                    className="bg-cotizar-main text-white hover:bg-cotizar-dark"
+                {/* Benefits grid */}
+                <div className="bg-white p-5 md:p-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-6">
+                    {derechosAfiliado.map((d) => (
+                      <div
+                        key={d.label}
+                        className="flex items-center gap-2.5 p-3 bg-gradient-to-br from-muted/60 to-muted/30 rounded-xl border border-border/50"
+                      >
+                        <span className="w-7 h-7 rounded-lg bg-cotizar-main/10 flex items-center justify-center shrink-0">
+                          <d.icon className="w-3.5 h-3.5 text-cotizar-main" />
+                        </span>
+                        <span className="text-xs font-medium text-foreground leading-tight">{d.label}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-start">
+                  <a
+                    href="https://wa.me/573106171987"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2.5 py-3 px-6 rounded-xl font-bold text-sm text-white transition-opacity hover:opacity-90"
+                    style={{ background: "linear-gradient(135deg,#477a7b 0%,#2e5a5b 100%)", boxShadow: "0 6px 20px rgba(71,122,123,0.35)" }}
                   >
-                    Siguiente
-                  </Button>
-                )}
+                    <IconWhatsApp />
+                    Comunicarme con homenajes
+                  </a>
+                  </div>
+                </div>
+
               </div>
             )}
 
-            {/* Step 2: Tipo de servicio */}
-            {step === 2 && (
-              <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">2</div>
-                  <div>
-                    <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Tipo de servicio</h3>
-                    <h2 className="font-display text-xl font-bold text-foreground">
-                      Selecciona el tipo de servicio
-                    </h2>
+            {/* ── Resultado particular ── */}
+            {tipo === "particular" && (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl overflow-hidden border border-border shadow-xl">
+
+                {/* Header verde */}
+                <div className="relative bg-gradient-to-r from-cotizar-main to-cotizar-dark px-6 py-5 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/4" />
+                  <div className="absolute bottom-0 left-1/3 w-24 h-24 rounded-full bg-white/5 translate-y-1/2" />
+                  <div className="relative">
+                    <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-0.5">Servicio particular</p>
+                    <h3 className="font-display font-bold text-white text-xl">Cotiza tu homenaje en línea</h3>
                   </div>
                 </div>
 
-                <div className="grid sm:grid-cols-3 gap-4 mb-6">
-                  {tiposServicio.map((tipo) => (
-                    <button
-                      key={tipo.id}
-                      type="button"
-                      onClick={() => setServicioSeleccionado(tipo.id)}
-                      className={`p-5 rounded-xl border-2 text-center transition-all ${
-                        servicioSeleccionado === tipo.id
-                          ? "border-cotizar-main bg-cotizar-main/5"
-                          : "border-border hover:border-cotizar-main/50"
-                      }`}
-                    >
-                      <tipo.icon className={`w-8 h-8 mx-auto mb-2 ${
-                        servicioSeleccionado === tipo.id ? "text-cotizar-main" : "text-muted-foreground"
-                      }`} />
-                      <h4 className="font-display font-bold text-foreground">{tipo.label}</h4>
-                    </button>
-                  ))}
-                </div>
+                {/* Body */}
+                <div className="bg-white p-5 md:p-6">
 
-                {/* Sala solo para afiliados */}
-                {!esParticular && (
-                  <div className="mb-6">
-                    <h3 className="font-display font-semibold text-foreground mb-3">
-                      ¿Deseas sala de homenaje?
-                    </h3>
-                    <div className="flex gap-4">
-                      <button
-                        type="button"
-                        onClick={() => setDeseaSala(true)}
-                        className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
-                          deseaSala === true
-                            ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
-                            : "border-border text-muted-foreground hover:border-cotizar-main/50"
-                        }`}
-                      >
-                        Sí
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setDeseaSala(false)}
-                        className={`px-6 py-3 rounded-xl border-2 font-medium transition-all ${
-                          deseaSala === false
-                            ? "border-cotizar-main bg-cotizar-main/5 text-cotizar-main"
-                            : "border-border text-muted-foreground hover:border-cotizar-main/50"
-                        }`}
-                      >
-                        No
-                      </button>
-                    </div>
+                  {/* Feature pills */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {["Planes disponibles", "Tarifas transparentes", "Proceso rápido", "100% en línea"].map((tag) => (
+                      <span key={tag} className="flex items-center gap-1.5 text-xs font-medium text-cotizar-dark bg-cotizar-main/8 px-3 py-1.5 rounded-full">
+                        <CheckCircle2 className="w-3 h-3 text-cotizar-main" />
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                )}
 
-                <div className="flex gap-3">
-                  <Button variant="outline" onClick={() => setStep(1)} className="hover:bg-muted hover:text-foreground">
-                    Atrás
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      const puedeAvanzar = servicioSeleccionado && (esParticular || deseaSala !== null)
-                      if (puedeAvanzar) setStep(3)
-                    }}
-                    disabled={!servicioSeleccionado || (!esParticular && deseaSala === null)}
-                    className="bg-cotizar-main text-white hover:bg-cotizar-dark"
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                    En nuestro portal puedes ver todos los planes disponibles, comparar tarifas y completar tu cotización de manera rápida y segura.
+                  </p>
+
+                  <div className="flex justify-start">
+                  <a
+                    href="https://www.portal.losolivoscartagena.com/panel/homenaje/cotizar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2.5 py-3 px-6 rounded-xl font-bold text-sm text-white transition-opacity hover:opacity-90"
+                    style={{ background: "linear-gradient(135deg,#477a7b 0%,#2e5a5b 100%)", boxShadow: "0 6px 20px rgba(71,122,123,0.35)" }}
                   >
-                    Siguiente
-                  </Button>
+                    <ExternalLink className="w-4 h-4" />
+                    Cotizar en el portal
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                  </div>
+
                 </div>
               </div>
             )}
 
-            {/* Step 3: Resultado */}
-            {step === 3 && (
-              <>
-                {/* Particular: tabla de precios detallada */}
-                {esParticular && servicioSeleccionado && planesParticular[servicioSeleccionado] ? (
-                  <div>
-                    {/* Card del plan */}
-                    <div className="rounded-2xl border border-border overflow-hidden shadow-lg">
-                      {/* Header del plan */}
-                      <div className="bg-cotizar-main px-6 py-4 text-center">
-                        <h2 className="font-display font-bold text-white text-base md:text-lg uppercase tracking-wide leading-snug">
-                          {planesParticular[servicioSeleccionado].titulo}
-                        </h2>
-                      </div>
-
-                      {/* Tabla */}
-                      <div className="bg-card">
-                        {/* Encabezado de columnas */}
-                        <div className="grid grid-cols-[1fr_auto] border-b border-border bg-cotizar-main/8">
-                          <div className="px-5 py-3 font-display font-bold text-sm text-cotizar-dark uppercase tracking-wide">
-                            Homenajes
-                          </div>
-                          <div className="px-5 py-3 font-display font-bold text-sm text-cotizar-dark uppercase tracking-wide text-center w-36 border-l border-border leading-tight">
-                            Tarifas de<br />contado
-                          </div>
-                        </div>
-
-                        {/* Items */}
-                        {planesParticular[servicioSeleccionado].items.map((item, i) => (
-                          <div
-                            key={i}
-                            className={`grid grid-cols-[1fr_auto] border-b border-border last:border-b-0 ${
-                              i % 2 === 0 ? "bg-white" : "bg-muted/20"
-                            }`}
-                          >
-                            <div className="px-5 py-3 text-sm text-foreground font-medium">{item}</div>
-                            <div className="px-5 py-3 w-36 border-l border-border" />
-                          </div>
-                        ))}
-
-                        {/* Total */}
-                        <div className="grid grid-cols-[1fr_auto] bg-cotizar-main/5 border-t-2 border-cotizar-main">
-                          <div className="px-5 py-4">
-                            <span className="font-display font-bold text-cotizar-main uppercase tracking-wide text-sm">
-                              Total homenajes
-                            </span>
-                          </div>
-                          <div className="px-5 py-4 w-36 border-l border-cotizar-main/30 flex items-center justify-center">
-                            <span className="font-display font-bold text-cotizar-dark text-base">
-                              {planesParticular[servicioSeleccionado].total}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Nota informativa */}
-                    <p className="text-xs text-muted-foreground mt-4 leading-relaxed text-center">
-                      * Para mayor información sobre tarifas comunícate con nuestros asesores.
-                    </p>
-
-                    {/* Acciones */}
-                    <div className="flex gap-3 mt-6">
-                      <Button variant="outline" onClick={() => setStep(2)} className="hover:bg-muted hover:text-foreground">
-                        Atrás
-                      </Button>
-                      <Button size="lg" asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark flex-1 px-8">
-                        <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                          Contactar por WhatsApp
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  /* Afiliado: resumen genérico */
-                  <div className="bg-cotizar-main/5 rounded-2xl border border-border p-6 md:p-8">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-8 h-8 rounded-full bg-cotizar-main text-white flex items-center justify-center text-sm font-bold">3</div>
-                      <div>
-                        <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Confirmación</h3>
-                        <h2 className="font-display text-xl font-bold text-foreground">
-                          Resumen de tu cotización
-                        </h2>
-                      </div>
-                    </div>
-
-                    <div className="bg-muted/30 rounded-xl p-5 mb-6 space-y-3">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Tipo de usuario:</span>
-                        <span className="font-medium text-foreground capitalize">{tipoUsuario}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Servicio:</span>
-                        <span className="font-medium text-foreground capitalize">{servicioSeleccionado}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Sala de homenaje:</span>
-                        <span className="font-medium text-foreground">{deseaSala ? "Sí" : "No"}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                      Un asesor de Los Olivos Cartagena se comunicará contigo para brindarte una cotización personalizada basada en tus requerimientos. Puedes contactarnos directamente al WhatsApp 323 3093435.
-                    </p>
-
-                    <div className="flex gap-3">
-                      <Button variant="outline" onClick={() => setStep(2)} className="hover:bg-muted hover:text-foreground">
-                        Atrás
-                      </Button>
-                      <Button asChild className="bg-cotizar-main text-white hover:bg-cotizar-dark">
-                        <a href="https://wa.me/573233093435" target="_blank" rel="noopener noreferrer">
-                          Contactar por WhatsApp
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
           </div>
         </div>
       </section>
