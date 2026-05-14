@@ -434,17 +434,6 @@ export function Obituarios() {
               onVerCondolencias={() => setCondolenciasFor(obituarios[0])}
             />
           </div>
-        ) : obituarios.length === 2 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {obituarios.map((o) => (
-              <ObituarioCard
-                key={o.id}
-                o={o}
-                onCondolencia={() => setCondolenciaFor(o)}
-                onVerCondolencias={() => setCondolenciasFor(o)}
-              />
-            ))}
-          </div>
         ) : (
           <div className="relative">
             <div
