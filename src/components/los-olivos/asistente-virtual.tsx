@@ -302,7 +302,7 @@ export function AsistenteVirtual() {
             boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
           }}>
             <video
-              src="/video-lia.mp4"
+              src="/video-lia-compressed.mp4"
               autoPlay
               playsInline
               style={{ width: "100%", display: "block" }}
