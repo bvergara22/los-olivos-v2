@@ -102,10 +102,11 @@ const STYLES = `
 `
 
 export function AsistenteVirtual() {
-  const [mounted, setMounted]   = useState(false)
-  const [visible, setVisible]   = useState(false)
-  const [isOpen, setIsOpen]     = useState(false)
+  const [mounted, setMounted]     = useState(false)
+  const [visible, setVisible]     = useState(false)
+  const [isOpen, setIsOpen]       = useState(false)
   const [hasOpened, setHasOpened] = useState(false)
+  const [introPlayed, setIntroPlayed] = useState(false)
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -285,6 +286,44 @@ export function AsistenteVirtual() {
         </div>
       )}
 
+
+      {/* Modal de presentación — primera apertura del chat */}
+      {isOpen && !introPlayed && (
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 10000,
+          background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          padding: "20px",
+          animation: "lia-slide-up 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+        }}>
+          <div style={{
+            position: "relative", width: "100%", maxWidth: 420,
+            borderRadius: 20, overflow: "hidden",
+            boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
+          }}>
+            <video
+              src="/video-lia.mp4"
+              autoPlay
+              playsInline
+              style={{ width: "100%", display: "block" }}
+              onEnded={() => setIntroPlayed(true)}
+            />
+            <button
+              onClick={() => setIntroPlayed(true)}
+              style={{
+                position: "absolute", bottom: 14, right: 14,
+                background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)",
+                border: "1px solid rgba(255,255,255,0.25)",
+                color: "#fff", fontSize: 12, fontWeight: 700,
+                padding: "5px 14px", borderRadius: 20, cursor: "pointer",
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              Saltar
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* FAB */}
       {visible && (
