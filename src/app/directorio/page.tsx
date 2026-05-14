@@ -1,10 +1,4 @@
-import type { Metadata } from "next"
 import Image from "next/image"
-
-export const metadata: Metadata = {
-  title: "Directorio - Los Olivos Cartagena",
-  description: "Accede rápidamente a todos los servicios, canales de contacto y recursos de Los Olivos Cartagena.",
-}
 
 // ─── SVG icons ─────────────────────────────────────────────────────────────────
 
@@ -132,15 +126,13 @@ export default function DirectorioPage() {
         {/* Enlaces principales */}
         <div className="space-y-2.5">
           {[
-            { href: "/",                                                              label: "Nuestro sitio web",           sub: "Conoce todo sobre Los Olivos",         external: false },
-            { href: "https://pagos.losolivoscartagena.com/",                         label: "Pagos online",                sub: "Paga tu cuota de forma rápida",        external: true  },
-            { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea", label: "Afiliaciones virtuales",      sub: "Afíliate desde donde estés",           external: true  },
-            { href: "https://goldenoffer.losolivoscartagena.com/",                   label: "Tienda",                      sub: "Descuentos y beneficios exclusivos",   external: true  },
-            { href: "/planes",                                                        label: "Planes exequiales",           sub: "Protección para toda tu familia",      external: false },
-            { href: "/#obituarios",                                                   label: "Obituarios",                  sub: "Condolencias y homenajes activos",     external: false },
-            { href: "/tramites",                                                      label: "Trámites personas fallecidas",sub: "Documentos y procedimientos",          external: false },
-            { href: "/cotizar",                                                       label: "Cotizar homenaje",            sub: "Solicita una cotización ahora",        external: false },
-            { href: "/#contacto",                                                     label: "Contáctanos",                 sub: "Estamos aquí para ayudarte",           external: false },
+            { href: "/",                                                                    label: "Nuestro sitio web",           sub: "Conoce todo sobre Los Olivos",       external: false },
+            { href: "https://pagos.losolivoscartagena.com/",                               label: "Pagos online",                sub: "Paga tu cuota de forma rápida",      external: true  },
+            { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea",       label: "Afiliaciones virtuales",      sub: "Afíliate desde donde estés",         external: true  },
+            { href: "https://www.portal.losolivoscartagena.com/tienda",                    label: "Tienda",                      sub: "Descuentos y beneficios exclusivos", external: true  },
+            { href: "/planes",                                                              label: "Planes exequiales",           sub: "Protección para toda tu familia",    external: false },
+            { href: "/tramites",                                                            label: "Trámites personas fallecidas",sub: "Documentos y procedimientos",        external: false },
+            { href: "/cotizar",                                                             label: "Cotizar homenaje",            sub: "Solicita una cotización ahora",      external: false },
           ].map((item) => (
             <a
               key={item.label}
@@ -159,6 +151,21 @@ export default function DirectorioPage() {
               </span>
             </a>
           ))}
+
+          {/* Obituarios */}
+          <a
+            href="/#obituarios"
+            className="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-white shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group"
+          >
+            <div className="w-1 self-stretch rounded-full flex-shrink-0" style={{ background: PRIMARY }} />
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-[#1a2e22] leading-snug">Obituarios</p>
+              <p className="text-xs mt-0.5 leading-snug" style={{ color: PRIMARY + "99" }}>Condolencias y homenajes activos</p>
+            </div>
+            <span className="flex-shrink-0 opacity-20 group-hover:opacity-100 transition-opacity" style={{ color: PRIMARY }}>
+              <IconArrow />
+            </span>
+          </a>
         </div>
 
         {/* Contacto */}

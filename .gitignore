@@ -45,3 +45,5 @@ next-env.d.ts
 public/*.mp4
 public/*.webm
 public/*.mov
+# excepción: video de LIA comprimido (185 KB)
+!public/video-lia-compressed.mp4
