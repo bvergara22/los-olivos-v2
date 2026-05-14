@@ -304,6 +304,7 @@ export function AsistenteVirtual() {
             <video
               src="/video-lia-compressed.mp4"
               autoPlay
+              muted
               playsInline
               style={{ width: "100%", display: "block" }}
               onEnded={() => setIntroPlayed(true)}
