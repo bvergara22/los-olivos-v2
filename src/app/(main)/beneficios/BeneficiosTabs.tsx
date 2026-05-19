@@ -158,7 +158,7 @@ export function BeneficiosTabs() {
   return (
     <div ref={topRef}>
       {/* ── Sticky tab switcher ── */}
-      <div className="sticky top-20 z-40 bg-card/95 backdrop-blur-sm border-b border-border">
+      <div className="bg-card/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex justify-center">
             <div className="flex w-full sm:w-auto items-center gap-1 bg-muted rounded-full p-1">

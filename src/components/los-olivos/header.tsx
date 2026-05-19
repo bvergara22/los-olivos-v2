@@ -96,7 +96,7 @@ export function Header() {
       items: [
         { label: "Planes exequial", description: "Planes de protección para ti y tu familia", href: "#ver-sedes", icon: Shield },
         { label: "Plan Huellitas", description: "Proteccion especial para tus mascotas", href: "/huellitas", icon: PawPrint },
-        { label: "Conoce más", description: "Descubre todas las opciones disponibles", href: "/planes", icon: Info },
+        { label: "Previsión", description: "Descubre qué es la previsión y cómo te protege", href: "/planes", icon: Info },
       ]
     },
   ]
@@ -402,16 +402,13 @@ export function Header() {
               </div>
             </div>
           )}
-        </div>
-      </header>
-
-      {/* Mobile menu — overlay fijo, no empuja el contenido */}
-      {isMenuOpen && (
+        {/* Mobile Menu */}
         <div
-          className="lg:hidden fixed inset-x-0 z-40 overflow-y-auto bg-card border-b border-border shadow-xl"
-          style={{ top: "80px", maxHeight: "calc(100dvh - 80px)" }}
+          className="lg:hidden grid transition-[grid-template-rows] duration-300 ease-in-out"
+          style={{ gridTemplateRows: isMenuOpen ? "1fr" : "0fr" }}
         >
-          <div className="px-4 py-4 border-t border-border">
+          <div className="overflow-hidden">
+            <div className="py-4 border-t border-border">
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <div key={item.label}>
@@ -592,9 +589,11 @@ export function Header() {
                 </Button>
               </div>
             </nav>
+            </div>
           </div>
         </div>
-      )}
+        </div>
+      </header>
     </>
   )
 }
