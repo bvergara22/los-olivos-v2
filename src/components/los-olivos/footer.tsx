@@ -5,7 +5,7 @@ import Link from "next/link"
 export function Footer() {
   const quickLinks = [
     { label: "Previsión exequial", href: "/planes", external: false },
-    { label: "Pagos en línea", href: "https://pagos.losolivoscartagena.com/", external: true },
+    { label: "Pagos en línea", href: "#", external: false },
     { label: "Cotizar homenaje", href: "/cotizar", external: false },
     { label: "Trámites", href: "/tramites", external: false },
   ]

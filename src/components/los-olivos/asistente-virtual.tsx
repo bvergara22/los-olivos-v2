@@ -235,9 +235,9 @@ export function AsistenteVirtual() {
                 <img src="/lia.png" alt="LIA" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ background: "#e6f7f1", borderRadius: "14px 14px 14px 4px", padding: "10px 13px" }}>
-                <p style={{ margin: 0, fontSize: 13, color: "#1a1a1a", lineHeight: 1.5 }}>
-                  ¡Hola! Soy LIA 👋<br/>
-                  <span style={{ color: "#555" }}>¿En qué puedo orientarte hoy?</span>
+                <p style={{ margin: 0, fontSize: 13, color: "#1a1a1a", lineHeight: 1.6 }}>
+                  Hola, soy Lia, tu asistente de experiencia de Los Olivos Cartagena. Estoy aquí para orientarte 😊<br/>
+                  <span style={{ color: "#555" }}>Dime, ¿qué quieres hacer hoy?</span>
                 </p>
               </div>
             </div>

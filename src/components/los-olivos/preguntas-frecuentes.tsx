@@ -62,6 +62,7 @@ function FaqItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean
       <div
         ref={contentRef}
         className="overflow-hidden transition-all duration-300 ease-in-out"
+        // eslint-disable-next-line react-hooks/refs
         style={{ maxHeight: open ? `${contentRef.current?.scrollHeight ?? 400}px` : "0px" }}
       >
         <p className="pb-5 text-sm sm:text-base text-muted-foreground leading-relaxed">

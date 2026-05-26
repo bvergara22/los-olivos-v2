@@ -19,6 +19,7 @@ export function AgendaModal({ open, onClose }: { open: boolean; onClose: () => v
   const [mounted, setMounted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {

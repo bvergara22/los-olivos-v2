@@ -1,6 +1,7 @@
 import { Award, Building2, CheckCircle2, Heart, Shield, Users } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Nosotros - Los Olivos Cartagena",
@@ -291,19 +292,19 @@ export default function NosotrosPage() {
               Más de 50,000 familias ya confían en nosotros. Sé parte de esta gran familia solidaria.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <a
+              <Link
                 href="/#sedes-planes"
                 className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Ver planes
                 <Award className="w-4 h-4" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/#contacto"
                 className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md text-sm font-medium border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
               >
                 Contáctanos
-              </a>
+              </Link>
             </div>
           </div>
         </div>

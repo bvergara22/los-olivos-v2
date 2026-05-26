@@ -1,6 +1,5 @@
 "use client"
 
-import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import {
   Activity,
   AlertCircle,
@@ -456,8 +455,6 @@ export function BeneficiosTabs() {
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
-        <TarjetaBeneficios />
-
         </div>{/* fin panel Personas */}
 
       </div>{/* fin wrapper */}

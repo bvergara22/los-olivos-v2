@@ -1,6 +1,6 @@
 "use client"
 
-import { X } from "lucide-react"
+import { CheckCircle2, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
@@ -36,8 +36,8 @@ export function FeedbackPopup({ open, onClose }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, rate }),
       })
-      const text = await res.text()
-      setThanksText(text || "¡Gracias por tu opinión!")
+      await res.text()
+      setThanksText("¡Gracias por tu opinión!")
     } catch {
       setThanksText("¡Gracias por tu opinión!")
     } finally {
@@ -100,8 +100,17 @@ export function FeedbackPopup({ open, onClose }: Props) {
       )}
 
       {step === "thanks" && (
-        <div className="p-5 text-center">
-          <p className="text-sm text-gray-700 font-medium">{thanksText}</p>
+        <div className="p-6 text-center space-y-3">
+          <div className="flex justify-center">
+            <CheckCircle2 className="w-10 h-10 text-[#4a9e96]" />
+          </div>
+          <p className="text-sm font-semibold text-gray-800 leading-snug">{thanksText || "¡Gracias por tu opinión!"}</p>
+          <button
+            onClick={onClose}
+            className="mt-1 text-xs text-white bg-[#4a9e96] hover:bg-[#3a8880] px-5 py-1.5 rounded-full transition-colors"
+          >
+            Cerrar
+          </button>
         </div>
       )}
     </div>,

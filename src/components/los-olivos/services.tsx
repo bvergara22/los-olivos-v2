@@ -1,125 +1,64 @@
-"use client"
-
-import { Button } from "@/components/ui/button"
 import { ArrowRight, Calculator, CreditCard, FileText } from "lucide-react"
 import Link from "next/link"
 
+const items = [
+  {
+    icon: CreditCard,
+    title: "Pagar en línea",
+    description: "Realiza tus pagos de forma fácil y segura desde donde estés.",
+    href: "https://www.portal.losolivoscartagena.com/",
+    external: true,
+  },
+  {
+    icon: Calculator,
+    title: "Cotizar homenaje",
+    description: "Consulta el valor de nuestro servicio según tus condiciones.",
+    href: "/cotizar",
+    external: false,
+  },
+  {
+    icon: FileText,
+    title: "Trámites",
+    description: "Gestiona la documentación del proceso de tu ser querido.",
+    href: "/tramites",
+    external: false,
+  },
+]
+
 export function Services() {
-  const services = [
-    {
-      icon: CreditCard,
-      title: "Pagos en línea",
-      description: "Paga todo lo que necesites desde la comodidad de tu hogar de forma rápida y segura.",
-      cta: "Pagar ahora",
-      href: "https://pagos.losolivoscartagena.com/",
-      isExternal: true,
-      highlight: false,
-    },
-    {
-      icon: Calculator,
-      title: "Cotizar homenaje",
-      description: "Consulta el valor de nuestro servicio según tus requerimientos y condiciones.",
-      cta: "Cotizar",
-      href: "/cotizar",
-      highlight: false,
-      cotizar: true,
-    },
-    {
-      icon: FileText,
-      title: "Trámites fallecidos",
-      description: "Consulta toda la documentación e información del proceso de tu ser querido.",
-      cta: "Ver trámites",
-      href: "/tramites",
-      highlight: false,
-      duelo: true,
-    },
-  ]
-
   return (
-    <section id="servicios" className="pt-8 md:pt-10 pb-12 md:pb-20 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-          <span className="text-3xl md:text-4xl text-primary block">Servicios en línea</span>
-          <h2 className="font-display text-xl md:text-2xl text-foreground mt-2 text-balance">
-            Gestiona todo desde tu hogar
-          </h2>
-          <p className="text-muted-foreground mt-4 leading-relaxed">
-            Accede a nuestros servicios de manera rápida, sencilla y segura.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className={`group relative flex flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-lg p-4 md:p-6 ${
-                service.highlight
-                  ? "border-primary bg-primary/5 ring-2 ring-primary/20"
-                  : service.duelo
-                  ? "bg-card hover:border-duelo-main/50"
-                  : service.cotizar
-                  ? "bg-card hover:border-cotizar-main/50"
-                  : "bg-card hover:border-primary/50"
-              }`}
-            >
-              {service.highlight && (
-                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-bl-lg">
-                  Popular
+    <div className="relative z-20 -mt-6 md:-mt-10 pb-2 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-card rounded-2xl shadow-xl border border-border/60 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border/60">
+            {items.map((item) => {
+              const Icon = item.icon
+              const inner = (
+                <div className="group flex items-center gap-4 p-5 md:p-6 hover:bg-primary/[0.04] transition-colors cursor-pointer">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-200 shadow-sm">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-foreground leading-tight">{item.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed line-clamp-2">{item.description}</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground/40 flex-shrink-0 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                 </div>
-              )}
+              )
 
-              <div className="flex flex-col items-center text-center space-y-4 flex-1">
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-colors ${
-                  service.highlight
-                    ? "bg-primary text-primary-foreground"
-                    : service.duelo
-                    ? "bg-duelo-main/10 text-duelo-main group-hover:bg-duelo-main group-hover:text-white"
-                    : service.cotizar
-                    ? "bg-cotizar-main/10 text-cotizar-main group-hover:bg-cotizar-main group-hover:text-white"
-                    : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
-                }`}>
-                  <service.icon className="w-7 h-7" />
-                </div>
-                <p className={`font-display text-xl font-semibold leading-none ${service.duelo ? "text-duelo-main" : service.cotizar ? "text-cotizar-main" : "text-primary"}`}>
-                  {service.title}
-                </p>
-              </div>
-
-              <div className="space-y-4 mt-4">
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {service.description}
-                </p>
-
-                <Button
-                  className={`w-full gap-2 ${
-                    service.highlight
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                      : service.duelo
-                      ? "hover:bg-duelo-main/10 hover:border-duelo-main hover:text-duelo-main"
-                      : service.cotizar
-                      ? "hover:bg-cotizar-main/10 hover:border-cotizar-main hover:text-cotizar-main"
-                      : "hover:bg-primary/10 hover:border-primary hover:text-primary"
-                  }`}
-                  variant={service.highlight ? "default" : "outline"}
-                  asChild
-                >
-                  {"isExternal" in service && service.isExternal ? (
-                    <a href={service.href} target="_blank" rel="noopener noreferrer">
-                      {service.cta}
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                  ) : (
-                    <Link href={service.href}>
-                      {service.cta}
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  )}
-                </Button>
-              </div>
-            </div>
-          ))}
+              return item.external ? (
+                <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer">
+                  {inner}
+                </a>
+              ) : (
+                <Link key={item.title} href={item.href}>
+                  {inner}
+                </Link>
+              )
+            })}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }

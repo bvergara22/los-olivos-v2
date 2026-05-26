@@ -39,8 +39,8 @@ export default function TratamientoDatosPage() {
             contractual contribuyendo con la protección de datos personales exigidas por la legislación
             colombiana de acuerdo con los lineamientos de{" "}
             <strong>Ley Estatutaria 1581 del 2012 y reglamentada parcialmente por el Decreto Nacional
-            1377 de 2013</strong> "Por la cual se dictan disposiciones generales para la protección de
-            datos personales". Así mismo, se asegura el respeto a los derechos prevalentes de menores de
+            1377 de 2013</strong> &ldquo;Por la cual se dictan disposiciones generales para la protección de
+            datos personales&rdquo;. Así mismo, se asegura el respeto a los derechos prevalentes de menores de
             edad por lo que en aquellos casos o situaciones donde se requieran datos relacionados de los
             mismos, estos serán suministrados por el titular responsable acorde a la información previa u
             objetivo de la solicitud.

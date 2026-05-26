@@ -161,8 +161,8 @@ export default function HomenajePage() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-card rounded-2xl p-6 md:p-8">
               <div className="mb-5">
-                <h3 className="font-display font-bold text-xl text-duelo-dark">En sede</h3>
-                <p className="text-sm text-duelo-main font-medium mt-0.5">Sede Los Olivos</p>
+                <h3 className="font-display font-bold text-xl text-duelo-dark">Homenaje al amor</h3>
+                <p className="text-sm text-duelo-main font-medium mt-0.5">Los Olivos</p>
               </div>
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
@@ -189,8 +189,8 @@ export default function HomenajePage() {
             </div>
             <div className="bg-card rounded-2xl p-6 md:p-8">
               <div className="mb-5">
-                <h3 className="font-display font-bold text-xl text-duelo-dark">En parque</h3>
-                <p className="text-sm text-duelo-main font-medium mt-0.5">Parque Cementerio Los Olivos</p>
+                <h3 className="font-display font-bold text-xl text-duelo-dark">Parque Jardín</h3>
+                <p className="text-sm text-duelo-main font-medium mt-0.5">Los Olivos</p>
               </div>
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image

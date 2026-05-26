@@ -14,6 +14,7 @@ interface Props {
 export function AsistenciasPopup({ open, onClose }: Props) {
   const [mounted, setMounted] = useState(false)
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
 
   if (!mounted || !open) return null

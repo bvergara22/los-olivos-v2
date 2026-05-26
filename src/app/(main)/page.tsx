@@ -15,8 +15,8 @@ export default function LosOlivosPage() {
     <>
       <PopupsWrapper />
       <Hero />
-      <Novedades />
       <Services />
+      <Novedades />
       <SedesPlanes />
       <Benefits />
       <Steps />

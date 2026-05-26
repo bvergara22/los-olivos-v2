@@ -9,17 +9,14 @@ const carouselImages = [
   {
     src: "/promocional.png",
     alt: "Promocional Los Olivos",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] min-[1140px]:w-[320%] min-[1140px]:max-h-[700px] h-auto object-contain",
   },
   {
     src: "/mesa-trabajo1-2.png",
     alt: "Mesa de Trabajo",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] min-[1140px]:w-[320%] min-[1140px]:max-h-[700px] h-auto object-contain",
   },
   {
     src: "/Linea-de-atención.png",
     alt: "Linea de Atencion",
-    sizeClass: "w-[75%] max-h-[220px] sm:max-h-[280px] md:w-[85%] md:max-h-[450px] min-[1140px]:w-[320%] min-[1140px]:max-h-[700px] h-auto object-contain",
   },
 ]
 
@@ -46,58 +43,8 @@ export function Hero() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 sm:py-12 md:py-16 min-[1140px]:py-20">
         <div className="flex flex-col min-[1140px]:grid min-[1140px]:grid-cols-2 gap-6 min-[1140px]:gap-12 items-center min-[1140px]:items-start">
 
-          {/* Carrusel — móvil */}
-          <div className="relative w-full order-1 min-[1140px]:hidden">
-            <div className="relative min-h-[240px] sm:min-h-[300px] md:min-h-[380px]">
-              {carouselImages.map((image, index) => (
-                <div
-                  key={image.alt}
-                  className={`absolute inset-0 flex items-start justify-center transition-all duration-700 ${
-                    index === currentImageIndex
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4 pointer-events-none"
-                  }`}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={1200}
-                    height={900}
-                    priority={index === 0}
-                    className="w-[78%] max-h-[210px] sm:w-[72%] sm:max-h-[265px] md:w-[62%] md:max-h-[340px] h-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Carrusel — desktop */}
-          <div className="hidden min-[1140px]:flex relative w-full order-1 min-[1140px]:order-2 min-[1140px]:self-stretch items-start justify-center pt-6">
-            <div className="relative w-full min-h-[460px]">
-              {carouselImages.map((image, index) => (
-                <div
-                  key={image.alt}
-                  className={`absolute inset-0 flex items-start justify-center transition-all duration-700 ${
-                    index === currentImageIndex
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4 pointer-events-none"
-                  }`}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={1200}
-                    height={900}
-                    priority={index === 0}
-                    className="w-[88%] max-h-[460px] h-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Contenido */}
-          <div className="order-2 min-[1140px]:order-1 text-left space-y-6 lg:space-y-8">
+          <div className="text-left space-y-6 lg:space-y-8 order-2 min-[1140px]:order-1">
             <span className="inline-block px-3 py-1.5 bg-primary/10 text-primary text-xs lg:text-sm font-medium rounded-full">
               Más de 30 años protegiendo familias
             </span>
@@ -136,6 +83,56 @@ export function Hero() {
                 <Users className="w-4 h-4 lg:w-5 lg:h-5 text-primary shrink-0" />
                 <span className="text-xs lg:text-sm text-muted-foreground">+50,000 Familias</span>
               </div>
+            </div>
+          </div>
+
+          {/* Carrusel — móvil */}
+          <div className="relative w-full min-[1140px]:hidden order-1">
+            <div className="relative min-h-[240px] sm:min-h-[300px] md:min-h-[380px]">
+              {carouselImages.map((image, index) => (
+                <div
+                  key={image.alt}
+                  className={`absolute inset-0 flex items-start justify-center transition-all duration-700 ${
+                    index === currentImageIndex
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-4 pointer-events-none"
+                  }`}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1200}
+                    height={900}
+                    priority={index === 0}
+                    className="w-[78%] max-h-[210px] sm:w-[72%] sm:max-h-[265px] md:w-[62%] md:max-h-[340px] h-auto object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Carrusel — desktop (columna derecha) */}
+          <div className="hidden min-[1140px]:flex relative w-full min-[1140px]:self-stretch items-start justify-center pt-6 min-[1140px]:order-2">
+            <div className="relative w-full min-h-[460px]">
+              {carouselImages.map((image, index) => (
+                <div
+                  key={image.alt}
+                  className={`absolute inset-0 flex items-start justify-center transition-all duration-700 ${
+                    index === currentImageIndex
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-4 pointer-events-none"
+                  }`}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1200}
+                    height={900}
+                    priority={index === 0}
+                    className="w-[88%] max-h-[460px] h-auto object-contain"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 

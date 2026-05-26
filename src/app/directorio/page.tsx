@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 // ─── SVG icons ─────────────────────────────────────────────────────────────────
 
@@ -127,7 +128,7 @@ export default function DirectorioPage() {
         <div className="space-y-2.5">
           {[
             { href: "/",                                                                    label: "Nuestro sitio web",           sub: "Conoce todo sobre Los Olivos",       external: false },
-            { href: "https://pagos.losolivoscartagena.com/",                               label: "Pagos online",                sub: "Paga tu cuota de forma rápida",      external: true  },
+            { href: "#",                                                                    label: "Pagos online",                sub: "Paga tu cuota de forma rápida",      external: false },
             { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea",       label: "Afiliaciones virtuales",      sub: "Afíliate desde donde estés",         external: true  },
             { href: "https://www.portal.losolivoscartagena.com/tienda",                    label: "Tienda",                      sub: "Descuentos y beneficios exclusivos", external: true  },
             { href: "/planes",                                                              label: "Planes exequiales",           sub: "Protección para toda tu familia",    external: false },
@@ -153,7 +154,7 @@ export default function DirectorioPage() {
           ))}
 
           {/* Obituarios */}
-          <a
+          <Link
             href="/#obituarios"
             className="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-white shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group"
           >
@@ -165,7 +166,7 @@ export default function DirectorioPage() {
             <span className="flex-shrink-0 opacity-20 group-hover:opacity-100 transition-opacity" style={{ color: PRIMARY }}>
               <IconArrow />
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* Contacto */}

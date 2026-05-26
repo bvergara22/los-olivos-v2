@@ -1,7 +1,7 @@
 "use client"
 
 import { AgendaModal } from "@/components/los-olivos/agenda-modal"
-import { BookOpen, CalendarCheck, Check, Heart, Shield, Sparkles, X } from "lucide-react"
+import { BookOpen, CalendarCheck, Heart, Shield, Sparkles, X } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
@@ -55,7 +55,7 @@ const recursos: Recurso[] = [
         <p>El duelo es un proceso interno natural en el que el doliente atraviesa una serie de fases o tareas que conducen a la superación de dicho proceso, ya sea por perdida de un ser querido, un familiar o trabajo.</p>
         <p>Sobrellevar la pérdida de un ser querido o amigo es de las experiencias más fuertes que una persona puede afrontar. Tener que imaginar una vida sin esa persona con la cual se vivió tantos momentos e intentar salir adelante genera un malestar para el deudo.</p>
         <p>Cabe resaltar que toda persona tiene habilidades de afrontamiento y manifestaciones del duelo diferentes que generan mecanismos para afrontar la perdida; es de allí, donde se hace más complicado la comprensión de los procesos de duelo. Así mismo, tienen influencia los lazos establecidos con el ser querido, las circunstancias que conllevan al deceso y la concientización de la posible muerte del ser querido (duelo anticipado).</p>
-        <p>Aceptar la muerte de un ser querido puede tomar tiempo ya sea meses o años; lo cierto es que no existe un tiempo "normal" para afrontar la perdida, cada persona sabe a qué tiempo darle reinicio a su vida y aprender a vivir con la ausencia del ser querido. Existen unas etapas propias del duelo de las cuales no necesariamente debemos hacer cumplimiento a cabalidad, todo depende de los recursos emocionales y las redes sociales que acompañen al deudo:</p>
+        <p>Aceptar la muerte de un ser querido puede tomar tiempo ya sea meses o años; lo cierto es que no existe un tiempo &ldquo;normal&rdquo; para afrontar la perdida, cada persona sabe a qué tiempo darle reinicio a su vida y aprender a vivir con la ausencia del ser querido. Existen unas etapas propias del duelo de las cuales no necesariamente debemos hacer cumplimiento a cabalidad, todo depende de los recursos emocionales y las redes sociales que acompañen al deudo:</p>
         <div className="space-y-4 pt-2">
           {[
             { n: "1", titulo: "Etapa de la negación", texto: "Esa negación puede inicialmente amortiguar el golpe de la muerte de un ser querido y aplazar parte del dolor, pero esta etapa no puede ser indefinida porque en algún momento chocará con la realidad." },
@@ -204,7 +204,7 @@ export function UnidadDueloContent() {
               <div className="max-w-3xl space-y-5">
                 <p className="text-base md:text-lg leading-relaxed text-white/90">
                   Reconocemos la importancia fundamental del equilibrio emocional y la salud mental. Por ello, hemos desarrollado nuestra Línea de Acompañamiento Psicológico{" "}
-                  <span className="text-white font-semibold">"Sanando Juntos"</span>, un servicio diseñado para promover el bienestar, la prevención de riesgos psicosociales y el mantenimiento del equilibrio emocional de todos nuestros afiliados y sus familias en todas las etapas de su vida.
+                  <span className="text-white font-semibold">&ldquo;Sanando Juntos&rdquo;</span>, un servicio diseñado para promover el bienestar, la prevención de riesgos psicosociales y el mantenimiento del equilibrio emocional de todos nuestros afiliados y sus familias en todas las etapas de su vida.
                 </p>
                 <p className="text-sm md:text-base leading-relaxed text-white/70">
                   Nuestro principal objetivo es ir más allá del apoyo reactivo, enfocándonos en el fomento activo del crecimiento personal y la plena experiencia y disfrute de la vida. Entendemos el bienestar no solo como la ausencia de malestar, sino como la capacidad de desarrollarse plenamente y afrontar los desafíos de la vida con resiliencia y optimismo.
@@ -235,51 +235,41 @@ export function UnidadDueloContent() {
             <span className="text-3xl md:text-4xl text-duelo-main block">Nuestras líneas</span>
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">de acompañamiento</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-card rounded-2xl overflow-hidden flex flex-col">
-              <div className="bg-duelo-main/5 flex justify-center items-end px-8 pt-8">
-                <Image src="/Vector-UGE-VIDA.png" alt="Sanando Juntos en la vida" width={380} height={300} className="h-96 w-auto object-contain" />
+          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br from-duelo-main/5 to-transparent border border-duelo-main/10 p-6 sm:p-8 md:p-10">
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-14 items-center">
+              {/* Desktop image */}
+              <div className="hidden lg:flex justify-center">
+                <Image src="/Vector-UGE-DUELO.png" alt="Sanando Juntos en el duelo" width={500} height={440} className="w-full h-auto object-contain" />
               </div>
-              <div className="p-6 md:p-8 flex flex-col flex-1">
-                <h3 className="font-display font-bold text-xl text-duelo-dark mb-4">En Vida</h3>
-                <div className="flex-1 flex flex-col gap-5">
-                  <p className="text-sm text-muted-foreground leading-relaxed">Esta línea de acompañamiento psicológica está enfocada en el bienestar, la prevención y el equilibrio emocional de nuestros afiliados. Nuestro enfoque es el crecimiento del bienestar del afiliado, permitiéndole disfrutar plenamente de las experiencias de la vida. Ofrecemos un acompañamiento integral y continuo en cada una de sus etapas.</p>
-                  <div className="border-t border-border pt-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-3">Componentes Clave</p>
-                    <ul className="space-y-2.5">
-                      {["Prevención y Promoción de la Salud Mental", "Apoyo en Etapas de Transición y Desarrollo", "Manejo de Situaciones de Crisis y Malestar Emocional", "Fomento de Experiencias Positivas"].map((item) => (
-                        <li key={item} className="flex items-start gap-3">
-                          <div className="w-5 h-5 rounded-full bg-duelo-main text-white flex items-center justify-center flex-shrink-0 mt-0.5"><Check className="w-3 h-3" /></div>
-                          <span className="text-sm text-foreground">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              {/* Text column */}
+              <div className="flex flex-col gap-4 md:gap-5">
+                <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-foreground">En duelo</h3>
+                {/* Mobile image */}
+                <div className="lg:hidden flex justify-center">
+                  <Image src="/Vector-UGE-DUELO.png" alt="Sanando Juntos en el duelo" width={500} height={440} className="w-2/3 sm:w-1/2 h-auto object-contain" />
                 </div>
-                <button onClick={() => setModalOpen(true)} className="mt-6 self-start bg-duelo-main text-white font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-duelo-dark transition-colors">Agenda aquí</button>
-              </div>
-            </div>
-            <div className="bg-card rounded-2xl overflow-hidden flex flex-col">
-              <div className="bg-duelo-main/5 flex justify-center items-end px-8 pt-8">
-                <Image src="/Vector-UGE-DUELO.png" alt="Sanando Juntos en el duelo" width={380} height={300} className="h-96 w-auto object-contain" />
-              </div>
-              <div className="p-6 md:p-8 flex flex-col flex-1">
-                <h3 className="font-display font-bold text-xl text-duelo-dark mb-4">En Duelo</h3>
-                <div className="flex-1 flex flex-col gap-5">
-                  <p className="text-sm text-muted-foreground leading-relaxed">Desde este espacio, ofrecemos apoyo psicológico centrado en la orientación y la escucha activa para facilitar el afrontamiento positivo del duelo. Nuestro enfoque aborda la pérdida desde una perspectiva de amor y honra, transformando el dolor en un espacio para la preservación viva de la memoria del ser querido, ayudando a integrar la pérdida como parte de su historia.</p>
-                  <div className="border-t border-border pt-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-3">Cinco etapas del proceso</p>
-                    <ol className="space-y-2.5">
-                      {["Negación", "Ira", "Negociación", "Depresión", "Aceptación"].map((etapa, i) => (
-                        <li key={etapa} className="flex items-center gap-3">
-                          <div className="w-6 h-6 rounded-full bg-duelo-main text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">{i + 1}</div>
-                          <span className="text-sm text-foreground">{etapa}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                  Desde este espacio, ofrecemos apoyo psicológico centrado en la orientación y la escucha activa para facilitar el afrontamiento positivo del duelo. Nuestro enfoque aborda la pérdida desde una perspectiva de amor y honra, transformando el dolor en un espacio para la preservación viva de la memoria del ser querido, ayudando a integrar la pérdida como parte de su historia.
+                </p>
+                <div className="border-t border-border pt-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-3">Cinco etapas del proceso</p>
+                  <ol className="space-y-2.5">
+                    {["Negación", "Ira", "Negociación", "Depresión", "Aceptación"].map((etapa, i) => (
+                      <li key={etapa} className="flex items-center gap-3">
+                        <div className="w-6 h-6 rounded-full bg-duelo-main text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">{i + 1}</div>
+                        <span className="text-sm text-foreground">{etapa}</span>
+                      </li>
+                    ))}
+                  </ol>
                 </div>
-                <button onClick={() => setModalOpen(true)} className="mt-6 self-start bg-duelo-main text-white font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-duelo-dark transition-colors">Agenda aquí</button>
+                <div className="pt-1">
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="inline-flex items-center gap-2 h-10 px-6 rounded-md text-sm font-semibold bg-duelo-main text-white hover:bg-duelo-dark transition-colors"
+                  >
+                    Agenda aquí
+                  </button>
+                </div>
               </div>
             </div>
           </div>
