@@ -5,21 +5,18 @@ const items = [
   {
     icon: CreditCard,
     title: "Pagar en línea",
-    description: "Realiza tus pagos de forma fácil y segura desde donde estés.",
     href: "https://www.portal.losolivoscartagena.com/",
     external: true,
   },
   {
     icon: Calculator,
     title: "Cotizar homenaje",
-    description: "Consulta el valor de nuestro servicio según tus condiciones.",
     href: "/cotizar",
     external: false,
   },
   {
     icon: FileText,
     title: "Trámites",
-    description: "Gestiona la documentación del proceso de tu ser querido.",
     href: "/tramites",
     external: false,
   },
@@ -40,7 +37,6 @@ export function Services() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-foreground leading-tight">{item.title}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed line-clamp-2">{item.description}</p>
                   </div>
                   <ArrowRight className="w-4 h-4 text-muted-foreground/40 flex-shrink-0 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                 </div>
