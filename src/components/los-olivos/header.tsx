@@ -18,7 +18,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { ComponentType, useEffect, useRef, useState } from "react"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -52,7 +52,7 @@ export function Header() {
     { label: "San Juan", href: "/planes/san-juan" },
     { label: "Mompox", href: "/planes/mompox" },
   ]
-  const conocenosItems = [
+  const conocenosItems: { label: string; description: string; href: string; icon: ComponentType<{ className?: string }>; isExternal?: boolean }[] = [
     { label: "Nosotros", description: "Conoce nuestra historia y misión", href: "/nosotros", icon: Users },
     { label: "Blog", description: "Artículos y noticias de interés", href: "/blog", icon: BookOpen },
     { label: "Tratamiento de datos", description: "Política de privacidad y protección de datos", href: "/tratamiento-de-datos", icon: FileCheck },
@@ -118,9 +118,7 @@ export function Header() {
                       type="button"
                       onClick={() => toggleDropdown(item.label)}
                       className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${
-                        item.accent === "vida"
-                          ? openDropdown === item.label ? "text-vida-dark" : "text-muted-foreground hover:text-vida-dark"
-                          : openDropdown === item.label ? "text-primary" : "text-muted-foreground hover:text-primary"
+                        openDropdown === item.label ? "text-primary" : "text-muted-foreground hover:text-primary"
                       }`}
                     >
                       {item.label}
