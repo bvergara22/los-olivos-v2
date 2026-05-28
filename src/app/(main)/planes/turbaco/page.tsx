@@ -1,4 +1,3 @@
-import { TarjetaBeneficios } from "@/components/los-olivos/tarjeta-beneficios"
 import { VerSedesButton } from "@/components/los-olivos/ver-sedes-button"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Clock, MapPin, MessageCircle, ShieldCheck, Users } from "lucide-react"
@@ -184,8 +183,6 @@ export default function TurbacoPage() {
           </div>
         </div>
       </section>
-
-      <TarjetaBeneficios />
 
       <section className="py-12 md:py-20 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

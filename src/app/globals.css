@@ -125,18 +125,18 @@
 }
 .sede-green {
   --primary: #8CE63C;
-  --primary-foreground: #1a1a1a;
+  --primary-foreground: #ffffff;
   --ring: #8CE63C;
 }
 .sede-yellow {
   --primary: #F9D886;
-  --primary-foreground: #1a1a1a;
+  --primary-foreground: #ffffff;
   --ring: #F9D886;
 }
 .sede-pink {
-  --primary: #DC4C5A;
+  --primary: #EB5E82;
   --primary-foreground: #ffffff;
-  --ring: #DC4C5A;
+  --ring: #EB5E82;
 }
 
 @theme inline {
