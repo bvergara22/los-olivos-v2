@@ -1,4 +1,4 @@
-import { ArrowRight, Calculator, CreditCard, FileText } from "lucide-react"
+import { Calculator, CreditCard, FileText } from "lucide-react"
 import Link from "next/link"
 
 const items = [
@@ -16,7 +16,7 @@ const items = [
   },
   {
     icon: FileText,
-    title: "Trámites",
+    title: "Trámites homenaje",
     href: "/tramites",
     external: false,
   },
@@ -31,14 +31,11 @@ export function Services() {
             {items.map((item) => {
               const Icon = item.icon
               const inner = (
-                <div className="group flex items-center gap-4 p-5 md:p-6 hover:bg-primary/[0.04] transition-colors cursor-pointer">
+                <div className="group flex items-center justify-center gap-4 p-5 md:p-6 hover:bg-primary/[0.04] transition-colors cursor-pointer">
                   <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-200 shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-foreground leading-tight">{item.title}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground/40 flex-shrink-0 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
+                  <p className="text-sm font-semibold text-foreground leading-tight">{item.title}</p>
                 </div>
               )
 
