@@ -167,7 +167,6 @@ export function UnidadVidaContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
             <span className="text-3xl md:text-4xl text-vida-dark block">Sanando Juntos</span>
-            <h2 className="font-display text-xl md:text-2xl text-vida-dark mt-2 text-balance">Línea de Acompañamiento Psicológico</h2>
           </div>
           <div className="relative rounded-3xl overflow-hidden mb-8 md:mb-10" style={{ background: "linear-gradient(135deg, #e65c36 0%, #c04a27 100%)" }}>
             <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
@@ -209,8 +208,7 @@ export function UnidadVidaContent() {
       <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
-            <span className="text-3xl md:text-4xl text-vida-dark block">Nuestras líneas</span>
-            <h2 className="font-display text-xl md:text-2xl text-vida-dark mt-2 text-balance">de acompañamiento</h2>
+            <span className="text-3xl md:text-4xl text-vida-dark block">Línea de acompañamiento</span>
           </div>
           <div className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br from-vida-dark/5 to-transparent border border-vida-dark/10 p-6 sm:p-8 md:p-10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">

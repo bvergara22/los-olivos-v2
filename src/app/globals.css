@@ -112,6 +112,33 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+/* ── Colores por sede ───────────────────────────────────────────── */
+.sede-orange {
+  --primary: #e65c36;
+  --primary-foreground: #ffffff;
+  --ring: #e65c36;
+}
+.sede-teal {
+  --primary: #59AB9B;
+  --primary-foreground: #ffffff;
+  --ring: #59AB9B;
+}
+.sede-green {
+  --primary: #8CE63C;
+  --primary-foreground: #1a1a1a;
+  --ring: #8CE63C;
+}
+.sede-yellow {
+  --primary: #F9D886;
+  --primary-foreground: #1a1a1a;
+  --ring: #F9D886;
+}
+.sede-pink {
+  --primary: #DC4C5A;
+  --primary-foreground: #ffffff;
+  --ring: #DC4C5A;
+}
+
 @theme inline {
   /* Colores de Duelo como tokens de Tailwind */
   --color-duelo-main: #3e2455;

@@ -5,16 +5,16 @@ import Link from "next/link"
 import { useEffect, useRef } from "react"
 
 const sedes = [
-  { name: "Sede Cartagena", slug: "cartagena", src: "/cartagena.jpg" },
-  { name: "Sede Turbaco", slug: "turbaco", src: "/turbaco.jpg" },
-  { name: "Sede Arjona", slug: "arjona", src: "/arjona.jpg" },
-  { name: "Sede Magangué", slug: "magangue", src: "/magangue.jpg" },
-  { name: "Sede María la Baja", slug: "maria-la-baja", src: "/maria.jpg" },
-  { name: "Sede San Andrés", slug: "san-andres", src: "/san-andres.jpg" },
-  { name: "Sede Mahates", slug: "mahates", src: "/mahates.jpg" },
-  { name: "Sede Soplaviento", slug: "soplaviento", src: "/soplaviento.jpg" },
-  { name: "Sede San Juan", slug: "san-juan", src: "/san-juan.jpg" },
-  { name: "Sede Mompox", slug: "mompox", src: "/mompox.jpg" },
+  { name: "Sede Cartagena", slug: "cartagena", src: "/cartagena.webp", badge: "bg-[#e65c36] text-white" },
+  { name: "Sede Turbaco", slug: "turbaco", src: "/turbaco.jpg", badge: "bg-[#DC4C5A] text-white" },
+  { name: "Sede Arjona", slug: "arjona", src: "/arjona.webp", badge: "bg-[#F9D886] text-[#1a1a1a]" },
+  { name: "Sede Magangué", slug: "magangue", src: "/magangue.webp", badge: "bg-[#F9D886] text-[#1a1a1a]" },
+  { name: "Sede María la Baja", slug: "maria-la-baja", src: "/maria.webp", badge: "bg-[#8CE63C] text-[#1a1a1a]" },
+  { name: "Sede San Andrés", slug: "san-andres", src: "/san-andres.webp", badge: "bg-[#59AB9B] text-white" },
+  { name: "Sede Mahates", slug: "mahates", src: "/mahates.webp", badge: "bg-[#e65c36] text-white" },
+  { name: "Sede Soplaviento", slug: "soplaviento", src: "/soplaviento.jpg", badge: "bg-[#8CE63C] text-[#1a1a1a]" },
+  { name: "Sede San Juan", slug: "san-juan", src: "/san-juan.jpg", badge: "bg-[#DC4C5A] text-white" },
+  { name: "Sede Mompox", slug: "mompox", src: "/mompox.jpg", badge: "bg-[#59AB9B] text-white" },
 ]
 
 export function SedesPlanes() {

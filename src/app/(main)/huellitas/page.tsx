@@ -113,7 +113,7 @@ export default function HuellitasPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start order-3 md:col-start-1 md:row-start-2 md:self-start">
               <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
                 <a href="https://www.gag.com.co/micrositios/asistenciaenvida-losolivos-cartagena/" target="_blank" rel="noopener noreferrer">
-                  Conocer beneficios <ArrowRight className="w-5 h-5" />
+                  Conocer más <ArrowRight className="w-5 h-5" />
                 </a>
               </Button>
             </div>
