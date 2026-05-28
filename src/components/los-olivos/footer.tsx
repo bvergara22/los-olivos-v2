@@ -39,7 +39,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
-              Más de 30 años protegiendo familias con servicios exequiales integrales.
+              50 años protegiendo familias con servicios integrales.
             </p>
           </div>
 

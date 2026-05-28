@@ -30,10 +30,10 @@ export function Header() {
   const homenajes = [
     { label: "Homenaje al amor", description: "Ceremonias personalizadas para honrar la memoria", href: "/homenaje", icon: Heart },
     { label: "Parque Jardín", description: "Espacios de descanso eterno con naturaleza", href: "/parque-cementerio", icon: TreePine },
-    { label: "Unidad de gestión de las emociones - en duelo", description: "Acompañamiento profesional en momentos difíciles", href: "/unidad-duelo", icon: Flower2 },
+    { label: "Unidad de gestión de las emociones", description: "Acompañamiento profesional en momentos difíciles", href: "/unidad-duelo", icon: Flower2 },
   ]
   const masVida = [
-    { label: "Unidad de gestión de las emociones - en vida", description: "Recursos para gestionar tus emociones en el día a día", href: "/unidad-duelo", icon: Flower2 },
+    { label: "Unidad de gestión de las emociones", description: "Recursos para gestionar tus emociones en el día a día", href: "/unidad-vida", icon: Flower2 },
     { label: "Golden Offers", description: "Beneficios y ofertas exclusivas para nuestros afiliados", href: "https://goldenoffer.losolivoscartagena.com/", icon: CreditCard, isExternal: true },
   ]
   const previsionItems = [

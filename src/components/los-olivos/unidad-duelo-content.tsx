@@ -165,8 +165,8 @@ export function UnidadDueloContent() {
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-duelo-dark leading-tight text-balance">
                 Unidad de Gestión<br />de las Emociones
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
-                En Los Olivos Cartagena transformamos la unidad de duelo en una <strong className="text-duelo-dark">Unidad de Gestión Emocional</strong> con el objetivo de ofrecer un acompañamiento psicológico y orientación integral a sus afiliados. Esta evolución busca fortalecer el apoyo en el manejo de las emociones a lo largo de toda su vida, extendiendo el servicio más allá de las situaciones de duelo y los momentos difíciles.
+              <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed text-justify">
+                La <strong className="text-duelo-dark">Unidad de Gestión de las Emociones (UGE)</strong> de Los Olivos nace para acompañar integralmente las experiencias emocionales de las personas y familias, promoviendo el equilibrio y cuidado emocional en cada etapa de la vida. A través de un enfoque humano y cercano, brindamos herramientas y acompañamiento que permiten vivir cada experiencia con mayor tranquilidad, comprensión y apoyo emocional.
               </p>
               <div className="flex flex-wrap gap-2 mt-5">
                 {["Modalidad virtual y presencial", "Espacios de acompañamiento psicológicos", "Círculos de apoyo"].map((tag) => (
@@ -178,7 +178,7 @@ export function UnidadDueloContent() {
               </div>
             </div>
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
-              <Image src="/VECTOR_UNIDAD_PRINCIPAL.png" alt="Unidad de Gestión de las Emociones" width={500} height={380} priority className="w-full h-auto object-contain" />
+              <Image src="/duelo-secc-principal.webp" alt="Unidad de Gestión de las Emociones" width={500} height={380} priority className="w-full h-auto object-contain" />
             </div>
           </div>
         </div>
@@ -202,21 +202,22 @@ export function UnidadDueloContent() {
             <div className="relative z-10 p-8 md:p-12 lg:p-16">
               <div className="w-12 h-0.5 bg-white/30 mb-8" />
               <div className="max-w-3xl space-y-5">
-                <p className="text-base md:text-lg leading-relaxed text-white/90">
-                  Reconocemos la importancia fundamental del equilibrio emocional y la salud mental. Por ello, hemos desarrollado nuestra Línea de Acompañamiento Psicológico{" "}
-                  <span className="text-white font-semibold">&ldquo;Sanando Juntos&rdquo;</span>, un servicio diseñado para promover el bienestar, la prevención de riesgos psicosociales y el mantenimiento del equilibrio emocional de todos nuestros afiliados y sus familias en todas las etapas de su vida.
+                <p className="text-white/60 text-sm font-semibold uppercase tracking-widest mb-2">Un Homenaje al Amor</p>
+                <p className="text-base md:text-lg leading-relaxed text-white/90 text-justify">
+                  Reconocemos que el duelo es una expresión profunda del amor y que cada despedida merece ser acompañada con sensibilidad, respeto y humanidad. Por eso, desde nuestra Línea de Acompañamiento Psicológico{" "}
+                  <span className="text-white font-semibold italic">Sanando Juntos</span>, ofrecemos apoyo psicológico centrado en la orientación y la escucha activa para facilitar el afrontamiento positivo del duelo.
                 </p>
-                <p className="text-sm md:text-base leading-relaxed text-white/70">
-                  Nuestro principal objetivo es ir más allá del apoyo reactivo, enfocándonos en el fomento activo del crecimiento personal y la plena experiencia y disfrute de la vida. Entendemos el bienestar no solo como la ausencia de malestar, sino como la capacidad de desarrollarse plenamente y afrontar los desafíos de la vida con resiliencia y optimismo.
+                <p className="text-sm md:text-base leading-relaxed text-white/70 text-justify">
+                  Nuestro enfoque aborda la pérdida desde una perspectiva de amor y honra, transformando el dolor en un espacio para la preservación viva de la memoria del ser querido, ayudando a integrar la pérdida como parte de su historia. Porque en Los Olivos creemos que el amor no termina, se transforma.
                 </p>
               </div>
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {[
-              { icon: Heart, title: "Bienestar integral", desc: "Equilibrio emocional y salud mental para nuestros afiliados y sus familias en todas las etapas de la vida." },
-              { icon: Shield, title: "Prevención", desc: "Identificación y prevención de riesgos psicosociales antes de que se conviertan en una crisis." },
-              { icon: Sparkles, title: "Crecimiento personal", desc: "Fomento activo del desarrollo personal, la resiliencia y el disfrute pleno de cada experiencia de vida." },
+              { icon: Heart, title: "Contención y escucha", desc: "Estamos presentes para acompañarte emocionalmente cuando más lo necesitas." },
+              { icon: Sparkles, title: "Memoria que trasciende", desc: "Honramos cada historia de vida a través de espacios llenos de significado y amor." },
+              { icon: Shield, title: "El amor se transforma", desc: "Te ayudamos a resignificar el duelo entendiendo que los vínculos permanecen para siempre." },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-card rounded-2xl p-6 flex flex-col gap-3 border border-border hover:border-duelo-main/30 hover:shadow-md transition-all">
                 <div className="w-11 h-11 rounded-xl bg-duelo-main/10 text-duelo-main flex items-center justify-center"><Icon className="w-5 h-5" /></div>
@@ -236,31 +237,56 @@ export function UnidadDueloContent() {
             <h2 className="font-display text-xl md:text-2xl text-duelo-dark mt-2 text-balance">de acompañamiento</h2>
           </div>
           <div className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br from-duelo-main/5 to-transparent border border-duelo-main/10 p-6 sm:p-8 md:p-10">
-            <div className="grid lg:grid-cols-2 gap-6 lg:gap-14 items-center">
-              {/* Desktop image */}
-              <div className="hidden lg:flex justify-center">
-                <Image src="/Vector-UGE-DUELO.png" alt="Sanando Juntos en el duelo" width={500} height={440} className="w-full h-auto object-contain" />
-              </div>
-              {/* Text column */}
-              <div className="flex flex-col gap-4 md:gap-5">
-                <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-foreground">En duelo</h3>
-                {/* Mobile image */}
-                <div className="lg:hidden flex justify-center">
-                  <Image src="/Vector-UGE-DUELO.png" alt="Sanando Juntos en el duelo" width={500} height={440} className="w-2/3 sm:w-1/2 h-auto object-contain" />
-                </div>
-                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                  Desde este espacio, ofrecemos apoyo psicológico centrado en la orientación y la escucha activa para facilitar el afrontamiento positivo del duelo. Nuestro enfoque aborda la pérdida desde una perspectiva de amor y honra, transformando el dolor en un espacio para la preservación viva de la memoria del ser querido, ayudando a integrar la pérdida como parte de su historia.
-                </p>
-                <div className="border-t border-border pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-3">Cinco etapas del proceso</p>
-                  <ol className="space-y-2.5">
-                    {["Negación", "Ira", "Negociación", "Depresión", "Aceptación"].map((etapa, i) => (
-                      <li key={etapa} className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-duelo-main text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">{i + 1}</div>
-                        <span className="text-sm text-foreground">{etapa}</span>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">
+              {/* Columna izquierda: imagen + afiliados (afiliados solo en desktop) */}
+              <div className="flex flex-col items-center lg:items-start gap-6">
+                <Image src="/Vector-UGE-DUELO.png" alt="Sanando Juntos en el duelo" width={500} height={440} className="w-2/3 sm:w-1/2 lg:w-full h-auto object-contain" />
+                <div className="w-full hidden lg:block">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-3">Al ser afiliado a Los Olivos accederás a</p>
+                  <ul className="space-y-2.5">
+                    {["Ceremonias simbólicas", "Espacios de homenaje", "Talleres de duelo", "Acompañamiento emocional especializado"].map((b) => (
+                      <li key={b} className="flex items-center gap-2.5 text-sm text-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-duelo-main flex-shrink-0" />
+                        {b}
                       </li>
                     ))}
-                  </ol>
+                  </ul>
+                </div>
+              </div>
+              {/* Columna derecha: texto + etapas + afiliados (mobile) + botón */}
+              <div className="flex flex-col gap-4 md:gap-5">
+                <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-duelo-main">En duelo</h3>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-2">¿Qué entendemos por el duelo?</p>
+                  <p className="text-muted-foreground leading-relaxed text-sm md:text-base text-justify">
+                    En Los Olivos vemos el duelo como un proceso natural y una expresión de amor ante la pérdida de un ser querido. Entendemos que cada vivencia es única y requiere tiempo, respeto y apoyo humano.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed text-sm md:text-base text-justify mt-3">
+                    Acompañamos este tránsito con sensibilidad, ayudando a transformar el dolor en un homenaje a la vida y la memoria de quienes siempre habitarán en el corazón.
+                  </p>
+                </div>
+                <div className="border-t border-border pt-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-3">Cinco etapas del proceso</p>
+                  <ul className="space-y-2.5">
+                    {["Negación", "Ira", "Negociación", "Depresión", "Aceptación"].map((etapa) => (
+                      <li key={etapa} className="flex items-center gap-2.5 text-sm text-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-duelo-main flex-shrink-0" />
+                        {etapa}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* Afiliados solo en mobile */}
+                <div className="border-t border-border pt-4 lg:hidden">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-duelo-main mb-3">Al ser afiliado a Los Olivos accederás a</p>
+                  <ul className="space-y-2.5">
+                    {["Ceremonias simbólicas", "Espacios de homenaje", "Talleres de duelo", "Acompañamiento emocional especializado"].map((b) => (
+                      <li key={b} className="flex items-center gap-2.5 text-sm text-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-duelo-main flex-shrink-0" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="pt-1">
                   <button

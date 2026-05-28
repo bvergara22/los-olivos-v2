@@ -46,7 +46,7 @@ export function Hero() {
           {/* Contenido */}
           <div className="text-left space-y-6 lg:space-y-8 order-2 min-[1140px]:order-1">
             <span className="inline-block px-3 py-1.5 bg-primary/10 text-primary text-xs lg:text-sm font-medium rounded-full">
-              Más de 30 años protegiendo familias
+              50 años protegiendo familias
             </span>
 
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
