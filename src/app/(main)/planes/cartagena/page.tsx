@@ -242,7 +242,7 @@ export default function CartagenaPage() {
 
             {/* Solidaria */}
             <Link
-              href="/solidaria"
+              href="/solidaria-landing"
               className="group flex flex-col bg-card rounded-2xl border border-border p-6 hover:border-primary/40 hover:shadow-lg transition-all"
             >
               <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4 group-hover:bg-amber-200 transition-colors">

@@ -1,7 +1,7 @@
 "use client"
 
 import { AgendaModal } from "@/components/los-olivos/agenda-modal"
-import { BookOpen, CalendarCheck, Heart, Shield, Sparkles, X } from "lucide-react"
+import { BookOpen, CalendarCheck, Heart, MessageCircle, Shield, Sparkles, Users, X } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
@@ -16,57 +16,182 @@ type Recurso = {
   contenido?: React.ReactNode
 }
 
-const autocuidadoContenido = (
-  <div className="space-y-4 text-sm md:text-base text-muted-foreground leading-relaxed">
-    <p>
-      Hoy por hoy las necesidades de nuestra sociedad son muy variadas, desde poder tomar los alimentos, trabajar para sobrevivir o sencillamente cuidarte lo suficiente para poder llegar a casa y saludar a los tuyos. Desde hace un año, vivimos para cuidarnos, muchas de las cosas buenas que antes teníamos no tocó dejarlas atrás para cuidar lo vital en nuestras vidas; es solo retroceder y mirar que la vida puede cambiarnos en un chasquido de dedos.
-    </p>
-    <p>Por eso queremos recomendarte los siguientes tips para cuidar de ti y tu salud mental en estos tiempos tan difíciles.</p>
-    <div className="space-y-4 pt-2">
+const jubilacionContenido = (
+  <div className="space-y-5 text-sm md:text-base text-muted-foreground leading-relaxed">
+    <p>La jubilación representa una nueva etapa de la vida llena de oportunidades, cambios y nuevos propósitos. Más allá de dejar de trabajar, es el momento de redescubrir el tiempo, fortalecer el bienestar personal y disfrutar experiencias que antes podían quedar en pausa por las responsabilidades diarias.</p>
+    <p>Prepararse para la jubilación no solo implica organizar las finanzas, sino también cuidar la salud emocional, fortalecer las relaciones y construir una rutina que permita vivir esta etapa con tranquilidad y satisfacción.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Qué es la jubilación?</h3>
+    <p>La jubilación es una transición hacia una nueva etapa en la que las personas dejan su actividad laboral activa para dedicar más tiempo a sí mismas, a su bienestar y a sus intereses personales. Aunque para muchos representa descanso y libertad, también puede generar incertidumbre, cambios emocionales y preguntas sobre el futuro.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Cómo prepararse para la jubilación?</h3>
+    <p>Planificar con tiempo es una de las claves para disfrutar plenamente de esta nueva etapa. Algunas acciones importantes son:</p>
+    <div className="space-y-3 pl-1">
       {[
-        { n: "1", titulo: "Valida tus emociones", texto: "Las emociones son un recurso que los seres humanos tenemos para hacer saber nuestro disgusto o agrado hacia algo, solamente se puede evidenciar por la empatía, vínculo o la experiencia que se tenga con algo o alguien. Por eso cuando notes que tus emociones sobrepasan tus pensamientos, déjalos fluir, está bien estar mal." },
-        { n: "2", titulo: "Verifica tus redes de apoyo", texto: "Este término es muy común por estas épocas. Averigua con quiénes puedes contar cuando te sientas mal, verifica las amistades que te hacen sentir bien y en calma." },
-        { n: "3", titulo: "Evita la sobreinformación", texto: "Las redes sociales nos informan el curso de las circunstancias sociales y médicas del país, pero si quieres estar realmente informado, busca redes o programas que te den tranquilidad y veracidad en la información." },
-        { n: "4", titulo: 'Haz un "detox"', texto: "Este proceso básicamente es utilizado para poder eliminar toxinas en el cuerpo. Para la salud mental, sucede lo mismo, si lo deseas puedes cerrar redes por un tiempo o retomar actividades que te generen bienestar." },
-        { n: "5", titulo: "Ten paciencia", texto: "Es mejor pensar en positivo ante las circunstancias, recuerda que todas las cosas en cualquier momento regresan a su normalidad." },
+        { titulo: "Organiza tus finanzas", texto: "Construir hábitos de ahorro, reducir gastos innecesarios y contar con un plan financiero ayuda a vivir con mayor tranquilidad y estabilidad económica." },
+        { titulo: "Piensa en tu bienestar emocional", texto: "La jubilación también implica cambios en la rutina, el rol personal y las relaciones sociales. Prepararse emocionalmente permite afrontar esta transición de manera positiva." },
+        { titulo: "Define nuevos proyectos y propósitos", texto: "Es una oportunidad para retomar sueños, descubrir nuevos intereses y dedicar tiempo a actividades que generen satisfacción y bienestar." },
       ].map((e) => (
-        <div key={e.n} className="flex gap-4">
-          <div className="w-7 h-7 rounded-full bg-vida-dark text-white flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">{e.n}</div>
-          <div>
-            <p className="font-semibold text-foreground mb-1">{e.titulo}</p>
-            <p>{e.texto}</p>
-          </div>
+        <div key={e.titulo} className="flex gap-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />
+          <div><p className="font-semibold text-foreground">{e.titulo}</p><p>{e.texto}</p></div>
         </div>
       ))}
     </div>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Qué hacer durante la jubilación?</h3>
+    <p>La jubilación puede convertirse en una etapa enriquecedora cuando se vive de manera activa y consciente. Es el momento ideal para:</p>
+    <ul className="space-y-1.5 pl-4">
+      {["Compartir más tiempo con la familia y amigos.", "Viajar y conocer nuevos lugares.", "Disfrutar pasatiempos y actividades recreativas.", "Aprender nuevas habilidades o desarrollar talentos.", "Participar en actividades comunitarias o sociales."].map((i) => (
+        <li key={i} className="flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />{i}</li>
+      ))}
+    </ul>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Cómo mantener tus finanzas en orden?</h3>
+    <ul className="space-y-1.5 pl-4">
+      {["Llevar un presupuesto organizado.", "Priorizar gastos esenciales.", "Evitar deudas innecesarias.", "Contar con un fondo de emergencia para imprevistos.", "Buscar actividades productivas o trabajos flexibles si así lo deseas."].map((i) => (
+        <li key={i} className="flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />{i}</li>
+      ))}
+    </ul>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">La importancia de mantener una vida social activa</h3>
+    <p>Las relaciones personales son fundamentales para la salud emocional. Mantener contacto con familiares, amigos y nuevas comunidades ayuda a prevenir el aislamiento y fortalece el bienestar integral. Puedes participar en grupos de interés, encuentros comunitarios, programas culturales o deportivos y espacios de voluntariado o aprendizaje.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Cómo cuidar tu salud física y mental?</h3>
+    <ul className="space-y-1.5 pl-4">
+      {["Realizar actividad física regularmente.", "Mantener una alimentación balanceada.", "Dormir adecuadamente.", "Practicar actividades que generen tranquilidad y bienestar.", "Mantener la mente activa mediante la lectura, juegos o aprendizaje continuo."].map((i) => (
+        <li key={i} className="flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />{i}</li>
+      ))}
+    </ul>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">Una etapa para vivir plenamente</h3>
+    <p>La jubilación no representa el final de una etapa productiva, sino el comienzo de un nuevo momento para vivir con mayor libertad, bienestar y propósito. Prepararse con anticipación, cuidar las emociones, fortalecer la salud y mantener vínculos significativos permite disfrutar esta etapa de manera más tranquila y enriquecedora.</p>
+    <p className="italic text-xs text-right text-muted-foreground/60">Unidad de gestión emocional — Los Olivos Cartagena</p>
+  </div>
+)
+
+const comunicacionContenido = (
+  <div className="space-y-5 text-sm md:text-base text-muted-foreground leading-relaxed">
+    <blockquote className="border-l-4 border-vida-dark/30 pl-4 italic text-muted-foreground/80">
+      "No es necesario decir todo lo que se piensa, lo que sí es necesario es pensar todo lo que se dice." — Quino
+    </blockquote>
+    <p>La manera en que nos comunicamos influye directamente en nuestras relaciones, emociones y bienestar. Aprender a expresar lo que sentimos de forma adecuada nos permite fortalecer vínculos, prevenir conflictos y generar conversaciones más sanas y respetuosas.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Qué es la comunicación asertiva?</h3>
+    <p>La comunicación asertiva es la capacidad de expresar ideas, emociones y necesidades de manera clara, honesta y respetuosa, sin herir, minimizar o afectar emocionalmente a los demás. Ser asertivos no significa decir todo lo que pensamos sin filtro, sino encontrar la forma adecuada de comunicarlo, considerando tanto nuestras emociones como las de quien nos escucha.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">Tipos de comunicación</h3>
+    <div className="space-y-3">
+      {[
+        { titulo: "Comunicación agresiva", texto: "Se caracteriza por el uso de gritos, insultos, amenazas o palabras ofensivas. Busca imponer ideas sin considerar las emociones o necesidades del otro." },
+        { titulo: "Comunicación pasiva", texto: "Ocurre cuando la persona evita expresar lo que siente o piensa por miedo al conflicto, adoptando una actitud de sumisión o silencio constante." },
+        { titulo: "Comunicación asertiva", texto: "Busca el equilibrio entre expresar lo que pensamos y respetar al otro. Se basa en la claridad, la empatía y el respeto mutuo." },
+      ].map((e) => (
+        <div key={e.titulo} className="bg-vida-dark/5 rounded-xl p-4">
+          <p className="font-semibold text-foreground mb-1">{e.titulo}</p>
+          <p>{e.texto}</p>
+        </div>
+      ))}
+    </div>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Qué debemos considerar antes de comunicar un mensaje?</h3>
+    <div className="space-y-3">
+      {[
+        { n: "1", texto: "Preparar el mensaje de acuerdo con la personalidad y necesidad del receptor." },
+        { n: "2", texto: "Incluir información que sea de interés para la otra persona." },
+        { n: "3", texto: "Pensar si nuestras palabras podrían ser malinterpretadas." },
+        { n: "4", texto: "Apoyar la comunicación con el tono de voz, gestos y actitud para transmitir el mensaje de manera más clara." },
+      ].map((e) => (
+        <div key={e.n} className="flex gap-3">
+          <div className="w-6 h-6 rounded-full bg-vida-dark text-white flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">{e.n}</div>
+          <p>{e.texto}</p>
+        </div>
+      ))}
+    </div>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">Escucha activa: más que oír, comprender</h3>
+    <p>Oír es simplemente percibir sonidos. Escuchar, en cambio, implica comprender, interpretar y dar sentido a lo que la otra persona expresa. La escucha activa requiere empatía, disposición y la capacidad de ponerse en el lugar del otro.</p>
+    <p className="font-semibold text-foreground">Barreras que afectan la escucha activa:</p>
+    <ul className="space-y-1.5 pl-4">
+      {["Interrumpir constantemente a quien habla.", "Juzgar antes de comprender.", "Rechazar o minimizar lo que la otra persona está sintiendo."].map((i) => (
+        <li key={i} className="flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />{i}</li>
+      ))}
+    </ul>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">Recomendaciones para una mejor comunicación</h3>
+    <ul className="space-y-2 pl-4">
+      {[
+        "Si vamos a criticar o pedir explicaciones, es mejor hacerlo en privado y en un ambiente tranquilo.",
+        "Cuando se trate de reconocer o elogiar a alguien, hacerlo frente a personas significativas puede fortalecer su autoestima y motivación.",
+        "Si una conversación comienza a salirse de control, es válido hacer una pausa. Frases como \"Si no te importa, podemos continuar hablando de esto más tarde\" ayudan a manejar mejor las emociones.",
+      ].map((i) => (
+        <li key={i} className="flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />{i}</li>
+      ))}
+    </ul>
+
+    <p>La comunicación asertiva y la escucha activa son herramientas fundamentales para construir relaciones más saludables, humanas y empáticas.</p>
+    <p className="italic text-xs text-right text-muted-foreground/60">Unidad de gestión emocional — Los Olivos Cartagena</p>
+  </div>
+)
+
+const jovenesContenido = (
+  <div className="space-y-5 text-sm md:text-base text-muted-foreground leading-relaxed">
+    <p>La juventud es una etapa llena de cambios, decisiones, sueños y descubrimientos. También puede ser un momento en el que aparecen dudas, presión, ansiedad, inseguridades o dificultades para expresar lo que sentimos. Muchas veces creemos que debemos "poder con todo", pero cuidar nuestras emociones también hace parte de crecer y construir bienestar.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Por qué es importante hablar de salud emocional en los jóvenes?</h3>
+    <p>Las emociones influyen en la manera en que pensamos, actuamos, nos relacionamos y enfrentamos los desafíos cotidianos. El estrés académico, los cambios personales, las relaciones, las redes sociales, la presión por encajar o la incertidumbre sobre el futuro pueden afectar el bienestar emocional si no se gestionan adecuadamente.</p>
+    <p>Por eso, dedicar tiempo a cuidar lo que sentimos es tan importante como cuidar nuestra salud física.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">Entender lo que sientes también es bienestar</h3>
+    <p>Sentir tristeza, frustración, miedo o ansiedad no te hace débil. Las emociones son una parte natural de la vida y reconocerlas es el primer paso para aprender a manejarlas de manera saludable. Hablar con alguien de confianza, expresar lo que sentimos, descansar, poner límites y buscar espacios de apoyo emocional puede marcar una gran diferencia en nuestro bienestar.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">La importancia de construir relaciones sanas</h3>
+    <p>Rodearse de personas que aporten tranquilidad, respeto y apoyo emocional fortalece la autoestima y la salud mental. Las relaciones sanas se construyen desde:</p>
+    <ul className="space-y-1.5 pl-4">
+      {["La comunicación respetuosa.", "La empatía.", "El respeto por los límites.", "La confianza y el apoyo mutuo."].map((i) => (
+        <li key={i} className="flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />{i}</li>
+      ))}
+    </ul>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">Redes sociales y bienestar emocional</h3>
+    <p>Las redes sociales hacen parte de la vida cotidiana, pero también pueden generar comparaciones, presión o ansiedad. Es importante recordar que no todo lo que vemos refleja la realidad completa de las personas. Aprender a desconectarse, cuidar el tiempo en pantalla y priorizar espacios reales de conexión ayuda a mantener un equilibrio emocional más saludable.</p>
+
+    <h3 className="font-display font-bold text-base text-foreground pt-2">¿Cómo cuidar tus emociones en el día a día?</h3>
+    <p>Pequeñas acciones pueden ayudarte a fortalecer tu bienestar emocional:</p>
+    <ul className="space-y-1.5 pl-4">
+      {["Dormir adecuadamente.", "Practicar actividades que disfrutes.", "Hablar sobre lo que sientes.", "Mantener hábitos saludables.", "Dedicar tiempo al descanso.", "Aprender a pedir ayuda cuando la necesites."].map((i) => (
+        <li key={i} className="flex items-start gap-2"><span className="w-1.5 h-1.5 rounded-full bg-vida-dark flex-shrink-0 mt-2" />{i}</li>
+      ))}
+    </ul>
+
+    <div className="bg-vida-dark/5 rounded-xl p-4 mt-2">
+      <p className="font-semibold text-foreground text-center">Porque cuidar lo que sientes también es vivir mejor.</p>
+    </div>
+    <p className="italic text-xs text-right text-muted-foreground/60">Unidad de gestión emocional — Los Olivos Cartagena</p>
   </div>
 )
 
 const recursos: Recurso[] = [
   {
-    icon: Heart,
-    title: "El proceso de duelo y sus implicaciones",
-    desc: "El duelo es un proceso interno natural en el que aprendemos a vivir con la ausencia. Conoce las etapas que lo conforman y cómo acompañarte en este camino.",
-    categoria: "Noticias",
-    fecha: "12-6-2020",
-    autor: "Psicóloga Lina Cortina Roa",
-    contenido: autocuidadoContenido,
-  },
-  {
-    icon: BookOpen,
-    title: "Autocuidado emocional en tiempos de crisis",
-    desc: "Hoy por hoy las necesidades de nuestra mente son prioritarias. Descubre rutinas que fortalecen el bienestar emocional y ayudan a superar los momentos más difíciles.",
-    categoria: "Vida",
-    fecha: "6-5-2021",
-    contenido: autocuidadoContenido,
-  },
-  {
     icon: CalendarCheck,
-    title: "Qué hacer en el acompañamiento a una persona en duelo",
-    desc: "Todos en algún momento de nuestra vida tenemos el desafío de acompañar a alguien en donde nuestra presencia y palabras son el mejor apoyo para sanar.",
+    title: "La jubilación se acerca… ¿Estás listo para vivirla con bienestar y plenitud?",
+    desc: "La jubilación es una nueva etapa llena de oportunidades. Descubre cómo prepararte emocionalmente, mantener tus finanzas en orden y vivir con propósito y bienestar.",
     categoria: "Vida",
-    fecha: "6-5-2021",
-    contenido: autocuidadoContenido,
+    contenido: jubilacionContenido,
+  },
+  {
+    icon: MessageCircle,
+    title: "Comunicación asertiva: expresar lo que sentimos con respeto y empatía",
+    desc: "Aprende a expresar lo que sientes de forma clara y respetuosa, fortalecer la escucha activa y construir conversaciones más sanas en todos los espacios de tu vida.",
+    categoria: "Vida",
+    contenido: comunicacionContenido,
+  },
+  {
+    icon: Users,
+    title: "Crecer también implica aprender a cuidar tus emociones",
+    desc: "Ser joven no significa tener todas las respuestas. Conoce herramientas para gestionar el estrés, construir relaciones sanas y fortalecer tu bienestar emocional día a día.",
+    categoria: "Vida",
+    contenido: jovenesContenido,
   },
 ]
 

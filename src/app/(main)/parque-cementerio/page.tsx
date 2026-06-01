@@ -64,7 +64,7 @@ export default function ParqueCementerioPage() {
             {/* Imagen */}
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
               <Image
-                src="/parque-cementerio.png"
+                src="/parque-principal.png"
                 alt="Parque Cementerio Jardín Los Olivos"
                 width={500}
                 height={380}

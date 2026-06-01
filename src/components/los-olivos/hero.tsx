@@ -7,16 +7,16 @@ import { useEffect, useState } from "react"
 
 const carouselImages = [
   {
-    src: "/promocional.png",
-    alt: "Promocional Los Olivos",
+    src: "/secc-principal1.webp",
+    alt: "Familia Los Olivos",
   },
   {
-    src: "/mesa-trabajo1-2.png",
-    alt: "Mesa de Trabajo",
+    src: "/secc-principal2.webp",
+    alt: "Pareja Los Olivos",
   },
   {
-    src: "/Linea-de-atención.png",
-    alt: "Linea de Atencion",
+    src: "/secc-principal3.webp",
+    alt: "Atención Los Olivos",
   },
 ]
 

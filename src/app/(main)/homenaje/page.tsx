@@ -194,7 +194,7 @@ export default function HomenajePage() {
               </div>
               <div className="relative w-full rounded-xl overflow-hidden mb-6">
                 <Image
-                  src="/parque-cementerio.png"
+                  src="/parque-principal.png"
                   alt="Parque Cementerio Los Olivos"
                   width={600}
                   height={340}

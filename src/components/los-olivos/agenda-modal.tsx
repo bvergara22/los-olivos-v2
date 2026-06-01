@@ -15,7 +15,7 @@ const horarios = [
 ]
 
 export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolean; onClose: () => void; variant?: "duelo" | "vida" }) {
-  const [form, setForm] = useState({ nombre: "", documento: "", correo: "", telefono: "", horario: "", observaciones: "" })
+  const [form, setForm] = useState({ nombre: "", documento: "", correo: "", telefono: "", modalidad: "", horario: "", observaciones: "" })
   const [mounted, setMounted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -46,7 +46,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
       <div ref={ref} className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between p-5 border-b border-border">
           <div>
-            <h3 className={`font-display font-bold text-lg ${isVida ? "text-vida-dark" : "text-duelo-dark"}`}>¡Agenda tu cita con nosotros!</h3>
+            <h3 className={`font-display font-bold text-lg ${isVida ? "text-vida-dark" : "text-duelo-dark"}`}>¡Agenda tu cita con psicología!</h3>
             <p className="text-xs text-muted-foreground mt-0.5">Completa el formulario y te contactaremos pronto</p>
           </div>
           <button onClick={onClose} className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors">
@@ -69,6 +69,17 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
           <div className="space-y-1">
             <label className="text-xs font-semibold text-foreground">Número de teléfono *</label>
             <input required type="tel" placeholder="300 000 0000" className={field} value={form.telefono} onChange={e => setForm(f => ({ ...f, telefono: e.target.value }))} />
+          </div>
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-foreground">Modalidad *</label>
+            <div className="flex gap-3">
+              {["Presencial", "Virtual"].map(op => (
+                <label key={op} className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all ${form.modalidad === op ? (isVida ? "border-vida-dark bg-vida-dark/10 text-vida-dark" : "border-duelo-main bg-duelo-main/10 text-duelo-main") : "border-border text-muted-foreground hover:border-muted-foreground/40"}`}>
+                  <input required type="radio" name="modalidad" value={op} className="sr-only" checked={form.modalidad === op} onChange={() => setForm(f => ({ ...f, modalidad: op }))} />
+                  {op}
+                </label>
+              ))}
+            </div>
           </div>
           <div className="space-y-1">
             <label className="text-xs font-semibold text-foreground">Selecciona el horario de atención *</label>
