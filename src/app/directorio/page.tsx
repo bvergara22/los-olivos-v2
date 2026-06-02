@@ -127,13 +127,13 @@ export default function DirectorioPage() {
         {/* Enlaces principales */}
         <div className="space-y-2.5">
           {[
-            { href: "/",                                                                    label: "Nuestro sitio web",           sub: "Conoce todo sobre Los Olivos",       external: false },
-            { href: "https://pagos.losolivoscartagena.com",                                 label: "Pagos en línea",              sub: "Paga tu cuota de forma rápida",      external: true  },
-            { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea",       label: "Afiliaciones virtuales",      sub: "Afíliate desde donde estés",         external: true  },
-            { href: "https://www.portal.losolivoscartagena.com/tienda",                    label: "Tienda",                      sub: "Descuentos y beneficios exclusivos", external: true  },
-            { href: "/planes",                                                              label: "Planes exequiales",           sub: "Protección para toda tu familia",    external: false },
-            { href: "/tramites",                                                            label: "Trámites personas fallecidas",sub: "Documentos y procedimientos",        external: false },
-            { href: "/cotizar",                                                             label: "Cotizar homenaje",            sub: "Solicita una cotización ahora",      external: false },
+            { href: "/",                                                                    label: "Nuestro sitio web",           sub: "Descubre nuestros servicios, beneficios y todo lo que tenemos para acompañarte.",                                                   external: false },
+            { href: "https://pagos.losolivoscartagena.com",                                 label: "Pagos en línea",              sub: "Realiza el pago de tu plan, producto o servicio de forma rápida y segura.",                                                        external: true  },
+            { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea",       label: "Afiliaciones virtuales",      sub: "Vincúlate fácilmente desde cualquier lugar, sin desplazamientos.",                                                                  external: true  },
+            { href: "https://www.portal.losolivoscartagena.com/tienda",                    label: "Tienda",                      sub: "Accede a descuentos, promociones y experiencias exclusivas para afiliados.",                                                        external: true  },
+            { href: "/planes",                                                              label: "Planes familiares",           sub: "Encuentra la opción ideal para proteger y acompañar a quienes más amas.",                                                           external: false },
+            { href: "/tramites",                                                            label: "Información para homenajes",  sub: "Consulta requisitos, documentación y orientación para cada etapa del proceso.",                                                    external: false },
+            { href: "/cotizar",                                                             label: "Cotizar homenaje",            sub: "Conoce el valor de nuestros servicios según tus necesidades y requerimientos.",                                                    external: false },
           ].map((item) => (
             <a
               key={item.label}
@@ -161,7 +161,7 @@ export default function DirectorioPage() {
             <div className="w-1 self-stretch rounded-full flex-shrink-0" style={{ background: PRIMARY }} />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold text-[#1a2e22] leading-snug">Obituarios</p>
-              <p className="text-xs mt-0.5 leading-snug" style={{ color: PRIMARY + "99" }}>Condolencias y homenajes activos</p>
+              <p className="text-xs mt-0.5 leading-snug" style={{ color: PRIMARY + "99" }}>Consulta homenajes, mensajes de condolencia y ceremonias activas.</p>
             </div>
             <span className="flex-shrink-0 opacity-20 group-hover:opacity-100 transition-opacity" style={{ color: PRIMARY }}>
               <IconArrow />

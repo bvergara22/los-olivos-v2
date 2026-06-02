@@ -17,7 +17,7 @@ export function Benefits() {
     {
       icon: Brain,
       title: "Asistencia psicológica",
-      description: "Equipo de psicólogos especializados brindando acompañamiento óptimo y ayuda psicológica personalizada.",
+      description: "Acompañamiento profesional para fortalecer el bienestar emocional de las familias en momentos que requieren orientación, apoyo y escucha especializada.",
     },
     {
       icon: Gift,
