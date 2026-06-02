@@ -298,7 +298,7 @@ export function UnidadVidaContent() {
             <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full bg-white/5 -translate-x-1/3 translate-y-1/3 pointer-events-none" />
             <div className="relative z-10 p-8 md:p-12 lg:p-16">
               <div className="w-12 h-0.5 bg-white/30 mb-8" />
-              <div className="max-w-3xl space-y-5">
+              <div className="space-y-5">
                 <p className="text-white/60 text-sm font-semibold uppercase tracking-widest mb-2">Más Vida para ti</p>
                 <p className="text-base md:text-lg leading-relaxed text-white/90 text-justify">
                   Reconocemos la importancia de cuidar las emociones como parte esencial del bienestar y la calidad de vida. Por eso, nuestra línea de acompañamiento psicológico{" "}

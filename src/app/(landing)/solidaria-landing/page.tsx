@@ -4,11 +4,11 @@ import Link from "next/link"
 import { ArrowRight, ChevronDown, Phone, MessageCircle, Heart, Activity, Stethoscope, Monitor, Scissors, Briefcase, type LucideIcon } from "lucide-react"
 
 /* ─── Brand colors ───────────────────────────────────────────── */
-const SOL_TEAL   = "#00A3A0"
-const SOL_DARK   = "#007A77"
-const SOL_DARKER = "#005450"
+const SOL_TEAL   = "#2bad9a"
+const SOL_DARK   = "#1e8a7a"
+const SOL_DARKER = "#136358"
 const SOL_LIGHT  = "#f0fafa"
-const SOL_ACCENT = "#4ECDC4"
+const SOL_ACCENT = "#5ecfbf"
 
 export const metadata: Metadata = {
   title: "Solidaria | Solienvida SOS — Beneficio Los Olivos Cartagena",
@@ -65,7 +65,7 @@ const faqs = [
   },
   {
     q: "¿Implica algún costo el producto?",
-    a: "Nos complace informarte que nuestras asistencias son totalmente gratuitas y se encuentran integradas en los beneficios de nuestros planes de previsión exequial, diseñados para brindar comodidad en la vida diaria.",
+    a: "Nos complace informarte que nuestras asistencias son totalmente gratuitas y se encuentran integradas en los beneficios de nuestros planes de previsión integral, diseñados para brindar comodidad en la vida diaria.",
   },
 ]
 
@@ -116,7 +116,7 @@ export default function SolidariaLanding() {
                   className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-white mb-4"
                   style={{ background: SOL_TEAL }}
                 >
-                  Beneficios rápidos
+                  Beneficios
                 </span>
                 <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight" style={{ color: SOL_DARK }}>
                   Un respaldo que te acompaña cuando la vida cambia de rumbo.

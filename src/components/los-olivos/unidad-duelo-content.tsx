@@ -200,7 +200,7 @@ export function UnidadDueloContent() {
             <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full bg-white/5 -translate-x-1/3 translate-y-1/3 pointer-events-none" />
             <div className="relative z-10 p-8 md:p-12 lg:p-16">
               <div className="w-12 h-0.5 bg-white/30 mb-8" />
-              <div className="max-w-3xl space-y-5">
+              <div className="space-y-5">
                 <p className="text-white/60 text-sm font-semibold uppercase tracking-widest mb-2">Un Homenaje al Amor</p>
                 <p className="text-base md:text-lg leading-relaxed text-white/90 text-justify">
                   Reconocemos que el duelo es una expresión profunda del amor y que cada despedida merece ser acompañada con sensibilidad, respeto y humanidad. Por eso, desde nuestra Línea de Acompañamiento Psicológico{" "}

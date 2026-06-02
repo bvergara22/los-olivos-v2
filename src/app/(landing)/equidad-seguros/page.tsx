@@ -65,7 +65,7 @@ const faqs = [
   },
   {
     q: "¿Implica algún costo el producto?",
-    a: "Nos complace informarte que nuestras asistencias son totalmente gratuitas y se encuentran integradas en los beneficios de nuestros planes de previsión exequial, diseñados para brindar comodidad en la vida diaria.",
+    a: "Nos complace informarte que nuestras asistencias son totalmente gratuitas y se encuentran integradas en los beneficios de nuestros planes de previsión integral, diseñados para brindar comodidad en la vida diaria.",
   },
 ]
 
@@ -116,7 +116,7 @@ export default function EquidadSegurosLanding() {
                   className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-white mb-4"
                   style={{ background: EQ_GREEN }}
                 >
-                  Beneficios rápidos
+                  Beneficios
                 </span>
                 <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight" style={{ color: EQ_DARK }}>
                   Cobertura básica incluida en tu plan

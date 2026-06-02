@@ -211,8 +211,8 @@ export default function CartagenaPage() {
               rel="noopener noreferrer"
               className="group flex flex-col bg-card rounded-2xl border border-border p-6 hover:border-primary/40 hover:shadow-lg transition-all"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                <ShieldCheck className="w-6 h-6 text-blue-600" />
+              <div className="mb-4">
+                <Image src="/imagen-global.webp" alt="Global Assist" width={200} height={160} className="w-full h-36 object-contain" />
               </div>
               <h3 className="font-display font-bold text-base text-foreground mb-2">Global Assist</h3>
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">
@@ -228,8 +228,8 @@ export default function CartagenaPage() {
               href="/equidad-seguros"
               className="group flex flex-col bg-card rounded-2xl border border-border p-6 hover:border-primary/40 hover:shadow-lg transition-all"
             >
-              <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center mb-4 group-hover:bg-sky-200 transition-colors">
-                <Shield className="w-6 h-6 text-sky-600" />
+              <div className="mb-4">
+                <Image src="/imagen-equidad.webp" alt="Equidad Seguros" width={200} height={160} className="w-full h-36 object-contain" />
               </div>
               <h3 className="font-display font-bold text-base text-foreground mb-2">Equidad Seguros</h3>
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">
@@ -245,8 +245,8 @@ export default function CartagenaPage() {
               href="/solidaria-landing"
               className="group flex flex-col bg-card rounded-2xl border border-border p-6 hover:border-primary/40 hover:shadow-lg transition-all"
             >
-              <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4 group-hover:bg-amber-200 transition-colors">
-                <Users className="w-6 h-6 text-amber-600" />
+              <div className="mb-4">
+                <Image src="/imagen-solidaria.webp" alt="Solidaria" width={200} height={160} className="w-full h-36 object-contain" />
               </div>
               <h3 className="font-display font-bold text-base text-foreground mb-2">Solidaria</h3>
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">
