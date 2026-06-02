@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button"
 import {
   BookOpen,
   ChevronDown,
-  CreditCard,
   ExternalLink,
   FileCheck,
   Flower2,
+  Gift,
   Heart,
   HeartHandshake,
   MapPin,
@@ -34,7 +34,7 @@ export function Header() {
   ]
   const masVida = [
     { label: "Unidad de gestión de las emociones", description: "Recursos para gestionar tus emociones en el día a día", href: "/unidad-vida", icon: Flower2 },
-    { label: "Golden Offers", description: "Beneficios y ofertas exclusivas para nuestros afiliados", href: "https://goldenoffer.losolivoscartagena.com/", icon: CreditCard, isExternal: true },
+    { label: "Golden Offers", description: "Beneficios y ofertas exclusivas para nuestros afiliados", href: "https://goldenoffer.losolivoscartagena.com/", icon: Gift, isExternal: true },
   ]
   const previsionItems = [
     { label: "Planes Integrales", description: "Planes de protección para ti y tu familia", href: "#ver-sedes", icon: Shield },
@@ -103,14 +103,14 @@ export function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={dropdownRef}>
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-20 gap-8">
             {/* Logo */}
             <a href="/" className="flex items-center">
               <Image src="/logo-olivos.png" alt="Logo Los Olivos" width={120} height={50} className="object-contain" priority />
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-10">
+            <nav className="hidden lg:flex items-center gap-10 flex-1 justify-end pr-12">
               {navItems.map((item) => (
                 <div key={item.label} className="relative">
                   {item.hasDropdown ? (
@@ -135,18 +135,50 @@ export function Header() {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              <Button asChild variant="outline" size="sm" className="gap-2 bg-transparent hover:bg-[#C38B2C] hover:text-white hover:border-[#C38B2C] transition-colors">
-                <Link href="https://goldenoffer.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
-                  <CreditCard className="w-4 h-4" />
-                  <span>Golden Offers</span>
-                </Link>
-              </Button>
-              <Button asChild size="sm" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://goldenoffer.losolivoscartagena.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 h-9 px-4 rounded-md text-sm font-semibold border-2 bg-white transition-colors hover:bg-amber-50"
+                style={{ borderColor: "#C9981E", color: "#C9981E" }}
+              >
+                <Gift className="w-4 h-4" />
+                <span>Golden Offers</span>
+              </Link>
+              <div className="relative flex">
+                {/* Parte izquierda: enlace al portal */}
+                <Link
+                  href="https://www.portal.losolivoscartagena.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 h-9 pl-4 pr-3 rounded-l-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                >
                   <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />
-                  <span>Portal</span>
+                  <span>Portal Los Olivos</span>
                 </Link>
-              </Button>
+                {/* Parte derecha: toggle dropdown */}
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === "portal" ? null : "portal")}
+                  className="inline-flex items-center justify-center h-9 w-8 rounded-r-md bg-primary text-primary-foreground hover:bg-primary/80 transition-colors"
+                >
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === "portal" ? "rotate-180" : ""}`} />
+                </button>
+                {/* Dropdown flotante */}
+                {openDropdown === "portal" && (
+                  <div className="absolute right-0 top-[calc(100%+6px)] w-52 rounded-xl shadow-2xl z-[9999] overflow-hidden bg-primary">
+                    {[
+                      { label: "Portal clientes" },
+                      { label: "Portal empresas" },
+                    ].map((item, i) => (
+                      <div key={item.label} className={`flex items-center justify-between px-4 py-3 cursor-not-allowed select-none opacity-60 ${i > 0 ? "border-t border-white/10" : ""}`}>
+                        <span className="text-sm text-white font-medium">{item.label}</span>
+                        <span className="text-[10px] font-bold bg-white/20 text-white px-2 py-0.5 rounded-full">Pronto</span>
+                      </div>
+                    ))}
+                    <div className="h-1" />
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -168,7 +200,7 @@ export function Header() {
           </div>
 
           {/* ── Desktop Mega Menu ── */}
-          {openDropdown && (
+          {openDropdown && openDropdown !== "portal" && (
             <div className="hidden lg:block absolute left-0 right-0 top-full bg-card border-b border-border shadow-lg">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
@@ -590,12 +622,16 @@ export function Header() {
                   ))}
 
                   <div className="flex flex-col gap-2 pt-4 border-t border-border mt-2">
-                    <Button asChild variant="outline" className="gap-2 w-full justify-center bg-transparent hover:bg-amber-500 hover:text-white hover:border-amber-500">
-                      <Link href="https://goldenoffer.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
-                        <CreditCard className="w-4 h-4" />
-                        <span>Golden Offers</span>
-                      </Link>
-                    </Button>
+                    <Link
+                      href="https://goldenoffer.losolivoscartagena.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 w-full h-10 rounded-md text-sm font-semibold border-2 bg-white hover:bg-amber-50 transition-colors"
+                      style={{ borderColor: "#C9981E", color: "#C9981E" }}
+                    >
+                      <Gift className="w-4 h-4" />
+                      <span>Golden Offers</span>
+                    </Link>
                     <Button asChild className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90">
                       <Link href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
                         <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />

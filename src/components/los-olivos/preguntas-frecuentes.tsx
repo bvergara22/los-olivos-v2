@@ -3,46 +3,55 @@
 import { Minus, Plus } from "lucide-react"
 import { useRef, useState } from "react"
 
-const faqs = [
+const WA = "https://wa.me/573233093435"
+const PORTAL = "https://www.portal.losolivoscartagena.com"
+
+const link = (href: string, label: string) => (
+  <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
+    {label}
+  </a>
+)
+
+const faqs: { q: string; a: React.ReactNode }[] = [
   {
     q: "¿Cómo hago para conocer mi estado de cuenta?",
-    a: "Para conocer el estado de tu cuenta, puedes comunicarte al número oficial de Los Olivos Cartagena 323 309 3435. Nuestra asistente virtual LIA te guiará paso a paso para acceder a la información de tu plan, afiliados y estado de cuenta. En caso de requerir atención más específica, un asesor especializado acompañará tu proceso.",
+    a: <>Para conocer el estado de tu cuenta, puedes comunicarte a nuestro número de WhatsApp {link(WA, "323-309 3435")}. Nuestra asistente de experiencia, LIA te guiará paso a paso para acceder a la información de tu plan integral, beneficiarios y estado de cuenta; debes escoger la opción "Cartera" en nuestro menú principal. En caso de requerir atención personalizada, uno de nuestros gestores especializados te acompañará en el proceso.</>,
   },
   {
     q: "¿Cuáles son mis beneficiarios?",
-    a: "Puedes consultar tu lista de beneficiarios escribiendo al número oficial 323 309 3435. Por medio del chat, LIA te orientará para acceder a los datos de tu plan y afiliados. Si necesitas mayor acompañamiento, un asesor estará disponible para ayudarte.",
+    a: <>Puedes consultar tu lista de beneficiarios escribiendo a nuestro número de WhatsApp {link(WA, "323-309 3435")}. Por medio del chat, LIA te orientará para acceder a la información de tu plan. Si necesitas mayor acompañamiento, uno de nuestros gestores especializados te acompañará en el proceso.</>,
   },
   {
-    q: "¿Qué me cubre el plan?",
-    a: "Con tu plan de previsión integral cuentas con cobertura en todo el territorio colombiano. Accedes a asistencias como SoliCanasta, Soli Renta, Soli Accidente, asistencia domiciliaria gratuita y asistencia psicológica según el plan que elijas. Todos los planes cubren el proceso exequial completo: traslado inicial, trámites notariales, cofre, velación, transporte, inhumación o cremación, misa de conmemoración y taller de manejo del duelo.",
+    q: "¿Qué me cubre mi plan?",
+    a: <>Con tu plan de previsión integral cuentas con cobertura en todo el territorio colombiano. Accedes a asistencias en vida, asistencia psicológica; nuestros planes cubren el proceso exequial completo: traslado inicial, trámites notariales, cofre, velación, transporte, inhumación o cremación, misa de conmemoración y apoyo en la superación del duelo.</>,
   },
   {
     q: "¿Cómo puedo obtener una factura de gastos funerarios?",
-    a: "Ingresa al portal portal.losolivoscartagena.com, realiza la solicitud mediante una PQRS y adjunta el registro de defunción, documento de identidad del titular y del fallecido. Si necesitas apoyo, comunícate al 323 309 3435.",
+    a: <>Ingresa al {link(PORTAL, "portal.losolivoscartagena.com")}, realiza la solicitud mediante una PQRS {link(`${PORTAL}/pqrs`, "(¿cómo lo hago?)")} y adjunta el registro de defunción, documento de identidad del titular y del fallecido. Si necesitas apoyo, uno de nuestros gestores especializados te acompañará en el proceso. Comunícate al {link(WA, "323-309 3435")}.</>,
   },
   {
     q: "¿Dónde se encuentra el registro de defunción de mi ser querido?",
-    a: "El contratante debe dirigirse a la notaría donde se registró el servicio. Si no tienes esta información, comunícate a la línea oficial 323 309 3435 y LIA te ayudará a ubicar los datos necesarios.",
+    a: <>Puedes comunicarte a nuestro número de WhatsApp {link(WA, "323-309 3435")} y LIA te ayudará con la información necesaria, escogiendo la opción de homenajes en nuestro menú principal.</>,
   },
   {
     q: "¿Cómo es el proceso para exhumar a mi ser querido?",
-    a: "Debes contar con el permiso de exhumación otorgado por la Alcaldía de Cartagena, el certificado de defunción y el pago del proceso. Para orientación detallada comunícate al 323 309 3435.",
+    a: <>Debes contar con el permiso de exhumación otorgado por la Alcaldía de Cartagena, el certificado de defunción y el pago del proceso. Para orientación detallada comunícate al {link(WA, "323-309 3435")}.</>,
   },
   {
     q: "¿Dónde puedo realizar mis pagos?",
-    a: "Te recomendamos nuestra pasarela en pagos.losolivoscartagena.com, donde podrás pagar mediante PSE, tarjetas crédito, débito y efectivo. Si tienes alguna dificultad, escríbenos al 323 309 3435.",
+    a: <>Te recomendamos nuestra pasarela en {link("https://pagos.losolivoscartagena.com", "pagos.losolivoscartagena.com")}, donde podrás pagar mediante PSE, tarjetas crédito, débito y efectivo. Si tienes alguna dificultad, escríbenos al {link(WA, "323-309 3435")}.</>,
   },
   {
     q: "¿Cómo hago para afiliarme?",
-    a: "Solo necesitas la información de los beneficiarios (nombre, documento y fecha de nacimiento), ingresar al portal de afiliaciones en línea, escoger la sede y el plan, completar los datos con los documentos requeridos y realizar el pago en línea. Para ayuda comunícate al 323 309 3435.",
+    a: <>Solo necesitas la información de los beneficiarios (nombre, documento y fecha de nacimiento), ingresar al {link(`${PORTAL}/afiliacion-en-linea`, "portal de afiliaciones en línea")}, escoger la sede y el plan, completar los datos con los documentos requeridos y realizar el pago en línea. Para ayuda comunícate al {link(WA, "323-309 3435")}.</>,
   },
   {
-    q: "¿Cómo hago para desvincular a una persona de mi plan exequial?",
-    a: "Puedes hacerlo a través del portal web portal.losolivoscartagena.com mediante una PQRS, o por correo a contacto@losolivoscartagena.com indicando el concepto y adjuntando los documentos de identidad. Para acompañamiento llama al 323 309 3435.",
+    q: "¿Cómo hago para desvincular a una persona de mi plan?",
+    a: <>Puedes hacerlo a través del {link(PORTAL, "portal web")} mediante una PQRS, o por correo a {link("mailto:contacto@losolivoscartagena.com", "contacto@losolivoscartagena.com")} indicando el concepto y adjuntando los documentos de identidad. Para acompañamiento llama al {link(WA, "323-309 3435")}.</>,
   },
 ]
 
-function FaqItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
+function FaqItem({ q, a, open, onToggle }: { q: string; a: React.ReactNode; open: boolean; onToggle: () => void }) {
   const contentRef = useRef<HTMLDivElement>(null)
 
   return (
@@ -62,7 +71,6 @@ function FaqItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean
       <div
         ref={contentRef}
         className="overflow-hidden transition-all duration-300 ease-in-out"
-        // eslint-disable-next-line react-hooks/refs
         style={{ maxHeight: open ? `${contentRef.current?.scrollHeight ?? 400}px` : "0px" }}
       >
         <p className="pb-5 text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -91,7 +99,7 @@ export function PreguntasFrecuentes() {
               Encuentra respuesta a las consultas más comunes de nuestros afiliados.
             </p>
             <a
-              href="https://wa.me/573233093435"
+              href={WA}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-6 bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors"
@@ -104,7 +112,7 @@ export function PreguntasFrecuentes() {
           <div className="divide-y-0 border-t border-border">
             {faqs.map((faq, i) => (
               <FaqItem
-                key={faq.q}
+                key={i}
                 q={faq.q}
                 a={faq.a}
                 open={openIndex === i}

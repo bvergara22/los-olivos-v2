@@ -363,7 +363,7 @@ export function BeneficiosTabs() {
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
               {/* Texto introductorio */}
               <div>
-                <span className="text-2xl md:text-3xl lg:text-4xl text-vida-dark block">Plan Raíces</span>
+                <span className="text-2xl md:text-3xl lg:text-4xl text-vida-dark block normal-case">Plan Raíces</span>
                 <h2 className="font-display text-lg md:text-xl lg:text-2xl text-foreground mt-2 mb-6 text-balance">
                   Los Olivos · Equidad Seguros
                 </h2>

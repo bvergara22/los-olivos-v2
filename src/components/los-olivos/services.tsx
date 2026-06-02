@@ -6,7 +6,7 @@ const items = [
     icon: CreditCard,
     title: "Pagar en línea",
     desc: "Realiza tus pagos de manera rápida y segura.",
-    href: "https://www.portal.losolivoscartagena.com/",
+    href: "https://pagos.losolivoscartagena.com",
     external: true,
   },
   {
@@ -27,8 +27,8 @@ const items = [
 
 export function Services() {
   return (
-    <div className="relative z-20 -mt-6 md:-mt-10 pb-2 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative z-20 -mt-6 md:-mt-10 pb-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Mobile: tarjetas apiladas */}
         <div className="flex flex-col gap-3 sm:hidden items-center w-full">
@@ -54,7 +54,7 @@ export function Services() {
         </div>
 
         {/* Desktop: una sola tarjeta con divisores */}
-        <div className="hidden sm:block bg-card rounded-2xl shadow-xl border border-border/60 overflow-hidden">
+        <div className="hidden sm:block bg-card rounded-2xl shadow-md border border-border/60 overflow-hidden">
           <div className="grid grid-cols-3 divide-x divide-border/60">
             {items.map((item) => {
               const Icon = item.icon

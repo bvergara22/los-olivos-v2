@@ -41,16 +41,6 @@ export function Benefits() {
               en cada momento de tu vida con beneficios integrales.
             </p>
 
-            <Button
-            asChild
-              size="lg"
-              className="gap-2 bg-vida-dark text-white hover:bg-vida-dark/90 mt-4"
-            >
-              <Link href="/beneficios">
-                Conoce todos los beneficios
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </Button>
           </div>
 
           {/* Benefits Grid */}

@@ -137,7 +137,7 @@ export default function TurbacoPage() {
                     <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
                     <p className="text-xs text-muted-foreground">pesos</p>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}
@@ -153,7 +153,7 @@ export default function TurbacoPage() {
                     <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
                     <p className="text-xs text-muted-foreground">pesos</p>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}
@@ -187,7 +187,7 @@ export default function TurbacoPage() {
                 <div className="w-1 rounded-full bg-primary/20 flex-shrink-0" />
                 <div>
                   <h3 className="font-display font-bold text-base text-primary mb-2">{plan.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}
@@ -198,7 +198,7 @@ export default function TurbacoPage() {
                 <div className="w-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors flex-shrink-0" />
                 <div>
                   <h3 className="font-display font-bold text-base text-primary mb-2">{plan.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}

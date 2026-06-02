@@ -128,7 +128,7 @@ export default function DirectorioPage() {
         <div className="space-y-2.5">
           {[
             { href: "/",                                                                    label: "Nuestro sitio web",           sub: "Conoce todo sobre Los Olivos",       external: false },
-            { href: "#",                                                                    label: "Pagos online",                sub: "Paga tu cuota de forma rápida",      external: false },
+            { href: "https://pagos.losolivoscartagena.com",                                 label: "Pagos en línea",              sub: "Paga tu cuota de forma rápida",      external: true  },
             { href: "https://www.portal.losolivoscartagena.com/afiliacion-en-linea",       label: "Afiliaciones virtuales",      sub: "Afíliate desde donde estés",         external: true  },
             { href: "https://www.portal.losolivoscartagena.com/tienda",                    label: "Tienda",                      sub: "Descuentos y beneficios exclusivos", external: true  },
             { href: "/planes",                                                              label: "Planes exequiales",           sub: "Protección para toda tu familia",    external: false },

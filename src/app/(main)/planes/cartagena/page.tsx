@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 const planesPersonas = [
   {
-    title: "PLAN RAÍCES",
+    title: "Plan Raíces",
     price: "$25.000",
     description:
       "Este plan es ideal para tu núcleo familiar primario. Si te conviertes en titular, podrás incluir a tu cónyuge hasta los 65 años, hijos hasta los 25 años, y padres sin límite de edad o, en su ausencia, suegros. Cuenta con cobertura integral y una mensualidad accesible, además de un respaldo adicional gracias a la alianza con Equidad Seguros.",
@@ -193,14 +193,11 @@ export default function CartagenaPage() {
       <section className="py-12 md:py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-4">
-              Incluido en tu plan
-            </span>
             <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-              Servicios adicionales con tu afiliación
+              Mayor cobertura para ti y tu familia
             </h2>
-            <p className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm md:text-base">
-              Al afiliarte a Los Olivos Cartagena accedes a estos beneficios sin costo adicional.
+            <p className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm md:text-base text-justify">
+              Nuestros planes de previsión incluyen coberturas adicionales y beneficios complementarios que fortalecen el bienestar y la tranquilidad de tu familia.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -215,7 +212,7 @@ export default function CartagenaPage() {
                 <Image src="/imagen-global.webp" alt="Global Assist" width={200} height={160} className="w-full h-36 object-contain" />
               </div>
               <h3 className="font-display font-bold text-base text-foreground mb-2">Global Assist</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1 text-justify">
                 Asistencias en vida: médica, veterinaria, hogar y más, disponibles las 24 horas para ti y tu núcleo familiar.
               </p>
               <div className="flex items-center gap-1 text-primary text-sm font-medium mt-4 group-hover:gap-2 transition-all">
@@ -232,7 +229,7 @@ export default function CartagenaPage() {
                 <Image src="/imagen-equidad.webp" alt="Equidad Seguros" width={200} height={160} className="w-full h-36 object-contain" />
               </div>
               <h3 className="font-display font-bold text-base text-foreground mb-2">Equidad Seguros</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1 text-justify">
                 Seguro de vida y coberturas adicionales incluidas en tu plan de previsión integral con Los Olivos.
               </p>
               <div className="flex items-center gap-1 text-primary text-sm font-medium mt-4 group-hover:gap-2 transition-all">
@@ -249,7 +246,7 @@ export default function CartagenaPage() {
                 <Image src="/imagen-solidaria.webp" alt="Solidaria" width={200} height={160} className="w-full h-36 object-contain" />
               </div>
               <h3 className="font-display font-bold text-base text-foreground mb-2">Solidaria</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1 text-justify">
                 Beneficios cooperativos y servicios de bienestar para ti y tu familia afiliada a Los Olivos.
               </p>
               <div className="flex items-center gap-1 text-primary text-sm font-medium mt-4 group-hover:gap-2 transition-all">
@@ -300,7 +297,7 @@ export default function CartagenaPage() {
                     <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
                     <p className="text-xs text-muted-foreground">pesos</p>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}
@@ -324,7 +321,7 @@ export default function CartagenaPage() {
                     <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
                     <p className="text-xs text-muted-foreground">pesos</p>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}
@@ -370,7 +367,7 @@ export default function CartagenaPage() {
                 <div className="w-1 rounded-full bg-primary/20 flex-shrink-0" />
                 <div>
                   <h3 className="font-display font-bold text-base text-primary mb-2">{plan.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}
@@ -384,7 +381,7 @@ export default function CartagenaPage() {
                 <div className="w-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors flex-shrink-0" />
                 <div>
                   <h3 className="font-display font-bold text-base text-primary mb-2">{plan.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed text-justify">{plan.description}</p>
                 </div>
               </div>
             ))}
