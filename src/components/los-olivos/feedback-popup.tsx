@@ -36,8 +36,10 @@ export function FeedbackPopup({ open, onClose }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, rate }),
       })
-      await res.text()
-      setThanksText("¡Gracias por tu opinión!")
+
+      const response: string = await res.json()
+
+      setThanksText(response)
     } catch {
       setThanksText("¡Gracias por tu opinión!")
     } finally {

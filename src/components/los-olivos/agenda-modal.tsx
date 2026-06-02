@@ -17,6 +17,9 @@ const horarios = [
 export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolean; onClose: () => void; variant?: "duelo" | "vida" }) {
   const [form, setForm] = useState({ nombre: "", documento: "", correo: "", telefono: "", modalidad: "", horario: "", observaciones: "" })
   const [mounted, setMounted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [done, setDone] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const ref = useRef<HTMLDivElement>(null)
 
   const isVida = variant === "vida"
@@ -34,10 +37,54 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
   }, [open])
 
   useEffect(() => {
+    if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setDone(false)
+      setLoading(false)
+      setError(null)
+      setForm({ nombre: "", documento: "", correo: "", telefono: "", modalidad: "", horario: "", observaciones: "" })
+    }
+  }, [open])
+
+  useEffect(() => {
     const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
     document.addEventListener("keydown", fn)
     return () => document.removeEventListener("keydown", fn)
   }, [onClose])
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (loading) return
+
+    setLoading(true)
+
+    try {
+      const response = await fetch("https://portalapi.losolivoscartagena.com/api/agendar-citas/psicologia/registrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre_completo: form.nombre,
+          documento: form.documento,
+          correo: form.correo,
+          telefono: form.telefono,
+          horario_atencion: form.horario,
+          modalidad: form.modalidad,
+          area: isVida ? "Unidad de vida" : "Unidad de duelo",
+          observacion: form.observaciones,
+        }),
+      })
+
+      if (!response.ok) {
+        setError("No se pudo registrar la cita. Inténtalo de nuevo.")
+      }
+
+      setDone(true)
+    } catch {
+      setError("No se pudo registrar la cita. Inténtalo de nuevo.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   if (!mounted || !open) return null
 
@@ -53,7 +100,19 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
             <X className="w-4 h-4" />
           </button>
         </div>
-        <form className="p-5 space-y-4" onSubmit={e => { e.preventDefault(); onClose() }}>
+        {done ? (
+          <div className="p-8 text-center space-y-3">
+            <div className={`mx-auto w-14 h-14 rounded-full flex items-center justify-center ${isVida ? "bg-vida-dark/10 text-vida-dark" : "bg-duelo-main/10 text-duelo-main"}`}>
+              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h4 className="font-display font-bold text-lg text-foreground">¡Cita agendada con éxito!</h4>
+            <p className="text-sm text-muted-foreground">Pronto nos pondremos en contacto contigo para confirmar tu cita.</p>
+            <button onClick={onClose} className={`mt-2 w-full text-white font-semibold text-sm py-3 rounded-xl transition-colors ${isVida ? "bg-vida-dark hover:bg-vida-dark/90" : "bg-duelo-main hover:bg-duelo-dark"}`}>
+              Cerrar
+            </button>
+          </div>
+        ) : (
+        <form className="p-5 space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-1">
             <label className="text-xs font-semibold text-foreground">Nombres y apellidos *</label>
             <input required type="text" placeholder="Nombres y apellidos" className={field} value={form.nombre} onChange={e => setForm(f => ({ ...f, nombre: e.target.value }))} />
@@ -90,12 +149,19 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
           </div>
           <div className="space-y-1">
             <label className="text-xs font-semibold text-foreground">Observaciones</label>
-            <textarea rows={3} placeholder="Cuéntanos cómo podemos ayudarte..." className={`${field} resize-none`} value={form.observaciones} onChange={e => setForm(f => ({ ...f, observaciones: e.target.value }))} />
+            <textarea rows={3} placeholder="Cuéntanos cómo podemos ayudarte..." className={`${field} resize-none`} value={form.observaciones} onChange={e => { setForm(f => ({ ...f, observaciones: e.target.value })); setError(null) }} />
           </div>
-          <button type="submit" className={`w-full text-white font-semibold text-sm py-3 rounded-xl transition-colors ${isVida ? "bg-vida-dark hover:bg-vida-dark/90" : "bg-duelo-main hover:bg-duelo-dark"}`}>
-            ¡Agenda tu cita!
+          {error && (
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
+              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>
+              {error}
+            </div>
+          )}
+          <button type="submit" disabled={loading} className={`w-full text-white font-semibold text-sm py-3 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed ${isVida ? "bg-vida-dark hover:bg-vida-dark/90" : "bg-duelo-main hover:bg-duelo-dark"}`}>
+            {loading ? "Enviando..." : "¡Agenda tu cita!"}
           </button>
         </form>
+        )}
       </div>
     </div>,
     document.body

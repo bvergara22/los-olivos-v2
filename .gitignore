@@ -47,3 +47,5 @@ public/*.webm
 public/*.mov
 # excepción: video de LIA comprimido (185 KB)
 !public/video-lia-compressed.mp4
+
+.idea
