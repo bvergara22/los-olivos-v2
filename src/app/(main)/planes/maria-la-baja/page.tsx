@@ -107,17 +107,33 @@ export default function MariaLaBajaPage() {
               <Image src="/family-planes.png" alt="Planes para personas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
             </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {planes.map((plan) => (
-              <div key={plan.title} className={`relative flex flex-col bg-card rounded-2xl border overflow-hidden transition-all hover:shadow-lg border-border hover:border-primary/40`}>
-                <div className="p-4 md:p-6 flex flex-col flex-1">
+              <div key={plan.title} className="relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden flex-shrink-0 snap-start w-[80vw] max-w-xs">
+                <div className="p-4 flex flex-col flex-1">
+                  <h3 className="font-display font-bold text-base text-foreground mb-3">{plan.title}</h3>
+                  <div className="w-8 h-0.5 bg-primary/30 mb-4" />
                   <div className="mb-4">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1">Valor mensual</p>
                     <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
                     <p className="text-xs text-muted-foreground">pesos</p>
                   </div>
-                  <div className="w-8 h-0.5 bg-primary/30 mb-4" />
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="hidden md:grid md:grid-cols-3 gap-6">
+            {planes.map((plan) => (
+              <div key={plan.title} className="relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden transition-all hover:shadow-lg hover:border-primary/40">
+                <div className="p-4 md:p-6 flex flex-col flex-1">
                   <h3 className="font-display font-bold text-base text-foreground mb-3">{plan.title}</h3>
+                  <div className="w-8 h-0.5 bg-primary/30 mb-4" />
+                  <div className="mb-4">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1">Valor mensual</p>
+                    <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
+                    <p className="text-xs text-muted-foreground">pesos</p>
+                  </div>
                   <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
                 </div>
               </div>
@@ -144,7 +160,18 @@ export default function MariaLaBajaPage() {
               <Image src="/empleados-planes.png" alt="Planes para empresas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
             </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {planesEmpresas.map((plan) => (
+              <div key={plan.title} className="flex gap-4 bg-card rounded-2xl border border-border p-5 flex-shrink-0 snap-start w-[80vw] max-w-xs">
+                <div className="w-1 rounded-full bg-primary/20 flex-shrink-0" />
+                <div>
+                  <h3 className="font-display font-bold text-base text-primary mb-2">{plan.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="hidden md:grid md:grid-cols-2 gap-5">
             {planesEmpresas.map((plan) => (
               <div key={plan.title} className="group flex gap-5 bg-card rounded-2xl border border-border p-4 md:p-6 hover:border-primary/40 hover:shadow-md transition-all">
                 <div className="w-1 rounded-full bg-primary/20 group-hover:bg-primary transition-colors flex-shrink-0" />

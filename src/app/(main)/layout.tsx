@@ -8,7 +8,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     <>
       <ScrollReset />
       <Header />
-      <main className="min-h-screen">{children}</main>
+      <main className="min-h-screen pt-20">{children}</main>
       <Footer />
       <AsistenteVirtual />
     </>

@@ -280,7 +280,32 @@ export default function CartagenaPage() {
           </div>
 
           {/* Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Mobile: carrusel — Desktop: grid */}
+          <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {planesPersonas.map((plan) => (
+              <div
+                key={plan.title}
+                className={`relative flex flex-col bg-card rounded-2xl border overflow-hidden transition-all flex-shrink-0 snap-start w-[80vw] max-w-xs ${plan.popular ? "border-primary shadow-md" : "border-border"}`}
+              >
+                {plan.popular && (
+                  <div className="bg-primary text-primary-foreground text-xs font-semibold text-center py-1.5 tracking-wide">
+                    Más recomendado
+                  </div>
+                )}
+                <div className="p-4 flex flex-col flex-1">
+                  <h3 className="font-display font-bold text-base text-foreground mb-3">{plan.title}</h3>
+                  <div className="w-8 h-0.5 bg-primary/30 mb-4" />
+                  <div className="mb-4">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1">Valor mensual</p>
+                    <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
+                    <p className="text-xs text-muted-foreground">pesos</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {planesPersonas.map((plan) => (
               <div
                 key={plan.title}
@@ -292,14 +317,13 @@ export default function CartagenaPage() {
                   </div>
                 )}
                 <div className="p-4 md:p-6 flex flex-col flex-1">
-                  {/* Precio destacado */}
+                  <h3 className="font-display font-bold text-base text-foreground mb-3">{plan.title}</h3>
+                  <div className="w-8 h-0.5 bg-primary/30 mb-4" />
                   <div className="mb-4">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1">Valor mensual</p>
                     <p className="font-display font-bold text-2xl text-primary">{plan.price}</p>
                     <p className="text-xs text-muted-foreground">pesos</p>
                   </div>
-                  <div className="w-8 h-0.5 bg-primary/30 mb-4" />
-                  <h3 className="font-display font-bold text-base text-foreground mb-3">{plan.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed flex-1">{plan.description}</p>
                 </div>
               </div>
@@ -336,7 +360,22 @@ export default function CartagenaPage() {
           </div>
 
           {/* Cards con borde izquierdo */}
-          <div className="grid md:grid-cols-2 gap-5">
+          {/* Mobile: carrusel — Desktop: grid */}
+          <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {planesEmpresas.map((plan) => (
+              <div
+                key={plan.title}
+                className="group flex gap-4 bg-card rounded-2xl border border-border p-5 flex-shrink-0 snap-start w-[80vw] max-w-xs"
+              >
+                <div className="w-1 rounded-full bg-primary/20 flex-shrink-0" />
+                <div>
+                  <h3 className="font-display font-bold text-base text-primary mb-2">{plan.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="hidden md:grid md:grid-cols-2 gap-5">
             {planesEmpresas.map((plan) => (
               <div
                 key={plan.title}
