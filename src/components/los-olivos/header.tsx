@@ -1,6 +1,5 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import {
   BookOpen,
   ChevronDown,
@@ -632,12 +631,33 @@ export function Header() {
                       <Gift className="w-4 h-4" />
                       <span>Golden Offers</span>
                     </Link>
-                    <Button asChild className="gap-2 w-full justify-center bg-primary text-primary-foreground hover:bg-primary/90">
-                      <Link href="https://www.portal.losolivoscartagena.com/" target="_blank" rel="noopener noreferrer">
+                    <div className="relative flex w-full">
+                      <Link
+                        href="https://www.portal.losolivoscartagena.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 flex-1 h-10 pl-4 pr-3 rounded-l-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                      >
                         <Image src="/olivos-white.png" alt="" width={16} height={16} className="w-4 h-4 object-contain" />
-                        <span>Portal</span>
+                        <span>Portal Los Olivos</span>
                       </Link>
-                    </Button>
+                      <button
+                        onClick={() => setOpenDropdown(openDropdown === "portal-mobile" ? null : "portal-mobile")}
+                        className="inline-flex items-center justify-center h-10 w-8 rounded-r-md bg-primary text-primary-foreground hover:bg-primary/80 transition-colors"
+                      >
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === "portal-mobile" ? "rotate-180" : ""}`} />
+                      </button>
+                    </div>
+                    {openDropdown === "portal-mobile" && (
+                      <div className="rounded-xl overflow-hidden bg-primary">
+                        {["Portal clientes", "Portal empresas"].map((label, i) => (
+                          <div key={label} className={`flex items-center justify-between px-4 py-3 cursor-not-allowed select-none opacity-60 ${i > 0 ? "border-t border-white/10" : ""}`}>
+                            <span className="text-sm text-white font-medium">{label}</span>
+                            <span className="text-[10px] font-bold bg-white/20 text-white px-2 py-0.5 rounded-full">Pronto</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </nav>
               </div>
