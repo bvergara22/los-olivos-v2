@@ -68,7 +68,7 @@ export default function SoplavientoPage() {
               </div>
             </div>
             <div className="relative w-2/3 sm:w-1/2 lg:w-full mx-auto">
-              <Image src="/soplavientos-vector.png" alt="Familia protegida con Los Olivos Soplaviento" width={600} height={500} priority className="w-full h-auto object-contain" />
+              <Image src="/soplavientos-vector.webp" alt="Familia protegida con Los Olivos Soplaviento" width={600} height={500} priority className="w-full h-auto object-contain" />
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function SoplavientoPage() {
               <p className="text-sm md:text-base text-muted-foreground mt-3 md:mt-4 leading-relaxed max-w-lg">Elige el plan ideal para proteger a los tuyos con cuotas mensuales, trimestrales, semestrales o anuales.</p>
             </div>
             <div className="hidden md:block flex-shrink-0">
-              <Image src="/family-planes.png" alt="Planes para personas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
+              <Image src="/family-planes.webp" alt="Planes para personas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
             </div>
           </div>
           <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -157,7 +157,7 @@ export default function SoplavientoPage() {
               <p className="text-sm md:text-base text-muted-foreground mt-3 md:mt-4 leading-relaxed max-w-lg">Una alternativa especial para líderes organizacionales que desean proteger el núcleo familiar de sus empleados.</p>
             </div>
             <div className="hidden md:block flex-shrink-0">
-              <Image src="/empleados-planes.png" alt="Planes para empresas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
+              <Image src="/empleados-planes.webp" alt="Planes para empresas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
             </div>
           </div>
           <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
