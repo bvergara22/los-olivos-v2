@@ -40,10 +40,10 @@ export default function CotizarPage() {
           <div className="grid lg:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-center">
             <div>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-cotizar-dark leading-tight text-balance">
-                Haz tu cotización ágil y sencilla
+                Estamos para acompañarte cuando más lo necesitas
               </h1>
               <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed">
-                Consulta el valor de nuestro servicio de necesidad inmediata según tus requerimientos y condiciones.
+                Conoce las alternativas que hemos diseñado para acompañarte a ti y a tu familia. Completa la información y recibe una cotización acorde a tus necesidades.
               </p>
             </div>
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
@@ -73,10 +73,10 @@ export default function CotizarPage() {
             {/* Intro label */}
             <div className="text-center mb-8">
               <h2 className="font-display text-2xl md:text-3xl font-bold" style={{ color: "#477a7b" }}>
-                ¿Tienes plan exequial con Los Olivos?
+                ¿Haces parte de la familia Olivos?
               </h2>
               <p className="text-sm text-muted-foreground mt-2">
-                Selecciona una opción para ver la información correspondiente.
+                Selecciona la opción que mejor describa tu situación para continuar con la cotización.
               </p>
             </div>
 
@@ -105,7 +105,7 @@ export default function CotizarPage() {
                 </div>
                 <h4 className="font-display font-bold text-foreground text-lg mb-1">Soy afiliado</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ya cuento con un plan exequial activo con Los Olivos.
+                  Ya cuento con un plan activo y deseo consultar las opciones disponibles para mí.
                 </p>
               </button>
 
@@ -129,9 +129,9 @@ export default function CotizarPage() {
                 }`}>
                   <User className={`w-6 h-6 transition-colors duration-200 ${tipo === "particular" ? "text-white" : "text-cotizar-main"}`} />
                 </div>
-                <h4 className="font-display font-bold text-foreground text-lg mb-1">Soy particular</h4>
+                <h4 className="font-display font-bold text-foreground text-lg mb-1">Aún no soy afiliado</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  No tengo afiliación, deseo contratar el servicio.
+                  Quiero conocer nuestros servicios y recibir una cotización personalizada.
                 </p>
               </button>
 

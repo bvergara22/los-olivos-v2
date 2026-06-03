@@ -166,7 +166,7 @@ export function UnidadDueloContent() {
                 Unidad de Gestión<br />de las Emociones
               </h1>
               <p className="text-base md:text-lg text-muted-foreground mt-4 md:mt-6 leading-relaxed text-justify">
-                La <strong className="text-duelo-dark">Unidad de Gestión de las Emociones (UGE)</strong> de Los Olivos nace para acompañar integralmente las experiencias emocionales de las personas y familias, promoviendo el equilibrio y cuidado emocional en cada etapa de la vida. A través de un enfoque humano y cercano, brindamos herramientas y acompañamiento que permiten vivir cada experiencia con mayor tranquilidad, comprensión y apoyo emocional.
+                La <strong className="text-duelo-dark">Unidad de Gestión de las Emociones (UGE)</strong> de Los Olivos nace para acompañar integralmente las experiencias emocionales de las personas y familias, promoviendo el equilibrio y cuidado emocional en cada etapa del duelo. A través de un enfoque humano y cercano, brindamos herramientas y acompañamiento que permiten gestionar la pérdida con mayor tranquilidad, comprensión y apoyo emocional.
               </p>
               <div className="flex flex-wrap gap-2 mt-5">
                 {["Modalidad virtual y presencial", "Espacios de acompañamiento psicológicos", "Círculos de apoyo"].map((tag) => (

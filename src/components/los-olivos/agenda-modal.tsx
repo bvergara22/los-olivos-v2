@@ -15,7 +15,7 @@ const horarios = [
 ]
 
 export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolean; onClose: () => void; variant?: "duelo" | "vida" }) {
-  const [form, setForm] = useState({ nombre: "", documento: "", correo: "", telefono: "", modalidad: "", horario: "", observaciones: "" })
+  const [form, setForm] = useState({ nombre: "", documento: "", correo: "", telefono: "", fecha: "", modalidad: "", horario: "", observaciones: "" })
   const [mounted, setMounted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
@@ -42,7 +42,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
       setDone(false)
       setLoading(false)
       setError(null)
-      setForm({ nombre: "", documento: "", correo: "", telefono: "", modalidad: "", horario: "", observaciones: "" })
+      setForm({ nombre: "", documento: "", correo: "", telefono: "", fecha: "", modalidad: "", horario: "", observaciones: "" })
     }
   }, [open])
 
@@ -67,6 +67,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
           documento: form.documento,
           correo: form.correo,
           telefono: form.telefono,
+          fecha_preferida: form.fecha,
           horario_atencion: form.horario,
           modalidad: form.modalidad,
           area: isVida ? "Unidad de vida" : "Unidad de duelo",
@@ -128,6 +129,10 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
           <div className="space-y-1">
             <label className="text-xs font-semibold text-foreground">Número de teléfono *</label>
             <input required type="tel" placeholder="300 000 0000" className={field} value={form.telefono} onChange={e => setForm(f => ({ ...f, telefono: e.target.value }))} />
+          </div>
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-foreground">Fecha preferida *</label>
+            <input required type="date" className={field} value={form.fecha} min={new Date().toISOString().split("T")[0]} onChange={e => setForm(f => ({ ...f, fecha: e.target.value }))} />
           </div>
           <div className="space-y-1">
             <label className="text-xs font-semibold text-foreground">Modalidad *</label>
