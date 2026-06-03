@@ -75,7 +75,6 @@ function IconArrow() {
 const PRIMARY = "#018c58"
 const PRIMARY_DARK = "#016645"
 const PRIMARY_LIGHT = "#e6f7f1"
-const PRIMARY_MID = "#b3e4d0"
 
 export default function DirectorioPage() {
   return (

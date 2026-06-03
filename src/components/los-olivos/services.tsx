@@ -18,7 +18,7 @@ const items = [
   },
   {
     icon: FileText,
-    title: "Trámites fallecido",
+    title: "Trámite homenaje",
     desc: "Consulta los requisitos y la documentación necesaria.",
     href: "/tramites",
     external: false,

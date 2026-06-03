@@ -1,7 +1,7 @@
 "use client"
 
 import { AgendaModal } from "@/components/los-olivos/agenda-modal"
-import { BookOpen, CalendarCheck, Heart, MessageCircle, Shield, Sparkles, Users, X } from "lucide-react"
+import { CalendarCheck, Heart, MessageCircle, Shield, Sparkles, Users, X } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
@@ -73,7 +73,7 @@ const jubilacionContenido = (
 const comunicacionContenido = (
   <div className="space-y-5 text-sm md:text-base text-muted-foreground leading-relaxed">
     <blockquote className="border-l-4 border-vida-dark/30 pl-4 italic text-muted-foreground/80">
-      "No es necesario decir todo lo que se piensa, lo que sí es necesario es pensar todo lo que se dice." — Quino
+      &ldquo;No es necesario decir todo lo que se piensa, lo que sí es necesario es pensar todo lo que se dice.&rdquo; — Quino
     </blockquote>
     <p>La manera en que nos comunicamos influye directamente en nuestras relaciones, emociones y bienestar. Aprender a expresar lo que sentimos de forma adecuada nos permite fortalecer vínculos, prevenir conflictos y generar conversaciones más sanas y respetuosas.</p>
 
@@ -136,7 +136,7 @@ const comunicacionContenido = (
 
 const jovenesContenido = (
   <div className="space-y-5 text-sm md:text-base text-muted-foreground leading-relaxed">
-    <p>La juventud es una etapa llena de cambios, decisiones, sueños y descubrimientos. También puede ser un momento en el que aparecen dudas, presión, ansiedad, inseguridades o dificultades para expresar lo que sentimos. Muchas veces creemos que debemos "poder con todo", pero cuidar nuestras emociones también hace parte de crecer y construir bienestar.</p>
+    <p>La juventud es una etapa llena de cambios, decisiones, sueños y descubrimientos. También puede ser un momento en el que aparecen dudas, presión, ansiedad, inseguridades o dificultades para expresar lo que sentimos. Muchas veces creemos que debemos &ldquo;poder con todo&rdquo;, pero cuidar nuestras emociones también hace parte de crecer y construir bienestar.</p>
 
     <h3 className="font-display font-bold text-base text-foreground pt-2">¿Por qué es importante hablar de salud emocional en los jóvenes?</h3>
     <p>Las emociones influyen en la manera en que pensamos, actuamos, nos relacionamos y enfrentamos los desafíos cotidianos. El estrés académico, los cambios personales, las relaciones, las redes sociales, la presión por encajar o la incertidumbre sobre el futuro pueden afectar el bienestar emocional si no se gestionan adecuadamente.</p>

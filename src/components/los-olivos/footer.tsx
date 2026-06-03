@@ -10,13 +10,6 @@ export function Footer() {
     { label: "Trámites", href: "/tramites", external: false },
   ]
 
-  const serviceLinks = [
-    { label: "Homenaje al amor", href: "/homenaje", external: false },
-    { label: "Parque cementerio", href: "/parque-cementerio", external: false },
-    { label: "Unidad de duelo", href: "/unidad-duelo", external: false },
-    { label: "Nosotros", href: "/nosotros", external: false },
-    { label: "Blog", href: "/blog", external: true },
-  ]
 
   const legalLinks = [
     { label: "Tratamiento de datos", href: "/tratamiento-de-datos", external: false },

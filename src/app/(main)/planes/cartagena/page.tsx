@@ -6,7 +6,6 @@ import {
   Clock,
   MapPin,
   MessageCircle,
-  Shield,
   ShieldCheck,
   Users,
 } from "lucide-react"
@@ -157,7 +156,7 @@ export default function CartagenaPage() {
             </div>
 
             <div className="relative w-2/3 sm:w-1/2 lg:w-full mx-auto">
-              <Image src="/cartagena-vector.png" alt="Familia protegida con Los Olivos Cartagena" width={600} height={500} priority className="w-full h-auto object-contain" />
+              <Image src="/cartagena-vector.webp" alt="Familia protegida con Los Olivos Cartagena" width={600} height={500} priority className="w-full h-auto object-contain" />
             </div>
           </div>
         </div>
@@ -272,7 +271,7 @@ export default function CartagenaPage() {
               </p>
             </div>
             <div className="hidden md:block flex-shrink-0">
-              <Image src="/family-planes.png" alt="Planes para personas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
+              <Image src="/family-planes.webp" alt="Planes para personas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
             </div>
           </div>
 
@@ -352,7 +351,7 @@ export default function CartagenaPage() {
               </p>
             </div>
             <div className="hidden md:block flex-shrink-0">
-              <Image src="/empleados-planes.png" alt="Planes para empresas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
+              <Image src="/empleados-planes.webp" alt="Planes para empresas" width={340} height={260} className="w-64 lg:w-80 h-auto object-contain" />
             </div>
           </div>
 

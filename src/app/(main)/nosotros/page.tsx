@@ -64,12 +64,6 @@ const hitos = [
   },
 ]
 
-const cifras = [
-  { numero: "+30", label: "Años de experiencia", icon: Award },
-  { numero: "+50K", label: "Familias protegidas", icon: Users },
-  { numero: "8", label: "Sedes en la región", icon: Building2 },
-  { numero: "24/7", label: "Atención disponible", icon: Shield },
-]
 
 export default function NosotrosPage() {
   return (

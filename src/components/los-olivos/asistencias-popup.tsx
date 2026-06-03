@@ -36,6 +36,7 @@ export function AsistenciasPopup({ open, onClose }: Props) {
           className="block rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
           onClick={(e) => e.stopPropagation()}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/verasistencias-fullhd.png"
             alt="Asistencias En Vida - Los Olivos Cartagena"

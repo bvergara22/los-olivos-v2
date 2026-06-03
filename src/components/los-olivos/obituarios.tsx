@@ -121,6 +121,7 @@ function Modal({ title, subtitle, onClose, children }: {
   title: string; subtitle: string; onClose: () => void; children: React.ReactNode
 }) {
   const [mounted, setMounted] = useState(false)
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
   useEffect(() => {
     const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
@@ -337,6 +338,14 @@ export function Obituarios() {
       .catch(() => setLoading(false))
   }, [])
 
+  const scrollToCard = (index: number) => {
+    const el = scrollRef.current
+    const card = cardRefs.current[index]
+    if (!el || !card) return
+    const dx = card.getBoundingClientRect().left - el.getBoundingClientRect().left
+    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" })
+  }
+
   useEffect(() => {
     if (obituarios.length <= 1) return
     const t = setInterval(() => {
@@ -345,16 +354,7 @@ export function Obituarios() {
       scrollToCard(autoIndexRef.current)
     }, 8000)
     return () => clearInterval(t)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obituarios.length])
-
-  const scrollToCard = (index: number) => {
-    const el = scrollRef.current
-    const card = cardRefs.current[index]
-    if (!el || !card) return
-    const dx = card.getBoundingClientRect().left - el.getBoundingClientRect().left
-    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" })
-  }
 
   const scrollPrev = () => {
     const el = scrollRef.current
