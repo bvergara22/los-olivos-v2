@@ -6,7 +6,6 @@ import {
   Clock,
   MapPin,
   MessageCircle,
-  Shield,
   ShieldCheck,
   Users,
 } from "lucide-react"

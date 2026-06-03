@@ -8,20 +8,6 @@ export const metadata: Metadata = {
   description: "Nuestro parque cementerio jardín Los Olivos es un lugar tranquilo, especial para darle a tu ser querido la mejor despedida.",
 }
 
-const documentosRequeridos = [
-  "Copia de carta autenticada donde el familiar autoriza la cremación (solo si va a cremar).",
-  "Fotocopia de cédula de la persona que solicita los permisos.",
-  "Certificado de defunción.",
-  "Carta de solicitud de los permisos.",
-]
-
-const notasImportantes = [
-  "Una vez tenga los permisos originales debe llevarlos al parque cementerio para poder programar la exhumación.",
-  "Solo solicitar los permisos que va a utilizar.",
-  "Si se va a realizar cremación de restos, también necesita:",
-  "Permiso de cremación del DADIS.",
-  "Carta de autorización notariada.",
-]
 
 const productos = [
   {
@@ -331,6 +317,7 @@ export default function ParqueCementerioPage() {
                 className="group bg-card rounded-2xl border border-border hover:border-duelo-main/40 hover:shadow-lg transition-all p-6"
               >
                 <div className="w-full aspect-video rounded-xl overflow-hidden mb-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={producto.image}
                     alt={producto.title}

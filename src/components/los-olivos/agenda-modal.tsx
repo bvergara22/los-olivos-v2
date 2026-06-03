@@ -27,7 +27,6 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
     ? "w-full border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-vida-dark focus:ring-2 focus:ring-vida-dark/15 transition-all bg-background"
     : "w-full border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-duelo-main focus:ring-2 focus:ring-duelo-main/15 transition-all bg-background"
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
@@ -38,7 +37,6 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
 
   useEffect(() => {
     if (open) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDone(false)
       setLoading(false)
       setError(null)

@@ -108,6 +108,7 @@ export function AsistenteVirtual() {
   const [hasOpened, setHasOpened] = useState(false)
   const [introPlayed, setIntroPlayed] = useState(false)
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
 
   // Show FAB only when popups are closed AND user has scrolled
@@ -196,6 +197,7 @@ export function AsistenteVirtual() {
                     width: 46, height: 46, borderRadius: 13, overflow: "hidden",
                     background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)",
                   }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/lia.png" alt="LIA" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <span style={{
@@ -232,6 +234,7 @@ export function AsistenteVirtual() {
                 width: 26, height: 26, borderRadius: 7, flexShrink: 0, overflow: "hidden",
                 background: "#e6f7f1",
               }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/lia.png" alt="LIA" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ background: "#e6f7f1", borderRadius: "14px 14px 14px 4px", padding: "10px 13px" }}>
@@ -342,6 +345,7 @@ export function AsistenteVirtual() {
               <path d="M15 5L5 15M5 5l10 10" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
             </svg>
           ) : (
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/lia.png" alt="LIA" style={{ width: 36, height: 36, objectFit: "cover", borderRadius: "50%" }} />
           )}
           {/* Badge rojo — solo mientras no haya abierto el chat */}

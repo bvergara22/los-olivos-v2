@@ -249,6 +249,7 @@ export default function HomenajePage() {
                 className="group bg-card rounded-2xl border border-border p-6 hover:border-duelo-main/40 hover:shadow-lg transition-all"
               >
                 <div className="w-full aspect-video rounded-xl overflow-hidden mb-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={flor.image}
                     alt={flor.description}

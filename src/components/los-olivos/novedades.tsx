@@ -82,6 +82,7 @@ const items: CarouselItem[] = [
 
 function VideoModal({ item, onClose }: { item: VideoItem; onClose: () => void }) {
   const [mounted, setMounted] = useState(false)
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
@@ -111,6 +112,7 @@ function VideoModal({ item, onClose }: { item: VideoItem; onClose: () => void })
 
 function BannerModal({ item, onClose }: { item: BannerItem; onClose: () => void }) {
   const [mounted, setMounted] = useState(false)
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
@@ -284,11 +286,13 @@ export function Novedades() {
     scrollRef.current.scrollLeft = dragScrollLeft.current - (e.pageX - dragStartX.current)
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const scrollPrev = () => {
     const el = scrollRef.current; if (!el) return
     if (el.scrollLeft <= 1) { autoIndexRef.current = items.length - 1; el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" }) }
     else { autoIndexRef.current = (autoIndexRef.current - 1 + items.length) % items.length; scrollToCard(autoIndexRef.current) }
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const scrollNext = () => {
     const el = scrollRef.current; if (!el) return
     if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) { autoIndexRef.current = 0; el.scrollTo({ left: 0, behavior: "smooth" }) }

@@ -104,9 +104,9 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={dropdownRef}>
           <div className="flex items-center justify-between h-20 gap-8">
             {/* Logo */}
-            <a href="/" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <Image src="/logo-olivos.png" alt="Logo Los Olivos" width={120} height={50} className="object-contain" priority />
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-10 flex-1 justify-end pr-12">

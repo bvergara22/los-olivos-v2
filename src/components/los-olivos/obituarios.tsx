@@ -121,6 +121,7 @@ function Modal({ title, subtitle, onClose, children }: {
   title: string; subtitle: string; onClose: () => void; children: React.ReactNode
 }) {
   const [mounted, setMounted] = useState(false)
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true) }, [])
   useEffect(() => {
     const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
@@ -345,7 +346,6 @@ export function Obituarios() {
       scrollToCard(autoIndexRef.current)
     }, 8000)
     return () => clearInterval(t)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obituarios.length])
 
   const scrollToCard = (index: number) => {

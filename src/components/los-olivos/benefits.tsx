@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Brain, Gift, Heart, Home } from "lucide-react"
-import Link from "next/link"
+import { Brain, Gift, Heart, Home } from "lucide-react"
 
 export function Benefits() {
   const benefits = [

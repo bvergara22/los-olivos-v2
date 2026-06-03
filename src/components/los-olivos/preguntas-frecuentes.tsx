@@ -15,7 +15,7 @@ const link = (href: string, label: string) => (
 const faqs: { q: string; a: React.ReactNode }[] = [
   {
     q: "¿Cómo hago para conocer mi estado de cuenta?",
-    a: <>Para conocer el estado de tu cuenta, puedes comunicarte a nuestro número de WhatsApp {link(WA, "323-309 3435")}. Nuestra asistente de experiencia, LIA te guiará paso a paso para acceder a la información de tu plan integral, beneficiarios y estado de cuenta; debes escoger la opción "Cartera" en nuestro menú principal. En caso de requerir atención personalizada, uno de nuestros gestores especializados te acompañará en el proceso.</>,
+    a: <>Para conocer el estado de tu cuenta, puedes comunicarte a nuestro número de WhatsApp {link(WA, "323-309 3435")}. Nuestra asistente de experiencia, LIA te guiará paso a paso para acceder a la información de tu plan integral, beneficiarios y estado de cuenta; debes escoger la opción &ldquo;Cartera&rdquo; en nuestro menú principal. En caso de requerir atención personalizada, uno de nuestros gestores especializados te acompañará en el proceso.</>,
   },
   {
     q: "¿Cuáles son mis beneficiarios?",
@@ -71,7 +71,7 @@ function FaqItem({ q, a, open, onToggle }: { q: string; a: React.ReactNode; open
       <div
         ref={contentRef}
         className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{ maxHeight: open ? `${contentRef.current?.scrollHeight ?? 400}px` : "0px" }}
+        style={{ maxHeight: open ? "9999px" : "0px" }}
       >
         <p className="pb-5 text-sm sm:text-base text-muted-foreground leading-relaxed">
           {a}
