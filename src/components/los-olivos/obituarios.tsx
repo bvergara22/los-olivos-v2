@@ -338,6 +338,14 @@ export function Obituarios() {
       .catch(() => setLoading(false))
   }, [])
 
+  const scrollToCard = (index: number) => {
+    const el = scrollRef.current
+    const card = cardRefs.current[index]
+    if (!el || !card) return
+    const dx = card.getBoundingClientRect().left - el.getBoundingClientRect().left
+    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" })
+  }
+
   useEffect(() => {
     if (obituarios.length <= 1) return
     const t = setInterval(() => {
@@ -347,14 +355,6 @@ export function Obituarios() {
     }, 8000)
     return () => clearInterval(t)
   }, [obituarios.length])
-
-  const scrollToCard = (index: number) => {
-    const el = scrollRef.current
-    const card = cardRefs.current[index]
-    if (!el || !card) return
-    const dx = card.getBoundingClientRect().left - el.getBoundingClientRect().left
-    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" })
-  }
 
   const scrollPrev = () => {
     const el = scrollRef.current

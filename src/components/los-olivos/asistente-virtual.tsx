@@ -345,7 +345,7 @@ export function AsistenteVirtual() {
               <path d="M15 5L5 15M5 5l10 10" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
             </svg>
           ) : (
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            /* eslint-disable-next-line @next/next/no-img-element */
             <img src="/lia.png" alt="LIA" style={{ width: 36, height: 36, objectFit: "cover", borderRadius: "50%" }} />
           )}
           {/* Badge rojo — solo mientras no haya abierto el chat */}
