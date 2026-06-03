@@ -68,8 +68,8 @@ const faqs = [
     a: "El seguro de equidad está integrado exclusivamente en el plan Raíces. En caso de que usted disponga de un plan de previsión integral diferente y tenga interés en adquirir este seguro, será necesario cubrir un valor adicional.",
   },
   {
-    q: "¿Cuáles planes tienen este seguro incluido sin costo adicional?",
-    a: "Plan Raíces y planes para personas y empresas de Los Olivos Cartagena donde el contrato estipule condiciones diferentes.",
+    q: "¿Qué planes incorporan esta cobertura sin valor extra?",
+    a: "Plan Raíces y en planes personas o empresas de Los Olivos Cartagena donde el contrato estipule esta condición.",
   },
 ]
 

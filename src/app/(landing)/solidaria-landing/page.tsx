@@ -68,7 +68,7 @@ const faqs = [
     a: "El seguro de la Aseguradora Solidaria se incluye en la totalidad de nuestros planes de previsión integral, con la única excepción del plan Raíces. En caso de que desee contar con este beneficio en dicho plan, deberá realizar el pago de un valor extra.",
   },
   {
-    q: "¿Qué programas incorporan esta cobertura sin cargos extra?",
+    q: "¿Qué planes incorporan esta cobertura sin valor extra?",
     a: "Esta protección se incluye en todas las modalidades de planes para personas y empresas de Los Olivos Cartagena, salvo en aquellos casos donde el contrato estipule condiciones diferentes.",
   },
 ]
