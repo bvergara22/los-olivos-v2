@@ -126,6 +126,7 @@ export function SedesPlanes() {
                     draggable={false}
                   >
                     <div className="aspect-video overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={sede.src}
                         alt={sede.name}

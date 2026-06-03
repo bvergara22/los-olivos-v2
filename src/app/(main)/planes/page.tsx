@@ -222,7 +222,7 @@ export default function PrevisionPage() {
                 {/* Mobile image — shown below title on mobile, hidden on desktop */}
                 <div className="lg:hidden flex justify-center">
                   <Image
-                    src="/couple-prevision.png"
+                    src="/couple-prevision.webp"
                     alt="Planes para personas"
                     width={500}
                     height={440}
@@ -265,7 +265,7 @@ export default function PrevisionPage() {
               {/* Desktop image — hidden on mobile */}
               <div className="hidden lg:flex justify-end">
                 <Image
-                  src="/couple-prevision.png"
+                  src="/couple-prevision.webp"
                   alt="Planes para personas"
                   width={500}
                   height={440}
