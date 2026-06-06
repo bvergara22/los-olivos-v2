@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Comfortaa, Raleway } from 'next/font/google'
 import React from "react"
 import './globals.css'
+import ClarityScript from "@/components/ClarityScript";
 
 const _raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
 const _comfortaa = Comfortaa({ subsets: ["latin"], variable: "--font-display" });
@@ -52,6 +53,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${_raleway.variable} ${_comfortaa.variable} font-sans antialiased`}>
+        <ClarityScript />
         {children}
         <Analytics />
       </body>
