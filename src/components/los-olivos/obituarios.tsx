@@ -14,7 +14,8 @@ interface Obituario {
   exequias: string
   hora_inhumacion: string
   inhumacion: string
-  estado: number
+  estado: number,
+  destino_final: string,
 }
 
 interface Condolencia {
@@ -291,6 +292,10 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
         </div>
         <div className="flex justify-between gap-2">
           <span className="text-muted-foreground font-medium">Destino final:</span>
+          <span className="text-foreground text-right">{o.destino_final}</span>
+        </div>
+        <div className="flex justify-between gap-2">
+          <span className="text-muted-foreground font-medium">Lugar destino final:</span>
           <span className="text-foreground text-right">{o.inhumacion}</span>
         </div>
         <div className="flex justify-between gap-2">
