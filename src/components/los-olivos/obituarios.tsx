@@ -290,11 +290,11 @@ function ObituarioCard({ o, onCondolencia, onVerCondolencias }: {
           <span className="text-foreground text-right">{o.hora_exequias}</span>
         </div>
         <div className="flex justify-between gap-2">
-          <span className="text-muted-foreground font-medium">Inhumación:</span>
+          <span className="text-muted-foreground font-medium">Destino final:</span>
           <span className="text-foreground text-right">{o.inhumacion}</span>
         </div>
         <div className="flex justify-between gap-2">
-          <span className="text-muted-foreground font-medium">Hora inhumación:</span>
+          <span className="text-muted-foreground font-medium">Hora destino final:</span>
           <span className="text-foreground text-right">{o.hora_inhumacion}</span>
         </div>
       </div>
@@ -332,7 +332,7 @@ export function Obituarios() {
   const dragScrollLeft = useRef(0)
 
   useEffect(() => {
-    fetch("https://www.api.losolivoscartagena.com/api/obituarios")
+    fetch("https://portalapi.losolivoscartagena.com/api/obituarios/activos")
       .then(r => r.json())
       .then(data => { setObituarios(Array.isArray(data) ? data : []); setLoading(false) })
       .catch(() => setLoading(false))
