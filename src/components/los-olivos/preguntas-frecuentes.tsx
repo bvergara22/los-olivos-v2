@@ -1,7 +1,7 @@
 "use client"
 
 import { Minus, Plus } from "lucide-react"
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 const WA = "https://wa.me/573233093435"
 const PORTAL = "https://www.portal.losolivoscartagena.com"
@@ -13,6 +13,25 @@ const link = (href: string, label: string) => (
 )
 
 const faqs: { q: string; a: React.ReactNode }[] = [
+  {
+    q: "¿Quieres consultar tu perfil de afiliado?",
+    a: (
+      <div className="space-y-3">
+        <div>
+          <p className="font-semibold text-foreground mb-1">A través de Lía:</p>
+          <ol className="list-decimal list-inside space-y-0.5 ml-1">
+            <li>En el menú principal</li>
+            <li>Seleccionas el perfil de afiliado</li>
+            <li>E ingresas tu doc de identidad</li>
+          </ol>
+        </div>
+        <div>
+          <p className="font-semibold text-foreground mb-1">A través del {link(PORTAL, "Portal Los Olivos")}:</p>
+          <p>Recuerda... Tu usuario es el correo con el que te afiliaste y la contraseña tu documento de identidad.</p>
+        </div>
+      </div>
+    ),
+  },
   {
     q: "¿Cómo hago para conocer mi estado de cuenta?",
     a: <>Para conocer el estado de tu cuenta, puedes comunicarte a nuestro número de WhatsApp {link(WA, "323-309 3435")}. Nuestra asistente de experiencia, LIA te guiará paso a paso para acceder a la información de tu plan integral, beneficiarios y estado de cuenta; debes escoger la opción &ldquo;Cartera&rdquo; en nuestro menú principal. En caso de requerir atención personalizada, uno de nuestros gestores especializados te acompañará en el proceso.</>,
@@ -52,30 +71,28 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 ]
 
 function FaqItem({ q, a, open, onToggle }: { q: string; a: React.ReactNode; open: boolean; onToggle: () => void }) {
-  const contentRef = useRef<HTMLDivElement>(null)
-
   return (
-    <div className={`border-b border-border transition-colors duration-200 ${open ? "border-primary/30" : ""}`}>
+    <div className={`border-b border-border transition-colors duration-300 ${open ? "border-primary/30" : ""}`}>
       <button
         type="button"
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-4 py-5 text-left group"
       >
-        <span className={`text-sm sm:text-base font-medium leading-snug transition-colors ${open ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
+        <span className={`text-sm sm:text-base font-medium leading-snug transition-colors duration-300 ${open ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
           {q}
         </span>
-        <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all ${open ? "bg-primary text-white" : "bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"}`}>
-          {open ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+        <span className={`relative flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${open ? "bg-primary text-white" : "bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"}`}>
+          <Plus className={`w-3.5 h-3.5 absolute transition-all duration-300 ${open ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"}`} />
+          <Minus className={`w-3.5 h-3.5 absolute transition-all duration-300 ${open ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}`} />
         </span>
       </button>
-      <div
-        ref={contentRef}
-        className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{ maxHeight: open ? "9999px" : "0px" }}
-      >
-        <p className="pb-5 text-sm sm:text-base text-muted-foreground leading-relaxed">
-          {a}
-        </p>
+      {/* Grid trick: animates from 0fr→1fr smoothly without needing scrollHeight */}
+      <div className={`grid transition-[grid-template-rows] duration-350 ease-in-out ${open ? "[grid-template-rows:1fr]" : "[grid-template-rows:0fr]"}`}>
+        <div className="overflow-hidden">
+          <div className="pb-5 text-sm sm:text-base text-muted-foreground leading-relaxed">
+            {a}
+          </div>
+        </div>
       </div>
     </div>
   )

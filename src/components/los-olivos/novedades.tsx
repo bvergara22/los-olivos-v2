@@ -38,12 +38,12 @@ const items: CarouselItem[] = [
   },
   {
     type: "banner",
-    category: "Beneficio",
-    src: "/banner2.jpg",
-    alt: "Tarjeta Golden Offers",
-    title: "Tarjeta Golden Offers",
-    description: "Descarga tu tarjeta Golden Offers y descubre todos los beneficios exclusivos que tenemos para ti.",
-    overlayButton: { href: "https://goldenoffer.losolivoscartagena.com/", top: "22%", left: "10%", width: "42%", height: "14%" },
+    category: "Novedad",
+    src: "/banner-lia.jpg",
+    alt: "Consulta tu perfil de afiliado",
+    title: "Consulta tu perfil de afiliado",
+    description: "A través de Lía o del Portal Los Olivos puedes consultar tu perfil. Tu usuario es el correo con el que te afiliaste.",
+    overlayButton: { href: "https://wa.me/573233093435", top: "0%", left: "0%", width: "100%", height: "100%" },
   },
   {
     type: "banner",

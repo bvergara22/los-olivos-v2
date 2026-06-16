@@ -65,7 +65,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
           documento: form.documento,
           correo: form.correo,
           telefono: form.telefono,
-          fecha_preferida: form.fecha,
+          fecha_cita: form.fecha,
           horario_atencion: form.horario,
           modalidad: form.modalidad,
           area: isVida ? "Unidad de vida" : "Unidad de duelo",
@@ -75,6 +75,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: { open: boolea
 
       if (!response.ok) {
         setError("No se pudo registrar la cita. Inténtalo de nuevo.")
+        return
       }
 
       setDone(true)
