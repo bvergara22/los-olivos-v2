@@ -206,7 +206,7 @@ export function UnidadDueloContent() {
                   Reconocemos que el duelo es una expresión profunda del amor y que cada despedida merece ser acompañada con sensibilidad, respeto y humanidad. Por eso, desde nuestra Línea de Acompañamiento Psicológico{" "}
                   <span className="text-white font-semibold italic">Sanando Juntos</span>, ofrecemos apoyo psicológico centrado en la orientación y la escucha activa para facilitar el afrontamiento positivo del duelo.
                 </p>
-                <p className="text-sm md:text-base leading-relaxed text-white/70 text-justify">
+                <p className="text-sm md:text-base leading-relaxed text-white/90 text-justify">
                   Nuestro enfoque aborda la pérdida desde una perspectiva de amor y honra, transformando el dolor en un espacio para la preservación viva de la memoria del ser querido, ayudando a integrar la pérdida como parte de su historia. Porque en Los Olivos creemos que el amor no termina, se transforma.
                 </p>
               </div>
