@@ -304,10 +304,10 @@ export function UnidadVidaContent() {
                   Reconocemos la importancia de cuidar las emociones como parte esencial del bienestar y la calidad de vida. Por eso, nuestra línea de acompañamiento psicológico{" "}
                   <span className="text-white font-semibold italic">Sanando Juntos</span> se orienta en brindar herramientas y acompañamiento emocional para ayudar a las personas y familias a vivir con mayor equilibrio, bienestar y plenitud.
                 </p>
-                <p className="text-sm md:text-base leading-relaxed text-white/70 text-justify">
+                <p className="text-sm md:text-base leading-relaxed text-white/90 text-justify">
                   Mediante nuestras diversas asistencias, impulsamos el desarrollo de la resiliencia emocional de forma preventiva. Brindamos acompañamiento en situaciones vinculadas al estrés, la ansiedad, los vínculos interpersonales y el sentido de propósito individual.
                 </p>
-                <p className="text-sm md:text-base leading-relaxed text-white/70 text-justify">
+                <p className="text-sm md:text-base leading-relaxed text-white/90 text-justify">
                   En Los Olivos, estamos convencidos de que velar por tu salud emocional es fundamental para alcanzar una mejor calidad de vida; cada sentimiento que abordamos representa una nueva posibilidad para generar bienestar y vitalidad en tu día a día.
                 </p>
               </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { CalendarDays, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
@@ -124,6 +124,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
   const [error,        setError]        = useState<string | null>(null)
   const [grouped,      setGrouped]      = useState<Record<string, string[]>>({})
   const [loadingSlots, setLoadingSlots] = useState(false)
+  const [calendarOpen, setCalendarOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => { setMounted(true) }, [])
@@ -136,7 +137,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
 
   useEffect(() => {
     if (!open) return
-    setDone(false); setLoading(false); setError(null); setGrouped({})
+    setDone(false); setLoading(false); setError(null); setGrouped({}); setCalendarOpen(false)
     setForm({ nombre: "", documento: "", correo: "", telefono: "", fecha: "", modalidad: "", horario: "", observaciones: "" })
 
     setLoadingSlots(true)
@@ -242,8 +243,9 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
             {/* Documento */}
             <div className="space-y-1">
               <label className="text-xs font-semibold text-foreground">N.° de documento *</label>
-              <input required type="text" placeholder="######" className={fieldClass}
-                value={form.documento} onChange={e => setForm(f => ({ ...f, documento: e.target.value }))} />
+              <input required type="tel" inputMode="numeric" placeholder="######" className={fieldClass}
+                value={form.documento}
+                onChange={e => setForm(f => ({ ...f, documento: e.target.value.replace(/\D/g, "") }))} />
             </div>
 
             {/* Correo */}
@@ -256,28 +258,41 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
             {/* Teléfono */}
             <div className="space-y-1">
               <label className="text-xs font-semibold text-foreground">Número de teléfono *</label>
-              <input required type="tel" placeholder="300 000 0000" className={fieldClass}
-                value={form.telefono} onChange={e => setForm(f => ({ ...f, telefono: e.target.value }))} />
+              <input required type="tel" inputMode="numeric" placeholder="300 000 0000" className={fieldClass}
+                value={form.telefono}
+                onChange={e => setForm(f => ({ ...f, telefono: e.target.value.replace(/\D/g, "") }))} />
             </div>
 
-            {/* Fecha — calendario */}
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-foreground">Fecha preferida *</label>
+            {/* Fecha — input que abre el calendario */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold text-foreground">Fecha *</label>
               {loadingSlots ? (
-                <div className="flex items-center gap-2 px-3 py-2.5 text-sm text-muted-foreground border border-border rounded-lg">
-                  <span className={`w-4 h-4 border-2 border-t-transparent rounded-full animate-spin ${isVida ? "border-vida-dark" : "border-duelo-main"}`} />
-                  Cargando disponibilidad...
+                <div className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg border border-border text-sm text-muted-foreground">
+                  <span className={`w-4 h-4 border-2 border-t-transparent rounded-full animate-spin flex-shrink-0 ${isVida ? "border-vida-dark" : "border-duelo-main"}`} />
+                  <span>Cargando fechas...</span>
                 </div>
               ) : availableDates.length === 0 ? (
                 <p className="text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-2.5">
                   No hay fechas disponibles en este momento.
                 </p>
               ) : (
+                <button type="button" onClick={() => setCalendarOpen(o => !o)}
+                  className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg border text-sm transition-all text-left
+                    ${calendarOpen ? isVida ? "border-vida-dark ring-2 ring-vida-dark/15" : "border-duelo-main ring-2 ring-duelo-main/15" : "border-border hover:border-muted-foreground/40"}
+                    ${form.fecha ? "text-foreground" : "text-muted-foreground"}`}>
+                  <span>{form.fecha ? new Date(form.fecha + "T12:00:00").toLocaleDateString("es-CO", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "Selecciona una fecha"}</span>
+                  <CalendarDays className="w-4 h-4 flex-shrink-0 text-muted-foreground" />
+                </button>
+              )}
+              {calendarOpen && availableDates.length > 0 && (
                 <MiniCalendar
                   availableDates={availableDates}
                   value={form.fecha}
                   isVida={isVida}
-                  onChange={d => setForm(f => ({ ...f, fecha: d, horario: "" }))}
+                  onChange={d => {
+                    setForm(f => ({ ...f, fecha: d, horario: "" }))
+                    setCalendarOpen(false)
+                  }}
                 />
               )}
             </div>
