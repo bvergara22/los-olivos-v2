@@ -148,11 +148,6 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
       .finally(() => setLoadingSlots(false))
   }, [open, area])
 
-  useEffect(() => {
-    const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
-    document.addEventListener("keydown", fn)
-    return () => document.removeEventListener("keydown", fn)
-  }, [onClose])
 
   const availableDates = Object.keys(grouped).sort()
   const availableHours = form.fecha ? (grouped[form.fecha] ?? []) : []
@@ -200,7 +195,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
   if (!mounted || !open) return null
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div ref={ref} className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
 
         {/* Header */}
@@ -237,7 +232,7 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
             <div className="space-y-1">
               <label className="text-xs font-semibold text-foreground">Nombres y apellidos *</label>
               <input required type="text" placeholder="Nombres y apellidos" className={fieldClass}
-                value={form.nombre} onChange={e => setForm(f => ({ ...f, nombre: e.target.value }))} />
+                value={form.nombre} onChange={e => setForm(f => ({ ...f, nombre: e.target.value.replace(/[0-9]/g, "") }))} />
             </div>
 
             {/* Documento */}
@@ -258,9 +253,9 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
             {/* Teléfono */}
             <div className="space-y-1">
               <label className="text-xs font-semibold text-foreground">Número de teléfono *</label>
-              <input required type="tel" inputMode="numeric" placeholder="300 000 0000" className={fieldClass}
+              <input required type="tel" inputMode="numeric" placeholder="300 000 0000" maxLength={10} className={fieldClass}
                 value={form.telefono}
-                onChange={e => setForm(f => ({ ...f, telefono: e.target.value.replace(/\D/g, "") }))} />
+                onChange={e => setForm(f => ({ ...f, telefono: e.target.value.replace(/\D/g, "").slice(0, 10) }))} />
             </div>
 
             {/* Fecha — input que abre el calendario */}
