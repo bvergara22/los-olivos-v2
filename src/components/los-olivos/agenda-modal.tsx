@@ -155,9 +155,13 @@ export function AgendaModal({ open, onClose, variant = "duelo" }: {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (loading) return
-    if (!form.fecha)    { setError("Por favor selecciona una fecha."); return }
-    if (!form.horario)  { setError("Por favor selecciona un horario."); return }
-    if (!form.modalidad){ setError("Por favor selecciona una modalidad."); return }
+    if (!form.nombre.trim())    { setError("Por favor ingresa tu nombre completo."); return }
+    if (!form.documento.trim()) { setError("Por favor ingresa tu número de documento."); return }
+    if (!form.correo.trim())    { setError("Por favor ingresa tu correo electrónico."); return }
+    if (!form.telefono.trim())  { setError("Por favor ingresa tu número de teléfono."); return }
+    if (!form.fecha)            { setError("Por favor selecciona una fecha."); return }
+    if (!form.horario)          { setError("Por favor selecciona un horario."); return }
+    if (!form.modalidad)        { setError("Por favor selecciona una modalidad."); return }
 
     setLoading(true); setError(null)
 
