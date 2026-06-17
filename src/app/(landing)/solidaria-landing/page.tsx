@@ -215,10 +215,25 @@ export default function SolidariaLanding() {
           </div>
 
           {/* Tagline */}
-          <div className="mt-10 text-center">
-            <p className="font-display text-xl md:text-2xl font-bold" style={{ color: SOL_DARK }}>
+        </div>
+      </section>
+
+      {/* ── VIDEO ───────────────────────────────────────────── */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-5 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="font-display text-xl md:text-2xl font-bold whitespace-nowrap" style={{ color: SOL_DARK }}>
               Acompañándote más allá de los momentos difíciles.
-            </p>
+            </h2>
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: "16/9" }}>
+            <iframe
+              src="https://player.vimeo.com/video/542868877?autoplay=0&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+              title="Solienvida SOS — Aseguradora Solidaria Los Olivos"
+            />
           </div>
         </div>
       </section>
