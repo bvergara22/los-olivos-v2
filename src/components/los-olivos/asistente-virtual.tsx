@@ -198,7 +198,7 @@ export function AsistenteVirtual() {
                     background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)",
                   }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/lia.png" alt="LIA" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src="/lia.webp" alt="LIA" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <span style={{
                     position: "absolute", bottom: -2, right: -2,
@@ -235,7 +235,7 @@ export function AsistenteVirtual() {
                 background: "#e6f7f1",
               }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/lia.png" alt="LIA" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/lia.webp" alt="LIA" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ background: "#e6f7f1", borderRadius: "14px 14px 14px 4px", padding: "10px 13px" }}>
                 <p style={{ margin: 0, fontSize: 13, color: "#1a1a1a", lineHeight: 1.6 }}>
@@ -346,7 +346,7 @@ export function AsistenteVirtual() {
             </svg>
           ) : (
             /* eslint-disable-next-line @next/next/no-img-element */
-            <img src="/lia.png" alt="LIA" style={{ width: 36, height: 36, objectFit: "cover", borderRadius: "50%" }} />
+            <img src="/lia.webp" alt="LIA" style={{ width: 36, height: 36, objectFit: "cover", borderRadius: "50%" }} />
           )}
           {/* Badge rojo — solo mientras no haya abierto el chat */}
           {!isOpen && !hasOpened && visible && (
