@@ -1,6 +1,6 @@
 import { SalasGallery } from "@/components/los-olivos/salas-gallery"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, Clock, Flower2, Heart, MapPin, Sparkles, Users } from "lucide-react"
+import { ArrowRight, Check, Flower2, Heart, MapPin, Sparkles, Users } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
