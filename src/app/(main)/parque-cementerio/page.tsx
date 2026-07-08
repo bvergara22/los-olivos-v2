@@ -256,6 +256,24 @@ export default function ParqueCementerioPage() {
                   Una vez obtenidos los permisos originales, debes presentarlos en el Parque Jardín Los Olivos Cartagena para programar la fecha del servicio.
                 </p>
 
+                {/* Parque Jardín + Importante */}
+                <div className="rounded-xl border border-duelo-main/20 bg-duelo-main/[0.04] p-4 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-duelo-main flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-semibold text-duelo-dark uppercase tracking-wide mb-0.5">Dirección</p>
+                      <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">Parque Jardín:</span> Kilometro 2, Vía Turbaco, antes de la gobernación de Bolívar.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-4 h-4 text-duelo-main flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-semibold text-duelo-dark uppercase tracking-wide mb-0.5">Importante</p>
+                      <p className="text-sm text-muted-foreground">La programación del servicio está sujeta a disponibilidad horaria del Parque Cementerio.</p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Documentos cremación */}
                 <div>
                   <h4 className="font-display font-semibold text-duelo-dark mb-3 text-sm uppercase tracking-wide">
@@ -275,24 +293,6 @@ export default function ParqueCementerioPage() {
                       </li>
                     ))}
                   </ul>
-                </div>
-
-                {/* Parque Jardín + Importante */}
-                <div className="rounded-xl border border-duelo-main/20 bg-duelo-main/[0.04] p-4 space-y-3">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-4 h-4 text-duelo-main flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs font-semibold text-duelo-dark uppercase tracking-wide mb-0.5">Dirección</p>
-                      <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">Parque Jardín:</span> Kilometro 2, Vía Turbaco, antes de la gobernación de Bolívar.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="w-4 h-4 text-duelo-main flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs font-semibold text-duelo-dark uppercase tracking-wide mb-0.5">Importante</p>
-                      <p className="text-sm text-muted-foreground">La programación del servicio está sujeta a disponibilidad horaria del Parque Cementerio.</p>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Recomendación */}
