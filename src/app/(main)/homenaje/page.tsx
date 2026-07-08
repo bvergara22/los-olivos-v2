@@ -1,6 +1,6 @@
 import { SalasGallery } from "@/components/los-olivos/salas-gallery"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, Flower2, Heart, Sparkles, Users } from "lucide-react"
+import { ArrowRight, Check, Clock, Flower2, Heart, MapPin, Sparkles, Users } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -229,7 +229,26 @@ export default function HomenajePage() {
               Nuestras salas de velación
             </h2>
           </div>
+
           <SalasGallery accent="var(--duelo-main)" />
+
+          <div className="mt-10 border-t border-border pt-8 grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="flex items-start gap-2.5">
+              <MapPin className="w-4 h-4 text-duelo-main flex-shrink-0 mt-1" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Sede Alcibia</p>
+                <p className="text-sm text-muted-foreground mt-0.5">Cl. 31 #34-07, Barrio Alcibia</p>
+                <p className="text-sm text-duelo-main mt-0.5">24 horas · Servicio de homenaje</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5">
+              <MapPin className="w-4 h-4 text-duelo-main flex-shrink-0 mt-1" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Sede Cordialidad</p>
+                <p className="text-sm text-muted-foreground mt-0.5">Carretera La Cordialidad, Trv 54 #31-J27</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
