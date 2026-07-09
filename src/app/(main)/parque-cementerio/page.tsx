@@ -247,14 +247,32 @@ export default function ParqueCementerioPage() {
                   <span className="text-white text-sm font-bold">2</span>
                 </div>
                 <h3 className="font-display text-lg text-duelo-dark leading-snug">
-                  Presentar los permisos en el Parque Cementerio
+                  Presentar los permisos en el Parque Jardín
                 </h3>
               </div>
 
               <div className="p-6 md:p-8 flex flex-col gap-6 flex-1">
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Una vez obtenidos los permisos originales, debes presentarlos en el Parque Cementerio Los Olivos Cartagena para programar la fecha del servicio.
+                  Una vez obtenidos los permisos originales, debes presentarlos en el Parque Jardín Los Olivos Cartagena para programar la fecha del servicio.
                 </p>
+
+                {/* Parque Jardín + Importante */}
+                <div className="rounded-xl border border-duelo-main/20 bg-duelo-main/[0.04] p-4 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-duelo-main flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-semibold text-duelo-dark uppercase tracking-wide mb-0.5">Dirección</p>
+                      <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">Parque Jardín:</span> Kilometro 2, Vía Turbaco, antes de la gobernación de Bolívar.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-4 h-4 text-duelo-main flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-semibold text-duelo-dark uppercase tracking-wide mb-0.5">Importante</p>
+                      <p className="text-sm text-muted-foreground">La programación del servicio está sujeta a disponibilidad horaria del Parque Cementerio.</p>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Documentos cremación */}
                 <div>
@@ -275,15 +293,6 @@ export default function ParqueCementerioPage() {
                       </li>
                     ))}
                   </ul>
-                </div>
-
-                {/* Importante disponibilidad */}
-                <div className="flex items-start gap-3 rounded-xl border border-duelo-main/20 bg-duelo-main/[0.04] p-4">
-                  <AlertCircle className="w-4 h-4 text-duelo-main flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    <span className="font-semibold text-duelo-dark">Importante: </span>
-                    La programación del servicio está sujeta a disponibilidad horaria del Parque Cementerio.
-                  </p>
                 </div>
 
                 {/* Recomendación */}
