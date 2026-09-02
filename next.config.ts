@@ -1,8 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    output: 'export',
-    images: { unoptimized: true },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'losolivoscartagena.sfo3.digitaloceanspaces.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'portalolivoscartagena.sfo3.digitaloceanspaces.com',
+                pathname: '/blog/**',
+            },
+        ],
+    },
     trailingSlash: true,
 };
 
