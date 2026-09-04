@@ -4,11 +4,12 @@ import { Comfortaa, Raleway } from 'next/font/google'
 import React from "react"
 import './globals.css'
 import ClarityScript from "@/components/ClarityScript";
+import { SITE_URL } from "@/lib/site-url"
 
 const _raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
 const _comfortaa = Comfortaa({ subsets: ["latin"], variable: "--font-display" });
 
-const siteUrl = 'https://v2.losolivoscartagena.com'
+const siteUrl = SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
