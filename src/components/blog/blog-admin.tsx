@@ -380,8 +380,7 @@ export function BlogAdmin() {
         <div className="flex min-h-[calc(100vh-5rem)] items-center justify-center bg-[#f3f8f1] px-4 py-16">
             <form onSubmit={login}
                   className="w-full max-w-md rounded-2xl border border-border bg-card p-7 shadow-xl md:p-9">
-                <div className="mb-8"><p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Área
-                    editorial</p><h1 className="mt-3 font-display text-3xl font-bold">Iniciar sesión</h1><p
+                <div className="mb-8"><p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Blog</p><h1 className="mt-3 font-display text-3xl font-bold">Iniciar sesión</h1><p
                     className="mt-2 text-muted-foreground">Acceso reservado a las personas autorizadas para publicar en
                     el blog.</p></div>
                 <div className="space-y-5">
