@@ -166,7 +166,7 @@ export function renderNode(node: BlogNode, key = "node"): ReactNode {
       return level === 3 ? <h3 key={key} style={blockStyle(node)}>{children}</h3> : <h2 key={key} style={blockStyle(node)}>{children}</h2>
     }
     case "bulletList": return <ul key={key}>{children}</ul>
-    case "orderedList": return <ol key={key}>{children}</ol>
+    case "orderedList": return <ol key={key} start={typeof node.attrs?.start === "number" ? node.attrs.start : undefined}>{children}</ol>
     case "listItem": return <li key={key}>{children}</li>
     case "blockquote": return <blockquote key={key}>{children}</blockquote>
     case "horizontalRule": return <hr key={key} />

@@ -10,7 +10,7 @@ import { AlignCenter, AlignJustify, AlignLeft, AlignRight, Bold, Columns3, Image
 import { useEffect, useRef, useState } from "react"
 import type { BlogAttachment, BlogNode } from "@/lib/blog"
 
-const FONT_SIZES = ["12px", "14px", "16px", "18px", "24px", "32px"] as const
+import { BLOG_FONT_SIZES as FONT_SIZES, cleanPastedBlogHTML, normalizeFontSize, normalizeTextColor } from "@/lib/blog-content"
 const IMAGE_ALIGNMENTS = ["left", "center", "right"] as const
 const IMAGE_DIMENSION_MIN = 40
 const IMAGE_DIMENSION_MAX = 8000
@@ -75,13 +75,16 @@ const TextStyle = Mark.create({
     return {
       fontSize: {
         default: null,
-        parseHTML: (element: HTMLElement) => element.style.fontSize || null,
+        parseHTML: (element: HTMLElement) => normalizeFontSize(element.style.fontSize),
       },
       color: {
         default: null,
-        parseHTML: (element: HTMLElement) => element.style.color || null,
+        parseHTML: (element: HTMLElement) => normalizeTextColor(element.style.color),
       },
     }
+  },
+  parseHTML() {
+    return [{ tag: "span[style]" }]
   },
   renderHTML({ mark }) {
     const styles: string[] = []
@@ -256,9 +259,10 @@ export default function BlogRichEditor({ content, onChange, onUpload, onUploadFi
   const [fileUploading, setFileUploading] = useState(false)
   const [, setSelectionVersion] = useState(0)
   const editor = useEditor({
-    extensions: [StarterKit.configure({ code: false, codeBlock: false, link: { openOnClick: false, autolink: false, isAllowedUri: (url) => /^https?:\/\//i.test(url) } }), TextStyle, BlogImage.configure({ inline: false, allowBase64: false, resize: { enabled: true, directions: ["top-left", "top-right", "bottom-left", "bottom-right"], minWidth: IMAGE_DIMENSION_MIN, minHeight: IMAGE_DIMENSION_MIN, alwaysPreserveAspectRatio: true } }), BlogFile, TextAlign.configure({ types: ["heading", "paragraph"] }), TableKit.configure({ table: { resizable: true } })],
+    extensions: [StarterKit.configure({ heading: { levels: [2, 3] }, code: false, codeBlock: false, link: { openOnClick: false, autolink: false, isAllowedUri: (url) => /^https?:\/\//i.test(url) } }), TextStyle, BlogImage.configure({ inline: false, allowBase64: false, resize: { enabled: true, directions: ["top-left", "top-right", "bottom-left", "bottom-right"], minWidth: IMAGE_DIMENSION_MIN, minHeight: IMAGE_DIMENSION_MIN, alwaysPreserveAspectRatio: true } }), BlogFile, TextAlign.configure({ types: ["heading", "paragraph"] }), TableKit.configure({ table: { resizable: true } })],
     content,
     immediatelyRender: false,
+    editorProps: { transformPastedHTML: cleanPastedBlogHTML },
 
     onTransaction: () => {
       setSelectionVersion((version) => version + 1)

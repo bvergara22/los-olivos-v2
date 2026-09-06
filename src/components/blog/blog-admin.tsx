@@ -3,6 +3,8 @@
 import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea"
+import { BlogAuthors } from "@/components/blog/blog-authors"
+import { normalizeBlogContent } from "@/lib/blog-content"
 import {BlogContent} from "@/components/blog/blog-renderer"
 import {
     adminFetch,
@@ -10,6 +12,7 @@ import {
     formatBlogAuthor,
     formatBlogDate,
     slugify,
+    type BlogAuthor,
     type BlogAttachment,
     type BlogCategory,
     type BlogNode,
@@ -30,6 +33,7 @@ type Draft = {
     cover_image_url: string
     cover_image_alt: string
     content: BlogNode
+    author_id: number | ""
     category_id: number | ""
     status: "draft" | "published"
     hasPendingDraft: boolean
@@ -41,7 +45,7 @@ function FieldHelp({ label, children }: { label: string; children: ReactNode }) 
     const tooltipId = `help-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
 
     return (
-        <span className="group relative inline-flex">
+        <span className="group inline-flex">
             <button
                 type="button"
                 className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-primary/40 text-xs font-bold leading-none text-primary transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -53,7 +57,7 @@ function FieldHelp({ label, children }: { label: string; children: ReactNode }) 
             <span
                 id={tooltipId}
                 role="tooltip"
-                className="pointer-events-none invisible absolute bottom-full left-1/2 z-50 mb-2 w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-lg bg-foreground px-4 py-3 text-left text-xs font-medium leading-relaxed text-background opacity-0 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                className="pointer-events-none invisible absolute bottom-full left-0 z-50 mb-2 w-80 max-w-full rounded-lg bg-foreground px-4 py-3 text-left text-xs font-medium leading-relaxed text-background opacity-0 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
             >
                 {children}
             </span>
@@ -73,6 +77,7 @@ const emptyDraft = (): Draft => ({
     cover_image_alt: "",
     content: emptyContent,
     category_id: "",
+    author_id: "",
     status: "draft",
     hasPendingDraft: false,
     seo_title: "",
@@ -98,6 +103,7 @@ export function BlogAdmin() {
     const [loginPending, setLoginPending] = useState(false)
     const [sessionError, setSessionError] = useState("")
     const [posts, setPosts] = useState<AdminPost[]>([])
+    const [authors, setAuthors] = useState<BlogAuthor[]>([])
     const [categories, setCategories] = useState<BlogCategory[]>([])
     const [draft, setDraft] = useState<Draft>(emptyDraft())
     const [dirty, setDirty] = useState(false)
@@ -121,12 +127,14 @@ export function BlogAdmin() {
             const session = await adminFetch<{ data: AdminUser; csrfToken?: string }>("/blog/admin/session")
             if (session.csrfToken) window.sessionStorage.setItem("blog_csrf", session.csrfToken)
             setUser(session.data)
-            const [postsResponse, categoriesResponse] = await Promise.all([
+            const [postsResponse, categoriesResponse, authorsResponse] = await Promise.all([
                 adminFetch<{ data: AdminPost[] }>("/blog/admin/posts"),
                 adminFetch<{ data: BlogCategory[] }>("/blog/admin/categories"),
+                adminFetch<{ data: BlogAuthor[] }>("/blog/admin/authors"),
             ])
             setPosts(postsResponse.data)
             setCategories(categoriesResponse.data)
+            setAuthors(authorsResponse.data)
             setDraft(emptyDraft())
         } catch (error) {
             if (error instanceof BlogApiError && error.status === 401) {
@@ -192,7 +200,8 @@ export function BlogAdmin() {
             excerpt: editable.excerpt ?? "",
             cover_image_url: editable.coverImage?.url ?? "",
             cover_image_alt: editable.coverImage?.alt ?? "",
-            content: editable.content,
+            content: normalizeBlogContent(editable.content),
+            author_id: editable.author?.id ?? "",
             category_id: editable.category?.id ?? "",
             status: post.status ?? "draft",
             hasPendingDraft: Boolean(post.hasDraft || post.draft),
@@ -282,6 +291,10 @@ export function BlogAdmin() {
             if (!silent) setEditorError("Añade un título antes de guardar.");
             return
         }
+        if (!draft.author_id) {
+            if (!silent) setEditorError("Selecciona un autor antes de guardar.");
+            return
+        }
         setSaving(true);
         setEditorError("")
         const payload = {
@@ -289,7 +302,8 @@ export function BlogAdmin() {
             excerpt: draft.excerpt,
             cover_image_url: draft.cover_image_url || null,
             cover_image_alt: draft.cover_image_alt || null,
-            content: draft.content,
+            content: normalizeBlogContent(draft.content),
+            author_id: draft.author_id,
             category_id: draft.category_id || null,
             status,
             preserve_published: preservePublished,
@@ -315,8 +329,8 @@ export function BlogAdmin() {
             setPosts((current) => [saved, ...current.filter((post) => post.id !== saved.id)])
             setDirty(false);
             setSaveMessage(silent ? "Borrador guardado automáticamente" : status === "published" ? "Artículo publicado" : preservePublished ? "Cambios guardados como borrador. La versión publicada no ha cambiado." : "Borrador guardado")
-        } catch {
-            if (!silent) setEditorError("No se pudo guardar el artículo. Revisa tu sesión e inténtalo de nuevo.")
+        } catch (error) {
+            setEditorError(error instanceof BlogApiError ? error.message : "No se pudo guardar el artículo. Inténtalo de nuevo.")
         } finally {
             setSaving(false)
         }
@@ -473,7 +487,7 @@ export function BlogAdmin() {
                                     className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${post.status === "published" ? "bg-primary/10 text-primary" : "bg-amber-500/12 text-amber-800"}`}>{post.status === "published" ? "Publicado" : "Borrador"}</span>{post.hasDraft ? <span className="inline-flex items-center rounded-full bg-amber-500/12 px-2.5 py-1 text-xs font-semibold text-amber-800">Borrador pendiente</span> : null}</div>
                                 </td>
                                 <td className="px-4 py-4 text-muted-foreground">{post.category?.name || "Sin categoría"}</td>
-                                <td className="px-4 py-4 text-muted-foreground">{formatBlogAuthor(post.author?.name || user.name)}</td>
+                                <td className="px-4 py-4 text-muted-foreground">{formatBlogAuthor((post.draft ?? post).author?.name || "Sin autor")}</td>
                                 <td className="whitespace-nowrap px-4 py-4 text-muted-foreground">{formatBlogDate(post.publishedAt || post.updatedAt) || "Sin fecha"}</td>
                                 <td className="px-5 py-4 text-right md:px-7"><Button type="button" variant="outline"
                                                                                      size="sm"
@@ -563,6 +577,15 @@ export function BlogAdmin() {
                     </div>
                 </section>
 
+                <BlogAuthors authors={authors} request={request} onSaved={(author) => {
+                    setAuthors((current) => [...current.filter((item) => item.id !== author.id), author].sort((a, b) => a.name.localeCompare(b.name, "es")))
+                    setPosts((current) => current.map((post) => ({
+                        ...post,
+                        author: post.author?.id === author.id ? author : post.author,
+                        draft: post.draft ? { ...post.draft, author: post.draft.author?.id === author.id ? author : post.draft.author } : post.draft,
+                    })))
+                }} />
+
                 <section className="min-w-0 overflow-visible rounded-2xl border border-border bg-card shadow-sm"
                          aria-labelledby="editor-heading">
                     <div
@@ -605,6 +628,15 @@ export function BlogAdmin() {
                             id="post-excerpt" name="excerpt" maxLength={500} value={draft.excerpt}
                             onChange={(event) => updateDraft({excerpt: event.target.value})}
                             placeholder="Una frase que invite a leer el artículo"/></div>
+                        <div><label htmlFor="post-author" className="mb-2 block text-sm font-semibold">Autor</label>
+                            <select id="post-author" name="author_id" required value={draft.author_id}
+                                onChange={(event) => updateDraft({author_id: event.target.value ? Number(event.target.value) : ""})}
+                                aria-describedby="post-author-help"
+                                className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                                <option value="">Selecciona un autor</option>
+                                {authors.map((author) => <option key={author.id} value={author.id}>{author.name}</option>)}
+                            </select>
+                        </div>
                         <div><label htmlFor="post-category"
                                     className="mb-2 block text-sm font-semibold">Categoría</label><select
                             id="post-category" name="category_id" value={draft.category_id}
@@ -637,17 +669,18 @@ export function BlogAdmin() {
                                 if (file) void uploadCover(file);
                                 event.target.value = ""
                             }}/></label></div>
-                        <div><div className="mb-2 flex items-center gap-2"><label className="text-sm font-semibold"
+                        <div><div className="relative mb-2 flex items-center gap-2"><label className="text-sm font-semibold"
                                     htmlFor="post-content">Contenido</label><FieldHelp label="Contenido"><ol className="list-decimal space-y-1 pl-4"><li>El botón de tabla inserta una tabla 3 × 3; después puedes agregar o eliminar filas y columnas.</li><li>El botón de clip permite adjuntar PDF, Word, Excel o PowerPoint de hasta 10 MB para descargar.</li></ol></FieldHelp></div>
+                            <p className="mb-2 text-xs text-muted-foreground">Al pegar desde Word se limpia el formato incompatible. Las imágenes deben cargarse con el botón de imagen.</p>
                             <div id="post-content" className="overflow-hidden rounded-xl border border-input">
                                 <RichEditor content={draft.content} onChange={(content) => updateDraft({content})}
                                             onUpload={uploadImage} onUploadFile={uploadFile}/></div>
                         </div>
                         <div className="grid gap-5 rounded-xl border border-border p-4">
-                            <div><div className="mb-2 flex items-center gap-2"><label htmlFor="post-seo-title" className="text-sm font-semibold">Título SEO <span className="font-normal text-muted-foreground">(opcional)</span></label><FieldHelp label="Título SEO">Se muestra como título en Google, en la pestaña del navegador y al compartir. Si lo dejas vacío, se usa el título del artículo.</FieldHelp></div><Input
+                            <div><div className="relative mb-2 flex items-center gap-2"><label htmlFor="post-seo-title" className="text-sm font-semibold">Título SEO <span className="font-normal text-muted-foreground">(opcional)</span></label><FieldHelp label="Título SEO">Se muestra como título en Google, en la pestaña del navegador y al compartir. Si lo dejas vacío, se usa el título del artículo.</FieldHelp></div><Input
                                 id="post-seo-title" name="seo_title" maxLength={180} value={draft.seo_title}
                                 onChange={(event) => updateDraft({seo_title: event.target.value})}/></div>
-                            <div><div className="mb-2 flex items-center gap-2"><label htmlFor="post-seo-description" className="text-sm font-semibold">Descripción SEO <span className="font-normal text-muted-foreground">(opcional)</span></label><FieldHelp label="Descripción SEO">Es el resumen que Google y las redes pueden mostrar debajo del título. Si queda vacío, se usa el resumen del artículo.</FieldHelp></div><Textarea
+                            <div><div className="relative mb-2 flex items-center gap-2"><label htmlFor="post-seo-description" className="text-sm font-semibold">Descripción SEO <span className="font-normal text-muted-foreground">(opcional)</span></label><FieldHelp label="Descripción SEO">Es el resumen que Google y las redes pueden mostrar debajo del título. Si queda vacío, se usa el resumen del artículo.</FieldHelp></div><Textarea
                                 id="post-seo-description" name="seo_description" maxLength={255}
                                 value={draft.seo_description}
                                 onChange={(event) => updateDraft({seo_description: event.target.value})}/></div>
@@ -660,6 +693,7 @@ export function BlogAdmin() {
                             className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-primary">Vista previa del
                             artículo</p><h3
                             className="font-display text-3xl font-bold">{draft.title || "Sin título"}</h3>
+                            <p className="mt-2 text-sm text-muted-foreground">Por {authors.find((author) => author.id === draft.author_id)?.name || "Sin autor"}</p>
                             <div className="mt-5 rounded-xl bg-card p-5 md:p-8"><BlogContent
                                 key={JSON.stringify(draft.content)} content={draft.content}/></div>
                         </section> : null}
