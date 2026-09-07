@@ -36,7 +36,7 @@ const planesPersonas = [
   },
   {
     title: "Plan Fraternal",
-    price: "$30.000",
+    price: "$35.000",
     description:
       "Este plan es ideal para tu núcleo familiar básico, si te conviertes en titular debes ser menor a 65 años. Podrás incluir a cónyuge hasta los 65 años, 2 adultos mayores hasta una edad de 75 años (Padres, a falta de padres, suegros), si eres casado podrás incluir a hijos sin límite de edad. Si eres soltero, podrás incluir a tu núcleo básico como padres y hermanos.",
     popular: false,
@@ -50,14 +50,14 @@ const planesPersonas = [
   },
   {
     title: "Plan Unidos",
-    price: "$33.000",
+    price: "$37.100",
     description:
       "Este plan es ideal para todos los integrantes de tu familia, si te conviertes en titular debes ser menor de 65 años. Podrás incluir a 2 adultos mayores hasta una edad de 75 años, y a 4 personas menores a 65 años, sin importar lazos de consanguinidad o afinidad.",
     popular: false,
   },
   {
     title: "Plan Olihuellitas",
-    price: "$28.000",
+    price: "$31.800",
     description:
       "Este plan es ideal para tu núcleo familiar básico, incluyendo a tu mejor amigo de cuatro patas (gato o perro). Si te conviertes en el titular debes ser menor de 65 años. Podrás incluir a dos adultos mayores hasta una edad de 75 años. Tu mascota debe ser mayor a 3 meses y menor a 12 años.",
     popular: false,
