@@ -4,6 +4,7 @@ import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea"
 import { BlogAuthors } from "@/components/blog/blog-authors"
+import { BlogCommentsAdmin } from "@/components/blog/blog-comments-admin"
 import { normalizeBlogContent } from "@/lib/blog-content"
 import {BlogContent} from "@/components/blog/blog-renderer"
 import {
@@ -585,6 +586,8 @@ export function BlogAdmin() {
                         draft: post.draft ? { ...post.draft, author: post.draft.author?.id === author.id ? author : post.draft.author } : post.draft,
                     })))
                 }} />
+
+                <BlogCommentsAdmin />
 
                 <section className="min-w-0 overflow-visible rounded-2xl border border-border bg-card shadow-sm"
                          aria-labelledby="editor-heading">

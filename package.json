@@ -16,6 +16,7 @@
     "@radix-ui/react-tabs": "1.1.2",
     "@radix-ui/react-toast": "1.2.4",
     "@radix-ui/react-tooltip": "1.1.6",
+    "@tiptap/core": "^3.30.5",
     "@tiptap/extension-image": "^3.30.5",
     "@tiptap/extension-table": "^3.30.5",
     "@tiptap/extension-text-align": "^3.30.5",

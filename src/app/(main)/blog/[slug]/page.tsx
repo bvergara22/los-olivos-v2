@@ -1,3 +1,4 @@
+import { BlogComments } from "@/components/blog/blog-comments"
 import { BlogContent } from "@/components/blog/blog-renderer"
 import { BlogShare } from "@/components/blog/blog-share"
 import { formatBlogAuthor, formatBlogDate, getBlogPost } from "@/lib/blog"
@@ -57,6 +58,7 @@ export default async function BlogArticlePage({ params }: BlogArticleProps) {
         <div className="mx-auto max-w-3xl pt-12 md:pt-16"><BlogContent content={post.content} />
           <BlogShare title={post.title} url={articleUrl} />
           <div className="mt-14 border-t border-border pt-7"><Link href="/blog" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">← <span>Seguir leyendo en el blog</span></Link></div>
+          <BlogComments />
         </div>
       </div>
 
