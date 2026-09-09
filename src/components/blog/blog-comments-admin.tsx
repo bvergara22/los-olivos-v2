@@ -91,15 +91,8 @@ const MOCK_ARTICLES: Article[] = [
     },
 ]
 
-const STATUS_CONFIG: Record<string, { label: string; class: string }> = {
-    approved: { label: "Aprobado",  class: "bg-primary/10 text-primary" },
-    pending:  { label: "Pendiente", class: "bg-amber-500/12 text-amber-800" },
-    rejected: { label: "Rechazado", class: "bg-destructive/10 text-destructive" },
-}
-
 const TOTAL_COMMENTS = 132
 const AVERAGE = 4.65
-const TOTAL_PENDING = MOCK_ARTICLES.reduce((sum, a) => sum + a.pendingCount, 0)
 
 function StarMini({ rating }: { rating: number }) {
     return (
@@ -199,6 +192,7 @@ export function BlogCommentsAdmin() {
                                             {/* Thumbnail */}
                                             <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-muted">
                                                 {article.coverImage ? (
+                                                    // eslint-disable-next-line @next/next/no-img-element
                                                     <img
                                                         src={article.coverImage}
                                                         alt=""
@@ -340,6 +334,7 @@ export function BlogCommentsAdmin() {
                     {/* Imagen de portada */}
                     <div className="h-44 w-full shrink-0 overflow-hidden bg-muted">
                         {selected.coverImage ? (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img
                                 src={selected.coverImage}
                                 alt=""
