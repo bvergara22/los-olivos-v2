@@ -157,7 +157,7 @@ export function BlogCommentsAdmin() {
             </div>
 
             {/* Layout de bandeja */}
-            <div className="flex h-[620px] overflow-hidden rounded-b-2xl">
+            <div className="flex h-[620px] overflow-x-auto overflow-y-hidden rounded-b-2xl">
 
                 {/* Panel izquierdo — lista de artículos */}
                 <div className="flex w-72 shrink-0 flex-col border-r border-border">
@@ -238,7 +238,7 @@ export function BlogCommentsAdmin() {
                 </div>
 
                 {/* Panel central — hilo de comentarios */}
-                <div className="flex flex-1 flex-col overflow-hidden border-r border-border">
+                <div className="flex min-w-[300px] flex-1 flex-col overflow-hidden border-r border-border">
 
                     {/* Cabecera del artículo seleccionado */}
                     <div className="border-b border-border bg-muted/30 px-5 py-3.5">
@@ -295,7 +295,7 @@ export function BlogCommentsAdmin() {
 
                                     {/* Formulario de respuesta inline */}
                                     {isReplying && (
-                                        <div className="ml-12 mt-3 space-y-2.5">
+                                        <div className="ml-3 mt-3 space-y-2.5 sm:ml-12">
                                             <div className="flex items-center gap-2">
                                                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">
                                                     LO
