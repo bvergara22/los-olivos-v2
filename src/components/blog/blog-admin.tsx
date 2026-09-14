@@ -116,6 +116,7 @@ export function BlogAdmin() {
     const [categoryDraft, setCategoryDraft] = useState<CategoryDraft>(emptyCategoryDraft())
     const [categorySaving, setCategorySaving] = useState(false)
     const [categoryError, setCategoryError] = useState("")
+    const [activeTab, setActiveTab] = useState<"articles" | "comments">("articles")
 
     const request = async <T, >(path: string, init?: RequestInit) => adminFetch<T>(path, {
         ...init,
@@ -451,7 +452,26 @@ export function BlogAdmin() {
                     </div>
                 </div>
             </header>
+            <nav className="border-b border-border bg-card" aria-label="Secciones del panel">
+                <div className="mx-auto flex max-w-7xl gap-1 px-4 sm:px-6 lg:px-8">
+                    {(["articles", "comments"] as const).map((tab) => {
+                        const labels = { articles: "Artículos", comments: "Gestión de comentarios" }
+                        return (
+                            <button
+                                key={tab}
+                                type="button"
+                                onClick={() => setActiveTab(tab)}
+                                className={`relative px-4 py-3.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${activeTab === tab ? "text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary" : "text-muted-foreground hover:text-foreground"}`}
+                            >
+                                {labels[tab]}
+                            </button>
+                        )
+                    })}
+                </div>
+            </nav>
+
             <main className="mx-auto max-w-7xl space-y-6 px-4 py-7 sm:px-6 lg:px-8">
+                {activeTab === "articles" && <>
                 <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
                          aria-labelledby="articles-heading">
                     <div
@@ -587,8 +607,6 @@ export function BlogAdmin() {
                     })))
                 }} />
 
-                <BlogCommentsAdmin />
-
                 <section className="min-w-0 overflow-visible rounded-2xl border border-border bg-card shadow-sm"
                          aria-labelledby="editor-heading">
                     <div
@@ -701,6 +719,8 @@ export function BlogAdmin() {
                                 key={JSON.stringify(draft.content)} content={draft.content}/></div>
                         </section> : null}
                 </section>
+                </>}
+                {activeTab === "comments" && <BlogCommentsAdmin />}
             </main>
         </div>
     )
