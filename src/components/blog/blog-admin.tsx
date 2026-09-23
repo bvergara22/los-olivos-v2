@@ -86,6 +86,7 @@ const emptyDraft = (): Draft => ({
 })
 const emptyCategoryDraft = (): CategoryDraft => ({id: null, name: "", active: true})
 
+
 function getCsrf() {
     return typeof window === "undefined" ? "" : window.sessionStorage.getItem("blog_csrf") ?? ""
 }
@@ -113,6 +114,9 @@ export function BlogAdmin() {
     const [saveMessage, setSaveMessage] = useState("")
     const [editorError, setEditorError] = useState("")
     const [showPreview, setShowPreview] = useState(false)
+
+
+
     const [categoryDraft, setCategoryDraft] = useState<CategoryDraft>(emptyCategoryDraft())
     const [categorySaving, setCategorySaving] = useState(false)
     const [categoryError, setCategoryError] = useState("")
@@ -709,15 +713,18 @@ export function BlogAdmin() {
                         {editorError ? <p role="alert"
                                           className="rounded-lg bg-destructive/10 p-3 text-sm font-semibold text-destructive">{editorError}</p> : null}
                     </form>
-                    {showPreview ?
-                        <section aria-label="Vista previa" className="border-t border-border bg-[#f3f8f1] p-5 md:p-7"><p
-                            className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-primary">Vista previa del
-                            artículo</p><h3
-                            className="font-display text-3xl font-bold">{draft.title || "Sin título"}</h3>
-                            <p className="mt-2 text-sm text-muted-foreground">Por {authors.find((author) => author.id === draft.author_id)?.name || "Sin autor"}</p>
-                            <div className="mt-5 rounded-xl bg-card p-5 md:p-8"><BlogContent
-                                key={JSON.stringify(draft.content)} content={draft.content}/></div>
-                        </section> : null}
+                    {showPreview ? (
+                        <section aria-label="Vista previa" className="border-t border-border bg-[#f3f8f1] p-5 md:p-7">
+                            <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-primary">Vista previa del artículo</p>
+                            <h3 className="font-display text-3xl font-bold">{draft.title || "Sin título"}</h3>
+                            <p className="mt-2 text-sm text-muted-foreground">
+                                Por {draft.author_id ? formatBlogAuthor(authors.find(a => a.id === draft.author_id)?.name ?? "") : "Sin autor"}
+                            </p>
+                            <div className="mt-5 rounded-xl bg-card p-5 md:p-8">
+                                <BlogContent key={JSON.stringify(draft.content)} content={draft.content} />
+                            </div>
+                        </section>
+                    ) : null}
                 </section>
                 </>}
                 {activeTab === "comments" && <BlogCommentsAdmin />}

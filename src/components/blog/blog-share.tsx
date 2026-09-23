@@ -75,7 +75,7 @@ export function BlogShare({ title, url }: BlogShareProps) {
   const message = `${title}\n${url}`
 
   return (
-    <section className="mt-14 border-y border-border py-7" aria-labelledby="blog-share-heading">
+    <section className="mt-14 py-5" aria-labelledby="blog-share-heading">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 id="blog-share-heading" className="font-display text-xl font-bold text-foreground">Comparte este artículo</h2>
