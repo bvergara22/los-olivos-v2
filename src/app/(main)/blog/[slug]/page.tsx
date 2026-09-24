@@ -1,5 +1,5 @@
 import { ArticleHorizontalLayout } from "@/components/blog/article-horizontal-layout"
-import { formatBlogAuthor, formatBlogDate, getBlogPost } from "@/lib/blog"
+import { formatBlogAuthor, getBlogPost } from "@/lib/blog"
 import { absoluteSiteUrl } from "@/lib/site-url"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"

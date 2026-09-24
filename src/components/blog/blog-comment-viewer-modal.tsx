@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import Image from "next/image"
 import { X, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BLOG_API_URL } from "@/lib/blog"
@@ -203,7 +204,7 @@ export function BlogCommentViewerModal({ slug, open, onClose }: Props) {
                                     {c.reply && (
                                         <div className="mt-4 flex gap-3 rounded-xl bg-muted/30 p-3">
                                             <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white">
-                                                <img src="/favicon.ico" alt="Los Olivos Cartagena" className="h-full w-full object-contain" />
+                                                <Image src="/favicon.ico" alt="Los Olivos Cartagena" width={36} height={36} className="h-full w-full object-contain" />
                                             </div>
                                             <div className="min-w-0 flex-1">
                                                 <div className="flex flex-wrap items-center gap-2">

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { ImageIcon, MessageSquare, Search, Send, Star, X, Loader2, Check, Ban } from "lucide-react"
@@ -444,7 +445,7 @@ export function BlogCommentsAdmin() {
                                                     {comment.reply && !isReplying && (
                                                         <div className="mt-4 flex gap-3 rounded-xl bg-muted/30 p-3">
                                                             <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white">
-                                                                <img src="/favicon.ico" alt="Los Olivos Cartagena" className="h-full w-full object-contain" />
+                                                                <Image src="/favicon.ico" alt="Los Olivos Cartagena" width={36} height={36} className="h-full w-full object-contain" />
                                                             </div>
                                                             <div className="min-w-0 flex-1">
                                                                 <div className="flex flex-wrap items-center gap-2">

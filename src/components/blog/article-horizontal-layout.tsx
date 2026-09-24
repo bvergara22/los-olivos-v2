@@ -52,7 +52,6 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         let startX = 0
         let startY = 0
         let lastX = 0
-        let startScrollLeft = 0
         let outerMoveStart = 0
         let velocity = 0
         let rafId = 0
@@ -89,7 +88,6 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
             cancelAnimationFrame(rafId)
             startX = lastX = e.touches[0]!.clientX
             startY = e.touches[0]!.clientY
-            startScrollLeft = outer.scrollLeft
             velocity = 0
             axis = null
             phase = 'idle'
@@ -260,10 +258,6 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         ? new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "long", year: "numeric" }).format(new Date(post.publishedAt))
         : ""
 
-    const publishedDateShort = post.publishedAt
-        ? new Intl.DateTimeFormat("es-CO", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(post.publishedAt))
-        : ""
-
     return (
         <article className="bg-background pb-0 md:pb-24">
 
@@ -428,7 +422,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                                             {c.reply && (
                                                 <div className="mt-3 flex gap-3 rounded-xl bg-muted/30 p-3">
                                                     <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white">
-                                                        <img src="/favicon.ico" alt="Los Olivos Cartagena" className="h-full w-full object-contain" />
+                                                        <Image src="/favicon.ico" alt="Los Olivos Cartagena" width={32} height={32} className="h-full w-full object-contain" />
                                                     </div>
                                                     <div>
                                                         <p className="text-xs font-semibold text-primary">Los Olivos Cartagena</p>
