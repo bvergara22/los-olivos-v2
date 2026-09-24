@@ -62,14 +62,20 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         const snapTo = (targetPanel: number) => {
             const panelW = outer.offsetWidth
             const targetX = Math.max(0, Math.min(2, targetPanel)) * panelW
-            const dir = Math.sign(targetX - outer.scrollLeft)
+            if (Math.abs(targetX - outer.scrollLeft) < 1) { outer.scrollLeft = targetX; return }
+
+            // Misma física libre que el inner scroll (v *= 0.88) +
+            // spring suave que jala hacia el panel destino.
+            // El spring es débil con alta velocidad y domina cuando el momentum cae,
+            // replicando el feel del snap nativo de iOS.
             let v = velocity
-            if (Math.abs(v) < 5 || Math.sign(-v) !== dir) v = -dir * 10
+            const SPRING = 0.15
+
             const animate = () => {
                 v *= 0.88
                 outer.scrollLeft -= v
-                const remaining = targetX - outer.scrollLeft
-                if (Math.sign(remaining) !== dir || Math.abs(v) < 0.5) {
+                outer.scrollLeft += (targetX - outer.scrollLeft) * SPRING
+                if (Math.abs(targetX - outer.scrollLeft) < 0.5 && Math.abs(v) < 0.5) {
                     outer.scrollLeft = targetX
                     return
                 }
@@ -153,8 +159,8 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                 const startPanel = Math.round(outerMoveStart / panelW)
                 const moved = (outer.scrollLeft - outerMoveStart) / panelW
                 let target = startPanel
-                if (moved > 0.3 || velocity < -15) target = Math.min(2, startPanel + 1)
-                else if (moved < -0.3 || velocity > 15) target = Math.max(0, startPanel - 1)
+                if (moved > 0.2 || velocity < -10) target = Math.min(2, startPanel + 1)
+                else if (moved < -0.2 || velocity > 10) target = Math.max(0, startPanel - 1)
                 snapTo(target)
             }
             phase = 'idle'
@@ -447,6 +453,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
             <div
                 ref={outerSnapRef}
                 className="md:hidden flex h-[calc(100dvh-5rem)] w-screen overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                style={{ touchAction: "pan-y" }}
             >
                 {/* Panel 1 móvil: título grande + imagen */}
                 <section
@@ -515,7 +522,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                     >
                         <div
                             ref={mobileColRef}
-                            className="relative z-10"
+                            className="relative z-10 [&_blockquote]:break-inside-avoid [&_figure]:break-inside-avoid [&_h1]:break-after-avoid [&_h2]:break-after-avoid [&_h3]:break-after-avoid [&_h4]:break-after-avoid [&_img]:break-inside-avoid [&_img]:max-h-[calc(100dvh-9rem)] [&_img]:w-auto [&_img]:object-contain [&_li]:break-inside-avoid [&_pre]:break-inside-avoid [&_table]:break-inside-avoid"
                             style={{
                                 columnWidth: "calc(100vw - 2.5rem)",
                                 columnGap: "2.5rem",
