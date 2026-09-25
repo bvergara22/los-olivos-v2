@@ -275,7 +275,11 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         : ""
 
     const contentSlides = splitIntoSlides(content)
-    totalPanelsRef.current = 1 + contentSlides.length + 1
+    const totalPanels = 1 + contentSlides.length + 1
+
+    useEffect(() => {
+        totalPanelsRef.current = totalPanels
+    })
 
     return (
         <article className="bg-background pb-0 md:pb-24">
