@@ -6,9 +6,9 @@ import { formatBlogDate, type BlogPost } from "@/lib/blog"
 export function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
   return (
     <article className={`group overflow-hidden rounded-2xl border border-border/70 bg-card transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 ${featured ? "md:grid md:grid-cols-[1.15fr_0.85fr]" : ""}`}>
-      <Link href={`/blog/${post.slug}`} className={`relative block overflow-hidden bg-primary/10 ${featured ? "min-h-64 md:min-h-full" : "aspect-[16/10]"}`} aria-label={`Leer ${post.title}`}>
+      <Link href={`/blog/${post.slug}`} className={`relative block overflow-hidden bg-primary/10 aspect-[16/10]`} aria-label={`Leer ${post.title}`}>
         {post.coverImage ? (
-          <Image src={post.coverImage.url} alt={post.coverImage.alt} fill sizes={featured ? "(max-width: 768px) 100vw, 58vw" : "(max-width: 768px) 100vw, 33vw"} className="object-cover transition-transform duration-700 group-hover:scale-105" priority={featured} />
+          <Image src={post.coverImage.url} alt={post.coverImage.alt} fill sizes="(max-width: 768px) 100vw, 58vw" className="object-cover transition-transform duration-700 group-hover:scale-105" priority={featured} />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(180,227,121,.65),transparent_42%),linear-gradient(135deg,#018c58,#165a47)]" />
         )}

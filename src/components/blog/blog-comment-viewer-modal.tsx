@@ -77,9 +77,10 @@ function EmptyState() {
     )
 }
 
-type Props = { slug: string; open: boolean; onClose: () => void }
+type PendingComment = { id: number; name: string; rating: number; text: string; date: string }
+type Props = { slug: string; open: boolean; onClose: () => void; pendingComments?: PendingComment[] }
 
-export function BlogCommentViewerModal({ slug, open, onClose }: Props) {
+export function BlogCommentViewerModal({ slug, open, onClose, pendingComments = [] }: Props) {
     const [comments, setComments] = useState<Comment[]>([])
     const [meta, setMeta] = useState<CommentsMeta | null>(null)
     const [loading, setLoading] = useState(false)
@@ -180,6 +181,23 @@ export function BlogCommentViewerModal({ slug, open, onClose }: Props) {
                         <EmptyState />
                     ) : (
                         <div className="space-y-4">
+                            {pendingComments.map((c) => (
+                                <div key={c.id} className="rounded-2xl border border-primary/30 bg-primary/5 p-5">
+                                    <div className="flex flex-wrap items-start justify-between gap-3">
+                                        <div className="flex items-center gap-3">
+                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                                                {((c.name ?? "?")[0] ?? "?").toUpperCase()}
+                                            </div>
+                                            <div>
+                                                <p className="font-semibold leading-tight text-foreground">{c.name}</p>
+                                                <p className="text-xs text-primary font-medium">En revisión</p>
+                                            </div>
+                                        </div>
+                                        <StarDisplay value={c.rating} size={15} />
+                                    </div>
+                                    {c.text && <p className="mt-3 text-sm leading-relaxed text-foreground break-words">{c.text}</p>}
+                                </div>
+                            ))}
                             {comments.map((c) => (
                                 <div key={c.id} className="rounded-2xl border border-border bg-card p-5">
                                     <div className="flex flex-wrap items-start justify-between gap-3">

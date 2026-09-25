@@ -25,7 +25,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const page = Math.max(Number(params.page ?? "1") || 1, 1)
   const category = params.category
   const [{ data: posts, meta }, categories] = await Promise.all([getBlogPosts(page, category), getBlogCategories()])
-  const [featured, ...rest] = posts
 
   const categoryDescription = category ? CATEGORY_DESCRIPTIONS[category] : null
 
@@ -50,10 +49,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           </div>
         )}
 
-        {featured ? (
+        {posts.length > 0 ? (
           <div className="space-y-5">
-            <BlogCard post={featured} featured />
-            {rest.length ? <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{rest.map((post) => <BlogCard key={post.id} post={post} />)}</div> : null}
+            {posts.map((post) => <BlogCard key={post.id} post={post} featured />)}
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-primary/30 bg-primary/5 p-12 text-center"><h2 className="font-display text-2xl font-bold">Aún no hay artículos publicados</h2><p className="mt-2 text-muted-foreground">Vuelve pronto para descubrir nuestras novedades.</p></div>

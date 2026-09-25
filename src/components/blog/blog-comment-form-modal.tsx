@@ -48,9 +48,9 @@ function StarPicker({ value, onChange }: { value: number; onChange: (v: number) 
     )
 }
 
-type Props = { slug: string; open: boolean; onClose: () => void }
+type Props = { slug: string; open: boolean; onClose: () => void; onSubmitted?: (name: string, rating: number, text: string) => void }
 
-export function BlogCommentFormModal({ slug, open, onClose }: Props) {
+export function BlogCommentFormModal({ slug, open, onClose, onSubmitted }: Props) {
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState("")
     const [name, setName] = useState("")
@@ -96,6 +96,7 @@ export function BlogCommentFormModal({ slug, open, onClose }: Props) {
                 throw new BlogApiError(res.status, body?.message)
             }
             setSubmitted(true)
+            onSubmitted?.(name.trim(), rating, comment.trim())
         } catch (err) {
             setSubmitError(
                 err instanceof BlogApiError && err.message

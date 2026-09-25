@@ -12,16 +12,21 @@ import { BlogContent, BlogSlideContent } from "@/components/blog/blog-renderer"
 // Peso visual objetivo por slide (~heading + 2 párrafos medios)
 const SLIDE_TARGET_WEIGHT = 720
 
-function SlideArrow({ dir }: { dir: 'left' | 'right' }) {
+function SlideArrow({ dir, onClick }: { dir: 'left' | 'right'; onClick?: () => void }) {
     return (
-        <div className={`absolute ${dir === 'right' ? 'right-1.5' : 'left-1.5'} top-1/2 z-20 -translate-y-1/2 flex h-12 w-7 items-center justify-center rounded-full bg-black/5`}>
+        <button
+            type="button"
+            onClick={onClick}
+            aria-label={dir === 'right' ? 'Siguiente slide' : 'Slide anterior'}
+            className={`absolute ${dir === 'right' ? 'right-1.5' : 'left-1.5'} top-1/2 z-20 -translate-y-1/2 flex h-12 w-7 items-center justify-center rounded-full bg-black/5 cursor-pointer`}
+        >
             <svg width="14" height="22" viewBox="0 0 14 22" fill="none" aria-hidden="true" className="text-foreground/35">
                 {dir === 'right'
                     ? <path d="M3 2l8 9-8 9" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
                     : <path d="M11 2l-8 9 8 9" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
                 }
             </svg>
-        </div>
+        </button>
     )
 }
 
@@ -55,10 +60,13 @@ function splitIntoSlides(content: BlogNode): BlogNode[][] {
             current = []
             currentWeight = 0
         } else if (!isHeading && currentWeight > 0 && currentWeight + w > SLIDE_TARGET_WEIGHT) {
-            // Bloque de texto que excedería el peso objetivo
-            slides.push(current)
-            current = []
-            currentWeight = 0
+            // No partir si el slide actual solo tiene un heading (heading solo no tiene sentido)
+            const soloHeading = current.length === 1 && current[0]!.type === "heading"
+            if (!soloHeading) {
+                slides.push(current)
+                current = []
+                currentWeight = 0
+            }
         }
 
         current.push(node)
@@ -95,11 +103,20 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         reply: { text: string; date: string } | null
     }>>([])
     const [panelCommentsLoading, setPanelCommentsLoading] = useState(true)
+    const [pendingComments, setPendingComments] = useState<Array<{ id: number; name: string; rating: number; text: string; date: string }>>([])
+
+    const handleCommentSubmitted = (name: string, rating: number, text: string) => {
+        const newComment = { id: -Date.now(), name, rating, text, date: new Date().toISOString() }
+        setPendingComments(prev => [newComment, ...prev])
+        setPanelComments(prev => [{ ...newComment, rating, reply: null }, ...prev])
+    }
     const anyModalOpen = useRef(false)
 
     // ── Refs móviles ──
     const outerSnapRef = useRef<HTMLDivElement>(null)
     const totalPanelsRef = useRef(3)
+    const currentPanelRef = useRef(0)
+    const snapFnRef = useRef<((panel: number) => void) | null>(null)
 
     // Navegación horizontal entre slides: misma física libre + spring
     useEffect(() => {
@@ -113,7 +130,9 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         const snapTo = (targetPanel: number) => {
             const panelW = outer.offsetWidth
             const maxPanel = totalPanelsRef.current - 1
-            const targetX = Math.max(0, Math.min(maxPanel, targetPanel)) * panelW
+            const clamped = Math.max(0, Math.min(maxPanel, targetPanel))
+            currentPanelRef.current = clamped
+            const targetX = clamped * panelW
             if (Math.abs(targetX - outer.scrollLeft) < 1) { outer.scrollLeft = targetX; return }
             let v = velocity
             const SPRING = 0.15
@@ -129,6 +148,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
             cancelAnimationFrame(rafId)
             rafId = requestAnimationFrame(animate)
         }
+        snapFnRef.current = snapTo
 
         const onTouchStart = (e: TouchEvent) => {
             cancelAnimationFrame(rafId)
@@ -269,6 +289,10 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         setShareStatus("URL copiada. Compártela en Instagram.")
     }
 
+
+    const handleArrow = (dir: 'left' | 'right') => {
+        snapFnRef.current?.(currentPanelRef.current + (dir === 'right' ? 1 : -1))
+    }
 
     const publishedDate = post.publishedAt
         ? new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "long", year: "numeric" }).format(new Date(post.publishedAt))
@@ -515,7 +539,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                         )}
                     </div>
 
-                    <SlideArrow dir="right" />
+                    <SlideArrow dir="right" onClick={() => handleArrow('right')} />
 
                 </section>
 
@@ -528,9 +552,9 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                     >
                         <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-primary/6 blur-3xl" aria-hidden="true" />
                         <div className="pointer-events-none absolute -bottom-20 -left-16 h-48 w-48 rounded-full bg-[#b4e379]/20 blur-3xl" aria-hidden="true" />
-                        <SlideArrow dir="left" />
-                        <SlideArrow dir="right" />
-                        <div className="relative z-10 flex-1 overflow-hidden px-10 pt-8 pb-8">
+                        <SlideArrow dir="left" onClick={() => handleArrow('left')} />
+                        <SlideArrow dir="right" onClick={() => handleArrow('right')} />
+                        <div className="blog-slide relative z-10 min-h-0 flex-1 overflow-hidden px-10 pt-8 pb-8">
                             <BlogSlideContent nodes={nodes} />
                         </div>
                     </section>
@@ -543,7 +567,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                 >
                     <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-primary/8 blur-3xl" aria-hidden="true" />
                     <div className="pointer-events-none absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-[#b4e379]/20 blur-3xl" aria-hidden="true" />
-                    <SlideArrow dir="left" />
+                    <SlideArrow dir="left" onClick={() => handleArrow('left')} />
 
                     <div className="relative z-10 flex w-full max-w-sm flex-col items-center gap-4 px-7 text-center">
                         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
@@ -620,11 +644,13 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                 slug={post.slug}
                 open={showFormModal}
                 onClose={() => setShowFormModal(false)}
+                onSubmitted={handleCommentSubmitted}
             />
             <BlogCommentViewerModal
                 slug={post.slug}
                 open={showViewerModal}
                 onClose={() => setShowViewerModal(false)}
+                pendingComments={pendingComments}
             />
 
         </article>

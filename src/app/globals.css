@@ -281,6 +281,15 @@ body {
 }
 .blog-prose a { color: var(--primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .blog-prose hr { border: 0; border-top: 1px solid var(--border); margin-block: 2.5rem; }
+
+/* Slides móviles: espaciado compacto para caber sin scroll vertical */
+.blog-slide .blog-prose { --blog-content-block-gap: 0.55em; }
+.blog-slide .blog-prose > h2:first-child,
+.blog-slide .blog-prose > h3:first-child { margin-top: 0; }
+.blog-slide .blog-prose h2 { margin-top: 1.1em; }
+.blog-slide .blog-prose h3 { margin-top: 0.9em; }
+.blog-slide .blog-prose ul > li,
+.blog-slide .blog-prose ol > li { margin-block: 0.2em; }
 .blog-table-scroll { width: 100%; margin-block: 1rem; overflow-x: auto; }
 .blog-table-scroll table { width: 100%; min-width: 32rem; border-collapse: collapse; font-size: .95em; }
 .blog-table-scroll th, .blog-table-scroll td { border: 1px solid var(--border); padding: .7rem .8rem; vertical-align: top; text-align: inherit; }
