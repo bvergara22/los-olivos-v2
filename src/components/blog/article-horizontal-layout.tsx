@@ -1,13 +1,73 @@
 "use client"
 
-import { useRef, useEffect, useLayoutEffect, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Check, Clipboard, Facebook, Instagram, MessageCircle, Share2 } from "lucide-react"
 import { BlogCommentFormModal } from "@/components/blog/blog-comment-form-modal"
 import { BlogCommentViewerModal } from "@/components/blog/blog-comment-viewer-modal"
 import { formatBlogAuthor, BLOG_API_URL, type BlogPost, type BlogNode } from "@/lib/blog"
-import { BlogContent } from "@/components/blog/blog-renderer"
+import { BlogContent, BlogSlideContent } from "@/components/blog/blog-renderer"
+
+// Peso visual objetivo por slide (~heading + 2 párrafos medios)
+const SLIDE_TARGET_WEIGHT = 720
+
+function SlideArrow({ dir }: { dir: 'left' | 'right' }) {
+    return (
+        <div className={`absolute ${dir === 'right' ? 'right-1.5' : 'left-1.5'} top-1/2 z-20 -translate-y-1/2 flex h-12 w-7 items-center justify-center rounded-full bg-black/5`}>
+            <svg width="14" height="22" viewBox="0 0 14 22" fill="none" aria-hidden="true" className="text-foreground/35">
+                {dir === 'right'
+                    ? <path d="M3 2l8 9-8 9" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                    : <path d="M11 2l-8 9 8 9" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                }
+            </svg>
+        </div>
+    )
+}
+
+function getNodeText(node: BlogNode): string {
+    if (node.type === "text") return node.text ?? ""
+    return (node.content ?? []).map(getNodeText).join("")
+}
+
+function blockWeight(node: BlogNode): number {
+    if (node.type === "image") return SLIDE_TARGET_WEIGHT
+    const chars = getNodeText(node).length
+    // Los headings tienen más peso visual (fuente grande + márgenes)
+    return (node.type === "heading" ? 150 : 40) + chars
+}
+
+function splitIntoSlides(content: BlogNode): BlogNode[][] {
+    const blocks = content.content ?? []
+    if (!blocks.length) return []
+
+    const slides: BlogNode[][] = []
+    let current: BlogNode[] = []
+    let currentWeight = 0
+
+    for (const node of blocks) {
+        const w = blockWeight(node)
+        const isHeading = node.type === "heading"
+
+        if (isHeading && current.length > 0) {
+            // Heading siempre abre un slide nuevo
+            slides.push(current)
+            current = []
+            currentWeight = 0
+        } else if (!isHeading && currentWeight > 0 && currentWeight + w > SLIDE_TARGET_WEIGHT) {
+            // Bloque de texto que excedería el peso objetivo
+            slides.push(current)
+            current = []
+            currentWeight = 0
+        }
+
+        current.push(node)
+        currentWeight += w
+    }
+
+    if (current.length > 0) slides.push(current)
+    return slides.filter(s => s.length > 0)
+}
 
 function XIcon() {
     return (
@@ -39,44 +99,30 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
 
     // ── Refs móviles ──
     const outerSnapRef = useRef<HTMLDivElement>(null)
-    const panel2ScrollRef = useRef<HTMLDivElement>(null)
-    const mobileColRef = useRef<HTMLDivElement>(null)
-    const mobileSentinelRef = useRef<HTMLSpanElement>(null)
+    const totalPanelsRef = useRef(3)
 
-    // Scroll JS unificado: misma física para Panel 2 interno y navegación entre paneles
+    // Navegación horizontal entre slides: misma física libre + spring
     useEffect(() => {
         const outer = outerSnapRef.current
-        const panel2 = panel2ScrollRef.current
-        if (!outer || !panel2) return
+        if (!outer) return
 
-        let startX = 0
-        let startY = 0
-        let lastX = 0
-        let outerMoveStart = 0
-        let velocity = 0
-        let rafId = 0
+        let startX = 0, startY = 0, lastX = 0, outerMoveStart = 0
+        let velocity = 0, rafId = 0
         let axis: 'h' | 'v' | null = null
-        let phase: 'idle' | 'inner' | 'outer' = 'idle'
 
         const snapTo = (targetPanel: number) => {
             const panelW = outer.offsetWidth
-            const targetX = Math.max(0, Math.min(2, targetPanel)) * panelW
+            const maxPanel = totalPanelsRef.current - 1
+            const targetX = Math.max(0, Math.min(maxPanel, targetPanel)) * panelW
             if (Math.abs(targetX - outer.scrollLeft) < 1) { outer.scrollLeft = targetX; return }
-
-            // Misma física libre que el inner scroll (v *= 0.88) +
-            // spring suave que jala hacia el panel destino.
-            // El spring es débil con alta velocidad y domina cuando el momentum cae,
-            // replicando el feel del snap nativo de iOS.
             let v = velocity
             const SPRING = 0.15
-
             const animate = () => {
                 v *= 0.88
                 outer.scrollLeft -= v
                 outer.scrollLeft += (targetX - outer.scrollLeft) * SPRING
                 if (Math.abs(targetX - outer.scrollLeft) < 0.5 && Math.abs(v) < 0.5) {
-                    outer.scrollLeft = targetX
-                    return
+                    outer.scrollLeft = targetX; return
                 }
                 rafId = requestAnimationFrame(animate)
             }
@@ -88,80 +134,35 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
             cancelAnimationFrame(rafId)
             startX = lastX = e.touches[0]!.clientX
             startY = e.touches[0]!.clientY
-            velocity = 0
-            axis = null
-            phase = 'idle'
+            outerMoveStart = outer.scrollLeft
+            velocity = 0; axis = null
         }
 
         const onTouchMove = (e: TouchEvent) => {
             const x = e.touches[0]!.clientX
             const y = e.touches[0]!.clientY
-
-            // Determinar eje en el primer movimiento significativo
             if (!axis) {
-                const dx = Math.abs(x - startX)
-                const dy = Math.abs(y - startY)
+                const dx = Math.abs(x - startX), dy = Math.abs(y - startY)
                 if (dx < 5 && dy < 5) return
                 axis = dx >= dy ? 'h' : 'v'
             }
-
-            // Scroll vertical → dejar que el browser maneje (footer accesible)
             if (axis === 'v') return
-
             const dx = x - lastX
-            lastX = x
-            velocity = dx
-
-            const maxInner = panel2.scrollWidth - panel2.offsetWidth
-            const currentPanel = Math.round(outer.scrollLeft / outer.offsetWidth)
-
-            if (phase === 'idle') {
-                if (currentPanel === 1 &&
-                    ((dx < 0 && panel2.scrollLeft < maxInner - 1) || (dx > 0 && panel2.scrollLeft > 1))) {
-                    phase = 'inner'
-                } else {
-                    phase = 'outer'
-                    outerMoveStart = outer.scrollLeft
-                }
-            }
-
+            lastX = x; velocity = dx
             e.preventDefault()
-
-            if (phase === 'inner') {
-                const canInner = (dx < 0 && panel2.scrollLeft < maxInner - 1) || (dx > 0 && panel2.scrollLeft > 1)
-                if (canInner) {
-                    panel2.scrollLeft -= dx
-                } else {
-                    phase = 'outer'
-                    outerMoveStart = outer.scrollLeft
-                    outer.scrollLeft -= dx
-                }
-            } else {
-                outer.scrollLeft -= dx
-            }
+            outer.scrollLeft -= dx
         }
 
         const onTouchEnd = () => {
-            if (axis !== 'h') { phase = 'idle'; axis = null; return }
-
-            if (phase === 'inner') {
-                let v = velocity
-                const decel = () => {
-                    v *= 0.88
-                    panel2.scrollLeft -= v
-                    if (Math.abs(v) > 0.5) rafId = requestAnimationFrame(decel)
-                }
-                rafId = requestAnimationFrame(decel)
-            } else if (phase === 'outer') {
-                const panelW = outer.offsetWidth
-                const startPanel = Math.round(outerMoveStart / panelW)
-                const moved = (outer.scrollLeft - outerMoveStart) / panelW
-                let target = startPanel
-                if (moved > 0.2 || velocity < -10) target = Math.min(2, startPanel + 1)
-                else if (moved < -0.2 || velocity > 10) target = Math.max(0, startPanel - 1)
-                snapTo(target)
-            }
-            phase = 'idle'
+            if (axis !== 'h') { axis = null; return }
+            const panelW = outer.offsetWidth
+            const maxPanel = totalPanelsRef.current - 1
+            const startPanel = Math.round(outerMoveStart / panelW)
+            const moved = (outer.scrollLeft - outerMoveStart) / panelW
+            let target = startPanel
+            if (moved > 0.2 || velocity < -10) target = Math.min(maxPanel, startPanel + 1)
+            else if (moved < -0.2 || velocity > 10) target = Math.max(0, startPanel - 1)
+            snapTo(target)
             axis = null
         }
 
@@ -175,21 +176,6 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
             cancelAnimationFrame(rafId)
         }
     }, [])
-
-    useLayoutEffect(() => {
-        const col = mobileColRef.current
-        const sentinel = mobileSentinelRef.current
-        if (!col || !sentinel) return
-        col.style.width = "9999px"
-        void col.offsetWidth
-        const cs = getComputedStyle(col)
-        const gap = parseFloat(cs.columnGap) || 40
-        const colW = parseFloat(cs.columnWidth) || (window.innerWidth - 40)
-        const sr = sentinel.getBoundingClientRect()
-        const cr = col.getBoundingClientRect()
-        const measured = sr.right - cr.left + gap
-        col.style.width = `${Math.max(measured, colW + gap)}px`
-    }, [content])
 
     // Bloquea TODO scroll mientras un modal esté abierto
     useEffect(() => {
@@ -248,15 +234,48 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
         } catch { setShareStatus("No se pudo copiar.") }
     }
 
+    const handleShareFacebook = () => {
+        const encoded = encodeURIComponent(articleUrl)
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+        if (!isMobile) {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encoded}`, "_blank", "noopener,noreferrer,width=600,height=600")
+            return
+        }
+        // Móvil: intentar abrir diálogo de compartir en la app de Facebook
+        let appOpened = false
+        const onHide = () => { appOpened = true }
+        document.addEventListener("visibilitychange", onHide, { once: true })
+        window.location.href = `fb://share?link=${encoded}`
+        setTimeout(() => {
+            document.removeEventListener("visibilitychange", onHide)
+            if (!appOpened) window.open(`https://www.facebook.com/sharer/sharer.php?u=${encoded}`, "_blank", "noopener")
+        }, 1500)
+    }
+
     const handleShareInstagram = async () => {
-        window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer")
+        // En móvil, el menú nativo del sistema incluye Instagram como destino
+        if (navigator.share) {
+            try {
+                await navigator.share({ title: post.title, text: post.title, url: articleUrl })
+            } catch (err) {
+                if (!(err instanceof DOMException && err.name === "AbortError")) {
+                    await handleShareCopy()
+                }
+            }
+            return
+        }
+        // Desktop: copiar URL y mostrar instrucción
         await handleShareCopy()
+        setShareStatus("URL copiada. Compártela en Instagram.")
     }
 
 
     const publishedDate = post.publishedAt
         ? new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "long", year: "numeric" }).format(new Date(post.publishedAt))
         : ""
+
+    const contentSlides = splitIntoSlides(content)
+    totalPanelsRef.current = 1 + contentSlides.length + 1
 
     return (
         <article className="bg-background pb-0 md:pb-24">
@@ -345,7 +364,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                                 <div className="flex flex-wrap gap-2" role="group" aria-label="Opciones para compartir">
                                     <button type="button" onClick={() => void handleShareNative()} aria-label="Compartir" className={`${iconBtnCls} text-primary`}><Share2 className="h-4 w-4" /></button>
                                     <a className={iconBtnCls} href={`https://wa.me/?text=${encodeURIComponent(shareMessage)}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><MessageCircle className="h-4 w-4 text-[#25D366]" /></a>
-                                    <a className={iconBtnCls} href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook className="h-4 w-4 text-[#1877F2]" /></a>
+                                    <button type="button" onClick={handleShareFacebook} aria-label="Facebook" className={iconBtnCls}><Facebook className="h-4 w-4 text-[#1877F2]" /></button>
                                     <a className={iconBtnCls} href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(articleUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="X"><XIcon /></a>
                                     <button type="button" onClick={() => void handleShareInstagram()} aria-label="Instagram" className={iconBtnCls}><Instagram className="h-4 w-4 text-[#E1306C]" /></button>
                                     <button type="button" onClick={() => void handleShareCopy()} aria-label="Copiar enlace" className={iconBtnCls}>
@@ -442,7 +461,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
 
 
             {/* ══════════════════════════════════════════════
-                MÓVIL — scroll horizontal CSS snap (3 paneles)
+                MÓVIL — slides horizontales dinámicos
             ══════════════════════════════════════════════ */}
             <div
                 ref={outerSnapRef}
@@ -492,59 +511,35 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                         )}
                     </div>
 
-                    <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 text-sm font-semibold tracking-wide text-primary">
-                        <span>Deslizar</span>
-                        <svg width="28" height="12" viewBox="0 0 28 12" fill="none" aria-hidden="true">
-                            <path d="M0 6h26m0 0-5-5m5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </div>
+                    <SlideArrow dir="right" />
 
                 </section>
 
-                {/* Panel 2 móvil: artículo en columnas horizontales */}
-                <section
-                    className="relative flex h-[calc(100dvh-5rem)] w-screen shrink-0 flex-col overflow-hidden bg-[#fafaf8] "
-                    aria-label="Contenido del artículo"
-                >
-                    <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-primary/6 blur-3xl" aria-hidden="true" />
-                    <div className="pointer-events-none absolute -bottom-20 -left-16 h-48 w-48 rounded-full bg-[#b4e379]/20 blur-3xl" aria-hidden="true" />
-
-                    <div
-                        ref={panel2ScrollRef}
-                        className="flex-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                        style={{ touchAction: "pan-x" }}
+                {/* Slides de contenido: uno por sección H2/H3 */}
+                {contentSlides.map((nodes, i) => (
+                    <section
+                        key={i}
+                        className="relative flex h-[calc(100dvh-5rem)] w-screen shrink-0 flex-col overflow-hidden bg-[#fafaf8]"
+                        aria-label={`Sección ${i + 1}`}
                     >
-                        <div
-                            ref={mobileColRef}
-                            className="relative z-10 [&_blockquote]:break-inside-avoid [&_figure]:break-inside-avoid [&_h1]:break-after-avoid [&_h2]:break-after-avoid [&_h3]:break-after-avoid [&_h4]:break-after-avoid [&_img]:break-inside-avoid [&_img]:max-h-[calc(100dvh-9rem)] [&_img]:w-auto [&_img]:object-contain [&_li]:break-inside-avoid [&_pre]:break-inside-avoid [&_table]:break-inside-avoid"
-                            style={{
-                                columnWidth: "calc(100vw - 2.5rem)",
-                                columnGap: "2.5rem",
-                                columnFill: "auto",
-                                height: "calc(100dvh - 5rem - 2.5rem)",
-                                width: "9999px",
-                                paddingTop: "1.25rem",
-                                paddingBottom: "2.5rem",
-                                paddingLeft: "1.25rem",
-                                fontSize: "0.9375rem",
-                                lineHeight: "1.7",
-                                color: "var(--foreground)",
-                            }}
-                        >
-                            <BlogContent content={content} />
-                            <span ref={mobileSentinelRef} aria-hidden="true" style={{ display: "block", width: 0, height: 0 }} />
+                        <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-primary/6 blur-3xl" aria-hidden="true" />
+                        <div className="pointer-events-none absolute -bottom-20 -left-16 h-48 w-48 rounded-full bg-[#b4e379]/20 blur-3xl" aria-hidden="true" />
+                        <SlideArrow dir="left" />
+                        <SlideArrow dir="right" />
+                        <div className="relative z-10 flex-1 overflow-hidden px-10 pt-8 pb-8">
+                            <BlogSlideContent nodes={nodes} />
                         </div>
-                    </div>
+                    </section>
+                ))}
 
-                </section>
-
-                {/* Panel 3 móvil: CTA comentarios */}
+                {/* Último slide: CTA comentarios */}
                 <section
                     className="relative flex h-[calc(100dvh-5rem)] w-screen shrink-0 flex-col items-center justify-center overflow-hidden bg-[#f2faf6] "
                     aria-label="Continúa la conversación"
                 >
                     <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-primary/8 blur-3xl" aria-hidden="true" />
                     <div className="pointer-events-none absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-[#b4e379]/20 blur-3xl" aria-hidden="true" />
+                    <SlideArrow dir="left" />
 
                     <div className="relative z-10 flex w-full max-w-sm flex-col items-center gap-4 px-7 text-center">
                         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
@@ -571,9 +566,9 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                                 <a className={iconBtnCls} href={`https://wa.me/?text=${encodeURIComponent(shareMessage)}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                                     <MessageCircle className="h-4 w-4 text-[#25D366]" aria-hidden="true" />
                                 </a>
-                                <a className={iconBtnCls} href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <button type="button" onClick={handleShareFacebook} aria-label="Facebook" className={iconBtnCls}>
                                     <Facebook className="h-4 w-4 text-[#1877F2]" aria-hidden="true" />
-                                </a>
+                                </button>
                                 <a className={iconBtnCls} href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(articleUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="X">
                                     <XIcon />
                                 </a>

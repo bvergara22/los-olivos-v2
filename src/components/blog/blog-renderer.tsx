@@ -189,3 +189,8 @@ export function BlogContent({ content }: { content?: BlogNode }) {
   if (!content) return null
   return <div className="blog-prose">{renderNode(content)}</div>
 }
+
+export function BlogSlideContent({ nodes }: { nodes: BlogNode[] }) {
+  if (!nodes.length) return null
+  return <div className="blog-prose">{nodes.map((node, i) => renderNode(node, `sn${i}`))}</div>
+}
