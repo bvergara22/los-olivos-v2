@@ -8,7 +8,7 @@ import { SedesPlanes } from "@/components/los-olivos/sedes-planes"
 import { Services } from "@/components/los-olivos/services"
 import { Steps } from "@/components/los-olivos/steps"
 import { WhyUs } from "@/components/los-olivos/why-us"
-import { BlogLatest } from "@/components/blog/blog-latest"
+import { Novedades } from "@/components/los-olivos/novedades"
 
 export default function LosOlivosPage() {
   return (
@@ -16,7 +16,7 @@ export default function LosOlivosPage() {
       <PopupsWrapper />
       <Hero />
       <Services />
-      <BlogLatest />
+      <Novedades />
       <SedesPlanes />
       <Benefits />
       <Steps />

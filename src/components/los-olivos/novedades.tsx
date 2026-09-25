@@ -1,18 +1,11 @@
 "use client"
 
-import { Maximize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react"
+import { Maximize2, X } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-
-type VideoItem = {
-  type: "video"
-  category: string
-  src: string
-  title: string
-  description: string
-  seekTo?: number
-}
+import { BLOG_API_URL } from "@/lib/blog"
 
 type BannerItem = {
   type: "banner"
@@ -24,9 +17,16 @@ type BannerItem = {
   overlayButton?: { href: string; top: string; left: string; width: string; height: string }
 }
 
-type CarouselItem = VideoItem | BannerItem
+type RecentPost = {
+  id: number
+  title: string
+  slug: string
+  category: { name: string } | null
+  publishedAt: string | null
+  coverImage: { url: string; alt: string } | null
+}
 
-const items: CarouselItem[] = [
+const items: BannerItem[] = [
   {
     type: "banner",
     category: "Promoción",
@@ -54,61 +54,9 @@ const items: CarouselItem[] = [
     description: "Tu plan de previsión ha mejorado con asistencias en vida para ti y tu núcleo familiar. Global Assist.",
     overlayButton: { href: "https://www.gag.com.co/micrositios/asistenciaenvida-losolivos-cartagena/", top: "58%", left: "52%", width: "36%", height: "12%" },
   },
-  {
-    type: "video",
-    category: "Video",
-    src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/video/VIDEO%20PARQUE%20(1).mp4",
-    title: "Parque Memorial",
-    description: "Conoce nuestros espacios de paz y tranquilidad para el descanso eterno de tus seres queridos.",
-  },
-  {
-    type: "video",
-    category: "Video",
-    src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/video/Video%20Project%201.mp4",
-    title: "Nuestro Proyecto",
-    description: "Un vistazo a la visión y misión que guían el desarrollo de Los Olivos Cartagena.",
-  },
-  {
-    type: "video",
-    category: "Video",
-    src: "https://losolivoscartagena.sfo3.digitaloceanspaces.com/video/SANANDO%20JUNTOS.mp4",
-    title: "Sanando Juntos",
-    description: "Acompañamos a las familias en su proceso de duelo con programas de apoyo emocional.",
-    seekTo: 3,
-  },
 ]
 
-// ─── Modals ────────────────────────────────────────────────────────────────────
-
-function VideoModal({ item, onClose }: { item: VideoItem; onClose: () => void }) {
-  const [mounted, setMounted] = useState(false)
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { setMounted(true) }, [])
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
-    document.addEventListener("keydown", onKey)
-    document.body.style.overflow = "hidden"
-    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = "" }
-  }, [onClose])
-  if (!mounted) return null
-  return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-sm" onClick={onClose}>
-      <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-        <button type="button" onClick={onClose} className="absolute -top-11 right-0 flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
-          <X className="w-5 h-5" /><span>Cerrar</span>
-        </button>
-        <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black ring-1 ring-white/10">
-          <video src={item.src} controls autoPlay onEnded={onClose} className="w-full h-full" />
-        </div>
-        <div className="mt-5 px-1">
-          <h3 className="text-white text-xl font-display">{item.title}</h3>
-          <p className="text-white/55 text-sm mt-1 leading-relaxed">{item.description}</p>
-        </div>
-      </div>
-    </div>,
-    document.body
-  )
-}
+// ─── Modal ─────────────────────────────────────────────────────────────────────
 
 function BannerModal({ item, onClose }: { item: BannerItem; onClose: () => void }) {
   const [mounted, setMounted] = useState(false)
@@ -144,14 +92,6 @@ function BannerModal({ item, onClose }: { item: BannerItem; onClose: () => void 
 
 // ─── Cards ─────────────────────────────────────────────────────────────────────
 
-function CategoryPill({ label }: { label: string }) {
-  return (
-    <span className="inline-block text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-primary text-white">
-      {label}
-    </span>
-  )
-}
-
 function FeaturedBannerCard({ item, onExpand }: { item: BannerItem; onExpand: () => void }) {
   return (
     <div className="group relative rounded-2xl overflow-hidden bg-black h-full min-h-[280px] md:min-h-[420px]">
@@ -162,8 +102,7 @@ function FeaturedBannerCard({ item, onExpand }: { item: BannerItem; onExpand: ()
           className="absolute inset-0 z-10" aria-label={item.title} />
       )}
       <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7 z-20 pointer-events-none">
-        <CategoryPill label={item.category} />
-        <h3 className="font-display text-xl md:text-3xl text-white font-bold leading-tight mt-3 mb-2">{item.title}</h3>
+        <h3 className="font-display text-xl md:text-3xl text-white font-bold leading-tight mb-2">{item.title}</h3>
         <p className="text-white/65 text-sm leading-relaxed line-clamp-2 max-w-lg">{item.description}</p>
       </div>
       <button type="button" onClick={(e) => { e.stopPropagation(); onExpand() }}
@@ -185,8 +124,7 @@ function SmallBannerCard({ item, onExpand }: { item: BannerItem; onExpand: () =>
           className="absolute inset-0 z-10" aria-label={item.title} />
       )}
       <div className="absolute bottom-0 left-0 right-0 p-4 z-20 pointer-events-none">
-        <CategoryPill label={item.category} />
-        <h3 className="font-display text-sm md:text-base text-white font-semibold leading-tight mt-2">{item.title}</h3>
+        <h3 className="font-display text-sm md:text-base text-white font-semibold leading-tight">{item.title}</h3>
       </div>
       <button type="button" onClick={(e) => { e.stopPropagation(); onExpand() }}
         className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
@@ -197,56 +135,27 @@ function SmallBannerCard({ item, onExpand }: { item: BannerItem; onExpand: () =>
   )
 }
 
-function VideoCard({ item, onExpand }: { item: VideoItem; onExpand: () => void }) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [playing, setPlaying] = useState(false)
-  const [muted, setMuted] = useState(true)
-
-  const togglePlay = () => {
-    if (!videoRef.current) return
-    if (playing) { videoRef.current.pause(); setPlaying(false) }
-    else { videoRef.current.play(); setPlaying(true) }
-  }
-
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    if (!videoRef.current) return
-    videoRef.current.muted = !muted
-    setMuted(!muted)
-  }
-
+function BlogPreviewCard({ post }: { post: RecentPost }) {
   return (
-    <div className="group relative rounded-xl overflow-hidden bg-black flex flex-col h-full">
-      <div className="relative aspect-video cursor-pointer flex-shrink-0" onClick={togglePlay}>
-        <video ref={videoRef} src={item.src} muted={muted} loop playsInline preload="metadata" className="w-full h-full object-cover" onEnded={() => setPlaying(false)} onLoadedMetadata={() => { if (videoRef.current) videoRef.current.currentTime = item.seekTo ?? 0.001 }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"}`}>
-          <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center hover:bg-white/30 transition-colors">
-            {playing ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white translate-x-0.5" />}
-          </div>
-        </div>
-        <div className="absolute top-3 right-3 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button type="button" onClick={toggleMute} className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-black/70 transition-colors">
-            {muted ? <VolumeX className="w-3.5 h-3.5 text-white" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
-          </button>
-          <button type="button" onClick={(e) => { e.stopPropagation(); if (videoRef.current) videoRef.current.pause(); setPlaying(false); onExpand() }} className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-black/70 transition-colors">
-            <Maximize2 className="w-3.5 h-3.5 text-white" />
-          </button>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 p-3">
-          <CategoryPill label={item.category} />
-          <h3 className="font-display text-sm text-white font-semibold leading-tight mt-2 line-clamp-2">{item.title}</h3>
-        </div>
+    <Link href={`/blog/${post.slug}`} className="group relative rounded-xl overflow-hidden bg-black block aspect-video">
+      {post.coverImage ? (
+        <Image src={post.coverImage.url} alt={post.coverImage.alt} fill className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-90" />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-primary/10" />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+        <h3 className="font-display text-sm md:text-base text-white font-semibold leading-tight line-clamp-2">{post.title}</h3>
       </div>
-    </div>
+    </Link>
   )
 }
 
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 export function Novedades() {
-  const [modalVideo, setModalVideo] = useState<VideoItem | null>(null)
   const [modalBanner, setModalBanner] = useState<BannerItem | null>(null)
+  const [recentPosts, setRecentPosts] = useState<RecentPost[]>([])
   const scrollRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const autoIndexRef = useRef(0)
@@ -254,12 +163,14 @@ export function Novedades() {
   const dragStartX = useRef(0)
   const dragScrollLeft = useRef(0)
 
-  const scrollToCard = (index: number) => {
-    const el = scrollRef.current
-    const card = cardRefs.current[index]
-    if (!el || !card) return
-    el.scrollTo({ left: el.scrollLeft + card.getBoundingClientRect().left - el.getBoundingClientRect().left, behavior: "smooth" })
-  }
+  useEffect(() => {
+    fetch(`${BLOG_API_URL}/blog/posts?page=1&per_page=3`, {
+      headers: { Accept: "application/json" },
+    })
+      .then(r => r.ok ? r.json() : null)
+      .then(json => { if (json?.data) setRecentPosts(json.data as RecentPost[]) })
+      .catch(() => {})
+  }, [])
 
   const syncAutoIndex = () => {
     isDragging.current = false
@@ -286,27 +197,9 @@ export function Novedades() {
     scrollRef.current.scrollLeft = dragScrollLeft.current - (e.pageX - dragStartX.current)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const scrollPrev = () => {
-    const el = scrollRef.current; if (!el) return
-    if (el.scrollLeft <= 1) { autoIndexRef.current = items.length - 1; el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" }) }
-    else { autoIndexRef.current = (autoIndexRef.current - 1 + items.length) % items.length; scrollToCard(autoIndexRef.current) }
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const scrollNext = () => {
-    const el = scrollRef.current; if (!el) return
-    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) { autoIndexRef.current = 0; el.scrollTo({ left: 0, behavior: "smooth" }) }
-    else { autoIndexRef.current = (autoIndexRef.current + 1) % items.length; scrollToCard(autoIndexRef.current) }
-  }
+  const [featured, ...side] = items
 
-  const renderCard = (item: CarouselItem, onExpandVideo: () => void, onExpandBanner: () => void) =>
-    item.type === "video"
-      ? <VideoCard item={item as VideoItem} onExpand={onExpandVideo} />
-      : <SmallBannerCard item={item as BannerItem} onExpand={onExpandBanner} />
-
-  const [featured, ...rest] = items
-  const side = rest.slice(0, 2)
-  const bottom = rest.slice(2)
+  const allMobileItems = [...items, ...recentPosts.map(p => ({ ...p, type: "blog" as const }))]
 
   return (
     <section className="py-12 md:py-20 bg-background">
@@ -330,10 +223,10 @@ export function Novedades() {
             onMouseUp={syncAutoIndex}
             onMouseLeave={syncAutoIndex}
           >
-            {items.map((item, i) => (
+            {allMobileItems.map((item, i) => (
               <div key={i} ref={el => { cardRefs.current[i] = el }} className="flex-shrink-0 snap-start [scroll-snap-stop:always] w-full">
-                {item.type === "video"
-                  ? <VideoCard item={item as VideoItem} onExpand={() => { setModalVideo(item as VideoItem) }} />
+                {item.type === "blog"
+                  ? <BlogPreviewCard post={item as unknown as RecentPost} />
                   : <SmallBannerCard item={item as BannerItem} onExpand={() => setModalBanner(item as BannerItem)} />
                 }
               </div>
@@ -345,31 +238,28 @@ export function Novedades() {
         <div className="hidden md:block">
           <div className="grid md:grid-cols-3 gap-4 mb-4">
             <div className="md:col-span-2">
-              {featured.type === "banner"
-                ? <FeaturedBannerCard item={featured as BannerItem} onExpand={() => setModalBanner(featured as BannerItem)} />
-                : <VideoCard item={featured as VideoItem} onExpand={() => setModalVideo(featured as VideoItem)} />
-              }
+              <FeaturedBannerCard item={featured!} onExpand={() => setModalBanner(featured!)} />
             </div>
             <div className="grid grid-cols-1 gap-4">
               {side.map((item, i) => (
                 <div key={i} className="flex-1">
-                  {renderCard(item, () => setModalVideo(item as VideoItem), () => setModalBanner(item as BannerItem))}
+                  <SmallBannerCard item={item} onExpand={() => setModalBanner(item)} />
                 </div>
               ))}
             </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {bottom.map((item, i) => (
-              <div key={i}>
-                {renderCard(item, () => setModalVideo(item as VideoItem), () => setModalBanner(item as BannerItem))}
-              </div>
-            ))}
-          </div>
+
+          {recentPosts.length > 0 && (
+            <div className="grid md:grid-cols-3 gap-4">
+              {recentPosts.map((post) => (
+                <BlogPreviewCard key={post.id} post={post} />
+              ))}
+            </div>
+          )}
         </div>
 
       </div>
 
-      {modalVideo && <VideoModal item={modalVideo} onClose={() => setModalVideo(null)} />}
       {modalBanner && <BannerModal item={modalBanner} onClose={() => setModalBanner(null)} />}
     </section>
   )
