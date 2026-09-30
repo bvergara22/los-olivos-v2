@@ -309,9 +309,11 @@ body {
   border-radius: .75rem;
   background: var(--background);
   transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+  height: 28rem;
+  overflow-y: auto;
 }
 .blog-editor-shell:focus-within { border-color: color-mix(in srgb, var(--foreground) 38%, var(--border)); box-shadow: 0 0 0 2px color-mix(in srgb, var(--foreground) 10%, transparent); }
-.blog-editor-content { min-height: 22rem; padding: 1.25rem; outline: none; font-size: var(--blog-content-size); line-height: var(--blog-content-leading); }
+.blog-editor-content { min-height: 26rem; padding: 1.25rem; outline: none; font-size: var(--blog-content-size); line-height: var(--blog-content-leading); }
 .blog-editor-content .ProseMirror { min-height: 19.5rem; outline: none; }
 .blog-editor-content p,
 .blog-editor-content ul,
