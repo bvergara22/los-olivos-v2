@@ -50,7 +50,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         )}
 
         {posts.length > 0 ? (
-          <div className="space-y-5">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {posts.map((post) => <BlogCard key={post.id} post={post} featured />)}
           </div>
         ) : (

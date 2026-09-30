@@ -367,7 +367,7 @@ export function ArticleHorizontalLayout({ post, articleUrl, content }: Props) {
                                 fill
                                 priority
                                 sizes="(min-width: 1280px) 1152px, 100vw"
-                                className="object-contain"
+                                className="object-cover"
                             />
                         </div>
                     ) : (
