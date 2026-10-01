@@ -172,6 +172,14 @@ export function Novedades() {
       .catch(() => {})
   }, [])
 
+  const scrollToCard = (index: number) => {
+    const el = scrollRef.current
+    const card = cardRefs.current[index]
+    if (!el || !card) return
+    const dx = card.getBoundingClientRect().left - el.getBoundingClientRect().left
+    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" })
+  }
+
   const syncAutoIndex = () => {
     isDragging.current = false
     if (!scrollRef.current) return
@@ -184,6 +192,17 @@ export function Novedades() {
     })
     autoIndexRef.current = nearest
   }
+
+  useEffect(() => {
+    const total = items.length + recentPosts.length
+    if (total === 0) return
+    const t = setInterval(() => {
+      if (isDragging.current || !scrollRef.current) return
+      autoIndexRef.current = (autoIndexRef.current + 1) % total
+      scrollToCard(autoIndexRef.current)
+    }, 4000)
+    return () => clearInterval(t)
+  }, [recentPosts.length])
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return
