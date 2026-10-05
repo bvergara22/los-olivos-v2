@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { ImageIcon, MessageSquare, Search, Send, Star, X, Loader2, Check, Ban } from "lucide-react"
 import { useState, useEffect, useCallback } from "react"
-import { adminFetch, BlogApiError } from "@/lib/blog"
+import { adminFetch, BlogApiError, type BlogListResponse } from "@/lib/blog"
 
 function getCsrf() {
     return typeof window === "undefined" ? "" : window.sessionStorage.getItem("blog_csrf") ?? ""
@@ -133,12 +133,37 @@ export function BlogCommentsAdmin() {
     const fetchPosts = useCallback(async (page: number, append = false) => {
         const params = new URLSearchParams({ per_page: "20", page: String(page) })
         if (search.trim()) params.set("search", search.trim())
-        const res = await request<AdminCommentsResponse>(`/blog/admin/comments?${params.toString()}`)
-        setPosts((prev) => append ? [...prev, ...res.data] : res.data)
+
+        const [res, allPostsRes] = await Promise.all([
+            request<AdminCommentsResponse>(`/blog/admin/comments?${params.toString()}`),
+            !append ? request<BlogListResponse>(`/blog/posts?per_page=50&page=1`) : Promise.resolve(null),
+        ])
+
+        let newPosts = res.data
+        if (!append && allPostsRes) {
+            const commentSlugs = new Set(res.data.map((p) => p.slug))
+            const extra: PostWithComments[] = allPostsRes.data
+                .filter((p) => !commentSlugs.has(p.slug))
+                .map((p) => ({
+                    id: p.id,
+                    title: p.title,
+                    slug: p.slug,
+                    excerpt: p.excerpt ?? null,
+                    coverImage: p.coverImage ?? null,
+                    publishedAt: p.publishedAt ?? null,
+                    rating: null,
+                    commentsCount: 0,
+                    pendingCount: 0,
+                    comments: [],
+                }))
+            newPosts = [...res.data, ...extra]
+        }
+
+        setPosts((prev) => append ? [...prev, ...newPosts] : newPosts)
         setPostsMeta({ current_page: res.meta.current_page, last_page: res.meta.last_page })
         setGlobalStats(res.stats)
-        if (!append && res.data.length > 0 && !selectedSlug) {
-            setSelectedSlug(res.data[0].slug)
+        if (!append && newPosts.length > 0 && !selectedSlug) {
+            setSelectedSlug(newPosts[0].slug)
         }
     }, [search, request, selectedSlug])
 
