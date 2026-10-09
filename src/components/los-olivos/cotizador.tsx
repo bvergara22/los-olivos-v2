@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 
 const C = '#477a7b'
-const C_DARK = '#2e5a5b'
 
 const servicios = [
   {

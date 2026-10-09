@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Toaster } from 'sonner'
 import Cotizador from '@/components/los-olivos/cotizador'
 
@@ -20,10 +21,13 @@ export default function CotizarPage() {
               </p>
             </div>
             <div className="relative w-3/4 lg:w-full max-w-lg mx-auto">
-              <img
+              <Image
                 src="/Duelo-imagen.png"
                 alt="Homenaje al amor"
+                width={500}
+                height={380}
                 className="w-full h-auto object-contain"
+                priority
               />
             </div>
           </div>
